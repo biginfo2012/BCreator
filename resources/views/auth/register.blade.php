@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-auth-card>
+    <x-register-card>
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
@@ -11,49 +11,26 @@
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
-
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+            <div class="wrp-input-box">
+                <div class="box name">
+                    <input type="text" name="firstMame" placeholder="姓">
+                    <input type="text" name="lastName" placeholder="名">
+                </div>
+                <div class="item mail">
+                    <input type="email" name="email" placeholder="メールアドレス">
+                </div>
+                <div class="item pass">
+                    <input type="password" name="password" placeholder="パスワード">
+                </div>
+                <div class="item save">
+                    <label><input type="checkbox" name="check"><a
+                            href="">利用規約</a>に同意する</label>
+                </div>
+            </div>
+            <div class="box">
+                <button class="regist-btn">登録する</button>
             </div>
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
         </form>
-    </x-auth-card>
+    </x-register-card>
 </x-guest-layout>
