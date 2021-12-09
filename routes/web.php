@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,26 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 /*TOP Pages*/
-Route::get('/', function () {
-    return view('welcome', ['id' => 6]);
-});
-Route::get('/about', function () {
-    return view('about', ['id' => 70]);
-})->name('about');
-Route::get('/curriculum', function () {
-    return view('curriculum', ['id' => 72]);
-})->name('curriculum');
-Route::get('/faq', function () {
-    return view('faq', ['id' => 80]);
-})->name('faq');
-Route::get('/price', function () {
-    return view('price', ['id' => 75]);
-})->name('price');
-Route::get('/voice', function () {
-    return view('voice', ['id' => 78]);
-})->name('voice');
-
-
+Route::get('/', [TopController::class, 'welcome'])->name('home');
+Route::get('about', [TopController::class, 'about'])->name('about');
+Route::get('curriculum', [TopController::class, 'curriculum'])->name('curriculum');
+Route::get('faq', [TopController::class, 'faq'])->name('faq');
+Route::get('price', [TopController::class, 'price'])->name('price');
+Route::get('voice', [TopController::class, 'voice'])->name('voice');
+Route::get('discount', [TopController::class, 'discount'])->name('discount');
+Route::get('counseling', [TopController::class, 'counseling'])->name('counseling');
+Route::get('reserve', [TopController::class, 'reserve'])->name('reserve');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

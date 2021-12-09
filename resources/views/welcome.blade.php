@@ -9,93 +9,11 @@
             </div>
         </div>
         <div class="ban-box">
-            <ul class="ban-slide slick-initialized slick-slider">
-                <button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Previous"
-                        role="button" style="">Previous
-                </button>
-                <div aria-live="polite" class="slick-list draggable" style="padding: 0px;">
-                    <div class="slick-track" role="listbox"
-                         style="opacity: 1; width: 3972px; transform: translate3d(-1324px, 0px, 0px);">
-                        <li class="slick-slide slick-cloned" data-slick-index="-4" id="" aria-hidden="true"
-                            tabindex="-1" style="width: 311px;">
-                            <a href="{{route('about')}}" tabindex="-1">
-                                <img src="{{asset('images/ban_kv01.png')}}">
-                            </a>
-                        </li>
-                        <li class="slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true"
-                            tabindex="-1" style="width: 311px;">
-                            <a href="https://b-creator.test-h.biz/counseling/" tabindex="-1">
-                                <img src="{{asset('images/ban_kv03.png')}}">
-                            </a>
-                        </li>
-                        <li class="slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true"
-                            tabindex="-1" style="width: 311px;">
-                            <a href="https://b-creator.test-h.biz/discount/" tabindex="-1">
-                                <img src="{{asset('images/ban_kv02.png')}}">
-                            </a>
-                        </li>
-                        <li class="slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true"
-                            tabindex="-1" style="width: 311px;">
-                            <a href="https://b-creator.test-h.biz/counseling/" tabindex="-1">
-                                <img src="{{asset('images/ban_kv04.png')}}">
-                            </a>
-                        </li>
-                        <li class="slick-slide slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1"
-                            role="option" aria-describedby="slick-slide00" style="width: 311px;">
-                            <a href="{{route('about')}}" tabindex="0">
-                                <img src="{{asset('images/ban_kv01.png')}}">
-                            </a>
-                        </li>
-                        <li class="slick-slide slick-current slick-active slick-center" data-slick-index="1"
-                            aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide01"
-                            style="width: 311px;">
-                            <a href="https://b-creator.test-h.biz/counseling/" tabindex="0">
-                                <img src="{{asset('images/ban_kv03.png')}}">
-                            </a>
-                        </li>
-                        <li class="slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="-1"
-                            role="option" aria-describedby="slick-slide02" style="width: 311px;">
-                            <a href="https://b-creator.test-h.biz/discount/" tabindex="0">
-                                <img src="{{asset('images/ban_kv02.png')}}">
-                            </a>
-                        </li>
-                        <li class="slick-slide" data-slick-index="3" aria-hidden="true" tabindex="-1" role="option"
-                            aria-describedby="slick-slide03" style="width: 311px;">
-                            <a href="https://b-creator.test-h.biz/counseling/" tabindex="-1">
-                                <img src="{{asset('images/ban_kv04.png')}}">
-                            </a>
-                        </li>
-                        <li class="slick-slide slick-cloned" data-slick-index="4" id="" aria-hidden="true" tabindex="-1"
-                            style="width: 311px;">
-                            <a href="{{route('about')}}" tabindex="-1">
-                                <img src="{{asset('images/ban_kv01.png')}}">
-                            </a>
-                        </li>
-                        <li class="slick-slide slick-cloned" data-slick-index="5" id="" aria-hidden="true" tabindex="-1"
-                            style="width: 311px;">
-                            <a href="https://b-creator.test-h.biz/counseling/" tabindex="-1">
-                                <img src="{{asset('images/ban_kv03.png')}}">
-                            </a>
-                        </li>
-                        <li class="slick-slide slick-cloned" data-slick-index="6" id="" aria-hidden="true" tabindex="-1"
-                            style="width: 311px;">
-                            <a href="https://b-creator.test-h.biz/discount/" tabindex="-1">
-                                <img src="{{asset('images/ban_kv02.png')}}">
-                            </a>
-                        </li>
-                        <li class="slick-slide slick-cloned" data-slick-index="7" id="" aria-hidden="true" tabindex="-1"
-                            style="width: 311px;">
-                            <a href="https://b-creator.test-h.biz/counseling/" tabindex="-1">
-                                <img src="{{asset('images/ban_kv04.png')}}">
-                            </a>
-                        </li>
-                    </div>
-                </div>
-
-
-                <button type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next" role="button"
-                        style="">Next
-                </button>
+            <ul class="ban-slide">
+                <li><a href="{{route('about')}}"> <img src="{{asset('images/ban_kv01.png')}}"> </a></li>
+                <li><a href="{{route('counseling')}}"> <img src="{{asset('images/ban_kv03.png')}}"> </a></li>
+                <li><a href="{{route('discount')}}"> <img src="{{asset('images/ban_kv02.png')}}"> </a></li>
+                <li><a href="{{route('counseling')}}"> <img src="{{asset('images/ban_kv04.png')}}"> </a></li>
             </ul>
         </div>
     </div>
@@ -132,231 +50,70 @@
                 <span>データと実績から捻出されたカリキュラム</span>
             </div>
             <div class="contents">
-                <ul class="slide-a slick-initialized slick-slider">
-                    <button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Previous"
-                            role="button" style="">Previous
-                    </button>
-                    <div aria-live="polite" class="slick-list draggable" style="padding: 0px;">
-                        <div class="slick-track" role="listbox"
-                             style="opacity: 1; width: 5550px; transform: translate3d(-1110px, 0px, 0px);">
-                            <li class="slick-slide slick-cloned" data-slick-index="-4" id="" aria-hidden="true"
-                                tabindex="-1" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c04.png')}}">
-                                    <div class="title">
-                                        <span>04</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>SEOライティング</span>
-                                        <span>今の世の中で必要不可欠な検索エンジン。その中でコンテンツの最適化を行うというスキルは半永久的に役立つものです。また未経験でも始めやすい分野です。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true"
-                                tabindex="-1" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c05.png')}}">
-                                    <div class="title">
-                                        <span>05</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>動画編集</span>
-                                        <span>動画編集のスキルは“センス”という言葉で片付けられることが多い分野です。そこを言語化しより具体的に学ぶことで短期間で高いレベルでのスキルを習得できます。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true"
-                                tabindex="-1" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c06.png')}}">
-                                    <div class="title">
-                                        <span>06</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>Web営業</span>
-                                        <span>スキルはあっても仕事がなければお金は稼げません。Web使った営業を学ぶことで、受講中からお金を生み出せるようにカリキュラムを組んでいます。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide slick-cloned slick-active" data-slick-index="-1" id=""
-                                aria-hidden="false" tabindex="-1" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c07.png')}}">
-                                    <div class="title">
-                                        <span>07</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>キャリア戦略</span>
-                                        <span>フリーランスは自分でキャリアの選択を行い、収入を上げていかなければなりません。その戦略概要を学ぶことでモチベーションと短期間での収入UPを目指します。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide slick-current slick-active slick-center" data-slick-index="0"
-                                aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide10"
-                                style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c01.png')}}">
-                                    <div class="title">
-                                        <span>01</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>b-Creatorの学習設計</span>
-                                        <span>ただひたすらに学習をするのではなく、目標・目的をはっきりとさせ、逆算を行なった上での学習が効率的です。そのために独自の学習設計を学び実践します。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide slick-active" data-slick-index="1" aria-hidden="false" tabindex="-1"
-                                role="option" aria-describedby="slick-slide11" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c02.png')}}">
-                                    <div class="title">
-                                        <span>02</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>ビジネスの基礎</span>
-                                        <span>具体論というのは基礎があって初めて身につきます。またスキルの“習得の仕方”を学ぶことで、b-Creatorの外側でも常に役立つノウハウを学んびます。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide" data-slick-index="2" aria-hidden="true" tabindex="-1" role="option"
-                                aria-describedby="slick-slide12" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c03.png')}}">
-                                    <div class="title">
-                                        <span>03</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>マーケティング論</span>
-                                        <span>マーケティングを学ぶか否かでフリーランスの価値は比べられないほど差がつきます。今、絶対的に必要なノウハウをb-Creatorでは講義しています。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide" data-slick-index="3" aria-hidden="true" tabindex="-1" role="option"
-                                aria-describedby="slick-slide13" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c04.png')}}">
-                                    <div class="title">
-                                        <span>04</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>SEOライティング</span>
-                                        <span>今の世の中で必要不可欠な検索エンジン。その中でコンテンツの最適化を行うというスキルは半永久的に役立つものです。また未経験でも始めやすい分野です。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide" data-slick-index="4" aria-hidden="true" tabindex="-1" role="option"
-                                aria-describedby="slick-slide14" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c05.png')}}">
-                                    <div class="title">
-                                        <span>05</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>動画編集</span>
-                                        <span>動画編集のスキルは“センス”という言葉で片付けられることが多い分野です。そこを言語化しより具体的に学ぶことで短期間で高いレベルでのスキルを習得できます。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide" data-slick-index="5" aria-hidden="true" tabindex="-1" role="option"
-                                aria-describedby="slick-slide15" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c06.png')}}">
-                                    <div class="title">
-                                        <span>06</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>Web営業</span>
-                                        <span>スキルはあっても仕事がなければお金は稼げません。Web使った営業を学ぶことで、受講中からお金を生み出せるようにカリキュラムを組んでいます。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide" data-slick-index="6" aria-hidden="true" tabindex="-1" role="option"
-                                aria-describedby="slick-slide16" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c07.png')}}">
-                                    <div class="title">
-                                        <span>07</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>キャリア戦略</span>
-                                        <span>フリーランスは自分でキャリアの選択を行い、収入を上げていかなければなりません。その戦略概要を学ぶことでモチベーションと短期間での収入UPを目指します。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide slick-cloned slick-center" data-slick-index="7" id=""
-                                aria-hidden="true" tabindex="-1" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c01.png')}}">
-                                    <div class="title">
-                                        <span>01</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>b-Creatorの学習設計</span>
-                                        <span>ただひたすらに学習をするのではなく、目標・目的をはっきりとさせ、逆算を行なった上での学習が効率的です。そのために独自の学習設計を学び実践します。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide slick-cloned" data-slick-index="8" id="" aria-hidden="true"
-                                tabindex="-1" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c02.png')}}">
-                                    <div class="title">
-                                        <span>02</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>ビジネスの基礎</span>
-                                        <span>具体論というのは基礎があって初めて身につきます。またスキルの“習得の仕方”を学ぶことで、b-Creatorの外側でも常に役立つノウハウを学んびます。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true"
-                                tabindex="-1" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c03.png')}}">
-                                    <div class="title">
-                                        <span>03</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>マーケティング論</span>
-                                        <span>マーケティングを学ぶか否かでフリーランスの価値は比べられないほど差がつきます。今、絶対的に必要なノウハウをb-Creatorでは講義しています。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="slick-slide slick-cloned" data-slick-index="10" id="" aria-hidden="true"
-                                tabindex="-1" style="width: 370px;">
-                                <div class="content-item">
-                                    <img src="{{asset('images/c04.png')}}">
-                                    <div class="title">
-                                        <span>04</span>
-                                        <span>content</span>
-                                    </div>
-                                    <div class="content">
-                                        <span>SEOライティング</span>
-                                        <span>今の世の中で必要不可欠な検索エンジン。その中でコンテンツの最適化を行うというスキルは半永久的に役立つものです。また未経験でも始めやすい分野です。</span>
-                                    </div>
-                                </div>
-                            </li>
+                <ul class="slide-a">
+                    <li>
+                        <div class="content-item"><img src="{{asset('images/c01.png')}}">
+                            <div class="title"><span>01</span> <span>content</span></div>
+                            <div class="content">
+                                <span>b-Creatorの学習設計</span>
+                                <span>ただひたすらに学習をするのではなく、目標・目的をはっきりとさせ、逆算を行なった上での学習が効率的です。そのために独自の学習設計を学び実践します。</span>
+                            </div>
                         </div>
-                    </div>
-
-
-                    <button type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next"
-                            role="button" style="">Next
-                    </button>
+                    </li>
+                    <li>
+                        <div class="content-item"><img src="{{asset('images/c02.png')}}">
+                            <div class="title"><span>02</span> <span>content</span></div>
+                            <div class="content">
+                                <span>ビジネスの基礎</span>
+                                <span>具体論というのは基礎があって初めて身につきます。またスキルの“習得の仕方”を学ぶことで、b-Creatorの外側でも常に役立つノウハウを学んびます。</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content-item"><img src="{{asset('images/c03.png')}}">
+                            <div class="title"><span>03</span> <span>content</span></div>
+                            <div class="content">
+                                <span>マーケティング論</span>
+                                <span>マーケティングを学ぶか否かでフリーランスの価値は比べられないほど差がつきます。今、絶対的に必要なノウハウをb-Creatorでは講義しています。</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content-item"><img src="{{asset('images/c04.png')}}">
+                            <div class="title"><span>04</span> <span>content</span></div>
+                            <div class="content">
+                                <span>SEOライティング</span>
+                                <span>今の世の中で必要不可欠な検索エンジン。その中でコンテンツの最適化を行うというスキルは半永久的に役立つものです。また未経験でも始めやすい分野です。</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content-item"><img src="{{asset('images/c05.png')}}">
+                            <div class="title"><span>05</span> <span>content</span></div>
+                            <div class="content">
+                                <span>動画編集</span>
+                                <span>動画編集のスキルは“センス”という言葉で片付けられることが多い分野です。そこを言語化しより具体的に学ぶことで短期間で高いレベルでのスキルを習得できます。</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content-item"><img src="{{asset('images/c06.png')}}">
+                            <div class="title"><span>06</span> <span>content</span></div>
+                            <div class="content">
+                                <span>Web営業</span>
+                                <span>スキルはあっても仕事がなければお金は稼げません。Web使った営業を学ぶことで、受講中からお金を生み出せるようにカリキュラムを組んでいます。</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content-item"><img src="{{asset('images/c07.png')}}">
+                            <div class="title"><span>07</span> <span>content</span></div>
+                            <div class="content">
+                                <span>キャリア戦略</span>
+                                <span>フリーランスは自分でキャリアの選択を行い、収入を上げていかなければなりません。その戦略概要を学ぶことでモチベーションと短期間での収入UPを目指します。</span>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div class="btn-box">
@@ -440,12 +197,12 @@
             </div>
             <div class="flex fx-bet iner-box fx-wrp">
                 <div class="i-50">
-                    <a class="ban-btn" href="https://b-creator.test-h.biz/discount/">
+                    <a class="ban-btn" href="{{route('discount')}}">
                         <img src="{{asset('images/pb01.png')}}">
                     </a>
                 </div>
                 <div class="i-50">
-                    <a class="ban-btn" href="https://b-creator.test-h.biz/counseling/">
+                    <a class="ban-btn" href="{{route('counseling')}}">
                         <img src="{{asset('images/pb02.png')}}">
                     </a>
                 </div>
@@ -529,7 +286,7 @@
             <div class="content">
                 <div class="fx-bet fx-wrp">
                     <div class="i-32">
-                        <a href="https://b-creator.test-h.biz/counseling/">
+                        <a href="{{route('counseling')}}">
                             <div class="wrp-cv-item-title">
                                 <div class="wrp">
                                     <img src="{{asset('images/about.png')}}">
@@ -563,7 +320,7 @@
                         </div>
                     </div>
                     <div class="i-32">
-                        <a href="https://b-creator.test-h.biz/reserve/">
+                        <a href="{{route('reserve')}}">
                             <div class="wrp-cv-item-title">
                                 <div class="wrp">
                                     <img src="{{asset('images/reserve.png')}}">

@@ -1,0 +1,163 @@
+@charset "utf-8";
+/*base*/
+ul,li{padding: 0; margin: 0; list-style: none;}
+.bold{font-weight: bold;}
+.normal{font-weight: normal;}
+.mincho{font-family: 'Noto Serif JP', "游明朝体", "Yu Mincho", YuMincho, "Hiragino Kaku Gothic ProN", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ ゴシック", sans-serif;}
+.text-right{text-align: right;}
+.text-left{text-align: left;}
+.text-center{text-align: center;}
+a.uline{text-decoration: underline;}
+.short{-webkit-box-orient:vertical;display:-webkit-box;-webkit-line-clamp:1;overflow:hidden;}
+.short.line-2{-webkit-line-clamp:2;}
+.short.line-3{-webkit-line-clamp:3;}
+.short-line{-webkit-box-orient:vertical;display:-webkit-box;-webkit-line-clamp:2;overflow:hidden;}
+
+/*anime*/
+.anime{transition: .3s;}
+.opa0,.sc-anime,.sc-op,.op-anime{opacity: 0;}
+
+
+/*margin*/
+.mr0{margin-right: 0 !important;}
+.mr5{margin-right: 5px !important;}
+.mr10{margin-right: 10px !important;}
+.mr15{margin-right: 15px !important;}
+.mr20{margin-right: 20px !important;}
+.ml5{margin-left: 5px !important;}
+.ml10{margin-left: 10px !important;}
+.mb5{margin-bottom: 5px !important;}
+.mb0{margin-bottom: 0 !important;}
+.mb10{margin-bottom: 10px !important;}
+.mb20{margin-bottom: 20px !important;}
+.mb30{margin-bottom: 30px !important;}
+.mb40{margin-bottom: 40px !important;}
+.mb50{margin-bottom: 50px !important;}
+.mt0{margin-top: 0 !important;}
+.mt5{margin-top: 5px !important;}
+.mt10{margin-top: 10px !important;}
+.mt20{margin-top: 20px !important;}
+.mt30{margin-top: 30px !important;}
+.mt40{margin-top: 40px !important;}
+.mt50{margin-top: 50px !important;}
+
+/*padding*/
+.pt0{padding-top: 0 !important;}
+
+/*width*/
+.w-full{width: 100% !important; max-width: 100% !important;}
+.w-100{width: 100px !important;}
+
+
+/*font-size*/
+.fsz-12{font-size: 12px !important;}
+.fsz-14{font-size: 14px !important;}
+.fsz-16{font-size: 16px !important;}
+.fsz-18{font-size: 18px !important;}
+.fsz-20{font-size: 20px !important;}
+.fsz-24{font-size: 24px !important;}
+.fsz-34{font-size: 34px !important;}
+
+/*position*/
+.ab{position: absolute;}
+.rela{position: relative;}
+.fa,.far,.fas,.fab{margin-right: 5px;}
+.no-fa{margin-right: 0;}
+.left-fa{margin:0 0 0 5px;}
+
+/*hover*/
+.hov-opa:hover{opacity: 0.8;}
+
+/*map*/
+.google-map {position: relative; width: 100%; height: 0; padding-bottom: 45%; overflow: hidden;}
+.google-map iframe {position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;}
+
+/*flex*/
+.fx-wrp{-webkit-flex-wrap:wrap; flex-wrap:wrap;}
+.fx-aro{-webkit-justify-content:space-around; justify-content:space-around;}
+.fx-coc{-webkit-justify-content:center; justify-content:center;}
+.fx-ced{-webkit-justify-content:flex-end; justify-content:flex-end;}
+.fx-str{-webkit-align-items:flex-start; align-items:flex-start;}
+.fx-end{-webkit-align-items:flex-end; align-items:flex-end;}
+.fx-itc{-webkit-align-items:center; align-items:center;}
+.fx-cc{display: flex; align-items:center;}
+.fx-bet{display: flex; -webkit-justify-content:space-between; justify-content:space-between;}
+.fx-ccc{display: inline-flex; justify-content:center; align-items:center;}
+.fx-ex{display: flex; -webkit-justify-content:space-between; justify-content:space-between; -webkit-align-items:center; align-items:center;}
+.fx-cos{-webkit-justify-content:flex-start; justify-content:flex-start;}
+.fx-arc{display: flex; -webkit-justify-content:space-between; justify-content:space-between; -webkit-flex-wrap:wrap; flex-wrap:wrap;}
+.fx-rev{flex-direction: row-reverse;}
+.fx-pc,.flex{display: -webkit-flex; display: flex;}
+
+/*grid*/
+.grid{display: grid; grid-gap: 20px;}
+.grid-2{grid-template-columns: 1fr 1fr;}
+.grid-3{grid-template-columns: 1fr 1fr 1fr;}
+.grid-4{grid-template-columns: 1fr 1fr 1fr 1fr;}
+
+/*row*/
+.row-5{margin: 0 -5px;}
+.row-5 > div{padding: 0 5px;}
+.row-7{margin: 0 -7px;}
+.row-7 > div{padding: 0 7px;}
+.row-10{margin: 0 -10px;}
+.row-10 > div{padding: 0 10px;}
+.row-12{margin: 0 -12px;}
+.row-12 > div{padding: 0 12px;}
+
+/*rotate*/
+.r{display: inline-block;}
+.r45{transform: rotate( 45deg );}
+.r90{transform: rotate( 90deg );}
+.r135{transform: rotate( 135deg );}
+.r180{transform: rotate( 180deg );}
+.r225{transform: rotate( 225deg );}
+.r270{transform: rotate( 270deg );}
+.r315{transform: rotate( 315deg );}
+.r360{transform: rotate( 360deg );}
+
+/*color*/
+.c-f1{color:#218f81;}
+.c-f2{color:#f97a8f;}
+.c-f3{color:#eec91e;}
+.c-f4{color:#ff87e7;}
+.c-f5{color:#60abff;}
+.c-f6{color:#4ecfaf;}
+.c-f7{color:#f2ae43;}
+.c-f8{color:#9994ff;}
+.c-f9{color:#d6894c;}
+.c-f10{color:#fe7d92;}
+.c-f11{color:#e83939;}
+.c-f12{color:#ff6e17;}
+.c-f13{color:#ad864f;}
+.c-f14{color:#ffbc2b;}
+.c-f15{color:#999;}
+
+
+
+/*---PC---*/
+@media (min-width: 768px){
+    .pc-hidden{display: none;}
+    
+}
+
+/*---スマホ---*/
+@media only screen and (max-width: 767px) {
+    .sm-hidden{display: none;}
+    .fx-pc{display: block;}
+    .google-map {padding-bottom: 100%;}
+    
+    /*grid*/
+    .grid{grid-gap: 15px;}
+    .grid-2,
+    .grid-3{grid-template-columns: 1fr; grid-gap: 30px;}
+}
+
+/*------Sm small------*/
+@media only screen and (max-width: 350px) {
+    .grid-2,
+    .grid-3{grid-template-columns: 1fr;}
+}
+
+
+/*This file was exported by "Export WP Page to Static HTML" plugin which created by ReCorp (https://myrecorp.com) */

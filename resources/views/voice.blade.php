@@ -50,179 +50,51 @@
                 <span>受講生のbefre→after</span>
             </div>
             <div class="voice-slick-box">
-                <div class="sli-nav flex slick-initialized slick-slider">
-                    <div aria-live="polite" class="slick-list draggable" style="padding: 0px;">
-                        <div class="slick-track" role="listbox"
-                             style="opacity: 1; width: 513px; transform: translate3d(0px, 0px, 0px);">
-                            <div class="s-n-item slick-slide slick-current slick-center" data-slick-index="0"
-                                 aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide10"
-                                 style="width: 151px;"><span>会社員→Webマーケター</span></div>
-                            <div class="s-n-item slick-slide" data-slick-index="1" aria-hidden="true" tabindex="-1"
-                                 role="option" aria-describedby="slick-slide11" style="width: 151px;"><span>未経験→副業収入5万円UP</span>
-                            </div>
-                            <div class="s-n-item slick-slide slick-center" data-slick-index="2" aria-hidden="true"
-                                 tabindex="-1" role="option" aria-describedby="slick-slide12" style="width: 151px;">
-                                <span>新卒→フリーランス</span></div>
-                        </div>
-                    </div>
-
-
+                <div class="sli-nav flex">
+                    <div class="s-n-item"><span>会社員→Webマーケター</span></div>
+                    <div class="s-n-item"><span>未経験→副業収入5万円UP</span></div>
+                    <div class="s-n-item"><span>新卒→フリーランス</span></div>
                 </div>
-                <ul class="voice-slider slick-initialized slick-slider">
-                    <button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Previous"
-                            role="button" style="">Previous
-                    </button>
-                    <div aria-live="polite" class="slick-list draggable" style="padding: 0px 80px;">
-                        <div class="slick-track" role="listbox"
-                             style="opacity: 1; width: 4970px; transform: translate3d(-1420px, 0px, 0px);">
-                            <li class="sli-item slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true"
-                                tabindex="-1" style="width: 670px;">
-                                <img class="sm-hidden" src="{{asset('images/fv01.png')}}">
-                                <img class="pc-hidden" src="{{asset('images/fv01_sm.png')}}">
-                                <span class="img-tit">僕にとっての副業収入はスタートに過ぎません。<br>b-Creatorはまだまだその先まで見せてくれるwebスクールです。</span>
-                                <div class="fx-bet fx-wrp">
-                                    <div class="item">
-                                        <span>なぜ受講したのか</span>
-                                        <span>会社で副業解禁されたのがきっかけですが、webスクールは二つ目です。“稼ぐ”をテーマとしているところに惹かれました。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>b-Creatorでの学習</span>
-                                        <span>学習の方法・時間の使い方から学習できるため、効率が高まることはもちろん、直後の結果に直結する学びを得られます。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>今後の展望</span>
-                                        <span>本業から副業に転換するため時間配分を変えていくのと、自分が時間を使わなくても良いように仕組み化を進めています。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="sli-item slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true"
-                                tabindex="-1" style="width: 670px;">
-                                <img class="sm-hidden" src="{{asset('images/fv01.png')}}">
-                                <img class="pc-hidden" src="{{asset('images/fv01_sm.png')}}">
-                                <span class="img-tit">普通の就職にもう未来は無いと考えていました。<br>新卒フリーランス、それを実現できるのがb-Creatorです。</span>
-                                <div class="fx-bet fx-wrp">
-                                    <div class="item">
-                                        <span>受講への不安</span>
-                                        <span>正直不安はありました。しかし、カウンセリングを受けてコンテンツの質・サポートの充実を確信し受講に至りました。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>b-Creatorでの学習</span>
-                                        <span>受講後、即実践できるのは驚きでした。いつか役に立つ大学の講義と違い、実践的な学習が自分を大きく成長させました。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>フリーランスの生活</span>
-                                        <span>仕事の数をコントロールできるため、収入源を増やしたり、時間を作ってスキルUPに当てたりして自由に過ごしています。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="sli-item slick-slide slick-current slick-active slick-center"
-                                data-slick-index="0" aria-hidden="false" tabindex="-1" role="option"
-                                aria-describedby="slick-slide00" style="width: 670px;">
-                                <img class="sm-hidden" src="{{asset('images/fv01.png')}}">
-                                <img class="pc-hidden" src="{{asset('images/fv01_sm.png')}}">
-                                <span class="img-tit">人生100年時代、老後2000万円問題...<br>40歳を超える普通の会社員を変えてくれたのがb-Creatorでした。</span>
-                                <div class="fx-bet fx-wrp">
-                                    <div class="item">
-                                        <span>会社員時代</span>
-                                        <span>満員電車に残業はもう当たり前でしたが、コロナ禍でも変わらない会社の体制には本当に耐えきれなくなっていました。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>b-Creatorでの学習</span>
-                                        <span>未経験の方がフリーランスとして成功できるように基礎の基礎から固めてくれるので、学習の度に安心できました。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>フリーランスになって</span>
-                                        <span>時間と場所に縛られず生活できるのが一番の喜びです。あの頃には考えられないほど生活に自由が増えました。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="sli-item slick-slide" data-slick-index="1" aria-hidden="true" tabindex="-1"
-                                role="option" aria-describedby="slick-slide01" style="width: 670px;">
-                                <img class="sm-hidden" src="{{asset('images/fv01.png')}}">
-                                <img class="pc-hidden" src="{{asset('images/fv01_sm.png')}}">
-                                <span class="img-tit">僕にとっての副業収入はスタートに過ぎません。<br>b-Creatorはまだまだその先まで見せてくれるwebスクールです。</span>
-                                <div class="fx-bet fx-wrp">
-                                    <div class="item">
-                                        <span>なぜ受講したのか</span>
-                                        <span>会社で副業解禁されたのがきっかけですが、webスクールは二つ目です。“稼ぐ”をテーマとしているところに惹かれました。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>b-Creatorでの学習</span>
-                                        <span>学習の方法・時間の使い方から学習できるため、効率が高まることはもちろん、直後の結果に直結する学びを得られます。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>今後の展望</span>
-                                        <span>本業から副業に転換するため時間配分を変えていくのと、自分が時間を使わなくても良いように仕組み化を進めています。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="sli-item slick-slide" data-slick-index="2" aria-hidden="true" tabindex="-1"
-                                role="option" aria-describedby="slick-slide02" style="width: 670px;">
-                                <img class="sm-hidden" src="{{asset('images/fv01.png')}}">
-                                <img class="pc-hidden" src="{{asset('images/fv01_sm.png')}}">
-                                <span class="img-tit">普通の就職にもう未来は無いと考えていました。<br>新卒フリーランス、それを実現できるのがb-Creatorです。</span>
-                                <div class="fx-bet fx-wrp">
-                                    <div class="item">
-                                        <span>受講への不安</span>
-                                        <span>正直不安はありました。しかし、カウンセリングを受けてコンテンツの質・サポートの充実を確信し受講に至りました。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>b-Creatorでの学習</span>
-                                        <span>受講後、即実践できるのは驚きでした。いつか役に立つ大学の講義と違い、実践的な学習が自分を大きく成長させました。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>フリーランスの生活</span>
-                                        <span>仕事の数をコントロールできるため、収入源を増やしたり、時間を作ってスキルUPに当てたりして自由に過ごしています。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="sli-item slick-slide slick-cloned slick-center" data-slick-index="3" id=""
-                                aria-hidden="true" tabindex="-1" style="width: 670px;">
-                                <img class="sm-hidden" src="{{asset('images/fv01.png')}}">
-                                <img class="pc-hidden" src="{{asset('images/fv01_sm.png')}}">
-                                <span class="img-tit">人生100年時代、老後2000万円問題...<br>40歳を超える普通の会社員を変えてくれたのがb-Creatorでした。</span>
-                                <div class="fx-bet fx-wrp">
-                                    <div class="item">
-                                        <span>会社員時代</span>
-                                        <span>満員電車に残業はもう当たり前でしたが、コロナ禍でも変わらない会社の体制には本当に耐えきれなくなっていました。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>b-Creatorでの学習</span>
-                                        <span>未経験の方がフリーランスとして成功できるように基礎の基礎から固めてくれるので、学習の度に安心できました。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>フリーランスになって</span>
-                                        <span>時間と場所に縛られず生活できるのが一番の喜びです。あの頃には考えられないほど生活に自由が増えました。</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="sli-item slick-slide slick-cloned" data-slick-index="4" id="" aria-hidden="true"
-                                tabindex="-1" style="width: 670px;">
-                                <img class="sm-hidden" src="{{asset('images/fv01.png')}}">
-                                <img class="pc-hidden" src="{{asset('images/fv01_sm.png')}}">
-                                <span class="img-tit">僕にとっての副業収入はスタートに過ぎません。<br>b-Creatorはまだまだその先まで見せてくれるwebスクールです。</span>
-                                <div class="fx-bet fx-wrp">
-                                    <div class="item">
-                                        <span>なぜ受講したのか</span>
-                                        <span>会社で副業解禁されたのがきっかけですが、webスクールは二つ目です。“稼ぐ”をテーマとしているところに惹かれました。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>b-Creatorでの学習</span>
-                                        <span>学習の方法・時間の使い方から学習できるため、効率が高まることはもちろん、直後の結果に直結する学びを得られます。</span>
-                                    </div>
-                                    <div class="item">
-                                        <span>今後の展望</span>
-                                        <span>本業から副業に転換するため時間配分を変えていくのと、自分が時間を使わなくても良いように仕組み化を進めています。</span>
-                                    </div>
-                                </div>
-                            </li>
+                <ul class="voice-slider">
+                    <li class="sli-item">
+                        <img class="sm-hidden" src="{{asset('images/fv01.png')}}">
+                        <img class="pc-hidden" src="{{asset('images/fv01_sm.png')}}">
+                        <span class="img-tit">人生100年時代、老後2000万円問題...<br>40歳を超える普通の会社員を変えてくれたのがb-Creatorでした。</span>
+                        <div class="fx-bet fx-wrp">
+                            <div class="item"><span>会社員時代</span> <span>満員電車に残業はもう当たり前でしたが、コロナ禍でも変わらない会社の体制には本当に耐えきれなくなっていました。</span>
+                            </div>
+                            <div class="item"><span>b-Creatorでの学習</span> <span>未経験の方がフリーランスとして成功できるように基礎の基礎から固めてくれるので、学習の度に安心できました。</span>
+                            </div>
+                            <div class="item"><span>フリーランスになって</span> <span>時間と場所に縛られず生活できるのが一番の喜びです。あの頃には考えられないほど生活に自由が増えました。</span>
+                            </div>
                         </div>
-                    </div>
-
-
-                    <button type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next"
-                            role="button" style="">Next
-                    </button>
+                    </li>
+                    <li class="sli-item">
+                        <img class="sm-hidden" src="{{asset('images/fv01.png')}}">
+                        <img class="pc-hidden" src="{{asset('images/fv01_sm.png')}}">
+                        <span class="img-tit">僕にとっての副業収入はスタートに過ぎません。<br>b-Creatorはまだまだその先まで見せてくれるwebスクールです。</span>
+                        <div class="fx-bet fx-wrp">
+                            <div class="item"><span>なぜ受講したのか</span> <span>会社で副業解禁されたのがきっかけですが、webスクールは二つ目です。“稼ぐ”をテーマとしているところに惹かれました。</span>
+                            </div>
+                            <div class="item"><span>b-Creatorでの学習</span> <span>学習の方法・時間の使い方から学習できるため、効率が高まることはもちろん、直後の結果に直結する学びを得られます。</span>
+                            </div>
+                            <div class="item"><span>今後の展望</span> <span>本業から副業に転換するため時間配分を変えていくのと、自分が時間を使わなくても良いように仕組み化を進めています。</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="sli-item">
+                        <img class="sm-hidden" src="{{asset('images/fv01.png')}}">
+                        <img class="pc-hidden" src="{{asset('images/fv01_sm.png')}}">
+                        <span class="img-tit">普通の就職にもう未来は無いと考えていました。<br>新卒フリーランス、それを実現できるのがb-Creatorです。</span>
+                        <div class="fx-bet fx-wrp">
+                            <div class="item"><span>受講への不安</span> <span>正直不安はありました。しかし、カウンセリングを受けてコンテンツの質・サポートの充実を確信し受講に至りました。</span>
+                            </div>
+                            <div class="item"><span>b-Creatorでの学習</span> <span>受講後、即実践できるのは驚きでした。いつか役に立つ大学の講義と違い、実践的な学習が自分を大きく成長させました。</span>
+                            </div>
+                            <div class="item"><span>フリーランスの生活</span> <span>仕事の数をコントロールできるため、収入源を増やしたり、時間を作ってスキルUPに当てたりして自由に過ごしています。</span>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -629,7 +501,7 @@
             <div class="content">
                 <div class="fx-bet fx-wrp">
                     <div class="i-32">
-                        <a href="https://b-creator.test-h.biz/counseling/">
+                        <a href="{{route('counseling')}}">
                             <div class="wrp-cv-item-title">
                                 <div class="wrp">
                                     <img src="{{asset('images/about.png')}}">
@@ -663,7 +535,7 @@
                         </div>
                     </div>
                     <div class="i-32">
-                        <a href="https://b-creator.test-h.biz/reserve/">
+                        <a href="{{route('reserve')}}">
                             <div class="wrp-cv-item-title">
                                 <div class="wrp">
                                     <img src="{{asset('images/reserve.png')}}">

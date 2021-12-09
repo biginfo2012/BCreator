@@ -407,7 +407,7 @@
             <div class="content">
                 <div class="fx-bet fx-wrp">
                     <div class="i-32">
-                        <a href="https://b-creator.test-h.biz/counseling/">
+                        <a href="{{route('counseling')}}">
                             <div class="wrp-cv-item-title">
                                 <div class="wrp">
                                     <img src="{{asset('images/about.png')}}">
@@ -441,7 +441,7 @@
                         </div>
                     </div>
                     <div class="i-32">
-                        <a href="https://b-creator.test-h.biz/reserve/">
+                        <a href="{{route('reserve')}}">
                             <div class="wrp-cv-item-title">
                                 <div class="wrp">
                                     <img src="{{asset('images/reserve.png')}}">

@@ -4,7 +4,7 @@
             <div class="fx-bet fx-wrp">
                 <div class="foot-logo">
                     <a href="{{url('/')}}" title="b-Creator:21リニューアル_テスト" rel="home">
-                        <img src="{{asset('images/logo.png')}}">
+                        <img src="{{asset('images/f-logo.png')}}">
                     </a>
                 </div>
                 <div class="foot-box">

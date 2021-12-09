@@ -123,7 +123,7 @@
                         </div>
                         <div class="item a">
                             <span>可能です。専用の受講申し込みフォームより手続きいただければ即日受講を開始することができます。専用フォームは<a
-                                    href="https://b-creator.test-h.biz/counseling/">こちら</a></span>
+                                    href="{{route('counseling')}}">こちら</a></span>
                         </div>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                         </div>
                         <div class="item a">
                             <span>受講の目的や今後の目標についてのヒアリング、目標を最短で達成するための学習計画を提案やb-Creatorの詳細について説明します。詳しくは<a
-                                    href="https://b-creator.test-h.biz/counseling/">こちら</a></span>
+                                    href="{{route('counseling')}}">こちら</a></span>
                         </div>
                     </div>
                     <div class="box">
@@ -172,7 +172,7 @@
                         </div>
                         <div class="item a">
                             <span>可能です。専用の受講申し込みフォームより手続きいただければ即日受講を開始することができます。専用フォームは<a
-                                    href="https://b-creator.test-h.biz/counseling/">こちら</a></span>
+                                    href="{{route('counseling')}}">こちら</a></span>
                         </div>
                     </div>
                 </div>
@@ -267,7 +267,7 @@
                             <span>どのような割引制度がありますか</span>
                         </div>
                         <div class="item a">
-                            <span>割引については<a href="https://b-creator.test-h.biz/discount/">こちら</a>をご参照ください。</span>
+                            <span>割引については<a href="{{route('discount')}}">こちら</a>をご参照ください。</span>
                         </div>
                     </div>
                 </div>
@@ -363,7 +363,7 @@
             <div class="content">
                 <div class="fx-bet fx-wrp">
                     <div class="i-32">
-                        <a href="https://b-creator.test-h.biz/counseling/">
+                        <a href="{{route('counseling')}}">
                             <div class="wrp-cv-item-title">
                                 <div class="wrp">
                                     <img src="{{asset('images/about.png')}}">
@@ -397,7 +397,7 @@
                         </div>
                     </div>
                     <div class="i-32">
-                        <a href="https://b-creator.test-h.biz/reserve/">
+                        <a href="{{route('reserve')}}">
                             <div class="wrp-cv-item-title">
                                 <div class="wrp">
                                     <img src="{{asset('images/reserve.png')}}">

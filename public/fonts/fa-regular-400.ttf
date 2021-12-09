@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://localhost/wordpress/xmlrpc.php">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet"> 
+	<!--wordpress head-->
+	<title>ページが見つかりませんでした | b-Creator:21リニューアル_テスト</title>
+<meta name='robots' content='noindex, nofollow' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="b-Creator:21リニューアル_テスト &raquo; フィード" href="http://localhost/wordpress/feed/" />
+<link rel="alternate" type="application/rss+xml" title="b-Creator:21リニューアル_テスト &raquo; コメントフィード" href="http://localhost/wordpress/comments/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/localhost\/wordpress\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.2"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='http://localhost/wordpress/wp-includes/css/dist/block-library/style.min.css?ver=5.8.2' type='text/css' media='all' />
+<style id='wp-block-library-theme-inline-css' type='text/css'>
+#start-resizable-editor-section{display:none}.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:hsla(0,0%,100%,.65)}.wp-block-code{font-family:Menlo,Consolas,monaco,monospace;color:#1e1e1e;padding:.8em 1em;border:1px solid #ddd;border-radius:4px}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:hsla(0,0%,100%,.65)}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:hsla(0,0%,100%,.65)}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:hsla(0,0%,100%,.65)}.wp-block-pullquote{border-top:4px solid;border-bottom:4px solid;margin-bottom:1.75em;color:currentColor}.wp-block-pullquote__citation,.wp-block-pullquote cite,.wp-block-pullquote footer{color:currentColor;text-transform:uppercase;font-size:.8125em;font-style:normal}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;position:relative;font-style:normal}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large{border:none}.wp-block-search .wp-block-search__label{font-weight:700}.wp-block-group.has-background{padding:1.25em 2.375em;margin-top:0;margin-bottom:0}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto;opacity:.4}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table thead{border-bottom:3px solid}.wp-block-table tfoot{border-top:3px solid}.wp-block-table td,.wp-block-table th{padding:.5em;border:1px solid;word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:hsla(0,0%,100%,.65)}.wp-block-template-part.has-background{padding:1.25em 2.375em;margin-top:0;margin-bottom:0}#end-resizable-editor-section{display:none}
+</style>
+<link rel='stylesheet' id='style-css'  href='http://localhost/wordpress/wp-content/themes/bootstrap-basic4/style.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='slick-css'  href='http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/assets/plugin/slick/slick.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='slicktheme-css'  href='http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/assets/plugin/slick/slick-theme.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='offcanvas-style-css'  href='http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/assets/css/bootstrap.offcanvas.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-basic4-main-css'  href='http://localhost/wordpress/wp-content/themes/bootstrap-basic4/assets/css/main.css?ver=1.2.7' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap4-css'  href='http://localhost/wordpress/wp-content/themes/bootstrap-basic4/assets/css/bootstrap.min.css?ver=4.5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-basic4-font-awesome5-css'  href='http://localhost/wordpress/wp-content/themes/bootstrap-basic4/assets/fontawesome/css/all.min.css?ver=5.15.1' type='text/css' media='all' />
+<link rel='stylesheet' id='mycommon-css'  href='http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/assets/css/common.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-basic4-wp-main-css'  href='http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/style.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='member-css'  href='http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/member.css?ver=5.8.2' type='text/css' media='all' />
+        <script>
+            /* <![CDATA[ */
+            var rcewpp = {
+                "ajax_url":"http://localhost/wordpress/wp-admin/admin-ajax.php",
+                "nonce": "7be5f37f16",
+                "home_url": "http://localhost/wordpress/",
+                "settings_icon": 'http://localhost/wordpress/wp-content/plugins/export-wp-page-to-static-html/admin/images/settings.png',
+                "settings_hover_icon": 'http://localhost/wordpress/wp-content/plugins/export-wp-page-to-static-html/admin/images/settings_hover.png'
+            };
+            /* ]]\> */
+        </script>
+        <script type='text/javascript' src='http://localhost/wordpress/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='http://localhost/wordpress/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/assets/plugin/slick/slick.min.js?ver=5.8.2' id='slick-js-js'></script>
+<script type='text/javascript' src='http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/assets/js/bootstrap.offcanvas.min.js?ver=5.8.2' id='offcanvas-js-js'></script>
+<script type='text/javascript' src='http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/assets/plugin/velocity/velocity.min.js?ver=5.8.2' id='velocity-js-js'></script>
+<script type='text/javascript' src='http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/assets/plugin/velocity/velocity.ui.min.js?ver=5.8.2' id='velocity_ui-js-js'></script>
+<script type='text/javascript' src='http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/assets/js/my.js?ver=5.8.2' id='my-js-js'></script>
+<script type='text/javascript' src='http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/assets/js/anime.js?ver=5.8.2' id='anime-js-js'></script>
+<link rel="https://api.w.org/" href="http://localhost/wordpress/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/wordpress/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/wordpress/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.8.2" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style></head>
+
+<body class="error404 wp-embed-responsive">
+    <header class="" id="header">
+        <div class="head_inner">
+            <div class="fx-bet fx-itc">
+                <div class="head_logo">
+                    <a class="logo_a" href="http://localhost/wordpress/" title="b-Creator:21リニューアル_テスト" rel="home">
+                        <img class="logo" src="http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/assets/images/logo.png">
+                     </a>
+                    <span class="sm-sub">稼ぐ力を身につける<br>フリーランス養成講座</span>
+                </div>
+                <div class="head_item">
+                    <nav class="off-base navbar-offcanvas-right anime navbar-offcanvas offcanvas-collapse" role="navigation" id="sm-offcanvas">
+                        <ul id="menu-main_nav" class="ul-hnav navbar-nav"><li id="menu-item-82" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-82 nav-item"><a href="http://localhost/wordpress/about/" class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">b-Creatorについて</a></li>
+<li id="menu-item-86" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-86 nav-item"><a href="http://localhost/wordpress/curriculum/" class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">学習内容</a></li>
+<li id="menu-item-83" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-83 nav-item"><a href="http://localhost/wordpress/faq/" class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">よくある質問</a></li>
+<li id="menu-item-84" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-84 nav-item"><a href="http://localhost/wordpress/price/" class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">受講料金</a></li>
+<li id="menu-item-85" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-85 nav-item"><a href="http://localhost/wordpress/voice/" class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">受講生の声</a></li>
+</ul> 
+                    </nav>
+                </div>
+                
+                <button type="button" class="m-toggle pc-hidden offcanvas-toggle anime" data-toggle="offcanvas" data-target="#sm-offcanvas">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <div class="wrp-head_btn flex fx-itc">
+                    <a href="#" class="head_btn1">ログイン</a>
+                    <a href="#" class="head_btn2">
+                        <span>無料カウンセリング</span>
+                        <span>Webで予約する<i class="fas fa-angle-right"></i></span>
+                        <span class="h-fix-btn">無料カウンセリングを予約する</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+ 
+                <main id="main" class="col-12 site-main" role="main">
+                    <section class="error-404 not-found">
+                        <header class="page-header">
+                            <h1 class="page-title">Oops! That page can&rsquo;t be found.</h1>
+                        </header><!-- .page-header -->
+                        <div class="page-content">
+                            <p>It looks like nothing was found at this location. Maybe try one of the links below or a search?</p>
+
+                            <!--search form-->
+                            <div class="row-with-vspace">
+                                                            <form method="get" action="http://localhost/wordpress/">
+                                <div class="input-group">
+                                    <input class="form-control" type="search" name="s" value="" placeholder="Search &hellip;" title="Search &hellip;">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                                    </span>
+                                </div>
+                            </form><!--to override this search form, it is in D:\_WORKSPACE\xampp\htdocs\wordpress\wp-content\themes\bootstrap-basic4\template-parts\partial-search-form.php --> 
+                            </div>
+
+                            <div class="row">
+                                <div class=" col-sm-6 col-md-3">
+                                    
+		<div class="widget widget_recent_entries">
+		<h2 class="widgettitle">最近の投稿</h2>
+		<ul>
+											<li>
+					<a href="http://localhost/wordpress/2020/09/17/%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%b92/">title30_07_08_41</a>
+									</li>
+											<li>
+					<a href="http://localhost/wordpress/2020/04/21/hello-world/">Hello world!</a>
+									</li>
+					</ul>
+
+		</div> 
+                                </div>
+                                <div class=" col-sm-6 col-md-3">
+                                     
+                                    <div class="widget widget_categories">
+                                        <h2 class="widgettitle">Most Used Categories</h2>
+                                        <ul>
+                                            	<li class="cat-item cat-item-1"><a href="http://localhost/wordpress/category/news/">ニュース</a> (2)
+</li>
+ 
+                                        </ul>
+                                    </div><!-- .widget -->
+                                     
+                                </div>
+                                <div class=" col-sm-6 col-md-3">
+                                    <div class="widget widget_archive"><h2 class="widgettitle">アーカイブ</h2><p>Try looking in the monthly archives. 🙂</p>		<label class="screen-reader-text" for="archives-dropdown--1">アーカイブ</label>
+		<select id="archives-dropdown--1" name="archive-dropdown">
+			
+			<option value="">月を選択</option>
+				<option value='http://localhost/wordpress/2020/09/'> 2020年9月 </option>
+	<option value='http://localhost/wordpress/2020/04/'> 2020年4月 </option>
+
+		</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "archives-dropdown--1" );
+	function onSelectChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value !== '' ) {
+			document.location.href = this.options[ this.selectedIndex ].value;
+		}
+	}
+	dropdown.onchange = onSelectChange;
+})();
+/* ]]> */
+</script>
+			</div> 
+                                </div>
+                                <div class=" col-sm-6 col-md-3">
+                                     
+                                </div>
+                            </div>
+                        </div><!-- .page-content -->
+                    </section><!-- .error-404 -->
+                </main>
+
+
+        <footer id="footer">
+            <div class="wrp-footer">
+                <div class="container">
+                    <div class="fx-bet fx-wrp">
+                        <div class="foot-logo">
+                            <a href="http://localhost/wordpress/" title="b-Creator:21リニューアル_テスト" rel="home">
+                                <img src="http://localhost/wordpress/wp-content/themes/bootstrap-basic4-child/assets/images/f-logo.png">
+                             </a>
+                        </div>
+                        <div class="foot-box">
+                            <div class="fx-bet fx-wrp">
+                                <div class="foot-item">
+                                    <a href="http://localhost/wordpress/">TOP</a>
+                                    <a href="http://localhost/wordpress/about/">b-Creatorについて</a>
+                                    <a href="http://localhost/wordpress/faq/">よくある質問</a>
+                                    <a href="http://localhost/wordpress/price/">受講料金</a>
+                                </div>
+                                <div class="foot-item">
+                                    <a href="http://localhost/wordpress/about/">b-Creatorについて</a>
+                                </div>
+                                <div class="foot-item">
+                                    <a href="http://localhost/wordpress/about/">b-Creatorについて</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copy">
+                <div class="container">
+                    <span>Copyright © hinata All rights reserved</span>
+                </div>
+            </div>
+        </footer><!--.page-footer-->
+
+        <!--WordPress footer-->
+        <script type='text/javascript' src='http://localhost/wordpress/wp-content/themes/bootstrap-basic4/assets/js/bootstrap.bundle.min.js?ver=4.5.3' id='bootstrap4-bundle-js'></script>
+<script type='text/javascript' src='http://localhost/wordpress/wp-content/themes/bootstrap-basic4/assets/js/main.js?ver=1.2.7' id='bootstrap-basic4-main-js'></script>
+<script type='text/javascript' src='http://localhost/wordpress/wp-includes/js/wp-embed.min.js?ver=5.8.2' id='wp-embed-js'></script>
+ 
+        <!--end WordPress footer-->
+    </body>
+</html>
