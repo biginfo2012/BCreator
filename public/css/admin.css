@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+.flex{display: flex;}
+.fx-bet{justify-content: space-between;}
+.fx-wrp{flex-wrap: wrap;}
+.f12{font-size: 12px;}
+
+/* ダッシュボード */
+.dash_min-hei{min-height: 85vh;}
+.wrp_master_howto .item_title{font-weight: bold; margin-bottom: 5px;}
+.wrp_master_howto .content{padding: 0 15px; margin-bottom: 5px;}
+.wrp_master_howto .move_btn{text-align: right;}
+.wrp_master_howto .move_btn a{display: block;}
+.wrp_master_howto .move_btn i{margin-left: 10px;}
+
+/* table-edit */
+.wrp_ad_table{border: 1px solid #c3c4c7; margin-bottom: 10px;}
+.wrp_ad_table span{display: block;}
+.wrp_ad_table .table_head{padding: 5px 20px; border-bottom: 1px solid #c3c4c7; display: flex; align-items: center;}
+.wrp_ad_table .table_item{padding: 10px 20px; background-color: #f6f7f7; display: flex; align-items: center;}
+.wrp_ad_table .table_title .parent{font-size: 10px;}
+.wrp_ad_table .table_item:nth-of-type(odd){background-color: #fff;}
+.wrp_ad_table + .pagination-wrapper nav{width: 200px; margin-left: auto;}
+.wrp_ad_table .draft{color: #333; font-weight: bold; font-size: 12px; padding-left: 5px;}
+.trash_empty,.sort_curriculum{margin-bottom: 10px;}
+.trash_empty a{font-size: 12px;}
+.sort_curriculum{text-align: right;}
+.sort_curriculum .dropdown-menu{min-width: 10rem;}
+
+#edit-curriculum .table_title,#edit-lesson .table_title,#edit-review .table_title,#edit-test .table_title{width: 35%;}
+#edit-curriculum .table_contributor,#edit-lesson .table_contributor,#edit-review .table_contributor,#edit-test .table_contributor{width: 15%;}
+#edit-curriculum .table_day,#edit-lesson .table_day,#edit-review .table_day,#edit-test .table_day{width: 25%;}
+#edit-curriculum .table_slug,#edit-lesson .table_slug,#edit-review .table_slug,#edit-test .table_slug{width: 15%;}
+#edit-curriculum .table_edit,#edit-lesson .table_edit,#edit-review .table_edit,#edit-test .table_edit{width: 10%;}
+
+/* ユーザー */
+#edit-user .wrp_ad_table .table_head{align-items: flex-start;}
+#edit-user .wrp_ad_table .table_item{align-items: flex-start; padding: 7px 20px 5px;}
+#edit-user .table_id{width: 15%;}
+#edit-user .table_id a{display: block; margin-right: 7px; color: inherit;}
+#edit-user .table_id .flex{color: transparent !important;}
+#edit-user .table_id .flex:hover{color: #736cc7 !important;}
+#edit-user .table_id a:last-of-type{margin-right: 0px;}
+#edit-user .table_family{width: 12.5%;}
+#edit-user .table_first{width: 12.5%;}
+#edit-user .table_mail{width: 20%;}
+#edit-user .table_level{width: 15%;}
+#edit-user .table_day{width: 12.5%;}
+#edit-user .table_login{width: 12.5%;}
+
+/* 運営からの通知 */
+#edit-notice .table_title{width: 40%;}
+#edit-notice .table_contributor{width: 20%;}
+#edit-notice .table_day{width: 25%;}
+#edit-notice .table_edit{width: 15%;}
+
+
+
+/*---PAD pro---*/
+@media only screen and (max-width: 1024px) {
+	.tabs-menu1 ul li a{padding: 5px 10px 6px 10px;}
+	.p-6 {padding: 1rem !important;}
+	#edit-user .table_id .flex{color: #736cc7 !important;}
+
+	/* ユーザー */
+	#edit-user .table_day{display: none;}
+	#edit-user .table_level{display: none;}
+	#edit-user .table_id{width: 20%;}
+	#edit-user .table_family{width: 15%;}
+	#edit-user .table_first{width: 15%;}
+	#edit-user .table_mail{width: 30%;}
+	#edit-user .table_login{width: 20%;}
+
+}
+
+/*---PAD---*/
+@media only screen and (max-width: 880px) {
+
+}
+
+/*---Sm---*/
+@media only screen and (max-width: 767px) {
+	.f12{font-size: 10px;}
+	.app-content .side-app {padding: 47px 0px 0 0px !important;}
+	.tab-menu-heading{padding: 5px;}
+	.tab-menu-heading .nav{flex-wrap: nowrap;}
+	.tabs-menu1 ul li{width: auto; margin: 10px 5px;}
+	.tabs-menu1 ul li a{font-size: 10px; padding: 5px 5px 6px 5px;}
+
+	/* header */
+	.header-brand-img{width: 150px;}
+
+	/* table-edit */
+	.wrp_ad_table .table_head{display: none;}
+	.wrp_ad_table .table_item{flex-wrap: wrap; padding: 15px;}
+	.trash_empty a{font-size: 10px;}
+
+	#edit-curriculum .table_title,#edit-lesson .table_title,#edit-review .table_title,#edit-test .table_title{width: 100%; margin-bottom: 5px;}
+	#edit-curriculum .table_contributor,#edit-lesson .table_contributor,#edit-review .table_contributor,#edit-test .table_contributor{display: none;}
+	#edit-curriculum .table_day,#edit-lesson .table_day,#edit-review .table_day,#edit-test .table_day{display: none;}
+	#edit-curriculum .table_slug,#edit-lesson .table_slug,#edit-review .table_slug,#edit-test .table_slug{display: none;}
+	#edit-curriculum .table_edit,#edit-lesson .table_edit,#edit-review .table_edit,#edit-test .table_edit{width: 100%;}
+	#edit-curriculum .table_edit .fx-bet,#edit-lesson .table_edit .fx-bet,#edit-review .table_edit .fx-bet,#edit-test .table_edit .fx-bet{justify-content: flex-end;}
+	#edit-curriculum .table_edit .fx-bet a,#edit-lesson .table_edit .fx-bet a,#edit-review .table_edit .fx-bet a,#edit-test .table_edit .fx-bet a{padding: 0 10px;}
+
+	/* ユーザー */
+	#edit-user .wrp_ad_table .table_item{padding: 15px;}
+	#edit-user .table_id{width: 100%; margin-bottom: 10px;}
+	#edit-user .table_family{width: 50%; margin-bottom: 10px;}
+	#edit-user .table_first{width: 50%; margin-bottom: 10px;}
+	#edit-user .table_mail{width: 100%;}
+	#edit-user .table_login{display: none;}
+	#edit-user .table_id a{margin-right: 15px;}
+
+	/* 運営からの通知 */
+	#edit-notice .table_title{width: 100%; margin-bottom: 5px;}
+	#edit-notice .table_contributor{display: none;}
+	#edit-notice .table_day{width: 100%; margin-bottom: 5px;}
+	#edit-notice .table_edit{width: 100%;}
+	#edit-notice .table_edit .fx-bet{justify-content: flex-end;}
+	#edit-notice .table_edit .fx-bet a{padding: 0 10px;}
+
+}

@@ -9,54 +9,73 @@
                 <meta property="position" content="1">
             </span> &gt;
             <span property="itemListElement" typeof="ListItem">
-                <span property="name" class="post post-page current-item">受講手続き</span>
+                <span property="name" class="post post-page current-item">支払い登録</span>
                 <meta property="url" content="{{ route('login') }}">
                 <meta property="position" content="2">
             </span>
         </div>
     </div>
-    <div class="fix-box bg_white" id="regist">
+    <div class="fix-box bg_white" id="checkout">
         <div class="container">
-            <form method="POST" action="{{ route('register') }}">
-                @csrf
-                <div class="regist-box">
-                    <div class="title">
-                        <a href="{{ url('') }}">
-                            <img src="{{ asset('images/logo.png') }}">
-                        </a>
-                        <div class="regist-flow">
-                            <div class="item c1 active">
-                                <span>アカウント情報</span>
-                            </div>
-                            <div class="item c2">
-                                <span>支払方法</span>
-                            </div>
-                            <div class="item c3">
-                                <span>登録完了</span>
-                            </div>
+            <input type="hidden" name="user_id" value="{{$user_id}}">
+            <div class="regist-box">
+                <div class="title">
+                    <a href="{{ url('') }}">
+                        <img src="{{ asset('images/logo.png') }}">
+                    </a>
+                    <div class="regist-flow">
+                        <div class="item c1">
+                            <span>アカウント情報</span>
                         </div>
-                    </div>
-                    <div class="wrp-input-box">
-                        <div class="box name">
-                            <input type="text" name="first_name" placeholder="姓" autocomplete="family-name" required>
-                            <input type="text" name="last_name" placeholder="名" autocomplete="given-name" required>
+                        <div class="item c2 active">
+                            <span>支払方法</span>
                         </div>
-                        <div class="item mail">
-                            <input type="text" name="email" placeholder="メールアドレス" autocomplete="email" required>
+                        <div class="item c3">
+                            <span>登録完了</span>
                         </div>
-                        <div class="item pass">
-                            <input type="text" name="password" placeholder="パスワード" minlength="8" required>
-                        </div>
-                        <div class="item save">
-                            <label><input type="checkbox" name="check" required><a href="#">利用規約</a>に同意する</label>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <button class="regist-btn border-0">登録する</button>
                     </div>
                 </div>
-            </form>
-
+                <div class="wrp-input-box">
+                    <div class="in_box">
+                        <div class="title">
+                            <div class="flex fx-bet">
+                                <div>
+                                    <input type="radio" name="btn" id="credit" checked="checked">クレジットカード
+                                </div>
+                                <div class="cre_image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-ch how01">
+                            <div class="item cre-name">
+                                <input type="text" name="#" placeholder="カード名義人">
+                            </div>
+                            <div class="item cre-num">
+                                <input type="text" name="#" placeholder="カード番号">
+                            </div>
+                            <div class="box cre-code">
+                                <input type="text" name="#" placeholder="有効期限 月/年">
+                                <input type="text" name="#" placeholder="セキュリティコード">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="in_box">
+                        <div class="title">
+                            <div class="flex fx-bet">
+                                <div>
+                                    <input type="radio" name="btn" id="bank">銀行振込
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-ch how02">
+                            <span>銀行名：ゆうちょ銀行<br>店名：〇九八支店　預金種目：普通預金<br>口座番号：1847411<br>振込先：ヒナタ (ド<br><br>こちらをメモいただき、ご入金をお願いいたします。<br>ご入金の確認後、2営業日以内にメールにてサービスへの招待をいたします。</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <a href="#" class="regist-btn">申し込む</a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="cv-box">
@@ -122,41 +141,4 @@
             </div>
         </div>
     </div>
-
-
-
-{{--    <x-register-card>--}}
-{{--        <x-slot name="logo">--}}
-{{--            <a href="/">--}}
-{{--                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />--}}
-{{--            </a>--}}
-{{--        </x-slot>--}}
-
-{{--        <!-- Validation Errors -->--}}
-{{--        <x-auth-validation-errors class="mb-4" :errors="$errors" />--}}
-
-{{--        <form method="POST" action="{{ route('register') }}">--}}
-{{--            @csrf--}}
-{{--            <div class="wrp-input-box">--}}
-{{--                <div class="box name">--}}
-{{--                    <input type="text" name="firstMame" placeholder="姓">--}}
-{{--                    <input type="text" name="lastName" placeholder="名">--}}
-{{--                </div>--}}
-{{--                <div class="item mail">--}}
-{{--                    <input type="email" name="email" placeholder="メールアドレス">--}}
-{{--                </div>--}}
-{{--                <div class="item pass">--}}
-{{--                    <input type="password" name="password" placeholder="パスワード">--}}
-{{--                </div>--}}
-{{--                <div class="item save">--}}
-{{--                    <label><input type="checkbox" name="check"><a--}}
-{{--                            href="">利用規約</a>に同意する</label>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="box">--}}
-{{--                <button class="regist-btn">登録する</button>--}}
-{{--            </div>--}}
-
-{{--        </form>--}}
-{{--    </x-register-card>--}}
 </x-app-layout>

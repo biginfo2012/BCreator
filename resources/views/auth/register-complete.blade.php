@@ -9,56 +9,77 @@
                 <meta property="position" content="1">
             </span> &gt;
             <span property="itemListElement" typeof="ListItem">
-                <span property="name" class="post post-page current-item">受講手続き</span>
+                <span property="name" class="post post-page current-item">登録完了</span>
                 <meta property="url" content="{{ route('login') }}">
                 <meta property="position" content="2">
             </span>
         </div>
     </div>
-    <div class="fix-box bg_white" id="regist">
+    <div class="fix-box bg_white" id="regist-complete">
         <div class="container">
-            <form method="POST" action="{{ route('register') }}">
-                @csrf
-                <div class="regist-box">
-                    <div class="title">
-                        <a href="{{ url('') }}">
-                            <img src="{{ asset('images/logo.png') }}">
-                        </a>
-                        <div class="regist-flow">
-                            <div class="item c1 active">
-                                <span>アカウント情報</span>
-                            </div>
-                            <div class="item c2">
-                                <span>支払方法</span>
-                            </div>
-                            <div class="item c3">
-                                <span>登録完了</span>
-                            </div>
+            <div class="regist-box">
+                <div class="title">
+                    <a href="{{ url('') }}">
+                        <img src="{{ asset('images/logo.png') }}">
+                    </a>
+                    <div class="regist-flow">
+                        <div class="item c1">
+                            <span>アカウント情報</span>
                         </div>
-                    </div>
-                    <div class="wrp-input-box">
-                        <div class="box name">
-                            <input type="text" name="first_name" placeholder="姓" autocomplete="family-name" required>
-                            <input type="text" name="last_name" placeholder="名" autocomplete="given-name" required>
+                        <div class="item c2">
+                            <span>支払方法</span>
                         </div>
-                        <div class="item mail">
-                            <input type="text" name="email" placeholder="メールアドレス" autocomplete="email" required>
+                        <div class="item c3 active">
+                            <span>登録完了</span>
                         </div>
-                        <div class="item pass">
-                            <input type="text" name="password" placeholder="パスワード" minlength="8" required>
-                        </div>
-                        <div class="item save">
-                            <label><input type="checkbox" name="check" required><a href="#">利用規約</a>に同意する</label>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <button class="regist-btn border-0">登録する</button>
                     </div>
                 </div>
-            </form>
-
+                <div class="wrp-input-box">
+                    <div class="content">
+                        <span class="con-title">会員登録が完了しました。</span>
+                        <div class="member-info">
+                            <div class="item">
+                                <div class="flex fx-itc">
+                                    <div class="name">
+                                        <span>お名前</span>
+                                    </div>
+                                    <div class="data">
+                                        <span>山田 太郎</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="flex fx-itc">
+                                    <div class="name">
+                                        <span>メールアドレス</span>
+                                    </div>
+                                    <div class="data">
+                                        <span>test@hinata.group</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="flex fx-itc">
+                                    <div class="name">
+                                        <span>パスワード</span>
+                                    </div>
+                                    <div class="data">
+                                        <span>test1103</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span>こちらがアカウント情報になります。大事に保管してください。</span>
+                    </div>
+                </div>
+                <div class="box">
+                    <a href="#" class="regist-btn">ログイン</a>
+                </div>
+            </div>
         </div>
     </div>
+
+
     <div class="cv-box">
         <div class="container">
             <div class="cv-title">
@@ -68,10 +89,11 @@
             <div class="content">
                 <div class="fx-bet fx-wrp">
                     <div class="i-32">
-                        <a href="{{ route('counseling') }}">
+                        <a href="https://b-creator.test-h.biz/counseling/">
                             <div class="wrp-cv-item-title">
                                 <div class="wrp">
-                                    <img src="{{ asset('images/about.png') }}">
+                                    <img
+                                        src="https://b-creator.test-h.biz/wordpress/wp-content/themes/bootstrap-basic4-child/assets/images/about.png">
                                 </div>
                                 <div class="content">
                                     <span class="pc-hidden">今すぐ受けたくなる!</span>
@@ -88,7 +110,8 @@
                         <a href="tel:000-000-000">
                             <div class="wrp-cv-item-title">
                                 <div class="wrp">
-                                    <img src="{{ asset('images/tel.png') }}">
+                                    <img
+                                        src="https://b-creator.test-h.biz/wordpress/wp-content/themes/bootstrap-basic4-child/assets/images/tel.png">
                                 </div>
                                 <div class="content">
                                     <span class="sm-hidden">TEL</span>
@@ -102,10 +125,11 @@
                         </div>
                     </div>
                     <div class="i-32">
-                        <a href="{{ route('reserve') }}">
+                        <a href="https://b-creator.test-h.biz/reserve/">
                             <div class="wrp-cv-item-title">
                                 <div class="wrp">
-                                    <img src="{{ asset('images/reserve.png') }}">
+                                    <img
+                                        src="https://b-creator.test-h.biz/wordpress/wp-content/themes/bootstrap-basic4-child/assets/images/reserve.png">
                                 </div>
                                 <div class="content">
                                     <span class="pc-hidden">30秒でできる！カンタン予約</span>
@@ -122,41 +146,4 @@
             </div>
         </div>
     </div>
-
-
-
-{{--    <x-register-card>--}}
-{{--        <x-slot name="logo">--}}
-{{--            <a href="/">--}}
-{{--                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />--}}
-{{--            </a>--}}
-{{--        </x-slot>--}}
-
-{{--        <!-- Validation Errors -->--}}
-{{--        <x-auth-validation-errors class="mb-4" :errors="$errors" />--}}
-
-{{--        <form method="POST" action="{{ route('register') }}">--}}
-{{--            @csrf--}}
-{{--            <div class="wrp-input-box">--}}
-{{--                <div class="box name">--}}
-{{--                    <input type="text" name="firstMame" placeholder="姓">--}}
-{{--                    <input type="text" name="lastName" placeholder="名">--}}
-{{--                </div>--}}
-{{--                <div class="item mail">--}}
-{{--                    <input type="email" name="email" placeholder="メールアドレス">--}}
-{{--                </div>--}}
-{{--                <div class="item pass">--}}
-{{--                    <input type="password" name="password" placeholder="パスワード">--}}
-{{--                </div>--}}
-{{--                <div class="item save">--}}
-{{--                    <label><input type="checkbox" name="check"><a--}}
-{{--                            href="">利用規約</a>に同意する</label>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="box">--}}
-{{--                <button class="regist-btn">登録する</button>--}}
-{{--            </div>--}}
-
-{{--        </form>--}}
-{{--    </x-register-card>--}}
 </x-app-layout>

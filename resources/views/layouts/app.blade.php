@@ -253,6 +253,6 @@
         <script type='text/javascript' src='{{asset('js/bootstrap-basic4-assets-js-bootstrap.bundle.min.js')}}'
                 id='bootstrap4-bundle-js'></script>
         <script type='text/javascript' src='{{asset('js/bootstrap-basic4-assets-js-main.js')}}' id='bootstrap-basic4-main-js'></script>
-        <script type='text/javascript' src='{{asset('js/u3q-wp-embed.min.js')}}' id='wp-embed-js'></script><!--end WordPress footer-->
+        <script type='text/javascript' src='{{ asset('js/0ca-wp-embed.min.js') }}' id='wp-embed-js'></script><!--end WordPress footer-->
     </body>
 </html>

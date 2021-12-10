@@ -48,7 +48,7 @@
 
             <div class="wrp-head_btn flex fx-itc">
                 <a href="{{route('login')}}" class="head_btn1">ログイン</a>
-                <a href="https://b-creator.test-h.biz/#" class="head_btn2">
+                <a href="{{ url('') }}" class="head_btn2">
                     <span>無料カウンセリング</span>
                     <span>Webで予約する<i class="fas fa-angle-right"></i></span>
                     <span class="h-fix-btn">無料カウンセリングを予約する</span>
