@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -43,5 +44,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('lesson-temp', [UserController::class, 'lessonTemp'])->name('lesson-temp');
     Route::get('review-temp', [UserController::class, 'reviewTemp'])->name('review-temp');
     Route::get('result-temp', [UserController::class, 'resultTemp'])->name('result-temp');
+
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 });
 require __DIR__.'/auth.php';
