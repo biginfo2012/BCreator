@@ -12,6 +12,10 @@
 .wrp_master_howto .move_btn{text-align: right;}
 .wrp_master_howto .move_btn a{display: block;}
 .wrp_master_howto .move_btn i{margin-left: 10px;}
+.status_btn{margin-bottom: 20px;}
+.status span{display: block;}
+.status .item{margin-bottom: 15px;}
+.status .item:last-of-type{margin-top: 30px; margin-bottom: 0px; text-align: right;}
 
 /* table-edit */
 .wrp_ad_table{border: 1px solid #c3c4c7; margin-bottom: 10px;}
@@ -32,6 +36,10 @@
 #edit-curriculum .table_day,#edit-lesson .table_day,#edit-review .table_day,#edit-test .table_day{width: 25%;}
 #edit-curriculum .table_slug,#edit-lesson .table_slug,#edit-review .table_slug,#edit-test .table_slug{width: 15%;}
 #edit-curriculum .table_edit,#edit-lesson .table_edit,#edit-review .table_edit,#edit-test .table_edit{width: 10%;}
+
+/* カリキュラム */
+.ad_title.card-header{min-height: auto; padding: 15px 15px;}
+.ad_title .card-title{font-size: 14px;}
 
 /* ユーザー */
 #edit-user .wrp_ad_table .table_head{align-items: flex-start;}

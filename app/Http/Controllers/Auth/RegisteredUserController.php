@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
@@ -52,12 +52,27 @@ class RegisteredUserController extends Controller
 //        Auth::login($user);
 
 //        return redirect(RouteServiceProvider::CHECKOUT);
-        $user_id = Auth::user()->id;
-        return view('auth.checkout', compact('user_id'));
+        $user_id = $user->id;
+        $password = $request->password;
+        return view('auth.checkout', compact('user_id', 'password'));
     }
 
     public function checkout(Request $request){
         $user_id = $request->user_id;
-        return view('auth.register-complete', compact('user_id'));
+        if($request->pay_setting == 2){
+            User::where('id', $user_id)->update(['pay_setting' => $request->pay_setting]);
+        }
+        else{
+            $data = [
+                'card_name' => $request->card_name,
+                'card_number' => $request->card_number,
+                'card_date' => $request->card_date,
+                'card_cvc' => $request->card_cvc
+            ];
+            User::where('id', $user_id)->update($data);
+        }
+        $user = User::where('id', $user_id)->first();
+        $password = $request->password;
+        return view('auth.register-complete', compact('user', 'password'));
     }
 }

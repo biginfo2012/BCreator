@@ -16,67 +16,72 @@
         </div>
     </div>
     <div class="fix-box bg_white" id="checkout">
-        <div class="container">
-            <input type="hidden" name="user_id" value="{{$user_id}}">
-            <div class="regist-box">
-                <div class="title">
-                    <a href="{{ url('') }}">
-                        <img src="{{ asset('images/logo.png') }}">
-                    </a>
-                    <div class="regist-flow">
-                        <div class="item c1">
-                            <span>アカウント情報</span>
-                        </div>
-                        <div class="item c2 active">
-                            <span>支払方法</span>
-                        </div>
-                        <div class="item c3">
-                            <span>登録完了</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrp-input-box">
-                    <div class="in_box">
-                        <div class="title">
-                            <div class="flex fx-bet">
-                                <div>
-                                    <input type="radio" name="btn" id="credit" checked="checked">クレジットカード
-                                </div>
-                                <div class="cre_image">
-                                </div>
+        <form method="POST" action="{{ route('checkout') }}" id="checkout_form">
+            @csrf
+            <div class="container">
+                <input type="hidden" name="user_id" value="{{$user_id}}">
+                <input type="hidden" name="password" value="{{ $password }}">
+                <div class="regist-box">
+                    <div class="title">
+                        <a href="{{ url('') }}">
+                            <img src="{{ asset('images/logo.png') }}">
+                        </a>
+                        <div class="regist-flow">
+                            <div class="item c1">
+                                <span>アカウント情報</span>
                             </div>
-                        </div>
-                        <div class="content-ch how01">
-                            <div class="item cre-name">
-                                <input type="text" name="#" placeholder="カード名義人">
+                            <div class="item c2 active">
+                                <span>支払方法</span>
                             </div>
-                            <div class="item cre-num">
-                                <input type="text" name="#" placeholder="カード番号">
-                            </div>
-                            <div class="box cre-code">
-                                <input type="text" name="#" placeholder="有効期限 月/年">
-                                <input type="text" name="#" placeholder="セキュリティコード">
+                            <div class="item c3">
+                                <span>登録完了</span>
                             </div>
                         </div>
                     </div>
-                    <div class="in_box">
-                        <div class="title">
-                            <div class="flex fx-bet">
-                                <div>
-                                    <input type="radio" name="btn" id="bank">銀行振込
+                    <div class="wrp-input-box">
+                        <div class="in_box">
+                            <div class="title">
+                                <div class="flex fx-bet">
+                                    <div>
+                                        <input type="radio" name="pay_setting" id="credit" value="1" checked="checked">クレジットカード
+                                    </div>
+                                    <div class="cre_image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-ch how01">
+                                <div class="item cre-name">
+                                    <input type="text" name="card_name" placeholder="カード名義人">
+                                </div>
+                                <div class="item cre-num">
+                                    <input type="text" name="card_number" placeholder="カード番号">
+                                </div>
+                                <div class="box cre-code">
+                                    <input type="text" name="card_date" placeholder="有効期限 月/年">
+                                    <input type="text" name="card_cvc" placeholder="セキュリティコード">
                                 </div>
                             </div>
                         </div>
-                        <div class="content-ch how02">
-                            <span>銀行名：ゆうちょ銀行<br>店名：〇九八支店　預金種目：普通預金<br>口座番号：1847411<br>振込先：ヒナタ (ド<br><br>こちらをメモいただき、ご入金をお願いいたします。<br>ご入金の確認後、2営業日以内にメールにてサービスへの招待をいたします。</span>
+                        <div class="in_box">
+                            <div class="title">
+                                <div class="flex fx-bet">
+                                    <div>
+                                        <input type="radio" name="pay_setting" id="bank" value="2">銀行振込
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-ch how02">
+                                <span>銀行名：ゆうちょ銀行<br>店名：〇九八支店　預金種目：普通預金<br>口座番号：1847411<br>振込先：ヒナタ (ド<br><br>こちらをメモいただき、ご入金をお願いいたします。<br>ご入金の確認後、2営業日以内にメールにてサービスへの招待をいたします。</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="box">
-                    <a href="#" class="regist-btn">申し込む</a>
+                    <div class="box">
+                        <button class="regist-btn border-0" id="checkout">申し込む</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
+
     </div>
     <div class="cv-box">
         <div class="container">
@@ -141,4 +146,40 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#checkout').click(function (e) {
+                e.preventDefault();
+                if($('[name=pay_setting]:checked').val() == 1){
+                    if($('[name=card_name]').val() == ""){
+                        $(document).find('input[name=card_name]').css('border-color', 'red');
+                        return;
+                    }
+                    $(document).find('input[name=card_name]').css('border-color', '#ccc');
+                    if($('[name=card_number]').val() == ""){
+                        $(document).find('input[name=card_number]').css('border-color', 'red');
+                        return;
+                    }
+                    $(document).find('input[name=card_number]').css('border-color', '#ccc');
+                    if($('[name=card_date]').val() == ""){
+                        $(document).find('input[name=card_date]').css('border-color', 'red');
+                        return;
+                    }
+                    $(document).find('input[name=card_date]').css('border-color', '#ccc');
+                    if($('[name=card_cvc]').val() == ""){
+                        $(document).find('input[name=card_cvc]').css('border-color', 'red');
+                        return;
+                    }
+                    $(document).find('input[name=card_cvc]').css('border-color', '#ccc');
+                    $( "#checkout_form" ).submit();
+                }
+                else{
+                    $( "#checkout_form" ).submit();
+                }
+
+
+            })
+
+        })
+    </script>
 </x-app-layout>

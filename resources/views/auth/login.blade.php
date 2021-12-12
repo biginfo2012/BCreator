@@ -1,4 +1,7 @@
 <x-app-layout>
+    <style>
+
+    </style>
     <div class="bread-box bg_white">
         <div class="container">             <!-- Breadcrumb NavXT 6.6.0 -->
             <span property="itemListElement" typeof="ListItem">
@@ -15,6 +18,7 @@
             </span>
         </div>
     </div>
+    <x-auth-validation-errors class="mb-4" :errors="$errors" />
     <div class="fix-box bg_white" id="login">
         <div class="container">
             <form method="POST" action="{{ route('login') }}">
@@ -23,9 +27,9 @@
                     <div class="title"><a href="{{ url('') }}"> <img src="{{ asset('images/logo.png') }}"> </a>
                         <span>ログイン</span></div>
                     <div class="wrp-input-box">
-                        <div class="item mail"><input type="text" name="mail" placeholder="メールアドレス" required></div>
-                        <div class="item pass"><input type="text" name="password" placeholder="パスワード" required></div>
-                        <div class="item save"><label><input type="checkbox" name="check">ログイン情報を保存する</label></div>
+                        <div class="item mail"><input type="email" name="email" placeholder="メールアドレス" required></div>
+                        <div class="item pass"><input type="password" name="password" placeholder="パスワード" minlength="8" required></div>
+                        <div class="item save"><label><input id="remember_me" type="checkbox" name="remember">ログイン情報を保存する</label></div>
                     </div>
                     <div class="box"><button class="login-btn border-0">ログイン</button> <span class="forgot">パスワードを忘れた場合は<a
                                 href="#">こちら</a></span></div>

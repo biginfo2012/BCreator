@@ -1,4 +1,5 @@
 <x-app-layout>
+{{--    <x-auth-validation-errors class="mb-4" :errors="$errors" />--}}
     <div class="bread-box bg_white">
         <div class="container">
             <!-- Breadcrumb NavXT 6.6.0 -->
@@ -42,17 +43,17 @@
                             <input type="text" name="last_name" placeholder="名" autocomplete="given-name" required>
                         </div>
                         <div class="item mail">
-                            <input type="text" name="email" placeholder="メールアドレス" autocomplete="email" required>
+                            <input type="email" name="email" placeholder="メールアドレス" autocomplete="email" required>
                         </div>
                         <div class="item pass">
                             <input type="text" name="password" placeholder="パスワード" minlength="8" required>
                         </div>
                         <div class="item save">
-                            <label><input type="checkbox" name="check" required><a href="#">利用規約</a>に同意する</label>
+                            <label><input type="checkbox" name="check"><a href="#">利用規約</a>に同意する</label>
                         </div>
                     </div>
                     <div class="box">
-                        <button class="regist-btn border-0">登録する</button>
+                        <button type="submit" class="regist-btn border-0" id="btn_register" disabled>登録する</button>
                     </div>
                 </div>
             </form>
@@ -159,4 +160,15 @@
 
 {{--        </form>--}}
 {{--    </x-register-card>--}}
+
+    <script type="text/javascript">
+        $('[name=check]').change(function () {
+            if($(this).is(":checked")){
+                $('#btn_register')[0].disabled = false;
+            }
+            else{
+                $('#btn_register')[0].disabled = true;
+            }
+        })
+    </script>
 </x-app-layout>

@@ -2,36 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reserve;
 use Illuminate\Http\Request;
 
 class TopController extends Controller
 {
     //
     public function welcome(){
-        return view('welcome', ['id' => 6]);
+        return view('welcome');
     }
     public function about(){
-        return view('about', ['id' => 70]);
+        return view('about');
     }
     public function curriculum(){
-        return view('curriculum', ['id' => 72]);
+        return view('curriculum');
     }
     public function faq() {
-        return view('faq', ['id' => 80]);
+        return view('faq');
     }
     public function price() {
-        return view('price', ['id' => 75]);
+        return view('price');
     }
     public function voice() {
-        return view('voice', ['id' => 78]);
+        return view('voice');
     }
     public function discount() {
-        return view('discount', ['id' => 78]);
+        return view('discount');
     }
     public function counseling() {
-        return view('counseling', ['id' => 78]);
+        return view('counseling');
     }
     public function reserve() {
-        return view('reserve', ['id' => 78]);
+        return view('reserve');
+    }
+    public function saveReserve(Request $request) {
+        $data = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'number' => $request->number,
+            'first_date' => date('Y-m-d', strtotime($request->first_date)),
+            'first_time' => $request->first_time,
+            'second_date' => date('Y-m-d', strtotime($request->second_date)),
+            'second_time' => $request->second_time
+        ];
+        Reserve::create($data);
+        return view('reserve-complete', compact('data'));
     }
 }

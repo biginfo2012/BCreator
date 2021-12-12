@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('card_date')->nullable();
             $table->string('card_cvc')->nullable();
             $table->tinyInteger('pay_setting')->default(1);
+            $table->tinyInteger('role')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

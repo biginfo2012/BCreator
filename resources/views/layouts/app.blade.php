@@ -214,9 +214,13 @@
               type='text/css' media='all'/>
         <link rel='stylesheet' id='member-css' href='{{ asset('css/themes-bootstrap-basic4-child-member.css') }}' type='text/css'
               media='all'/>
+        <!--カレンダー用プラグイン-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+        <link rel='stylesheet' id='style-css' href='{{ asset('css/common.css') }}' type='text/css' media='all'/>
 
         <!-- Scripts -->
-        <script type='text/javascript' src='{{asset('js/jquery-jquery.min.js')}}' id='jquery-core-js'></script>
+        <script type='text/javascript' src='{{asset('js/jquery-3.6.0.min.js')}}' id='jquery-core-js'></script>
+        <script type='text/javascript' src='{{asset('js/jquery.validate.min.js')}}'></script>
         <script type='text/javascript' src='{{asset('js/jquery-jquery-migrate.min.js')}}' id='jquery-migrate-js'></script>
         <script type='text/javascript' src='{{asset('js/themes-bootstrap-basic4-child-assets-plugin-slick-slick.min.js')}}'
                 id='slick-js-js'></script>
@@ -229,6 +233,9 @@
         <script type='text/javascript' src='{{asset('js/themes-bootstrap-basic4-child-assets-js-my.js')}}' id='my-js-js'></script>
         <script type='text/javascript' src='{{asset('js/themes-bootstrap-basic4-child-assets-js-anime.js')}}'
                 id='anime-js-js'></script>
+        <!--カレンダー用プラグイン-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js"></script>
         <style type="text/css">
             .recentcomments a {
                 display: inline !important;
@@ -254,5 +261,7 @@
                 id='bootstrap4-bundle-js'></script>
         <script type='text/javascript' src='{{asset('js/bootstrap-basic4-assets-js-main.js')}}' id='bootstrap-basic4-main-js'></script>
         <script type='text/javascript' src='{{ asset('js/0ca-wp-embed.min.js') }}' id='wp-embed-js'></script><!--end WordPress footer-->
+
+
     </body>
 </html>

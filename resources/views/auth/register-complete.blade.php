@@ -44,7 +44,7 @@
                                         <span>お名前</span>
                                     </div>
                                     <div class="data">
-                                        <span>山田 太郎</span>
+                                        <span>{{ $user->first_name . " " . $user->last_name }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                                         <span>メールアドレス</span>
                                     </div>
                                     <div class="data">
-                                        <span>test@hinata.group</span>
+                                        <span>{{ $user->email }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                                         <span>パスワード</span>
                                     </div>
                                     <div class="data">
-                                        <span>test1103</span>
+                                        <span>{{ $password }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="box">
-                    <a href="#" class="regist-btn">ログイン</a>
+                    <a href="{{ route('login') }}" class="regist-btn">ログイン</a>
                 </div>
             </div>
         </div>

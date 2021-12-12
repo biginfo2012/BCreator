@@ -62,100 +62,104 @@
         </div>
     </div>
     <div class="fix-box bg_white" id="reserve">
-        <div class="wrp_reserve_input">
-            <div class="box">
-                <div class="flex fx-bet fx-itc fx-wrp">
-                    <div class="name">
-                        <div class="flex">
-                            <span class="require">必須</span>
-                            <span>お名前</span>
+        <form method="POST" action="{{ route('save-reserve') }}">
+            @csrf
+            <div class="wrp_reserve_input">
+                <div class="box">
+                    <div class="flex fx-bet fx-itc fx-wrp">
+                        <div class="name">
+                            <div class="flex">
+                                <span class="require">必須</span>
+                                <span>お名前</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="reserve_input double">
-                        <input type="text" name="#" placeholder="姓" autocomplete="family-name">
-                        <input type="text" name="#" placeholder="名" autocomplete="given-name">
-                    </div>
-                </div>
-            </div>
-            <div class="box">
-                <div class="flex fx-bet fx-itc fx-wrp">
-                    <div class="name">
-                        <div class="flex">
-                            <span class="require">必須</span>
-                            <span>メールアドレス</span>
-                        </div>
-                    </div>
-                    <div class="reserve_input">
-                        <input type="text" name="#" placeholder="メールアドレス" autocomplete="email">
-                    </div>
-                </div>
-            </div>
-            <div class="box">
-                <div class="flex fx-bet fx-itc fx-wrp">
-                    <div class="name">
-                        <div class="flex">
-                            <span class="require">必須</span>
-                            <span>電話番号</span>
-                        </div>
-                    </div>
-                    <div class="reserve_input">
-                        <input type="text" name="#" placeholder="08012345678" autocomplete="tel">
-                    </div>
-                </div>
-            </div>
-            <div class="box">
-                <div class="flex fx-bet fx-itc fx-wrp">
-                    <div class="name">
-                        <div class="flex">
-                            <span class="require">必須</span>
-                            <span>希望日・希望時間<br class="sm-hidden"> (第一希望)</span>
-                        </div>
-                    </div>
-                    <div class="reserve_input double">
-                        <input type="text" id="datepicker" placeholder="希望日">
-                        <div class="wrp_select">
-                            <select class="is-empty">
-                                <option disabled selected style="display:none;" value="">希望時間</option>
-                                <option value="11:00~12:00">11:00~12:00</option>
-                                <option value="13:00~14:00">13:00~14:00</option>
-                                <option value="14:00~15:00">14:00~15:00</option>
-                                <option value="15:00~16:00">15:00~16:00</option>
-                                <option value="16:00~17:00">16:00~17:00</option>
-                                <option value="17:00~18:00">17:00~18:00</option>
-                            </select>
+                        <div class="reserve_input double">
+                            <input type="text" name="first_name" placeholder="姓" autocomplete="family-name" required>
+                            <input type="text" name="last_name" placeholder="名" autocomplete="given-name" required>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="box">
-                <div class="flex fx-bet fx-itc fx-wrp">
-                    <div class="name">
-                        <div class="flex">
-                            <span class="require">必須</span>
-                            <span>希望日・希望時間<br class="sm-hidden"> (第二希望)</span>
+                <div class="box">
+                    <div class="flex fx-bet fx-itc fx-wrp">
+                        <div class="name">
+                            <div class="flex">
+                                <span class="require">必須</span>
+                                <span>メールアドレス</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="reserve_input double">
-                        <input type="text" id="datepicker2" placeholder="希望日">
-                        <div class="wrp_select">
-                            <select class="is-empty">
-                                <option disabled selected style="display:none;" value="">希望時間</option>
-                                <option value="11:00~12:00">11:00~12:00</option>
-                                <option value="13:00~14:00">13:00~14:00</option>
-                                <option value="14:00~15:00">14:00~15:00</option>
-                                <option value="15:00~16:00">15:00~16:00</option>
-                                <option value="16:00~17:00">16:00~17:00</option>
-                                <option value="17:00~18:00">17:00~18:00</option>
-                            </select>
+                        <div class="reserve_input">
+                            <input type="email" name="email" placeholder="メールアドレス" autocomplete="email" required>
                         </div>
                     </div>
                 </div>
+                <div class="box">
+                    <div class="flex fx-bet fx-itc fx-wrp">
+                        <div class="name">
+                            <div class="flex">
+                                <span class="require">必須</span>
+                                <span>電話番号</span>
+                            </div>
+                        </div>
+                        <div class="reserve_input">
+                            <input type="number" name="number" placeholder="08012345678" autocomplete="tel" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="flex fx-bet fx-itc fx-wrp">
+                        <div class="name">
+                            <div class="flex">
+                                <span class="require">必須</span>
+                                <span>希望日・希望時間<br class="sm-hidden"> (第一希望)</span>
+                            </div>
+                        </div>
+                        <div class="reserve_input double">
+                            <input type="text" id="datepicker" name="first_date" placeholder="希望日" required>
+                            <div class="wrp_select">
+                                <select class="is-empty" name="first_time" required>
+                                    <option disabled selected style="display:none;" value="">希望時間</option>
+                                    <option value="11:00~12:00">11:00~12:00</option>
+                                    <option value="13:00~14:00">13:00~14:00</option>
+                                    <option value="14:00~15:00">14:00~15:00</option>
+                                    <option value="15:00~16:00">15:00~16:00</option>
+                                    <option value="16:00~17:00">16:00~17:00</option>
+                                    <option value="17:00~18:00">17:00~18:00</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="flex fx-bet fx-itc fx-wrp">
+                        <div class="name">
+                            <div class="flex">
+                                <span class="require">必須</span>
+                                <span>希望日・希望時間<br class="sm-hidden"> (第二希望)</span>
+                            </div>
+                        </div>
+                        <div class="reserve_input double">
+                            <input type="text" id="datepicker2" placeholder="希望日" name="second_date" required>
+                            <div class="wrp_select">
+                                <select class="is-empty" name="second_time" required>
+                                    <option disabled selected style="display:none;" value="">希望時間</option>
+                                    <option value="11:00~12:00">11:00~12:00</option>
+                                    <option value="13:00~14:00">13:00~14:00</option>
+                                    <option value="14:00~15:00">14:00~15:00</option>
+                                    <option value="15:00~16:00">15:00~16:00</option>
+                                    <option value="16:00~17:00">16:00~17:00</option>
+                                    <option value="17:00~18:00">17:00~18:00</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box_btn">
+                    <span><input type="checkbox" name="check"><a href="#">個人情報の取り扱いについて</a>にご同意頂いた上で、<br class="pc-hidden">下記ボタンよりお申し込みを完了ください</span>
+                    <button class="send_btn border-0" id="btn_save_reserve" disabled>送信する</button>
+                </div>
             </div>
-            <div class="box_btn">
-                <span><input type="checkbox" name="check"><a href="#">個人情報の取り扱いについて</a>にご同意頂いた上で、<br class="pc-hidden">下記ボタンよりお申し込みを完了ください</span>
-                <a href="#" class="send_btn">送信する</a>
-            </div>
-        </div>
+        </form>
+
     </div>
 
     <div class="cv-box">
@@ -221,4 +225,18 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[name=check]').change(function () {
+                if($(this).is(":checked")){
+                    $('#btn_save_reserve')[0].disabled = false;
+                }
+                else{
+                    $('#btn_save_reserve')[0].disabled = true;
+                }
+            })
+        })
+        $('#datepicker').datepicker();
+        $('#datepicker2').datepicker();
+    </script>
 </x-app-layout>
