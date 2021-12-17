@@ -23,7 +23,13 @@
                         <a class="dropdown-item" href="options.html"><i class="dropdown-icon mdi mdi-settings"></i> 設定</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="faq.html"><i class="dropdown-icon mdi mdi-compass-outline"></i> ヘルプ</a>
-                        <a class="dropdown-item" href="login.html"><i class="dropdown-icon mdi mdi-logout-variant"></i> ログアウト</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a class="dropdown-item" onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                <i class="dropdown-icon mdi mdi-logout-variant"></i> ログアウト
+                            </a>
+                        </form>
                     </div>
                 </div>
             </div>

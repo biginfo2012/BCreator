@@ -24,11 +24,22 @@
 
     <!-- Dashboard Css -->
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/admin.css') }}assets/" rel="stylesheet" />
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet" />
 
 
     <!-- c3.js Charts Plugin -->
     <link href="{{ asset('plugins/charts-c3/c3-chart.css') }}" rel="stylesheet" />
+
+    <link href="{{ asset('plugins/gallery/gallery.css') }}" rel="stylesheet">
+
+    <!-- select2 Plugin -->
+    <link href="{{ asset('plugins/select2/select2.min.css') }}" rel="stylesheet" />
+
+    <!-- Time picker Plugin -->
+    <link href="{{ asset('plugins/time-picker/jquery.timepicker.css') }}" rel="stylesheet" />
+
+    <!-- Date Picker Plugin -->
+    <link href="{{ asset('plugins/date-picker/spectrum.css') }}" rel="stylesheet" />
 
     <!-- Morris.js Charts Plugin -->
     <link href="{{ asset('plugins/morris/morris.css') }}" rel="stylesheet" />
@@ -36,8 +47,14 @@
     <!-- Custom scroll bar css-->
     <link href="{{ asset('plugins/scroll-bar/jquery.mCustomScrollbar.css') }}" rel="stylesheet" />
 
+    <!-- WYSIWYG Editor css -->
+    <link href="{{ asset('plugins/wysiwyag/richtext.css') }}" rel="stylesheet" />
+
     <!-- Sidemenu Css -->
     <link href="{{ asset('plugins/toggle-sidebar/css/sidemenu.css') }}" rel="stylesheet">
+
+    <!-- file Uploads -->
+    <link href="{{ asset('plugins/fileuploads/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!---Font icons-->
     <link href="{{ asset('plugins/iconfonts/plugin.css') }}" rel="stylesheet" />
@@ -82,7 +99,38 @@
 <!-- Input Mask Plugin -->
 <script src="{{ asset('plugins/input-mask/jquery.mask.min.js') }}"></script>
 
-<script src="{{ asset('js/index1.js') }}"></script>
+<script src="{{ asset('js/index.js') }}"></script>
+
+<!--Select2 js -->
+<script src="{{ asset('plugins/select2/select2.full.min.js') }}"></script>
+
+<!-- Timepicker js -->
+<script src="{{ asset('plugins/time-picker/jquery.timepicker.js') }}"></script>
+<script src="{{ asset('plugins/time-picker/toggles.min.js') }}"></script>
+
+<!-- Datepicker js -->
+<script src="{{ asset('plugins/date-picker/spectrum.js') }}"></script>
+<script src="{{ asset('plugins/date-picker/jquery-ui.js') }}"></script>
+<script src="{{ asset('plugins/input-mask/jquery.maskedinput.js') }}"></script>
+
+<!-- file uploads js -->
+<script src="{{ asset('plugins/fileuploads/js/dropify.min.js') }}"></script>
+
+<!-- Inline js -->
+<script src="{{ asset('js/select2.js') }}"></script>
+
+<!-- WYSIWYG Editor js -->
+<script src="{{ asset('plugins/wysiwyag/jquery.richtext.js') }}"></script>
+
+<!-- Gallery js -->
+<script src="{{ asset('plugins/gallery/picturefill.js') }}"></script>
+<script src="{{ asset('plugins/gallery/lightgallery.js') }}"></script>
+<script src="{{ asset('plugins/gallery/lg-pager.js') }}"></script>
+<script src="{{ asset('plugins/gallery/lg-autoplay.js') }}"></script>
+<script src="{{ asset('plugins/gallery/lg-fullscreen.js') }}"></script>
+<script src="{{ asset('plugins/gallery/lg-zoom.js') }}"></script>
+<script src="{{ asset('plugins/gallery/lg-hash.js') }}"></script>
+<script src="{{ asset('plugins/gallery/lg-share.js') }}"></script>
 
 <!-- Custom scroll bar Js-->
 <script src="{{ asset('plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
@@ -90,5 +138,12 @@
 <!-- Custom Js-->
 <script src="{{ asset('js/custom.js') }}"></script>
 
+<!-- WYSIWYG Editor js -->
+<script>
+    lightGallery(document.getElementById('lightgallery'));
+    $(function(e) {
+        $('.content').richText();
+    });
+</script>
 </body>
 </html>

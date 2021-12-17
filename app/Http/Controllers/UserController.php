@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware(['permission:user']);
+    }
     public function mypage(){
         return view('user.mypage');
     }

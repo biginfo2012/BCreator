@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -32,7 +34,17 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if(Auth::user()->role == 0){
+//        $super = User::where('role', 1)->get();
+//        foreach ($super as $user){
+//            $user->givePermissionTo('admin');
+//        }
+//
+//        $user = User::where('role', 2)->get();
+//        foreach ($user as $u){
+//            $u->givePermissionTo('user');
+//        }
+
+        if(Auth::user()->role == 1){
             return redirect()->intended(RouteServiceProvider::HOME);
         }
         else{
