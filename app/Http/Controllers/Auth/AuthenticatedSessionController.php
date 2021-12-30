@@ -44,6 +44,8 @@ class AuthenticatedSessionController extends Controller
 //            $u->givePermissionTo('user');
 //        }
 
+        User::where('id', Auth::user()->id)->update(['login_at' => date('Y-m-d H:i:s')]);
+
         if(Auth::user()->role == 1){
             return redirect()->intended(RouteServiceProvider::HOME);
         }

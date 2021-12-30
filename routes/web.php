@@ -51,6 +51,9 @@ Route::group(['middleware' => 'auth'], function (){
             Route::get('dashboard', [AdminController::class, 'dashboard'])->name('master.dashboard');
             Route::get('edit-curriculum', [AdminController::class, 'editCurriculum'])->name('master.edit-curriculum');
             Route::get('post-curriculum', [AdminController::class, 'postCurriculum'])->name('master.post-curriculum');
+            Route::get('modify-curriculum/{id}', [AdminController::class, 'modifyCurriculum'])->name('master.modify-curriculum');
+            Route::post('save-curriculum', [AdminController::class, 'saveCurriculum'])->name('master.save-curriculum');
+            Route::post('delete-curriculum', [AdminController::class, 'deleteCurriculum'])->name('master.delete-curriculum');
             Route::get('edit-lesson', [AdminController::class, 'editLesson'])->name('master.edit-lesson');
             Route::get('post-lesson', [AdminController::class, 'postLesson'])->name('master.post-lesson');
             Route::get('edit-review', [AdminController::class, 'editReview'])->name('master.edit-review');

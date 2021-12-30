@@ -25,7 +25,13 @@
     <!-- Dashboard Css -->
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/common.css') }}" rel="stylesheet" />
 
+    <!-- Data table css -->
+    <link href="{{ asset('plugins/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+
+    <!-- Notifications  Css -->
+    <link href="{{ asset('plugins/notify/css/jquery.growl.css') }}" rel="stylesheet" />
 
     <!-- c3.js Charts Plugin -->
     <link href="{{ asset('plugins/charts-c3/c3-chart.css') }}" rel="stylesheet" />
@@ -58,6 +64,16 @@
 
     <!---Font icons-->
     <link href="{{ asset('plugins/iconfonts/plugin.css') }}" rel="stylesheet" />
+
+    <!-- Dashboard Core -->
+    <script src="{{ asset('js/vendors/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/vendors/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/vendors/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ asset('js/vendors/selectize.min.js') }}"></script>
+    <script src="{{ asset('js/vendors/jquery.tablesorter.min.js') }}"></script>
+    <script src="{{ asset('js/vendors/circle-progress.min.js') }}"></script>
+    <script src="{{ asset('plugins/rating/jquery.rating-stars.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.js') }}"></script>
 </head>
 <body class="app sidebar-mini rtl">
 <div id="global-loader" ></div>
@@ -81,14 +97,10 @@
 <!-- Back to top -->
 <a href="#top" id="back-to-top" style="display: inline;"><i class="fa fa-angle-up"></i></a>
 
-<!-- Dashboard Core -->
-<script src="{{ asset('js/vendors/jquery-3.2.1.min.js') }}"></script>
-<script src="{{ asset('js/vendors/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('js/vendors/jquery.sparkline.min.js') }}"></script>
-<script src="{{ asset('js/vendors/selectize.min.js') }}"></script>
-<script src="{{ asset('js/vendors/jquery.tablesorter.min.js') }}"></script>
-<script src="{{ asset('js/vendors/circle-progress.min.js') }}"></script>
-<script src="{{ asset('plugins/rating/jquery.rating-stars.js') }}"></script>
+<!-- Notifications js -->
+<script src="{{ asset('plugins/notify/js/rainbow.js') }}"></script>
+{{--<script src="{{ asset('plugins/notify/js/sample.js') }}"></script>--}}
+<script src="{{ asset('plugins/notify/js/jquery.growl.js') }}"></script>
 <!-- Fullside-menu Js-->
 <script src="{{ asset('plugins/toggle-sidebar/js/sidemenu.js') }}"></script>
 
@@ -100,6 +112,10 @@
 <script src="{{ asset('plugins/input-mask/jquery.mask.min.js') }}"></script>
 
 <script src="{{ asset('js/index.js') }}"></script>
+<!-- Data tables -->
+<script src="{{ asset('plugins/datatable/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatable/dataTables.bootstrap4.min.js') }}"></script>
+
 
 <!--Select2 js -->
 <script src="{{ asset('plugins/select2/select2.full.min.js') }}"></script>
@@ -140,6 +156,9 @@
 
 <!-- WYSIWYG Editor js -->
 <script>
+    let token = '{{csrf_token()}}';
+    let save_curriculum = '{{route('master.save-curriculum')}}';
+    let delete_curriculum = '{{route('master.delete-curriculum')}}';
     lightGallery(document.getElementById('lightgallery'));
     $(function(e) {
         $('.content').richText();

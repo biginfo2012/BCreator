@@ -178,3 +178,7 @@ a.uline{text-decoration: underline;}
     border-radius: 5px;
     -webkit-appearance: none;
 }
+
+.error{
+    color: red !important;
+}

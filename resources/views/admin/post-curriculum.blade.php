@@ -3,56 +3,90 @@
         <div class="page-header">
             <h4 class="page-title">新規追加：カリキュラム</h4>
         </div>
-        <div class="row">
-            <div class="col-md-12 col-lg-9">
-                <div class="form-group">
-                    <label class="form-label">タイトル</label>
-                    <input type="text" class="form-control" name="example-text-input" placeholder="タイトル">
+        <form id="curriculum" class="data">
+            @csrf
+            <input type="hidden" name="id" value="{{ isset($curriculum) ? $curriculum->id : 0 }}">
+            <div class="row">
+                <div class="col-md-12 col-lg-9">
+                    <div class="form-group">
+                        <label class="form-label">タイトル</label>
+                        <input type="text" class="form-control" name="title" placeholder="タイトル"
+                               value="{{ isset($curriculum) ? $curriculum->title : '' }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">サムネイル <span class="form-label-small">600×400</span></label>
+                        <input type="file" class="dropify" name="file" data-height="150" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">テキスト <span class="form-label-small">30~50文字推奨</span></label>
+                        <textarea class="form-control" name="detail" rows="6" placeholder="" required>{{ isset($curriculum) ? $curriculum->detail : '' }}</textarea>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">サムネイル <span class="form-label-small">600×400</span></label>
-                    <input type="file" class="dropify" data-height="150" />
-                </div>
-                <div class="form-group">
-                    <label class="form-label">テキスト <span class="form-label-small">30~50文字推奨</span></label>
-                    <textarea class="form-control" name="example-textarea-input" rows="6" placeholder=""></textarea>
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-3">
-                <div class="form-group">
-                    <label class="form-label">スラッグ</label>
-                    <input type="text" class="form-control" name="example-text-input" placeholder="スラッグ">
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="status_btn flex fx-bet fx-wrp">
-                            <a href="#" class="btn btn-secondary">下書き保存</a>
-                            <a href="#" class="btn btn-secondary">プレビュー</a>
-                        </div>
-                        <div class="status">
-                            <div class="item">
-                                <label class="form-label">優先順位</label>
-                                <input type="number" class="form-control" name="example-text-input" placeholder="なし">
+                <div class="col-md-12 col-lg-3">
+                    <div class="form-group">
+                        <label class="form-label">スラッグ</label>
+                        <input type="text" class="form-control" name="slack" placeholder="スラッグ" value="{{ isset($curriculum) ? $curriculum->slack : '' }}">
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="status_btn flex fx-bet fx-wrp">
+                                <button type="submit" class="btn btn-secondary btn_submit">下書き保存</button>
+                                <a href="#" class="btn btn-secondary">プレビュー</a>
                             </div>
-                            <div class="item">
-                                <label class="form-label">ステータス変更</label>
-                                <div class="input-group">
-                                    <select class="form-control custom-select">
-                                        <option value="1">下書き</option>
-                                        <option value="2">公開</option>
-                                    </select>
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-primary">OK</button>
+                            <div class="status">
+                                <div class="item">
+                                    <label class="form-label">優先順位</label>
+                                    <input type="number" class="form-control" name="order" placeholder="なし" value="{{ isset($curriculum) ? $curriculum->order : '' }}">
+                                </div>
+                                <div class="item">
+                                    <label class="form-label">ステータス変更</label>
+                                    <div class="input-group">
+                                        <select class="form-control custom-select" name="public_status">
+                                            <option value="0" {{ isset($curriculum) && $curriculum->public_status == 0 ? 'selected' : '' }}>下書き</option>
+                                            <option value="1" {{ isset($curriculum) && $curriculum->public_status == 1 ? 'selected' : '' }}>公開</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-primary">OK</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item">
-                                <a href="#" class="btn btn-primary">公開</a>
+                                <div class="item">
+                                    <button type="submit" class="btn btn-primary btn_submit">公開</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.btn_submit').click(function (e) {
+                e.preventDefault();
+                console.log("d");
+                if($('#curriculum').valid()){
+                    var paramObj = new FormData($("#curriculum")[0]);
+                    $.ajax({
+                        url: save_curriculum,
+                        type: 'post',
+                        data: paramObj,
+                        contentType: false,
+                        processData: false,
+                        success: function(response){
+                            $.growl.notice({
+                                title: "成功",
+                                message: "保存しました"
+                            });
+                        },
+                    });
+
+                }
+
+            })
+
+        })
+
+    </script>
 </x-admin-layout>

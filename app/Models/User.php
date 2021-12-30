@@ -28,7 +28,9 @@ class User extends Authenticatable
         'card_date',
         'card_cvc',
         'pay_setting',
-        'role'
+        'role',
+        'login_at',
+        'image'
     ];
 
     /**
