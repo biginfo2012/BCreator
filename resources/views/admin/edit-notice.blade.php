@@ -12,331 +12,136 @@
                                 <div class="tabs-menu1 ">
                                     <!-- Tabs -->
                                     <ul class="nav panel-tabs">
-                                        <li class=""><a href="#no-all" class="active show" data-toggle="tab">すべて (3)</a></li>
-                                        <li><a href="#no-open" data-toggle="tab" class="">公開済み (2)</a></li>
-                                        <li><a href="#no-draft" data-toggle="tab">下書き (1)</a></li>
-                                        <li><a href="#no-trash" data-toggle="tab">削除 (1)</a></li>
+                                        <li class=""><a href="#no-all" class="active show" data-toggle="tab">すべて ({{ count($all_data) }})</a></li>
+                                        <li><a href="#no-open" data-toggle="tab" class="">公開済み ({{ count($open_data) }})</a></li>
+                                        <li><a href="#no-draft" data-toggle="tab">下書き ({{ count($draft_data) }})</a></li>
+                                        <li><a href="#no-trash" data-toggle="tab">削除 ({{ count($trash_data) }})</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="panel-body tabs-menu-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active show" id="no-all">
-                                        <div class="wrp_ad_table">
-                                            <div class="table_head">
-                                                <div class="table_title">
-                                                    <span>タイトル</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>投稿者</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>最終更新日</span>
-                                                </div>
-                                                <div class="table_edit"></div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_title">
-                                                    <span>テストテストテストテスト</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日 3:10 PM</span>
-                                                </div>
-                                                <div class="table_edit">
-                                                    <div class="flex fx-bet fx-wrp">
-                                                        <a href="#">編集</a>
-                                                        <a href="#">削除</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_title">
-                                                    <span>テストテストテスト</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日 3:10 PM</span>
-                                                </div>
-                                                <div class="table_edit">
-                                                    <div class="flex fx-bet fx-wrp">
-                                                        <a href="#">編集</a>
-                                                        <a href="#">削除</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_title">
-                                                    <span>テストテストテスト</span>
-                                                    <span class="draft">-下書き</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日 3:10 PM</span>
-                                                </div>
-                                                <div class="table_edit">
-                                                    <div class="flex fx-bet fx-wrp">
-                                                        <a href="#">編集</a>
-                                                        <a href="#">削除</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination-wrapper">
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination mb-0">
-                                                    <li class="page-item active">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">4</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">5</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a aria-label="Next" class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                        <table id="noAllTable" class="table table-striped wrp_ad_table" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="wd-35p">タイトル</th>
+                                                <th class="wd-15p">投稿者</th>
+                                                <th class="wd-25p">最終更新日</th>
+                                                <th class="wd-15p">スラッグ</th>
+                                                <th class="wd-10p"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($all_data as $item)
+                                                <tr>
+                                                    <td>
+                                                        <span>{{ $item->title }}</span>
+                                                        <span class="draft">{{ isset($item->deleted_at) ? '-削除' : ($item->public_status == 0 ? '-公開済み' : '-下書き') }}</span>
+                                                    </td>
+                                                    <td><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</span></td>
+                                                    <td><span class="mt-2">{{ $item->slack }}</span></td>
+                                                    <td>
+                                                        <div class="mt-2 flex fx-bet fx-wrp">
+                                                            <a href="{{ route('master.modify-notice', $item->id) }}">編集</a>
+                                                            <label class="del mb-0" data-id="{{ $item->id }}">削除</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="tab-pane" id="no-open">
-                                        <div class="wrp_ad_table">
-                                            <div class="table_head">
-                                                <div class="table_title">
-                                                    <span>タイトル</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>投稿者</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>最終更新日</span>
-                                                </div>
-                                                <div class="table_edit"></div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_title">
-                                                    <span>テストテストテストテスト</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日 3:10 PM</span>
-                                                </div>
-                                                <div class="table_edit">
-                                                    <div class="flex fx-bet fx-wrp">
-                                                        <a href="#">編集</a>
-                                                        <a href="#">削除</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_title">
-                                                    <span>テストテストテスト</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日 3:10 PM</span>
-                                                </div>
-                                                <div class="table_edit">
-                                                    <div class="flex fx-bet fx-wrp">
-                                                        <a href="#">編集</a>
-                                                        <a href="#">削除</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination-wrapper">
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination mb-0">
-                                                    <li class="page-item active">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">4</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">5</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a aria-label="Next" class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                        <table id="noOpenTable" class="table table-striped wrp_ad_table" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="wd-35p">タイトル</th>
+                                                <th class="wd-15p">投稿者</th>
+                                                <th class="wd-25p">最終更新日</th>
+                                                <th class="wd-15p">スラッグ</th>
+                                                <th class="wd-10p"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($open_data as $item)
+                                                <tr>
+                                                    <td>{{ $item->title }}</td>
+                                                    <td>{{ $item['user']['first_name'] }}</td>
+                                                    <td>{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</td>
+                                                    <td>{{ $item->slack }}</td>
+                                                    <td>
+                                                        <div class="flex fx-bet fx-wrp">
+                                                            <a href="{{ route('master.modify-notice', $item->id) }}">編集</a>
+                                                            <label class="del mb-0" data-id="{{ $item->id }}">削除</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="tab-pane" id="no-draft">
-                                        <div class="wrp_ad_table">
-                                            <div class="table_head">
-                                                <div class="table_title">
-                                                    <span>タイトル</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>投稿者</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>最終更新日</span>
-                                                </div>
-                                                <div class="table_edit"></div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_title">
-                                                    <span>テストテストテストテスト</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日 3:10 PM</span>
-                                                </div>
-                                                <div class="table_edit">
-                                                    <div class="flex fx-bet fx-wrp">
-                                                        <a href="#">編集</a>
-                                                        <a href="#">削除</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination-wrapper">
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination mb-0">
-                                                    <li class="page-item active">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">4</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">5</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a aria-label="Next" class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                        <table id="noDraftTable" class="table table-striped wrp_ad_table" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="wd-35p">タイトル</th>
+                                                <th class="wd-15p">投稿者</th>
+                                                <th class="wd-25p">最終更新日</th>
+                                                <th class="wd-15p">スラッグ</th>
+                                                <th class="wd-10p"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($draft_data as $item)
+                                                <tr>
+                                                    <td>{{ $item->title }}</td>
+                                                    <td>{{ $item['user']['first_name'] }}</td>
+                                                    <td>{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</td>
+                                                    <td>{{ $item->slack }}</td>
+                                                    <td>
+                                                        <div class="flex fx-bet fx-wrp">
+                                                            <a href="{{ route('master.modify-notice', $item->id) }}">編集</a>
+                                                            <label class="del mb-0" data-id="{{ $item->id }}">削除</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="tab-pane" id="no-trash">
                                         <div class="trash_empty">
-                                            <a class="btn btn-primary" href="#">ゴミ箱を空にする</a>
+                                            <a class="btn btn-primary empty" href="#">ゴミ箱を空にする</a>
                                         </div>
-                                        <div class="wrp_ad_table">
-                                            <div class="table_head">
-                                                <div class="table_title">
-                                                    <span>タイトル</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>投稿者</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>最終更新日</span>
-                                                </div>
-                                                <div class="table_edit"></div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_title">
-                                                    <span>テストテストテストテスト</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日 3:10 PM</span>
-                                                </div>
-                                                <div class="table_edit">
-                                                    <div class="flex fx-bet fx-wrp">
-                                                        <a href="#">復元</a>
-                                                        <a href="#">完全削除</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_title">
-                                                    <span>テストテストテスト</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日 3:10 PM</span>
-                                                </div>
-                                                <div class="table_edit">
-                                                    <div class="flex fx-bet fx-wrp">
-                                                        <a href="#">復元</a>
-                                                        <a href="#">完全削除</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_title">
-                                                    <span>テストテストテスト</span>
-                                                </div>
-                                                <div class="table_contributor">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日 3:10 PM</span>
-                                                </div>
-                                                <div class="table_edit">
-                                                    <div class="flex fx-bet fx-wrp">
-                                                        <a href="#">復元</a>
-                                                        <a href="#">完全削除</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination-wrapper">
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination mb-0">
-                                                    <li class="page-item active">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">4</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">5</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a aria-label="Next" class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                        <table id="noTrashTable" class="table table-striped wrp_ad_table" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="wd-35p">タイトル</th>
+                                                <th class="wd-15p">投稿者</th>
+                                                <th class="wd-25p">最終更新日</th>
+                                                <th class="wd-15p">スラッグ</th>
+                                                <th class="wd-10p"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($trash_data as $item)
+                                                <tr>
+                                                    <td>{{ $item->title }}</td>
+                                                    <td>{{ $item['user']['first_name'] }}</td>
+                                                    <td>{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</td>
+                                                    <td>{{ $item->slack }}</td>
+                                                    <td>
+                                                        <div class="flex fx-bet fx-wrp">
+                                                            <label class="restore mb-0" data-id="{{ $item->id }}">復元</label>
+                                                            <label class="complete-del mb-0" data-id="{{ $item->id }}">完全削除</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -346,4 +151,35 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            drawDataTable('noAllTable');
+            drawDataTable('noOpenTable');
+            drawDataTable('noDraftTable');
+            drawDataTable('noTrashTable');
+
+            $('.del').click(function () {
+                let id = $(this).data('id');
+                let msg = "削除しました。"
+                actionId(id, delete_notice, msg);
+            })
+
+            $('.empty').click(function () {
+                emptyTrash(empty_trash_notice);
+            })
+
+            $('.restore').click(function () {
+                let id = $(this).data('id');
+                let msg = "復元しました。"
+                actionId(id, restore_notice, msg);
+            })
+
+            $('.complete-del').click(function () {
+                let id = $(this).data('id');
+                let msg = "完全削除しました。"
+                actionId(id, complete_delete_notice, msg);
+            })
+        })
+
+    </script>
 </x-admin-layout>

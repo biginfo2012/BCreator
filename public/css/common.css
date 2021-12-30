@@ -182,3 +182,19 @@ a.uline{text-decoration: underline;}
 .error{
     color: red !important;
 }
+
+.del{
+    cursor: pointer;
+}
+.restore{
+    cursor: pointer;
+    color: #736cc7;
+}
+.complete-del{
+    cursor: pointer;
+    color: #736cc7;
+}
+
+.parent{
+    font-size: 10px;
+}

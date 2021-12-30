@@ -153,12 +153,41 @@
 
 <!-- Custom Js-->
 <script src="{{ asset('js/custom.js') }}"></script>
-
+<!-- common Js-->
+<script src="{{ asset('js/common.js') }}"></script>
 <!-- WYSIWYG Editor js -->
 <script>
     let token = '{{csrf_token()}}';
     let save_curriculum = '{{route('master.save-curriculum')}}';
     let delete_curriculum = '{{route('master.delete-curriculum')}}';
+    let restore_curriculum = '{{route('master.restore-curriculum')}}';
+    let complete_delete_curriculum = '{{route('master.complete-delete-curriculum')}}';
+    let empty_trash_curriculum = '{{route('master.empty-trash-curriculum')}}';
+
+    let save_lesson = '{{route('master.save-lesson')}}';
+    let delete_lesson = '{{route('master.delete-lesson')}}';
+    let restore_lesson = '{{route('master.restore-lesson')}}';
+    let complete_delete_lesson = '{{route('master.complete-delete-lesson')}}';
+    let empty_trash_lesson = '{{route('master.empty-trash-lesson')}}';
+
+    let save_review = '{{route('master.save-review')}}';
+    let delete_review = '{{route('master.delete-review')}}';
+    let restore_review = '{{route('master.restore-review')}}';
+    let complete_delete_review = '{{route('master.complete-delete-review')}}';
+    let empty_trash_review = '{{route('master.empty-trash-review')}}';
+
+    let save_test = '{{route('master.save-test')}}';
+    let delete_test = '{{route('master.delete-test')}}';
+    let restore_test = '{{route('master.restore-test')}}';
+    let complete_delete_test = '{{route('master.complete-delete-test')}}';
+    let empty_trash_test = '{{route('master.empty-trash-test')}}';
+
+    let save_notice = '{{route('master.save-notice')}}';
+    let delete_notice = '{{route('master.delete-notice')}}';
+    let restore_notice = '{{route('master.restore-notice')}}';
+    let complete_delete_notice = '{{route('master.complete-delete-notice')}}';
+    let empty_trash_notice = '{{route('master.empty-trash-notice')}}';
+
     lightGallery(document.getElementById('lightgallery'));
     $(function(e) {
         $('.content').richText();

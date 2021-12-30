@@ -1,11 +1,11 @@
 <x-admin-layout>
     <div class="side-app dash_min-hei" id="post-curriculum">
         <div class="page-header">
-            <h4 class="page-title">新規追加：カリキュラム</h4>
+            <h4 class="page-title">{{ isset($curriculum) ? '編集' : '新規追加' }}：カリキュラム</h4>
         </div>
         <form id="curriculum" class="data">
             @csrf
-            <input type="hidden" name="id" value="{{ isset($curriculum) ? $curriculum->id : 0 }}">
+            <input type="hidden" name="id" value="{{ isset($curriculum) ? $curriculum->id : '' }}">
             <div class="row">
                 <div class="col-md-12 col-lg-9">
                     <div class="form-group">
@@ -65,28 +65,8 @@
         $(document).ready(function () {
             $('.btn_submit').click(function (e) {
                 e.preventDefault();
-                console.log("d");
-                if($('#curriculum').valid()){
-                    var paramObj = new FormData($("#curriculum")[0]);
-                    $.ajax({
-                        url: save_curriculum,
-                        type: 'post',
-                        data: paramObj,
-                        contentType: false,
-                        processData: false,
-                        success: function(response){
-                            $.growl.notice({
-                                title: "成功",
-                                message: "保存しました"
-                            });
-                        },
-                    });
-
-                }
-
+                saveForm('curriculum', save_curriculum)
             })
-
         })
-
     </script>
 </x-admin-layout>

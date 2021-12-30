@@ -1,4 +1,7 @@
 <x-admin-layout>
+    <style>
+
+    </style>
     <div class="side-app dash_min-hei" id="edit-curriculum">
         <div class="page-header">
             <h4 class="page-title">カリキュラム</h4>
@@ -35,14 +38,17 @@
                                             <tbody>
                                             @foreach($all_data as $item)
                                                 <tr>
-                                                    <td>{{ $item->title }}</td>
-                                                    <td>{{ $item['user']['first_name'] }}</td>
-                                                    <td>{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</td>
-                                                    <td>{{ $item->slack }}</td>
                                                     <td>
-                                                        <div class="flex fx-bet fx-wrp">
+                                                        <span>{{ $item->title }}</span>
+                                                        <span class="draft">{{ isset($item->deleted_at) ? '-削除' : ($item->public_status == 0 ? '-公開済み' : '-下書き') }}</span>
+                                                    </td>
+                                                    <td><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</span></td>
+                                                    <td><span class="mt-2">{{ $item->slack }}</span></td>
+                                                    <td>
+                                                        <div class="mt-2 flex fx-bet fx-wrp">
                                                             <a href="{{ route('master.modify-curriculum', $item->id) }}">編集</a>
-                                                            <a class="del" data-id="{{ $item->id }}">削除</a>
+                                                            <label class="del mb-0" data-id="{{ $item->id }}">削除</label>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -66,12 +72,12 @@
                                                 <tr>
                                                     <td>{{ $item->title }}</td>
                                                     <td>{{ $item['user']['first_name'] }}</td>
-                                                    <td>{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</td>
+                                                    <td>{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</td>
                                                     <td>{{ $item->slack }}</td>
                                                     <td>
                                                         <div class="flex fx-bet fx-wrp">
                                                             <a href="{{ route('master.modify-curriculum', $item->id) }}">編集</a>
-                                                            <a class="del" data-id="{{ $item->id }}">削除</a>
+                                                            <label class="del mb-0" data-id="{{ $item->id }}">削除</label>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -95,12 +101,12 @@
                                                 <tr>
                                                     <td>{{ $item->title }}</td>
                                                     <td>{{ $item['user']['first_name'] }}</td>
-                                                    <td>{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</td>
+                                                    <td>{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</td>
                                                     <td>{{ $item->slack }}</td>
                                                     <td>
                                                         <div class="flex fx-bet fx-wrp">
                                                             <a href="{{ route('master.modify-curriculum', $item->id) }}">編集</a>
-                                                            <a class="del" data-id="{{ $item->id }}">削除</a>
+                                                            <label class="del mb-0" data-id="{{ $item->id }}">削除</label>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -110,7 +116,7 @@
                                     </div>
                                     <div class="tab-pane" id="cur-trash">
                                         <div class="trash_empty">
-                                            <a class="btn btn-primary" href="#">ゴミ箱を空にする</a>
+                                            <a class="btn btn-primary empty" href="#">ゴミ箱を空にする</a>
                                         </div>
                                         <table id="curTrashTable" class="table table-striped wrp_ad_table" style="width:100%">
                                             <thead>
@@ -127,12 +133,12 @@
                                                 <tr>
                                                     <td>{{ $item->title }}</td>
                                                     <td>{{ $item['user']['first_name'] }}</td>
-                                                    <td>{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</td>
+                                                    <td>{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</td>
                                                     <td>{{ $item->slack }}</td>
                                                     <td>
                                                         <div class="flex fx-bet fx-wrp">
-                                                            <a href="{{ route('master.modify-curriculum', $item->id) }}">編集</a>
-                                                            <a class="del" data-id="{{ $item->id }}">削除</a>
+                                                            <label class="restore mb-0" data-id="{{ $item->id }}">復元</label>
+                                                            <label class="complete-del mb-0" data-id="{{ $item->id }}">完全削除</label>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -150,192 +156,31 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#curAllTable').DataTable({
-                "dom": '<"d-none"i>rt<"d-none"fl><""p><"clear">',
-                "searching": false,
-                "pageLength": 5,
-                "language": {
-                    "decimal":        "",
-                    "emptyTable":     "現示可能な資料がありません。",
-                    "info":           "_TOTAL_個の資料の中で_START_~_END_が現示されます。",
-                    "infoEmpty":      "0~0の0を表示。",
-                    "infoFiltered":   "(filtered from _MAX_ total entries)",
-                    "infoPostFix":    "",
-                    "thousands":      ",",
-                    "lengthMenu":     " _MENU_ ",
-                    "loadingRecords": "ロード中...",
-                    "processing":     "処理中...",
-                    "search":         "検索:",
-                    "zeroRecords":    "一致する検索資料がありません。",
-                    "paginate": {
-                        "first":      "初めに",
-                        "last":       "最後",
-                        "next":       "次の",
-                        "previous":   "以前"
-                    },
-                    "aria": {
-                        "sortAscending":  ": ",
-                        "sortDescending": ": "
-                    },
-                    "columnDefs": [
-                        { "orderable": false, "targets": 2 }
-                    ]
-                },
-                "fixedColumns": true,
-                "aaSorting": []
-            });
-            $('#curOpenTable').DataTable({
-                "dom": '<"d-none"i>rt<"d-none"fl><""p><"clear">',
-                "searching": false,
-                "pageLength": 5,
-                "language": {
-                    "decimal":        "",
-                    "emptyTable":     "現示可能な資料がありません。",
-                    "info":           "_TOTAL_個の資料の中で_START_~_END_が現示されます。",
-                    "infoEmpty":      "0~0の0を表示。",
-                    "infoFiltered":   "(filtered from _MAX_ total entries)",
-                    "infoPostFix":    "",
-                    "thousands":      ",",
-                    "lengthMenu":     " _MENU_ ",
-                    "loadingRecords": "ロード中...",
-                    "processing":     "処理中...",
-                    "search":         "検索:",
-                    "zeroRecords":    "一致する検索資料がありません。",
-                    "paginate": {
-                        "first":      "初めに",
-                        "last":       "最後",
-                        "next":       "次の",
-                        "previous":   "以前"
-                    },
-                    "aria": {
-                        "sortAscending":  ": ",
-                        "sortDescending": ": "
-                    },
-                    "columnDefs": [
-                        { "orderable": false, "targets": 2 }
-                    ]
-                },
-                "fixedColumns": true,
-                "aaSorting": []
-            });
-            $('#curDraftTable').DataTable({
-                "dom": '<"d-none"i>rt<"d-none"fl><""p><"clear">',
-                "searching": false,
-                "pageLength": 5,
-                "language": {
-                    "decimal":        "",
-                    "emptyTable":     "現示可能な資料がありません。",
-                    "info":           "_TOTAL_個の資料の中で_START_~_END_が現示されます。",
-                    "infoEmpty":      "0~0の0を表示。",
-                    "infoFiltered":   "(filtered from _MAX_ total entries)",
-                    "infoPostFix":    "",
-                    "thousands":      ",",
-                    "lengthMenu":     " _MENU_ ",
-                    "loadingRecords": "ロード中...",
-                    "processing":     "処理中...",
-                    "search":         "検索:",
-                    "zeroRecords":    "一致する検索資料がありません。",
-                    "paginate": {
-                        "first":      "初めに",
-                        "last":       "最後",
-                        "next":       "次の",
-                        "previous":   "以前"
-                    },
-                    "aria": {
-                        "sortAscending":  ": ",
-                        "sortDescending": ": "
-                    },
-                    "columnDefs": [
-                        { "orderable": false, "targets": 2 }
-                    ]
-                },
-                "fixedColumns": true,
-                "aaSorting": []
-            });
-            $('#curTrashTable').DataTable({
-                "dom": '<"d-none"i>rt<"d-none"fl><""p><"clear">',
-                "searching": false,
-                "pageLength": 5,
-                "language": {
-                    "decimal":        "",
-                    "emptyTable":     "現示可能な資料がありません。",
-                    "info":           "_TOTAL_個の資料の中で_START_~_END_が現示されます。",
-                    "infoEmpty":      "0~0の0を表示。",
-                    "infoFiltered":   "(filtered from _MAX_ total entries)",
-                    "infoPostFix":    "",
-                    "thousands":      ",",
-                    "lengthMenu":     " _MENU_ ",
-                    "loadingRecords": "ロード中...",
-                    "processing":     "処理中...",
-                    "search":         "検索:",
-                    "zeroRecords":    "一致する検索資料がありません。",
-                    "paginate": {
-                        "first":      "初めに",
-                        "last":       "最後",
-                        "next":       "次の",
-                        "previous":   "以前"
-                    },
-                    "aria": {
-                        "sortAscending":  ": ",
-                        "sortDescending": ": "
-                    },
-                    "columnDefs": [
-                        { "orderable": false, "targets": 2 }
-                    ]
-                },
-                "fixedColumns": true,
-                "aaSorting": []
-            });
+            drawDataTable('curAllTable');
+            drawDataTable('curOpenTable');
+            drawDataTable('curDraftTable');
+            drawDataTable('curTrashTable');
 
             $('.del').click(function () {
-                let id = $(this).attr('id');
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': token
-                    }
-                });
-                $.ajax({
-                    url: delete_curriculum,
-                    type:'post',
-                    data: {
-                        id : id
-                    },
-                    // beforeSend: function(){
-                    //     $("#global-loader").fadeIn("slow")
-                    // },
-                    // complete: function(){
-                    //     $("#global-loader").fadeOut("slow")
-                    // },
-                    success: function (response) {
-                        if(response.status){
-                            $('#delCompleteModal').modal('show');
-                        }
-                        else{
-                            toastr.warning("삭제할수 없습니다.", "삭제실패", {
-                                positionClass: "toast-top-right",
-                                timeOut: 5e3,
-                                closeButton: !0,
-                                debug: !1,
-                                newestOnTop: !0,
-                                progressBar: !0,
-                                preventDuplicates: !0,
-                                onclick: null,
-                                showDuration: "300",
-                                hideDuration: "1000",
-                                extendedTimeOut: "1000",
-                                showEasing: "swing",
-                                hideEasing: "linear",
-                                showMethod: "fadeIn",
-                                hideMethod: "fadeOut",
-                                tapToDismiss: !1
-                            });
-                        }
-                    },
-                    error: function () {
+                let id = $(this).data('id');
+                let msg = "削除しました。"
+                actionId(id, delete_curriculum, msg);
+            })
 
-                    }
-                });
+            $('.empty').click(function () {
+                emptyTrash(empty_trash_curriculum);
+            })
 
+            $('.restore').click(function () {
+                let id = $(this).data('id');
+                let msg = "復元しました。"
+                actionId(id, restore_curriculum, msg);
+            })
+
+            $('.complete-del').click(function () {
+                let id = $(this).data('id');
+                let msg = "完全削除しました。"
+                actionId(id, complete_delete_curriculum, msg);
             })
         })
 
