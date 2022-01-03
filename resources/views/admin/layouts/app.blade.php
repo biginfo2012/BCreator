@@ -182,11 +182,31 @@
     let complete_delete_test = '{{route('master.complete-delete-test')}}';
     let empty_trash_test = '{{route('master.empty-trash-test')}}';
 
+    let save_media = '{{route('master.save-media')}}';
+
+    let save_user = '{{route('master.save-user')}}';
+    let delete_user = '{{route('master.delete-user')}}';
+    let restore_user = '{{route('master.restore-user')}}';
+    let complete_delete_user = '{{route('master.complete-delete-user')}}';
+    let empty_trash_user = '{{route('master.empty-trash-user')}}';
+    let active_user = '{{route('master.active-user')}}';
+    let stop_user = '{{route('master.stop-user')}}';
+
+    let empty_trash_reserve = '{{route('master.empty-trash-reserve')}}';
+    let change_status_reserve = '{{route('master.change-status-reserve')}}';
+    let empty_trash_contact = '{{route('master.empty-trash-contact')}}';
+    let change_status_contact = '{{route('master.change-status-contact')}}';
+
     let save_notice = '{{route('master.save-notice')}}';
     let delete_notice = '{{route('master.delete-notice')}}';
     let restore_notice = '{{route('master.restore-notice')}}';
     let complete_delete_notice = '{{route('master.complete-delete-notice')}}';
     let empty_trash_notice = '{{route('master.empty-trash-notice')}}';
+
+    let save_options = '{{route('master.save-options')}}';
+
+    let profile_edit = '{{route('master.profile-edit')}}';
+    let my_profile = '{{route('master.my-profile')}}';
 
     lightGallery(document.getElementById('lightgallery'));
     $(function(e) {

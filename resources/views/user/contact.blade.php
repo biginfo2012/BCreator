@@ -9,7 +9,7 @@
                     <li>回答内容の一部または全部の転用、二次利用はご遠慮ください。</li>
                 </ul>
             </div>
-            <div class="content">
+            <div class="content mt-3">
                 <form method="POST" action="{{ route('contact-complete') }}">
                     @csrf
                     <div class="wrp_reserve_input">
@@ -22,8 +22,8 @@
                                     </div>
                                 </div>
                                 <div class="reserve_input double">
-                                    <input type="text" name="first_name" placeholder="姓" autocomplete="family-name">
-                                    <input type="text" name="last_name" placeholder="名" autocomplete="given-name">
+                                    <input type="text" name="first_name" placeholder="姓" autocomplete="family-name" required>
+                                    <input type="text" name="last_name" placeholder="名" autocomplete="given-name" required>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <div class="reserve_input">
-                                    <input type="email" name="email" placeholder="メールアドレス" autocomplete="email">
+                                    <input type="email" name="email" placeholder="メールアドレス" autocomplete="email" required>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="reserve_input">
-                                    <textarea rows="10" cols="60" placeholder="ここに記入してください" name="detail"></textarea>
+                                    <textarea rows="10" cols="60" placeholder="ここに記入してください" name="detail" required></textarea>
                                 </div>
                             </div>
                         </div>

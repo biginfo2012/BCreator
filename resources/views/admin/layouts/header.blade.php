@@ -5,8 +5,8 @@
     <!-- Navbar Right Menu-->
     <div class="container-fluid">
         <div class="d-flex">
-            <a class="header-brand" href="index.html">
-                <img alt="vobilet logo" class="header-brand-img" src="https://b-creator.test-h.biz/wordpress/wp-content/themes/bootstrap-basic4-child/assets/images/logo.png">
+            <a class="header-brand" href="{{url('/')}}">
+                <img alt="vobilet logo" class="header-brand-img" src="{{asset('images/logo.png')}}">
             </a>
 
             <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
@@ -19,10 +19,10 @@
 										</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="profile.html"><i class="dropdown-icon mdi mdi-account-outline"></i> プロフィール</a>
-                        <a class="dropdown-item" href="options.html"><i class="dropdown-icon mdi mdi-settings"></i> 設定</a>
+                        <a class="dropdown-item" href="{{ route('master.profile') }}"><i class="dropdown-icon mdi mdi-account-outline"></i> プロフィール</a>
+                        <a class="dropdown-item" href="{{ route('master.options') }}"><i class="dropdown-icon mdi mdi-settings"></i> 設定</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="faq.html"><i class="dropdown-icon mdi mdi-compass-outline"></i> ヘルプ</a>
+                        <a class="dropdown-item" href="{{ route('master.faq') }}"><i class="dropdown-icon mdi mdi-compass-outline"></i> ヘルプ</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a class="dropdown-item" onclick="event.preventDefault();

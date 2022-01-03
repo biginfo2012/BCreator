@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -45,6 +46,12 @@ class UserController extends Controller
         return view('user.contact');
     }
     public function contactComplete(Request $request){
+        Contact::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'detail' => $request->detail
+        ]);
         return view('user.contact-complete');
     }
 }

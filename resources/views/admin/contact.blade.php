@@ -12,412 +12,173 @@
                                 <div class="tabs-menu1 ">
                                     <!-- Tabs -->
                                     <ul class="nav panel-tabs">
-                                        <li class=""><a href="#cont-all" class="active show" data-toggle="tab">すべて (3)</a></li>
-                                        <li><a href="#cont-wip" data-toggle="tab" class="">未対応 (2)</a></li>
-                                        <li><a href="#cont-comp" data-toggle="tab">完了 (1)</a></li>
-                                        <li><a href="#cont-trash" data-toggle="tab">削除 (1)</a></li>
+                                        <li class=""><a href="#cont-all" class="active show" data-toggle="tab">すべて ({{ count($all_data) }})</a></li>
+                                        <li><a href="#cont-wip" data-toggle="tab" class="">未対応 ({{ count($open_data) }})</a></li>
+                                        <li><a href="#cont-comp" data-toggle="tab">完了 ({{ count($draft_data) }})</a></li>
+                                        <li><a href="#cont-trash" data-toggle="tab">削除 ({{ count($trash_data) }})</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="panel-body tabs-menu-body">
                                 <div class="tab-content">
-                                    <div class="tab-pane active show" id="con-all">
-                                        <div class="wrp_ad_table">
-                                            <div class="table_head">
-                                                <div class="table_day">
-                                                    <span>日時</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>姓</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>名</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>メールアドレス</span>
-                                                </div>
-                                                <div class="table_content">
-                                                    <span>内容</span>
-                                                </div>
-                                                <div class="table_status">
-                                                    <span>ステータス</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_day">
-                                                    <span>2021-12-12</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@testest.co.jp</span>
-                                                </div>
-                                                <div class="table_content">
-                                                    <span>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-                                                </div>
-                                                <div class="table_status">
-                                                    <div class="input-group">
-                                                        <select class="form-control custom-select">
-                                                            <option value="1">未対応</option>
-                                                            <option value="2">完了</option>
-                                                            <option value="3">削除</option>
-                                                        </select>
-                                                        <div class="input-group-append">
-                                                            <button type="button" class="btn btn-primary">OK</button>
+                                    <div class="tab-pane active show" id="cont-all">
+                                        <table id="conAllTable" class="table table-striped wrp_ad_table" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="wd-10p">日時</th>
+                                                <th class="wd-15p">姓</th>
+                                                <th class="wd-15p">名</th>
+                                                <th class="wd-15p">メールアドレス</th>
+                                                <th class="wd-30p">内容</th>
+                                                <th class="wd-15p">ステータス</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($all_data as $item)
+                                                <tr>
+                                                    <td>
+                                                        <span class="mt-2">{{ date('Y-m-d', strtotime($item->created_at)) }}</span>
+                                                    </td>
+                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['detail'] }}</span></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <select class="form-control custom-select reply_status">
+                                                                <option value="0" {{ $item['status'] == 0 ? 'selected' : '' }}>未対応</option>
+                                                                <option value="1" {{ $item['status'] == 1 ? 'selected' : '' }}>完了</option>
+                                                                <option value="2" {{ $item['status'] == 2 ? 'selected' : '' }}>削除</option>
+                                                            </select>
+                                                            <div class="input-group-append">
+                                                                <button type="button" class="btn btn-primary change_status" data-id="{{$item->id}}" disabled>OK</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_day">
-                                                    <span>2021-12-12</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@testest.co.jp</span>
-                                                </div>
-                                                <div class="table_content">
-                                                    <span>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-                                                </div>
-                                                <div class="table_status">
-                                                    <div class="input-group">
-                                                        <select class="form-control custom-select">
-                                                            <option value="1">未対応</option>
-                                                            <option value="2">完了</option>
-                                                            <option value="3">削除</option>
-                                                        </select>
-                                                        <div class="input-group-append">
-                                                            <button type="button" class="btn btn-primary">OK</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination-wrapper">
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination mb-0">
-                                                    <li class="page-item active">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">4</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">5</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a aria-label="Next" class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="tab-pane" id="cont-wip">
-                                        <div class="wrp_ad_table">
-                                            <div class="table_head">
-                                                <div class="table_day">
-                                                    <span>日時</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>姓</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>名</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>メールアドレス</span>
-                                                </div>
-                                                <div class="table_content">
-                                                    <span>内容</span>
-                                                </div>
-                                                <div class="table_status">
-                                                    <span>ステータス</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_day">
-                                                    <span>2021-12-12</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@testest.co.jp</span>
-                                                </div>
-                                                <div class="table_content">
-                                                    <span>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-                                                </div>
-                                                <div class="table_status">
-                                                    <div class="input-group">
-                                                        <select class="form-control custom-select">
-                                                            <option value="1">未対応</option>
-                                                            <option value="2">完了</option>
-                                                            <option value="3">削除</option>
-                                                        </select>
-                                                        <div class="input-group-append">
-                                                            <button type="button" class="btn btn-primary">OK</button>
+                                        <table id="conOpenTable" class="table table-striped wrp_ad_table" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="wd-10p">日時</th>
+                                                <th class="wd-15p">姓</th>
+                                                <th class="wd-15p">名</th>
+                                                <th class="wd-15p">メールアドレス</th>
+                                                <th class="wd-30p">内容</th>
+                                                <th class="wd-15p">ステータス</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($open_data as $item)
+                                                <tr>
+                                                    <td>
+                                                        <span class="mt-2">{{ date('Y-m-d', strtotime($item->created_at)) }}</span>
+                                                    </td>
+                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['detail'] }}</span></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <select class="form-control custom-select reply_status">
+                                                                <option value="0" {{ $item['status'] == 0 ? 'selected' : '' }}>未対応</option>
+                                                                <option value="1" {{ $item['status'] == 1 ? 'selected' : '' }}>完了</option>
+                                                                <option value="2" {{ $item['status'] == 2 ? 'selected' : '' }}>削除</option>
+                                                            </select>
+                                                            <div class="input-group-append">
+                                                                <button type="button" class="btn btn-primary change_status" data-id="{{$item->id}}" disabled>OK</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_day">
-                                                    <span>2021-12-12</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@testest.co.jp</span>
-                                                </div>
-                                                <div class="table_content">
-                                                    <span>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-                                                </div>
-                                                <div class="table_status">
-                                                    <div class="input-group">
-                                                        <select class="form-control custom-select">
-                                                            <option value="1">未対応</option>
-                                                            <option value="2">完了</option>
-                                                            <option value="3">削除</option>
-                                                        </select>
-                                                        <div class="input-group-append">
-                                                            <button type="button" class="btn btn-primary">OK</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination-wrapper">
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination mb-0">
-                                                    <li class="page-item active">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">4</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">5</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a aria-label="Next" class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="tab-pane" id="cont-comp">
-                                        <div class="wrp_ad_table">
-                                            <div class="table_head">
-                                                <div class="table_day">
-                                                    <span>日時</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>姓</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>名</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>メールアドレス</span>
-                                                </div>
-                                                <div class="table_content">
-                                                    <span>内容</span>
-                                                </div>
-                                                <div class="table_status">
-                                                    <span>ステータス</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_day">
-                                                    <span>2021-12-12</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@testest.co.jp</span>
-                                                </div>
-                                                <div class="table_content">
-                                                    <span>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-                                                </div>
-                                                <div class="table_status">
-                                                    <div class="input-group">
-                                                        <select class="form-control custom-select">
-                                                            <option value="1">未対応</option>
-                                                            <option value="2">完了</option>
-                                                            <option value="3">削除</option>
-                                                        </select>
-                                                        <div class="input-group-append">
-                                                            <button type="button" class="btn btn-primary">OK</button>
+                                        <table id="conDraftTable" class="table table-striped wrp_ad_table" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="wd-10p">日時</th>
+                                                <th class="wd-15p">姓</th>
+                                                <th class="wd-15p">名</th>
+                                                <th class="wd-15p">メールアドレス</th>
+                                                <th class="wd-30p">内容</th>
+                                                <th class="wd-15p">ステータス</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($draft_data as $item)
+                                                <tr>
+                                                    <td>
+                                                        <span class="mt-2">{{ date('Y-m-d', strtotime($item->created_at)) }}</span>
+                                                    </td>
+                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['detail'] }}</span></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <select class="form-control custom-select reply_status">
+                                                                <option value="0" {{ $item['status'] == 0 ? 'selected' : '' }}>未対応</option>
+                                                                <option value="1" {{ $item['status'] == 1 ? 'selected' : '' }}>完了</option>
+                                                                <option value="2" {{ $item['status'] == 2 ? 'selected' : '' }}>削除</option>
+                                                            </select>
+                                                            <div class="input-group-append">
+                                                                <button type="button" class="btn btn-primary change_status" data-id="{{$item->id}}" disabled>OK</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination-wrapper">
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination mb-0">
-                                                    <li class="page-item active">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">4</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">5</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a aria-label="Next" class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="tab-pane" id="cont-trash">
                                         <div class="trash_empty">
-                                            <a class="btn btn-primary" href="#">ゴミ箱を空にする</a>
+                                            <a class="btn btn-primary empty" href="#">ゴミ箱を空にする</a>
                                         </div>
-                                        <div class="wrp_ad_table">
-                                            <div class="table_head">
-                                                <div class="table_day">
-                                                    <span>日時</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>姓</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>名</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>メールアドレス</span>
-                                                </div>
-                                                <div class="table_content">
-                                                    <span>内容</span>
-                                                </div>
-                                                <div class="table_status">
-                                                    <span>ステータス</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_day">
-                                                    <span>2021-12-12</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@testest.co.jp</span>
-                                                </div>
-                                                <div class="table_content">
-                                                    <span>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-                                                </div>
-                                                <div class="table_status">
-                                                    <div class="input-group">
-                                                        <select class="form-control custom-select">
-                                                            <option value="1">未対応</option>
-                                                            <option value="2">完了</option>
-                                                            <option value="3">削除</option>
-                                                        </select>
-                                                        <div class="input-group-append">
-                                                            <button type="button" class="btn btn-primary">OK</button>
+                                        <table id="conTrashTable" class="table table-striped wrp_ad_table" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="wd-10p">日時</th>
+                                                <th class="wd-15p">姓</th>
+                                                <th class="wd-15p">名</th>
+                                                <th class="wd-15p">メールアドレス</th>
+                                                <th class="wd-30p">内容</th>
+                                                <th class="wd-15p">ステータス</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($trash_data as $item)
+                                                <tr>
+                                                    <td>
+                                                        <span class="mt-2">{{ date('Y-m-d', strtotime($item->created_at)) }}</span>
+                                                    </td>
+                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['detail'] }}</span></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <select class="form-control custom-select reply_status">
+                                                                <option value="0" {{ $item['status'] == 0 ? 'selected' : '' }}>未対応</option>
+                                                                <option value="1" {{ $item['status'] == 1 ? 'selected' : '' }}>完了</option>
+                                                                <option value="2" {{ $item['status'] == 2 ? 'selected' : '' }}>削除</option>
+                                                            </select>
+                                                            <div class="input-group-append">
+                                                                <button type="button" class="btn btn-primary change_status" data-id="{{$item->id}}" disabled>OK</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_day">
-                                                    <span>2021-12-12</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@testest.co.jp</span>
-                                                </div>
-                                                <div class="table_content">
-                                                    <span>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-                                                </div>
-                                                <div class="table_status">
-                                                    <div class="input-group">
-                                                        <select class="form-control custom-select">
-                                                            <option value="1">未対応</option>
-                                                            <option value="2">完了</option>
-                                                            <option value="3">削除</option>
-                                                        </select>
-                                                        <div class="input-group-append">
-                                                            <button type="button" class="btn btn-primary">OK</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination-wrapper">
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination mb-0">
-                                                    <li class="page-item active">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">4</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">5</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a aria-label="Next" class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -427,4 +188,57 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            drawDataTable('conAllTable');
+            drawDataTable('conOpenTable');
+            drawDataTable('conDraftTable');
+            drawDataTable('conTrashTable');
+
+            $('.empty').click(function () {
+                emptyTrash(empty_trash_contact);
+            })
+
+            $(document).on('change', '.reply_status', function () {
+                console.log($(this).next().find('button'))
+                $(this).next().find('button')[0].disabled = false;
+            })
+            $(document).on('click', '.change_status', function () {
+                let id = $(this).data('id');
+                let msg = 'ステータスを変更しました。'
+                let status = $(this).parent().parent().find('.reply_status option:selected').val();
+                console.log(status)
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': token
+                    }
+                });
+                $.ajax({
+                    url: change_status_contact,
+                    type:'post',
+                    data: {
+                        id : id,
+                        status : status
+                    },
+                    success: function (response) {
+                        if(response.status){
+                            $.growl.notice({
+                                title: "成功",
+                                message: msg
+                            });
+                            window.location.reload();
+                        }
+                        else{
+
+                        }
+                    },
+                    error: function () {
+
+                    }
+                });
+
+            })
+        })
+
+    </script>
 </x-admin-layout>

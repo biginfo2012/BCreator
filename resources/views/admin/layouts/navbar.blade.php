@@ -11,13 +11,20 @@
 								</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                <a class="dropdown-item" href="profile.html"><i class="dropdown-icon mdi mdi-account-outline"></i>
+                <a class="dropdown-item" href="{{ route('master.profile') }}"><i class="dropdown-icon mdi mdi-account-outline"></i>
                     プロフィール</a>
-                <a class="dropdown-item" href="options.html"><i class="dropdown-icon mdi mdi-settings"></i> 設定</a>
+                <a class="dropdown-item" href="{{ route('master.options') }}"><i class="dropdown-icon mdi mdi-settings"></i> 設定</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="faq.html"><i class="dropdown-icon mdi mdi-compass-outline"></i> ヘルプ</a>
-                <a class="dropdown-item" href="login.html"><i class="dropdown-icon mdi mdi-logout-variant"></i>
-                    ログアウト</a>
+                <a class="dropdown-item" href="{{ route('master.faq') }}"><i class="dropdown-icon mdi mdi-compass-outline"></i> ヘルプ</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a class="dropdown-item" onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        <i class="dropdown-icon mdi mdi-logout-variant"></i> ログアウト
+                    </a>
+                </form>
+{{--                <a class="dropdown-item" href="{{ route('master.options') }}login.html"><i class="dropdown-icon mdi mdi-logout-variant"></i>--}}
+{{--                    ログアウト</a>--}}
             </div>
         </div>
     </div>

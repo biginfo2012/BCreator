@@ -12,415 +12,119 @@
                                 <div class="tabs-menu1">
                                     <!-- Tabs -->
                                     <ul class="nav panel-tabs">
-                                        <li class=""><a href="#us-open" class="active show" data-toggle="tab">メンバー (3)</a></li>
-                                        <li><a href="#us-stop" data-toggle="tab" class="">停止中 (2)</a></li>
-                                        <li><a href="#us-trash" data-toggle="tab">削除 (1)</a></li>
+                                        <li class=""><a href="#us-open" class="active show" data-toggle="tab">メンバー ({{ count($all_data) }})</a></li>
+                                        <li><a href="#us-stop" data-toggle="tab" class="">停止中 ({{ count($stop_data) }})</a></li>
+                                        <li><a href="#us-trash" data-toggle="tab">削除 ({{ count($trash_data) }})</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="panel-body tabs-menu-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active show" id="us-open">
-                                        <div class="wrp_ad_table">
-                                            <div class="table_head">
-                                                <div class="table_id">
-                                                    <span>ID</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>姓</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>名</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>メール</span>
-                                                </div>
-                                                <div class="table_level">
-                                                    <span>会員レベル</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>登録日</span>
-                                                </div>
-                                                <div class="table_login">
-                                                    <span>最終ログイン</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_id">
-                                                    <span>3</span>
-                                                    <div class="flex fx-wrp">
-                                                        <a href="#">編集</a>
-                                                        <a href="#">停止</a>
-                                                        <a href="#">削除</a>
-                                                    </div>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@test.co.jp</span>
-                                                </div>
-                                                <div class="table_level">
-                                                    <span>有料会員</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日</span>
-                                                </div>
-                                                <div class="table_login">
-                                                    <span>20201年12月10日</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_id">
-                                                    <span>2</span>
-                                                    <div class="flex fx-wrp">
-                                                        <a href="#">編集</a>
-                                                        <a href="#">停止</a>
-                                                        <a href="#">削除</a>
-                                                    </div>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@test.co.jp</span>
-                                                </div>
-                                                <div class="table_level">
-                                                    <span>管理者</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日</span>
-                                                </div>
-                                                <div class="table_login">
-                                                    <span>20201年12月10日</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_id">
-                                                    <span>1</span>
-                                                    <div class="flex fx-wrp">
-                                                        <a href="#">編集</a>
-                                                        <a href="#">停止</a>
-                                                        <a href="#">削除</a>
-                                                    </div>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@test.co.jp</span>
-                                                </div>
-                                                <div class="table_level">
-                                                    <span>有料会員</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日</span>
-                                                </div>
-                                                <div class="table_login">
-                                                    <span>20201年12月10日</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination-wrapper">
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination mb-0">
-                                                    <li class="page-item active">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">4</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">5</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a aria-label="Next" class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                        <table id="userAllTable" class="table table-striped wrp_ad_table" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="wd-25p">ID</th>
+                                                <th class="wd-10p">姓</th>
+                                                <th class="wd-10p">名</th>
+                                                <th class="wd-15p">メール</th>
+                                                <th class="wd-10p">会員レベル</th>
+                                                <th class="wd-15p">登録日</th>
+                                                <th class="wd-15p">最終ログイン</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($all_data as $id => $item)
+                                                <tr>
+                                                    <td class="table_id">
+                                                        <span>{{ $id+1 }}</span>
+                                                        <div class="flex fx-wrp">
+                                                            <a href="{{ route('master.modify-user', $item->id) }}">編集</a>
+                                                            <a href="#" class="stop_user" data-id="{{$item->id}}">停止</a>
+                                                            <a href="#" class="del" data-id="{{$item->id}}">削除</a>
+                                                        </div>
+                                                    </td>
+                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : $item['role'] == 2 ? '無料会員' : '有料会員' }}</span></td>
+                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
+                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="tab-pane" id="us-stop">
-                                        <div class="wrp_ad_table">
-                                            <div class="table_head">
-                                                <div class="table_id">
-                                                    <span>ID</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>姓</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>名</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>メール</span>
-                                                </div>
-                                                <div class="table_level">
-                                                    <span>会員レベル</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>登録日</span>
-                                                </div>
-                                                <div class="table_login">
-                                                    <span>最終ログイン</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_id">
-                                                    <span>6</span>
-                                                    <div class="flex fx-wrp">
-                                                        <a href="#">有効化</a>
-                                                        <a href="#">削除</a>
-                                                    </div>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@test.co.jp</span>
-                                                </div>
-                                                <div class="table_level">
-                                                    <span>有料会員</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日</span>
-                                                </div>
-                                                <div class="table_login">
-                                                    <span>20201年12月10日</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_id">
-                                                    <span>5</span>
-                                                    <div class="flex fx-wrp">
-                                                        <a href="#">有効化</a>
-                                                        <a href="#">削除</a>
-                                                    </div>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@test.co.jp</span>
-                                                </div>
-                                                <div class="table_level">
-                                                    <span>管理者</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日</span>
-                                                </div>
-                                                <div class="table_login">
-                                                    <span>20201年12月10日</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_id">
-                                                    <span>4</span>
-                                                    <div class="flex fx-wrp">
-                                                        <a href="#">有効化</a>
-                                                        <a href="#">削除</a>
-                                                    </div>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@test.co.jp</span>
-                                                </div>
-                                                <div class="table_level">
-                                                    <span>有料会員</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日</span>
-                                                </div>
-                                                <div class="table_login">
-                                                    <span>20201年12月10日</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination-wrapper">
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination mb-0">
-                                                    <li class="page-item active">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">4</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">5</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a aria-label="Next" class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                        <table id="userStopTable" class="table table-striped wrp_ad_table" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="wd-25p">ID</th>
+                                                <th class="wd-10p">姓</th>
+                                                <th class="wd-10p">名</th>
+                                                <th class="wd-15p">メール</th>
+                                                <th class="wd-10p">会員レベル</th>
+                                                <th class="wd-15p">登録日</th>
+                                                <th class="wd-15p">最終ログイン</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($stop_data as $id => $item)
+                                                <tr>
+                                                    <td class="table_id">
+                                                        <span>{{ $id+1 }}</span>
+                                                        <div class="flex fx-wrp">
+                                                            <a href="#" class="active_user" data-id="{{$item->id}}">有効化</a>
+                                                            <a href="#" class="del" data-id="{{$item->id}}">削除</a>
+                                                        </div>
+                                                    </td>
+                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : $item['role'] == 2 ? '無料会員' : '有料会員' }}</span></td>
+                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
+                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="tab-pane" id="us-trash">
                                         <div class="trash_empty">
-                                            <a class="btn btn-primary" href="#">ゴミ箱を空にする</a>
+                                            <a class="btn btn-primary empty" href="#">ゴミ箱を空にする</a>
                                         </div>
-                                        <div class="wrp_ad_table">
-                                            <div class="table_head">
-                                                <div class="table_id">
-                                                    <span>ID</span>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>姓</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>名</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>メール</span>
-                                                </div>
-                                                <div class="table_level">
-                                                    <span>会員レベル</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>登録日</span>
-                                                </div>
-                                                <div class="table_login">
-                                                    <span>最終ログイン</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_id">
-                                                    <span>9</span>
-                                                    <div class="flex fx-wrp">
-                                                        <a href="#">復元</a>
-                                                        <a href="#">完全削除</a>
-                                                    </div>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@test.co.jp</span>
-                                                </div>
-                                                <div class="table_level">
-                                                    <span>有料会員</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日</span>
-                                                </div>
-                                                <div class="table_login">
-                                                    <span>20201年12月10日</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_id">
-                                                    <span>8</span>
-                                                    <div class="flex fx-wrp">
-                                                        <a href="#">復元</a>
-                                                        <a href="#">完全削除</a>
-                                                    </div>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@test.co.jp</span>
-                                                </div>
-                                                <div class="table_level">
-                                                    <span>管理者</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日</span>
-                                                </div>
-                                                <div class="table_login">
-                                                    <span>20201年12月10日</span>
-                                                </div>
-                                            </div>
-                                            <div class="table_item">
-                                                <div class="table_id">
-                                                    <span>7</span>
-                                                    <div class="flex fx-wrp">
-                                                        <a href="#">復元</a>
-                                                        <a href="#">完全削除</a>
-                                                    </div>
-                                                </div>
-                                                <div class="table_family">
-                                                    <span>平沢</span>
-                                                </div>
-                                                <div class="table_first">
-                                                    <span>岳史</span>
-                                                </div>
-                                                <div class="table_mail">
-                                                    <span>test@test.co.jp</span>
-                                                </div>
-                                                <div class="table_level">
-                                                    <span>有料会員</span>
-                                                </div>
-                                                <div class="table_day">
-                                                    <span>2021年12月1日</span>
-                                                </div>
-                                                <div class="table_login">
-                                                    <span>20201年12月10日</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination-wrapper">
-                                            <nav aria-label="Page navigation">
-                                                <ul class="pagination mb-0">
-                                                    <li class="page-item active">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">4</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">5</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a aria-label="Next" class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                        <table id="userTrashTable" class="table table-striped wrp_ad_table" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="wd-25p">ID</th>
+                                                <th class="wd-10p">姓</th>
+                                                <th class="wd-10p">名</th>
+                                                <th class="wd-15p">メール</th>
+                                                <th class="wd-10p">会員レベル</th>
+                                                <th class="wd-15p">登録日</th>
+                                                <th class="wd-15p">最終ログイン</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($trash_data as $id => $item)
+                                                <tr>
+                                                    <td class="table_id">
+                                                        <span>{{ $id+1 }}</span>
+                                                        <div class="flex fx-wrp">
+                                                            <a href="#" class="restore" data-id="{{$item->id}}">復元</a>
+                                                            <a href="#" class="complete-del" data-id="{{$item->id}}">完全削除</a>
+                                                        </div>
+                                                    </td>
+                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : $item['role'] == 2 ? '無料会員' : '有料会員' }}</span></td>
+                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
+                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -430,4 +134,46 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            drawDataTable('userAllTable');
+            drawDataTable('userStopTable');
+            drawDataTable('userTrashTable');
+
+            $('.stop_user').click(function () {
+                let id = $(this).data('id');
+                let msg = "停止しました。"
+                actionId(id, stop_user, msg);
+            })
+
+            $('.del').click(function () {
+                let id = $(this).data('id');
+                let msg = "削除しました。"
+                actionId(id, delete_user, msg);
+            })
+
+            $('.active_user').click(function () {
+                let id = $(this).data('id');
+                let msg = "有効化しました。"
+                actionId(id, active_user, msg);
+            })
+
+            $('.empty').click(function () {
+                emptyTrash(empty_trash_user);
+            })
+
+            $('.restore').click(function () {
+                let id = $(this).data('id');
+                let msg = "復元しました。"
+                actionId(id, restore_user, msg);
+            })
+
+            $('.complete-del').click(function () {
+                let id = $(this).data('id');
+                let msg = "完全削除しました。"
+                actionId(id, complete_delete_user, msg);
+            })
+        })
+
+    </script>
 </x-admin-layout>

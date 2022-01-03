@@ -80,6 +80,7 @@ Route::group(['middleware' => 'auth'], function (){
             Route::post('complete-delete-review', [AdminController::class, 'completeDeleteReview'])->name('master.complete-delete-review');
             Route::post('empty-trash-review', [AdminController::class, 'emptyTrashReview'])->name('master.empty-trash-review');
 
+            //test
             Route::get('edit-test', [AdminController::class, 'editTest'])->name('master.edit-test');
             Route::get('post-test', [AdminController::class, 'postTest'])->name('master.post-test');
             Route::get('modify-test/{id}', [AdminController::class, 'modifyTest'])->name('master.modify-test');
@@ -91,11 +92,28 @@ Route::group(['middleware' => 'auth'], function (){
 
             Route::get('gallery', [AdminController::class, 'gallery'])->name('master.gallery');
             Route::get('media-new', [AdminController::class, 'mediaNew'])->name('master.media-new');
+            Route::post('save-media', [AdminController::class, 'saveMedia'])->name('master.save-media');
+
             Route::get('edit-user', [AdminController::class, 'editUser'])->name('master.edit-user');
             Route::get('post-user', [AdminController::class, 'postUser'])->name('master.post-user');
+            Route::post('save-user', [AdminController::class, 'saveUser'])->name('master.save-user');
+            Route::get('modify-user/{id}', [AdminController::class, 'modifyUser'])->name('master.modify-user');
+            Route::post('delete-user', [AdminController::class, 'deleteUser'])->name('master.delete-user');
+            Route::post('restore-user', [AdminController::class, 'restoreUser'])->name('master.restore-user');
+            Route::post('active-user', [AdminController::class, 'activeUser'])->name('master.active-user');
+            Route::post('stop-user', [AdminController::class, 'stopUser'])->name('master.stop-user');
+            Route::post('complete-delete-user', [AdminController::class, 'completeDeleteUser'])->name('master.complete-delete-user');
+            Route::post('empty-trash-user', [AdminController::class, 'emptyTrashUser'])->name('master.empty-trash-user');
+
             Route::get('payments', [AdminController::class, 'payments'])->name('master.payments');
+
+            //questions
             Route::get('reserve', [AdminController::class, 'reserve'])->name('master.reserve');
+            Route::post('empty-trash-reserve', [AdminController::class, 'emptyTrashReserve'])->name('master.empty-trash-reserve');
+            Route::post('change-status-reserve', [AdminController::class, 'changeStatusReserve'])->name('master.change-status-reserve');
             Route::get('contact', [AdminController::class, 'contact'])->name('master.contact');
+            Route::post('empty-trash-contact', [AdminController::class, 'emptyTrashContact'])->name('master.empty-trash-contact');
+            Route::post('change-status-contact', [AdminController::class, 'changeStatusContact'])->name('master.change-status-contact');
 
             Route::get('edit-notice', [AdminController::class, 'editNotice'])->name('master.edit-notice');
             Route::get('post-notice', [AdminController::class, 'postNotice'])->name('master.post-notice');
@@ -107,9 +125,12 @@ Route::group(['middleware' => 'auth'], function (){
             Route::post('empty-trash-notice', [AdminController::class, 'emptyTrashNotice'])->name('master.empty-trash-notice');
 
             Route::get('options', [AdminController::class, 'options'])->name('master.options');
+            Route::post('save-options', [AdminController::class, 'saveOptions'])->name('master.save-options');
             Route::get('faq', [AdminController::class, 'faq'])->name('master.faq');
-            Route::get('profile', [AdminController::class, 'contact'])->name('master.profile');
-            Route::get('post-profile', [AdminController::class, 'postProfile'])->name('master.post-profile');
+            Route::get('profile', [AdminController::class, 'profile'])->name('master.profile');
+            Route::post('profile-edit', [AdminController::class, 'profileEdit'])->name('master.profile-edit');
+            Route::post('my-profile', [AdminController::class, 'myProfile'])->name('master.my-profile');
+//            Route::get('post-profile', [AdminController::class, 'postProfile'])->name('master.post-profile');
         });
     });
 });

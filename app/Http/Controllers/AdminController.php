@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Curriculum;
 use App\Models\Lesson;
+use App\Models\Media;
 use App\Models\Notice;
+use App\Models\Payment;
+use App\Models\Reserve;
 use App\Models\Review;
+use App\Models\SiteSetting;
 use App\Models\Test;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -51,7 +57,7 @@ class AdminController extends Controller
             $photo = time().'.'.$extension;
             $path = public_path().'/image';
             $uplaod = $file->move($path,$photo);
-            $path = '/public/image/' . $photo;
+            $path = '/image/' . $photo;
             //$photo = $request->file->store('image','public');
             $data = [
                 'title' => $request->title,
@@ -70,7 +76,7 @@ class AdminController extends Controller
             $photo = time().'.'.$extension;
             $path = public_path().'/image';
             $uplaod = $file->move($path,$photo);
-            $path = '/public/image/' . $photo;
+            $path = '/image/' . $photo;
             //$photo = $request->file->store('image','public');
             $data = [
                 'title' => $request->title,
@@ -127,7 +133,7 @@ class AdminController extends Controller
             $photo = time().'.'.$extension;
             $path = public_path().'/image';
             $uplaod = $file->move($path,$photo);
-            $path = '/public/image/' . $photo;
+            $path = '/image/' . $photo;
             //$photo = $request->file->store('image','public');
             $data = [
                 'title' => $request->title,
@@ -147,7 +153,7 @@ class AdminController extends Controller
             $photo = time().'.'.$extension;
             $path = public_path().'/image';
             $uplaod = $file->move($path,$photo);
-            $path = '/public/image/' . $photo;
+            $path = '/image/' . $photo;
             //$photo = $request->file->store('image','public');
             $data = [
                 'title' => $request->title,
@@ -212,7 +218,7 @@ class AdminController extends Controller
             $photo = time().'.'.$extension;
             $path = public_path().'/image';
             $uplaod = $file->move($path,$photo);
-            $path = '/public/image/' . $photo;
+            $path = '/image/' . $photo;
             //$photo = $request->file->store('image','public');
             $curriculum_id = Lesson::where('id', $request->lesson_id)->get()->first()->curriculum_id;
             $data = [
@@ -234,7 +240,7 @@ class AdminController extends Controller
             $photo = time().'.'.$extension;
             $path = public_path().'/image';
             $uplaod = $file->move($path,$photo);
-            $path = '/public/image/' . $photo;
+            $path = '/image/' . $photo;
             //$photo = $request->file->store('image','public');
             $curriculum_id = Lesson::where('id', $request->lesson_id)->get()->first()->curriculum_id;
             $data = [
@@ -302,7 +308,7 @@ class AdminController extends Controller
             $photo = time().'.'.$extension;
             $path = public_path().'/image';
             $uplaod = $file->move($path,$photo);
-            $path = '/public/image/' . $photo;
+            $path = '/image/' . $photo;
             //$photo = $request->file->store('image','public');
             $curriculum_id = Lesson::where('id', $request->lesson_id)->get()->first()->curriculum_id;
             $data = [
@@ -323,7 +329,7 @@ class AdminController extends Controller
             $photo = time().'.'.$extension;
             $path = public_path().'/image';
             $uplaod = $file->move($path,$photo);
-            $path = '/public/image/' . $photo;
+            $path = '/image/' . $photo;
             //$photo = $request->file->store('image','public');
             $curriculum_id = Lesson::where('id', $request->lesson_id)->get()->first()->curriculum_id;
             $data = [
@@ -359,26 +365,144 @@ class AdminController extends Controller
 
 
     public function gallery(){
-        return view('admin.gallery');
+        $media = Media::get()->all();
+        return view('admin.gallery', compact('media'));
     }
     public function mediaNew(){
         return view('admin.media-new');
     }
+    public function saveMedia(Request $request){
+        $file = $request->file('file');
+        $extension = $file->getClientOriginalExtension(); // you can also use file name
+        $photo = time().'.'.$extension;
+        $path = public_path().'/image';
+        $uplaod = $file->move($path,$photo);
+        $path = '/image/' . $photo;
+        Media::create([
+            'image' => $path
+        ]);
+        return response()->json(['status' => true]);
+    }
+
     public function editUser(){
-        return view('admin.edit-user');
+        $all_data = User::get()->all();
+        $stop_data = User::where('status', 0)->whereNull('deleted_at')->get();
+        $trash_data = User::whereNotNull('deleted_at')->get();
+        return view('admin.edit-user', compact('all_data', 'stop_data', 'trash_data'));
     }
     public function postUser(){
         return view('admin.post-user');
     }
-    public function payments(){
-        return view('admin.payments');
+    public function saveUser(Request $request){
+        if(isset($request->id)){
+            $user = User::where('email', $request->email)->where('id', '!=', $request->id)->get()->first();
+            if(isset($user)){
+                return response()->json(['status' => false]);
+            }
+            User::where('id', $request->id)->update([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $request->role,
+                'status' => $request->status,
+            ]);
+            if($request->role == 1){
+                $user->givePermissionTo('admin');
+            }
+            else{
+                $user->givePermissionTo('user');
+            }
+        }
+        else{
+            $user = User::where('email', $request->email)->get()->first();
+            if(isset($user)){
+                return response()->json(['status' => false]);
+            }
+            $user = User::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $request->role,
+                'status' => $request->status,
+            ]);
+            if($request->role == 1){
+                $user->givePermissionTo('admin');
+            }
+            else{
+                $user->givePermissionTo('user');
+            }
+        }
+
+
+        return response()->json(['status' => true]);
     }
+    public function modifyUser($id){
+        $user = User::find($id);
+        return view('admin.post-user', compact('user'));
+    }
+    public function deleteUser(Request $request){
+        User::where('id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
+        return response()->json(['status' => true]);
+    }
+    public function restoreUser(Request $request){
+        User::where('id', $request->id)->update(['deleted_at' => null]);
+        return response()->json(['status' => true]);
+    }
+    public function completeDeleteUser(Request $request){
+        User::where('id', $request->id)->delete();
+        return response()->json(['status' => true]);
+    }
+    public function emptyTrashUser(Request $request){
+        User::whereNotNull('deleted_at')->delete();
+        return response()->json(['status' => true]);
+    }
+    public function activeUser(Request $request){
+        User::where('id', $request->id)->update(['status' => 1]);
+        return response()->json(['status' => true]);
+    }
+    public function stopUser(Request $request){
+        User::where('id', $request->id)->update(['status' => 0]);
+        return response()->json(['status' => true]);
+    }
+
+    public function payments(){
+        $payments = Payment::with('user')->get()->all();
+        return view('admin.payments', compact('payments'));
+    }
+
     public function reserve(){
-        return view('admin.reserve');
+        $all_data = Reserve::get()->all();
+        $open_data = Reserve::where('status', 0)->get();
+        $draft_data = Reserve::where('status', 1)->get();
+        $trash_data = Reserve::where('status', 2)->get();
+        return view('admin.reserve', compact('all_data', 'open_data', 'draft_data', 'trash_data'));
+    }
+    public function emptyTrashReserve(Request $request){
+        Reserve::where('status', 2)->delete();
+        return response()->json(['status' => true]);
+    }
+    public function changeStatusReserve(Request $request){
+        Reserve::where('id', $request->id)->update(['status' => $request->status]);
+        return response()->json(['status' => true]);
     }
     public function contact(){
-        return view('admin.contact');
+        $all_data = Contact::get()->all();
+        $open_data = Contact::where('status', 0)->get();
+        $draft_data = Contact::where('status', 1)->get();
+        $trash_data = Contact::where('status', 2)->get();
+        return view('admin.contact', compact('all_data', 'open_data', 'draft_data', 'trash_data'));
     }
+    public function emptyTrashContact(Request $request){
+        Contact::where('status', 2)->delete();
+        return response()->json(['status' => true]);
+    }
+    public function changeStatusContact(Request $request){
+        Contact::where('id', $request->id)->update(['status' => $request->status]);
+        return response()->json(['status' => true]);
+    }
+
     public function editNotice(){
         $all_data = Notice::with('user')->get()->all();
         $open_data = Notice::with('user')->where('public_status', 1)->whereNull('deleted_at')->get();
@@ -432,17 +556,72 @@ class AdminController extends Controller
         return response()->json(['status' => true]);
     }
 
-
     public function options(){
-        return view('admin.options');
+        $site_setting = SiteSetting::where('id', 1)->get()->first();
+        return view('admin.options', compact('site_setting'));
+    }
+    public function saveOptions(Request $request){
+        if($request->hasFile('file')){
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension(); // you can also use file name
+            $photo = time().'.'.$extension;
+            $path = public_path().'/images';
+            $uplaod = $file->move($path,$photo);
+            $path = '/images/' . $photo;
+            SiteSetting::where('id', 1)->update([
+                'site_title'=>$request->site_title,
+                'site_description' => $request->site_description,
+                'company_name' => $request->company_name,
+                'address' => $request->address,
+                'logo' => $path
+            ]);
+        }
+
+        SiteSetting::where('id', 1)->update([
+            'site_title'=>$request->site_title,
+            'site_description' => $request->site_description,
+            'company_name' => $request->company_name,
+            'address' => $request->address
+        ]);
+
+        return response()->json(['status' => true]);
     }
     public function faq(){
         return view('admin.faq');
     }
     public function profile(){
-        return view('admin.profile');
+        $admin = Auth::user();
+        return view('admin.profile', compact('admin'));
     }
-    public function postProfile(){
-        return view('admin.post-profile');
+    public function profileEdit(Request $request){
+        if($request->hasFile('file')){
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension(); // you can also use file name
+            $photo = time().'.'.$extension;
+            $path = public_path().'/image';
+            $uplaod = $file->move($path,$photo);
+            $path = '/image/' . $photo;
+            User::where('id', Auth::user()->id)->update([
+                'company_name'=>$request->company_name,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'image' => $path,
+            ]);
+        }
+        else{
+            User::where('id', Auth::user()->id)->update([
+                'company_name'=>$request->company_name,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+            ]);
+        }
+        return response()->json(['status' => true]);
+    }
+    public function myProfile(Request $request){
+        User::where('id', Auth::user()->id)->update([
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+        return response()->json(['status' => true]);
     }
 }

@@ -28,6 +28,9 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('role')->default(1);
             $table->timestamp('login_at')->nullable();
             $table->string('image')->nullable();
+            $table->string('company_name')->nullable();
+            $table->timestamp('deleted_at')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -30,6 +30,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+
         $request->authenticate();
 
         $request->session()->regenerate();
@@ -45,6 +46,16 @@ class AuthenticatedSessionController extends Controller
 //        }
 
         User::where('id', Auth::user()->id)->update(['login_at' => date('Y-m-d H:i:s')]);
+
+        if(Auth::user()->status == 0 || isset(Auth::user()->deleted_at)){
+            Auth::guard('web')->logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            return redirect('/');
+        }
 
         if(Auth::user()->role == 1){
             return redirect()->intended(RouteServiceProvider::HOME);

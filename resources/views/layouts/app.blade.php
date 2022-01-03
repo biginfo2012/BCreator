@@ -21,7 +21,7 @@
                 background: none !important;
                 padding: 0 !important;
             } </style>
-        <link rel='stylesheet' id='wp-block-library-css' href='{{ asset('css/dist-block-library-style.min.css') }}' type='text/css'
+        <link rel='stylesheet' id='wp-block-library-css' href="{{ asset('css/dist-block-library-style.min.css') }}" type='text/css'
               media='all'/>
         <style id='wp-block-library-theme-inline-css' type='text/css'>
             #start-resizable-editor-section {
