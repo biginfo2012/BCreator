@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap"
           rel="stylesheet">    <!--wordpress head--> <title>会員ページ | b-Creator:21リニューアル_テスト</title>
     <meta name='robots' content='noindex, nofollow'/>
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
     <link rel='dns-prefetch' href='//s.w.org'/>
     <style type="text/css"> img.wp-smiley, img.emoji {
             display: inline !important;
@@ -212,11 +214,16 @@
           type='text/css' media='all'/>
     <link rel='stylesheet' id='bootstrap-basic4-wp-main-css' href='{{ asset('css/themes-bootstrap-basic4-child-style.css') }}'
           type='text/css' media='all'/>
-    <link rel='stylesheet' id='member-css' href='{{ asset('css/themes-bootstrap-basic4-child-member.css') }}' type='text/css'
+    <link rel='stylesheet' id='member-css' href='{{ asset('css/member.css') }}' type='text/css'
           media='all'/>
     <!--カレンダー用プラグイン-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <link rel='stylesheet' id='style-css' href='{{ asset('css/common.css') }}' type='text/css' media='all'/>
+    <!-- Notifications  Css -->
+    <link href="{{ asset('plugins/notify/css/jquery.growl.css') }}" rel="stylesheet" />
+    <!-- Calendar Plugin -->
+    <link href="{{ asset('plugins/calendar/clndr.css') }}" rel="stylesheet" />
+
 
     <!-- Scripts -->
     <script type='text/javascript' src='{{asset('js/jquery-3.6.0.min.js')}}' id='jquery-core-js'></script>
@@ -235,6 +242,11 @@
     <script type='text/javascript' src='{{asset('js/themes-bootstrap-basic4-child-assets-js-my.js')}}' id='my-js-js'></script>
     <script type='text/javascript' src='{{asset('js/themes-bootstrap-basic4-child-assets-js-anime.js')}}'
             id='anime-js-js'></script>
+    <!-- Notifications js -->
+    <script src="{{ asset('plugins/notify/js/rainbow.js') }}"></script>
+    {{--<script src="{{ asset('plugins/notify/js/sample.js') }}"></script>--}}
+    <script src="{{ asset('plugins/notify/js/jquery.growl.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.js') }}"></script>
     <!--カレンダー用プラグイン-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js"></script>
@@ -264,10 +276,23 @@
 <script type='text/javascript' src='{{asset('js/bootstrap-basic4-assets-js-main.js')}}' id='bootstrap-basic4-main-js'></script>
 <script type='text/javascript' src='{{ asset('js/0ca-wp-embed.min.js') }}' id='wp-embed-js'></script><!--end WordPress footer-->
 
+<!-- Default calendar -->
+<script src="{{ asset('plugins/calendar/underscore-min.js') }}"></script>
+<script src="{{ asset('plugins/calendar/moment.js') }}"></script>
+<script src="{{ asset('plugins/calendar/clndr.js') }}"></script>
+
+<script src="{{ asset('plugins/rating/jquery.rating-stars.js') }}"></script>
+<!-- common Js-->
+<script src="{{ asset('js/common.js') }}"></script>
 <script>
     $('#datepicker').datepicker();
     $('#datepicker2').datepicker();
 
+</script>
+<script>
+    let token = '{{csrf_token()}}';
+    let user_modify = '{{route('user-modify')}}';
+    let get_notice = '{{route('get-notice')}}';
 </script>
 </body>
 </html>

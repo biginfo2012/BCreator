@@ -12,14 +12,17 @@
                         <div class="foot-item">
                             <a href="{{url('/')}}">TOP</a>
                             <a href="{{route('about')}}">b-Creatorについて</a>
-                            <a href="{{route('faq')}}/">よくある質問</a>
-                            <a href="{{route('about')}}">受講料金</a>
+                            <a href="{{route('faq')}}">よくある質問</a>
                         </div>
                         <div class="foot-item">
-                            <a href="{{route('about')}}">b-Creatorについて</a>
+                            <a href="{{route('price')}}">受講料金</a>
+                            <a href="{{route('curriculum')}}">学習内容</a>
+                            <a href="{{route('voice')}}">受講生の声</a>
                         </div>
                         <div class="foot-item">
-                            <a href="{{route('about')}}">b-Creatorについて</a>
+                            <a href="{{route('discount')}}">割引一覧</a>
+                            <a href="{{route('counseling')}}">無料カウンセリング</a>
+                            <a href="{{route('login')}}">ログイン</a>
                         </div>
                     </div>
                 </div>

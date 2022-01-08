@@ -15,7 +15,22 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">サムネイル <span class="form-label-small">600×400</span></label>
-                        <input type="file" class="dropify" name="file" data-height="150" required>
+                        @if(!isset($curriculum))
+                            <input type="file" class="dropify" name="file" data-height="150" required>
+                        @else
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <img src="{{ asset($curriculum->thumbnail) }}" style="height: 160px;">
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="form-group">
+                                        <input type="file" class="dropify" name="file" data-height="150">
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="form-label">テキスト <span class="form-label-small">30~50文字推奨</span></label>

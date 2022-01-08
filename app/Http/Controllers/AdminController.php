@@ -13,6 +13,8 @@ use App\Models\Review;
 use App\Models\SiteSetting;
 use App\Models\Test;
 use App\Models\User;
+use App\Models\UserCurriculum;
+use App\Models\UserLesson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +34,9 @@ class AdminController extends Controller
         $current_users = User::where('role', 2)->orderBy('created_at', 'desc')->take(5)->get();
         $today = date('Y-m-d') . ' 00:00:00';
         $login_users = User::where('role', 2)->where('login_at', '>=', $today)->orderBy('login_at', 'desc')->take(5)->get();
-        return view('admin.dashboard', compact('cnt_users', 'cnt_month_user', 'current_users', 'login_users'));
+        $total_pay = Payment::get()->sum('amount');
+        $cnt_lessons = Lesson::get()->count();
+        return view('admin.dashboard', compact('cnt_users', 'cnt_month_user', 'current_users', 'login_users', 'total_pay', 'cnt_lessons'));
     }
 
 
@@ -52,22 +56,35 @@ class AdminController extends Controller
     }
     public function saveCurriculum(Request $request){
         if(isset($request->id)){
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalExtension(); // you can also use file name
-            $photo = time().'.'.$extension;
-            $path = public_path().'/image';
-            $uplaod = $file->move($path,$photo);
-            $path = '/image/' . $photo;
-            //$photo = $request->file->store('image','public');
-            $data = [
-                'title' => $request->title,
-                'thumbnail' => $path,
-                'detail' => $request->detail,
-                'slack' => $request->slack,
-                'order' => $request->order,
-                'public_status' => $request->public_status,
-                'user_id' => Auth::user()->id
-            ];
+            if($request->hasFile('file')){
+                $file = $request->file('file');
+                $extension = $file->getClientOriginalExtension(); // you can also use file name
+                $photo = time().'.'.$extension;
+                $path = public_path().'/image';
+                $uplaod = $file->move($path,$photo);
+                $path = '/image/' . $photo;
+                //$photo = $request->file->store('image','public');
+                $data = [
+                    'title' => $request->title,
+                    'thumbnail' => $path,
+                    'detail' => $request->detail,
+                    'slack' => $request->slack,
+                    'order' => $request->order,
+                    'public_status' => $request->public_status,
+                    'user_id' => Auth::user()->id
+                ];
+            }
+            else{
+                $data = [
+                    'title' => $request->title,
+                    'detail' => $request->detail,
+                    'slack' => $request->slack,
+                    'order' => $request->order,
+                    'public_status' => $request->public_status,
+                    'user_id' => Auth::user()->id
+                ];
+            }
+
             Curriculum::where('id', $request->id)->update($data);
         }
         else{
@@ -95,17 +112,32 @@ class AdminController extends Controller
     }
     public function deleteCurriculum(Request $request){
         Curriculum::where('id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
+        Lesson::where('curriculum_id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
+        Review::where('curriculum_id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
+        Test::where('curriculum_id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
         return response()->json(['status' => true]);
     }
     public function restoreCurriculum(Request $request){
         Curriculum::where('id', $request->id)->update(['deleted_at' => null]);
+        Lesson::where('curriculum_id', $request->id)->update(['deleted_at' => null]);
+        Review::where('curriculum_id', $request->id)->update(['deleted_at' => null]);
+        Test::where('curriculum_id', $request->id)->update(['deleted_at' => null]);
         return response()->json(['status' => true]);
     }
     public function completeDeleteCurriculum(Request $request){
         Curriculum::where('id', $request->id)->delete();
+        Lesson::where('curriculum_id', $request->id)->delete();
+        Review::where('curriculum_id', $request->id)->delete();
+        Test::where('curriculum_id', $request->id)->delete();
+        UserCurriculum::where('curriculum_id', $request->id)->delete();
         return response()->json(['status' => true]);
     }
     public function emptyTrashCurriculum(Request $request){
+        $curriculum_ids = Curriculum::whereNotNull('deleted_at')->pluck('id');
+        Lesson::whereIn('curriculum_id', $curriculum_ids)->delete();
+        Review::whereIn('curriculum_id', $curriculum_ids)->delete();
+        Test::whereIn('curriculum_id', $curriculum_ids)->delete();
+        UserCurriculum::whereIn('curriculum_id', $curriculum_ids)->delete();
         Curriculum::whereNotNull('deleted_at')->delete();
         return response()->json(['status' => true]);
     }
@@ -128,23 +160,39 @@ class AdminController extends Controller
     }
     public function saveLesson(Request $request){
         if(isset($request->id)){
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalExtension(); // you can also use file name
-            $photo = time().'.'.$extension;
-            $path = public_path().'/image';
-            $uplaod = $file->move($path,$photo);
-            $path = '/image/' . $photo;
-            //$photo = $request->file->store('image','public');
-            $data = [
-                'title' => $request->title,
-                'thumbnail' => $path,
-                'detail' => $request->detail,
-                'slack' => $request->slack,
-                'order' => $request->order,
-                'public_status' => $request->public_status,
-                'user_id' => Auth::user()->id,
-                'curriculum_id' => $request->curriculum_id
-            ];
+            if($request->hasFile('file')){
+                $file = $request->file('file');
+                $extension = $file->getClientOriginalExtension(); // you can also use file name
+                $photo = time().'.'.$extension;
+                $path = public_path().'/image';
+                $uplaod = $file->move($path,$photo);
+                $path = '/image/' . $photo;
+                //$photo = $request->file->store('image','public');
+                $data = [
+                    'title' => $request->title,
+                    'thumbnail' => $path,
+                    'detail' => $request->detail,
+                    'slack' => $request->slack,
+                    'order' => $request->order,
+                    'time' => $request->time,
+                    'public_status' => $request->public_status,
+                    'user_id' => Auth::user()->id,
+                    'curriculum_id' => $request->curriculum_id
+                ];
+            }
+            else{
+                $data = [
+                    'title' => $request->title,
+                    'detail' => $request->detail,
+                    'slack' => $request->slack,
+                    'order' => $request->order,
+                    'time' => $request->time,
+                    'public_status' => $request->public_status,
+                    'user_id' => Auth::user()->id,
+                    'curriculum_id' => $request->curriculum_id
+                ];
+            }
+
             Lesson::where('id', $request->id)->update($data);
         }
         else{
@@ -161,6 +209,7 @@ class AdminController extends Controller
                 'detail' => $request->detail,
                 'slack' => $request->slack,
                 'order' => $request->order,
+                'time' => $request->time,
                 'public_status' => $request->public_status,
                 'user_id' => Auth::user()->id,
                 'curriculum_id' => $request->curriculum_id
@@ -172,18 +221,29 @@ class AdminController extends Controller
     }
     public function deleteLesson(Request $request){
         Lesson::where('id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
+        Review::where('lesson_id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
+        Test::where('lesson_id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
         return response()->json(['status' => true]);
     }
     public function restoreLesson(Request $request){
         Lesson::where('id', $request->id)->update(['deleted_at' => null]);
+        Review::where('lesson_id', $request->id)->update(['deleted_at' => null]);
+        Test::where('lesson_id', $request->id)->update(['deleted_at' => null]);
         return response()->json(['status' => true]);
     }
     public function completeDeleteLesson(Request $request){
         Lesson::where('id', $request->id)->delete();
+        Review::where('lesson_id', $request->id)->delete();
+        Test::where('lesson_id', $request->id)->delete();
+        UserLesson::where('lesson_id', $request->id)->delete();
         return response()->json(['status' => true]);
     }
     public function emptyTrashLesson(Request $request){
+        $lesson_ids = Lesson::whereNotNull('deleted_at')->pluck('id');
+        Review::whereIn('lesson_id', $lesson_ids)->delete();
+        Test::whereIn('lesson_id', $lesson_ids)->delete();
         Lesson::whereNotNull('deleted_at')->delete();
+        UserLesson::whereIn('lesson_id', $lesson_ids)->delete();
         return response()->json(['status' => true]);
     }
 
@@ -195,43 +255,64 @@ class AdminController extends Controller
         return view('admin.edit-review', compact('all_data', 'open_data', 'draft_data', 'trash_data'));
     }
     public function postReview(){
+        $curricula = Curriculum::with('review')->whereNull('deleted_at')->get();
         $curriculum =  Lesson::with('curriculum')->select(DB::raw('t.*'))
             ->from(DB::raw('(SELECT * FROM lessons ORDER BY created_at DESC) t'))
             ->groupBy('t.curriculum_id')
             ->get();
-        $lesson = Lesson::whereNull('deleted_at')->get();
-        return view('admin.post-review', compact('curriculum', 'lesson'));
+        $lesson = Lesson::with('review')->whereNull('deleted_at')->get();
+        return view('admin.post-review', compact('curriculum', 'lesson', 'curricula'));
     }
     public function modifyReview($id){
         $review = Review::find($id);
+        $curricula = Curriculum::with('review')->whereNull('deleted_at')->get();
         $curriculum =  Lesson::with('curriculum')->select(DB::raw('t.*'))
             ->from(DB::raw('(SELECT * FROM lessons ORDER BY created_at DESC) t'))
             ->groupBy('t.curriculum_id')
             ->get();
-        $lesson = Lesson::whereNull('deleted_at')->get();
-        return view('admin.post-review', compact('lesson', 'curriculum', 'review'));
+        $lesson = Lesson::with('review')->whereNull('deleted_at')->get();
+        return view('admin.post-review', compact('lesson', 'curriculum', 'review', 'curricula'));
     }
     public function saveReview(Request $request){
+        $lesson = $request->lesson_id;
+        $str_arr = explode('-', $lesson);
+        $curriculum_id = $str_arr[0];
+        $lesson_id = empty($str_arr[1]) ? null : $str_arr[1];
+
         if(isset($request->id)){
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalExtension(); // you can also use file name
-            $photo = time().'.'.$extension;
-            $path = public_path().'/image';
-            $uplaod = $file->move($path,$photo);
-            $path = '/image/' . $photo;
-            //$photo = $request->file->store('image','public');
-            $curriculum_id = Lesson::where('id', $request->lesson_id)->get()->first()->curriculum_id;
-            $data = [
-                'title' => $request->title,
-                'thumbnail' => $path,
-                'detail' => $request->detail,
-                'slack' => $request->slack,
-                'order' => $request->order,
-                'public_status' => $request->public_status,
-                'user_id' => Auth::user()->id,
-                'curriculum_id' => $curriculum_id,
-                'lesson_id' => $request->lesson_id
-            ];
+            if($request->hasFile('file')){
+                $file = $request->file('file');
+                $extension = $file->getClientOriginalExtension(); // you can also use file name
+                $photo = time().'.'.$extension;
+                $path = public_path().'/image';
+                $uplaod = $file->move($path,$photo);
+                $path = '/image/' . $photo;
+                //$photo = $request->file->store('image','public');
+                $data = [
+                    'title' => $request->title,
+                    'thumbnail' => $path,
+                    'detail' => $request->detail,
+                    'slack' => $request->slack,
+                    'order' => $request->order,
+                    'public_status' => $request->public_status,
+                    'user_id' => Auth::user()->id,
+                    'curriculum_id' => $curriculum_id,
+                    'lesson_id' => $lesson_id
+                ];
+            }
+            else{
+
+                $data = [
+                    'title' => $request->title,
+                    'detail' => $request->detail,
+                    'slack' => $request->slack,
+                    'order' => $request->order,
+                    'public_status' => $request->public_status,
+                    'user_id' => Auth::user()->id,
+                    'curriculum_id' => $curriculum_id,
+                    'lesson_id' => $lesson_id
+                ];
+            }
             Review::where('id', $request->id)->update($data);
         }
         else{
@@ -242,7 +323,7 @@ class AdminController extends Controller
             $uplaod = $file->move($path,$photo);
             $path = '/image/' . $photo;
             //$photo = $request->file->store('image','public');
-            $curriculum_id = Lesson::where('id', $request->lesson_id)->get()->first()->curriculum_id;
+
             $data = [
                 'title' => $request->title,
                 'thumbnail' => $path,
@@ -252,7 +333,7 @@ class AdminController extends Controller
                 'public_status' => $request->public_status,
                 'user_id' => Auth::user()->id,
                 'curriculum_id' => $curriculum_id,
-                'lesson_id' => $request->lesson_id
+                'lesson_id' => $lesson_id
             ];
             Review::create($data);
         }
@@ -285,42 +366,62 @@ class AdminController extends Controller
         return view('admin.edit-test', compact('all_data', 'open_data', 'draft_data', 'trash_data'));
     }
     public function postTest(){
+        $curricula = Curriculum::with('test')->whereNull('deleted_at')->get();
         $curriculum =  Lesson::with('curriculum')->select(DB::raw('t.*'))
             ->from(DB::raw('(SELECT * FROM lessons ORDER BY created_at DESC) t'))
             ->groupBy('t.curriculum_id')
             ->get();
         $lesson = Lesson::whereNull('deleted_at')->get();
-        return view('admin.post-test', compact('curriculum', 'lesson'));
+        return view('admin.post-test', compact('curriculum', 'lesson', 'curricula'));
     }
     public function modifyTest($id){
         $test = Test::find($id);
+        $curricula = Curriculum::with('test')->whereNull('deleted_at')->get();
         $curriculum =  Lesson::with('curriculum')->select(DB::raw('t.*'))
             ->from(DB::raw('(SELECT * FROM lessons ORDER BY created_at DESC) t'))
             ->groupBy('t.curriculum_id')
             ->get();
         $lesson = Lesson::whereNull('deleted_at')->get();
-        return view('admin.post-test', compact('lesson', 'curriculum', 'test'));
+        return view('admin.post-test', compact('lesson', 'curriculum', 'test', 'curricula'));
     }
     public function saveTest(Request $request){
+        $lesson = $request->lesson_id;
+        $str_arr = explode('-', $lesson);
+        $curriculum_id = $str_arr[0];
+        $lesson_id = empty($str_arr[1]) ? null : $str_arr[1];
         if(isset($request->id)){
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalExtension(); // you can also use file name
-            $photo = time().'.'.$extension;
-            $path = public_path().'/image';
-            $uplaod = $file->move($path,$photo);
-            $path = '/image/' . $photo;
-            //$photo = $request->file->store('image','public');
-            $curriculum_id = Lesson::where('id', $request->lesson_id)->get()->first()->curriculum_id;
-            $data = [
-                'title' => $request->title,
-                'thumbnail' => $path,
-                'slack' => $request->slack,
-                'order' => $request->order,
-                'public_status' => $request->public_status,
-                'user_id' => Auth::user()->id,
-                'curriculum_id' => $curriculum_id,
-                'lesson_id' => $request->lesson_id
-            ];
+            if($request->hasFile('file')){
+                $file = $request->file('file');
+                $extension = $file->getClientOriginalExtension(); // you can also use file name
+                $photo = time().'.'.$extension;
+                $path = public_path().'/image';
+                $uplaod = $file->move($path,$photo);
+                $path = '/image/' . $photo;
+                //$photo = $request->file->store('image','public');
+
+                $data = [
+                    'title' => $request->title,
+                    'thumbnail' => $path,
+                    'slack' => $request->slack,
+                    'order' => $request->order,
+                    'public_status' => $request->public_status,
+                    'user_id' => Auth::user()->id,
+                    'curriculum_id' => $curriculum_id,
+                    'lesson_id' => $lesson_id
+                ];
+            }
+            else{
+                $data = [
+                    'title' => $request->title,
+                    'slack' => $request->slack,
+                    'order' => $request->order,
+                    'public_status' => $request->public_status,
+                    'user_id' => Auth::user()->id,
+                    'curriculum_id' => $curriculum_id,
+                    'lesson_id' => $lesson_id
+                ];
+            }
+
             Test::where('id', $request->id)->update($data);
         }
         else{
@@ -331,7 +432,6 @@ class AdminController extends Controller
             $uplaod = $file->move($path,$photo);
             $path = '/image/' . $photo;
             //$photo = $request->file->store('image','public');
-            $curriculum_id = Lesson::where('id', $request->lesson_id)->get()->first()->curriculum_id;
             $data = [
                 'title' => $request->title,
                 'thumbnail' => $path,
@@ -340,7 +440,7 @@ class AdminController extends Controller
                 'public_status' => $request->public_status,
                 'user_id' => Auth::user()->id,
                 'curriculum_id' => $curriculum_id,
-                'lesson_id' => $request->lesson_id
+                'lesson_id' => $lesson_id
             ];
             Test::create($data);
         }

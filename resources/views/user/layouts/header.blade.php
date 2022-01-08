@@ -42,7 +42,7 @@
                         </ul>
                         <div class="pc-hidden">
                             <div class="sm_my_head_ab">
-                                <a href="{{ route('mypage') }}">ダッシュボード</a>
+                                <a href="{{ url('') }}">ダッシュボード</a>
                                 <a href="{{ route('setup') }}">アカウント設定</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <div class="my_head_ab">
-                        <a href="{{ route('mypage') }}">ダッシュボード</a>
+                        <a href="{{ url('') }}">ダッシュボード</a>
                         <a href="{{ route('setup') }}">アカウント設定</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -84,30 +84,11 @@
                         </form>
                     </div>
                 </div>
-                <div class="wrp_head_notice_box"><a class="notice_bell"><i class="far fa-bell"></i></a>
+                <div class="wrp_head_notice_box"><a class="notice_bell" id="notice_bell"><i class="far fa-bell"></i></a>
                     <div class="head_notice_box">
                         <div class="title"><span>お知らせ</span></div>
-                        <div class="box">
-                            <div class="item active">
-                                <div class="item-title"><span class="main">タイトルタイトルタイトルタイトル</span> <span class="time">7時間前</span>
-                                </div>
-                                <div class="item-content"><span>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span></div>
-                            </div>
-                            <div class="item">
-                                <div class="item-title"><span class="main">タイトルタイトルタイトルタイトル</span> <span class="time">1日前</span>
-                                </div>
-                                <div class="item-content"><span>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span></div>
-                            </div>
-                            <div class="item">
-                                <div class="item-title"><span class="main">タイトルタイトルタイトルタイトル</span> <span class="time">1週間前</span>
-                                </div>
-                                <div class="item-content"><span>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span></div>
-                            </div>
-                            <div class="item">
-                                <div class="item-title"><span class="main">タイトルタイトルタイトルタイトル</span> <span class="time">1年前</span>
-                                </div>
-                                <div class="item-content"><span>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span></div>
-                            </div>
+                        <div class="box" id="notice">
+
                         </div>
                     </div>
                 </div>

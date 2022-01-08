@@ -14,6 +14,7 @@ class Lesson extends Model
         'thumbnail',
         'detail',
         'slack',
+        'time',
         'order',
         'public_status',
         'user_id',
@@ -26,5 +27,11 @@ class Lesson extends Model
 
     public function curriculum(){
         return $this->hasOne(Curriculum::class, 'id', 'curriculum_id');
+    }
+    public function review(){
+        return $this->hasOne(Review::class, 'lesson_id', 'id');
+    }
+    public function test(){
+        return $this->hasOne(Test::class, 'lesson_id', 'id');
     }
 }

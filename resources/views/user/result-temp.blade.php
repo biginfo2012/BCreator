@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="test_end_box">
-                <a class="end_btn" href="#">テスト一覧へ<i class="fas fa-angle-right"></i></a>
+                <a class="end_btn" href="{{ route('archive-test') }}">テスト一覧へ<i class="fas fa-angle-right"></i></a>
             </div>
         </div>
     </div>

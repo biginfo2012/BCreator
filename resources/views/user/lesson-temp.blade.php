@@ -1,4 +1,5 @@
 <x-user-layout>
+
     <div class="wrp_my-box">
         <div class="flex fx-wrp">
             <div class="my-main">
@@ -7,73 +8,22 @@
                         <span class="lesson">レッスン</span>
                     </div>
                     <div class="title">
-                        <a href="#" class="sub">カリキュラム名カリキュラム名</a>
-                        <span class="main">タイトルタイトルタイトルタイトル</span>
+                        <a href="#" class="sub">{{$lesson->curriculum->title}}</a>
+                        <span class="main">{{$lesson->title}}</span>
                     </div>
                     <div class="content_image">
-                        <img src="https://b-creator.test-h.biz/wordpress/wp-content/themes/bootstrap-basic4-child/assets/images/com01.png">
+                        <img src="{{ asset($lesson->thumbnail) }}">
                     </div>
-                    <div class="table_contents">
-                        <div class="item-title">
-                            <span>目次</span>
-                        </div>
-                        <div class="wrp_item">
-                            <div class="item">
-                                <a class="h2 move-link" href="#h2_1">h2タイトルh2タイトルh2タイトル</a>
-                            </div>
-                            <div class="item">
-                                <a class="h2 move-link" href="#h2_2">h2タイトルh2タイトルh2タイトル</a>
-                                <ol>
-                                    <li>
-                                        <a class="move-link" href="#h3_1">h3タイトルh3タイトルh3タイトル</a>
-                                    </li>
-                                    <li>
-                                        <a class="move-link" href="#h3_2">h3タイトルh3タイトルh3タイトル</a>
-                                    </li>
-                                    <li>
-                                        <a class="move-link" href="#h3_3">h3タイトルh3タイトルh3タイトルh3タイトル</a>
-                                    </li>
-                                </ol>
-                            </div>
-                            <div class="item">
-                                <a class="h2 move-link" href="#h2_3">h2タイトルh2タイトルh2タイトルh2タイトル</a>
-                                <ol>
-                                    <li>
-                                        <a class="move-link" href="#h3_4">h3タイトルh3タイトルh3タイトルh3タイトル</a>
-                                    </li>
-                                    <li>
-                                        <a class="move-link" href="#h3_5">h3タイトルh3タイトルh3タイトルh3タイトル</a>
-                                    </li>
-                                    <li>
-                                        <a class="move-link" href="#h3_6">h3タイトルh3タイトルh3タイトルh3タイトル</a>
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wrp_article">
-                        <h2 id="h2_1">h2タイトルh2タイトルh2タイトルh2タイトル</h2>
-                        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-                        <h2 id="h2_2">h2タイトルh2タイトルh2タイトルh2タイトル</h2>
-                        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-                        <h3 id="h3_1">h3タイトルh3タイトルh3タイトルh3タイトル</h3>
-                        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-                        <h3 id="h3_2">h3タイトルh3タイトルh3タイトルh3タイトル</h3>
-                        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-                        <h3 id="h3_3">h3タイトルh3タイトルh3タイトルh3タイトル</h3>
-                        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-                        <h2 id="h2_3">h2タイトルh2タイトルh2タイトルh2タイトル</h2>
-                        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-                        <h3 id="h3_4">h3タイトルh3タイトルh3タイトルh3タイトル</h3>
-                        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-                        <h3 id="h3_5">h3タイトルh3タイトルh3タイトルh3タイトル</h3>
-                        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-                        <h3 id="h3_6">h3タイトルh3タイトルh3タイトルh3タイトル</h3>
-                        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                    <input id="detail" type="hidden" value="{{$lesson->detail}}">
+                    <div id="lesson_contents" class="table_contents">
+
                     </div>
                     <div class="return_curriculum">
-                        <a href="#">カリキュラム名カリキュラム名に戻る<i class="fas fa-angle-right"></i></a>
+                        <a href="{{ route('curriculum-temp', $lesson->curriculum->id) }}">{{$lesson->curriculum->title}}に戻る<i class="fas fa-angle-right"></i></a>
                     </div>
+                </div>
+                <div class="end_box text-center mt-4" style="{{$finish == 1 ? 'display: none;' : ''}}">
+                    <a class="end_btn" data-id="{{$lesson->id}}">完了</a>
                 </div>
             </div>
             <div class="my-side">
@@ -95,4 +45,18 @@
             </div>
         </div>
     </div>
+    <script>
+        let lesson_finish = '{{route('lesson-finish')}}';
+        $(document).ready(function () {
+            let detail = $('#detail').val()
+            console.log(detail)
+            $('#lesson_contents').html(detail)
+            $('.end_btn').click(function () {
+                let id = $(this).data('id');
+                actionIdWithout(id, lesson_finish, '完了しました。')
+
+            })
+        })
+
+    </script>
 </x-user-layout>

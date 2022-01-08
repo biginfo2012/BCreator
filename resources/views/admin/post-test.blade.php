@@ -14,23 +14,55 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">親カリキュラム-レッスンの選択</label>
-                        <select class="form-control select2-show-search" data-placeholder="カリキュラム-レッスン" name="lesson_id" required>
+                        <select class="form-control select2-show-search" name="lesson_id" data-placeholder="カリキュラム-レッスン" required>
                             <option label="Choose one">
                             </option>
-                            @foreach($curriculum as $cur)
-                                <optgroup label="{{$cur->curriculum->title}}">
+                            @foreach($curricula as $item)
+                                <optgroup label="{{$item->title}}">
+                                    <option value="{{$item->id}}-" {{isset($test) && !isset($test->lesson_id) && $test->curriculum_id == $item->id ? 'selected' : ''}} {{!(isset($test) && !isset($test->lesson_id) && $test->curriculum_id == $item->id) && count($item->test) != 0 ? 'disabled' : ''}}>カリキュラム-{{$item->title}}</option>
                                     @foreach($lesson as $les)
-                                        @if($cur->curriculum_id == $les->curriculum_id)
-                                            <option value="{{ $les->id }}" {{ isset($test) && $test->lesson_id == $les->id ? 'selected' : '' }}>{{ $les->title }}</option>
+                                        @if($item->id == $les->curriculum_id)
+                                            <option value="{{$item->id}}-{{ $les->id }}" {{ isset($test) && isset($test->lesson_id) && $test->lesson_id == $les->id ? 'selected' : '' }} {{!(isset($test) && isset($test->lesson_id) && $test->lesson_id == $les->id) && isset($les->test) ? 'disabled' : ''}}>レッスン-{{ $les->title }}</option>
                                         @endif
                                     @endforeach
                                 </optgroup>
                             @endforeach
                         </select>
                     </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label class="form-label">親カリキュラム-レッスンの選択</label>--}}
+{{--                        <select class="form-control select2-show-search" data-placeholder="カリキュラム-レッスン" name="lesson_id" required>--}}
+{{--                            <option label="Choose one">--}}
+{{--                            </option>--}}
+{{--                            @foreach($curriculum as $cur)--}}
+{{--                                <optgroup label="{{$cur->curriculum->title}}">--}}
+{{--                                    @foreach($lesson as $les)--}}
+{{--                                        @if($cur->curriculum_id == $les->curriculum_id)--}}
+{{--                                            <option value="{{ $les->id }}" {{ isset($test) && $test->lesson_id == $les->id ? 'selected' : '' }}>{{ $les->title }}</option>--}}
+{{--                                        @endif--}}
+{{--                                    @endforeach--}}
+{{--                                </optgroup>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
                     <div class="form-group">
                         <label class="form-label">サムネイル <span class="form-label-small">600×400</span></label>
-                        <input type="file" class="dropify" data-height="150" name="file" required/>
+                        @if(!isset($test))
+                            <input type="file" class="dropify" name="file" data-height="150" required>
+                        @else
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <img src="{{ asset($test->thumbnail) }}" style="height: 160px;">
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="form-group">
+                                        <input type="file" class="dropify" name="file" data-height="150">
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-3">

@@ -575,7 +575,7 @@ header{transition: 1.0s;}
     .top-title span:nth-of-type(1)::before{font-size: 27px; top: -30px; left: -50px;}
     .top-title span:nth-of-type(2){font-size: 12px;}
 
-    /* mv */    
+    /* mv */
     .wrp-mv-img span{font-size: 12px;}
 
     /*--- fix-page ---*/
@@ -609,7 +609,7 @@ header{transition: 1.0s;}
     .h-fix{max-width: 750px;}
 
     /*--- TOP ---*/
-    /* mv */    
+    /* mv */
     .wrp-mv-img span{font-size: 9px;}
     .mv-box::before{height: 100px; left: 20px;}
     .mv-box .scr{left: 15px; font-size: 9px; bottom: 105px;}
@@ -785,7 +785,7 @@ header{transition: 1.0s;}
     .top-title span:nth-of-type(1){font-size: 21px; margin: 0 auto 20px;}
     .top-title span:nth-of-type(1)::before{font-size: 24px;}
 
-    /* mv */  
+    /* mv */
     .wrp-mv-img span{display: none;}
     .mv-img{width: 95%;}
     .mv-box .scr,.mv-box::before{display: none;}
@@ -795,7 +795,7 @@ header{transition: 1.0s;}
     .ban-slide .slick-next{right: -40px;}
     .ban-slide li{margin: 0px;}
 
-    /* about */ 
+    /* about */
     #about .i-30 img{width: 200px;}
 
     /* contents */
@@ -838,7 +838,7 @@ header{transition: 1.0s;}
     .cv-box .i-32 a .content span:nth-of-type(2){font-size: 18px;}
     .cv-box .i-32 a .content .sub{display: inline; font-size: 14px;}
     .cv-box .i-32 a .pc-hidden{display: block;}
-    
+
     /*--- fix-page ---*/
     /* kv */
     .kv-title span:nth-of-type(1)::before{top: -40px; left: 10px;}
@@ -1027,5 +1027,12 @@ header{transition: 1.0s;}
     #reserve-complete .confirm_box .item .content{padding: 15px;}
     #reserve-complete .wrp_reserve_input .text{font-size: 12px;}
 
+    /* footer */
+    .foot-logo{width: 100%; text-align: center; margin-bottom: 60px;}
+    .foot-logo img{width: 150px;}
+    .foot-box{width: 100%;}
+    .foot-item{width: 50%;}
+    .foot-item:nth-of-type(3){width: 100%; display: flex; flex-wrap: wrap;}
+    .foot-item:nth-of-type(3) a{width: 50%;}
+
 }
-/*This file was exported by "Export WP Page to Static HTML" plugin which created by ReCorp (https://myrecorp.com) */

@@ -47,7 +47,9 @@
             </button>
 
             <div class="wrp-head_btn flex fx-itc">
-                <a href="{{route('login')}}" class="head_btn1">ログイン</a>
+                @if(!isset(\Illuminate\Support\Facades\Auth::user()->email))
+                    <a href="{{route('login')}}" class="head_btn1">ログイン</a>
+                @endif
                 <a href="{{ route('reserve') }}" class="head_btn2">
                     <span>無料カウンセリング</span>
                     <span>Webで予約する<i class="fas fa-angle-right"></i></span>

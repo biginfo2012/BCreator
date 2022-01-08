@@ -33,15 +33,27 @@ Route::group(['middleware' => 'auth'], function (){
         Route::get('mypage', [UserController::class, 'mypage'])->name('mypage');
         Route::get('myfaq', [UserController::class, 'myfaq'])->name('myfaq');
         Route::get('archive-curriculum', [UserController::class, 'archiveCurriculum'])->name('archive-curriculum');
+        Route::post('search-curriculum', [UserController::class, 'searchCurriculum'])->name('search-curriculum');
+
         Route::get('archive-test', [UserController::class, 'archiveTest'])->name('archive-test');
         Route::get('setup', [UserController::class, 'setup'])->name('setup');
-        Route::get('curriculum-temp', [UserController::class, 'curriculumTemp'])->name('curriculum-temp');
+        Route::post('user-modify', [UserController::class, 'userModify'])->name('user-modify');
+
+        Route::get('curriculum-temp/{id}', [UserController::class, 'curriculumTemp'])->name('curriculum-temp');
+        Route::post('curriculum-finish', [UserController::class, 'curriculumFinish'])->name('curriculum-finish');
+
         Route::get('contact', [UserController::class, 'contact'])->name('contact');
         Route::post('contact-complete', [UserController::class, 'contactComplete'])->name('contact-complete');
-        Route::get('test-temp', [UserController::class, 'testTemp'])->name('test-temp');
-        Route::get('lesson-temp', [UserController::class, 'lessonTemp'])->name('lesson-temp');
-        Route::get('review-temp', [UserController::class, 'reviewTemp'])->name('review-temp');
+
+        Route::get('test-temp/{id}', [UserController::class, 'testTemp'])->name('test-temp');
         Route::get('result-temp', [UserController::class, 'resultTemp'])->name('result-temp');
+
+        Route::get('lesson-temp/{id}', [UserController::class, 'lessonTemp'])->name('lesson-temp');
+        Route::post('lesson-finish', [UserController::class, 'lessonFinish'])->name('lesson-finish');
+
+        Route::get('review-temp/{id}', [UserController::class, 'reviewTemp'])->name('review-temp');
+
+        Route::post('get-notice', [UserController::class, 'getNotice'])->name('get-notice');
     });
 
     /*master part*/

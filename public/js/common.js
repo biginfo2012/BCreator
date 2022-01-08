@@ -1,3 +1,6 @@
+$(document).ready(function () {
+    getNotice();
+})
 function saveForm(index, url) {
     let id = '#' + index;
     if($(id).valid()){
@@ -86,6 +89,36 @@ function actionId(id, url, msg) {
     });
 
 }
+function actionIdWithout(id, url, msg) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token
+        }
+    });
+    $.ajax({
+        url: url,
+        type:'post',
+        data: {
+            id : id
+        },
+        success: function (response) {
+            if(response.status){
+                $.growl.notice({
+                    title: "成功",
+                    message: msg
+                });
+            }
+            else{
+
+            }
+        },
+        error: function () {
+
+        }
+    });
+
+}
+
 
 function emptyTrash(url) {
     $.ajaxSetup({
@@ -107,6 +140,26 @@ function emptyTrash(url) {
             else{
 
             }
+        },
+        error: function () {
+
+        }
+    });
+
+}
+
+function getNotice() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token
+        }
+    });
+    $.ajax({
+        url: get_notice,
+        type:'post',
+        success: function (response) {
+            $('#notice').html(response)
+            $('#notice_bell').attr('data-after', $('#total_notice_count').val());
         },
         error: function () {
 

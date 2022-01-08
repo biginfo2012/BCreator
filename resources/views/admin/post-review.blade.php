@@ -12,25 +12,43 @@
                         <label class="form-label">タイトル</label>
                         <input type="text" class="form-control" placeholder="タイトル" name="title" value="{{ isset($review) ? $review->title : '' }}" required>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">親カリキュラム-レッスンの選択</label>
-                        <select class="form-control select2-show-search" name="lesson_id" data-placeholder="カリキュラム-レッスン" required>
-                            <option label="Choose one">
-                            </option>
-                            @foreach($curriculum as $cur)
-                                <optgroup label="{{$cur->curriculum->title}}">
-                                    @foreach($lesson as $les)
-                                        @if($cur->curriculum_id == $les->curriculum_id)
-                                            <option value="{{ $les->id }}" {{ isset($review) && $review->lesson_id == $les->id ? 'selected' : '' }}>{{ $les->title }}</option>
-                                        @endif
-                                    @endforeach
-                                </optgroup>
-                            @endforeach
-                        </select>
+                    <div class="form-group ">
+                        <div class="form-group ">
+                            <label class="form-label">親カリキュラム-レッスンの選択</label>
+                            <select class="form-control select2-show-search" name="lesson_id" data-placeholder="カリキュラム-レッスン" required>
+                                <option label="Choose one">
+                                </option>
+                                @foreach($curricula as $item)
+                                    <optgroup label="{{$item->title}}">
+                                        <option value="{{$item->id}}-" {{isset($review) && !isset($review->lesson_id) && $review->curriculum_id == $item->id ? 'selected' : ''}} {{!(isset($review) && !isset($review->lesson_id) && $review->curriculum_id == $item->id) && count($item->review) != 0 ? 'disabled' : ''}}>カリキュラム-{{$item->title}}</option>
+                                        @foreach($lesson as $les)
+                                            @if($item->id == $les->curriculum_id)
+                                                <option value="{{$item->id}}-{{ $les->id }}" {{ isset($review) && isset($review->lesson_id) && $review->lesson_id == $les->id ? 'selected' : '' }} {{!(isset($review) && isset($review->lesson_id) && $review->lesson_id == $les->id) && isset($les->review) ? 'disabled' : ''}}>レッスン-{{ $les->title }}</option>
+                                            @endif
+                                        @endforeach
+                                    </optgroup>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">サムネイル <span class="form-label-small">600×400</span></label>
-                        <input type="file" class="dropify" data-height="150" name="file" required/>
+                        @if(!isset($review))
+                            <input type="file" class="dropify" name="file" data-height="150" required>
+                        @else
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <img src="{{ asset($review->thumbnail) }}" style="height: 160px;">
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="form-group">
+                                        <input type="file" class="dropify" name="file" data-height="150">
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="form-label">コンテンツ</label>

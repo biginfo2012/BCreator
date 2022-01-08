@@ -19,7 +19,7 @@
                     <div class="card-body sales-relative">
                         <h5 class="text-muted">総売り上げ</h5>
                         {{--Todo total payments--}}
-                        <h1 class="text-primary">¥3,240,927</h1>
+                        <h1 class="text-primary">¥{{number_format($total_pay)}}</h1>
                         <a href="{{ route('master.payments') }}" class="text-grey border-bottom">詳細を見る</a>
                         <i class="fa fa-credit-card-alt fa-2x icon-absolute bg-primary text-white" aria-hidden="true"></i>
                     </div>
@@ -30,7 +30,7 @@
                     <div class="card-body sales-relative">
                         <h5 class="text-muted">総コンテンツ数</h5>
                         {{--Todo total lesson--}}
-                        <h1 class="text-info">35</h1>
+                        <h1 class="text-info">{{$cnt_lessons}}</h1>
                         <a href="{{ route('master.edit-lesson') }}" class="text-info border-bottom">詳細を見る</a>
                         <i class="fa fa-folder fa-2x icon-absolute bg-info text-white" aria-hidden="true"></i>
                     </div>

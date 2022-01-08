@@ -17,7 +17,7 @@ class CreateTestsTable extends Migration
             $table->id();
             $table->string('title');
             $table->integer('curriculum_id');
-            $table->integer('lesson_id');
+            $table->integer('lesson_id')->nullable();
             $table->string('thumbnail');
             $table->string('slack')->nullable();
             $table->integer('order')->nullable();

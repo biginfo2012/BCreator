@@ -20,6 +20,7 @@ class CreateLessonsTable extends Migration
             $table->string('thumbnail');
             $table->mediumText('detail');
             $table->string('slack')->nullable();
+            $table->integer('time')->default(30);
             $table->integer('order')->nullable();
             $table->tinyInteger('public_status')->default(0);
             $table->integer('user_id');

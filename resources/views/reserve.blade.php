@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         <div class="reserve_input">
-                            <input type="number" name="number" placeholder="08012345678" autocomplete="tel" required>
+                            <input type="text" name="number" placeholder="08012345678" autocomplete="tel" required>
                         </div>
                     </div>
                 </div>

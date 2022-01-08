@@ -50,9 +50,9 @@
                                             @foreach($all_data as $item)
                                                 <tr>
                                                     <td>
-                                                        <span class="parent">{{ $item->curriculum->title . '-' . $item->lesson->title }}</span>
+                                                        <span class="parent">{{ $item->curriculum->title . (isset($item->lesson) ? ('-' . $item->lesson->title) : '') }}</span>
                                                         <span>{{ $item->title }}</span>
-                                                        <span class="draft">{{ isset($item->deleted_at) ? '-削除' : ($item->public_status == 0 ? '-公開済み' : '-下書き') }}</span>
+                                                        <span class="draft">{{ isset($item->deleted_at) ? '-削除' : ($item->public_status == 0 ? '-下書き' : '-公開済み') }}</span>
                                                     </td>
                                                     <td><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
                                                     <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</span></td>
@@ -97,7 +97,7 @@
                                             @foreach($open_data as $item)
                                                 <tr>
                                                     <td>
-                                                        <span class="parent">{{ $item->curriculum->title . '-' . $item->lesson->title }}</span>
+                                                        <span class="parent">{{ $item->curriculum->title . (isset($item->lesson) ? ('-' . $item->lesson->title) : '') }}</span>
                                                         <span>{{ $item->title }}</span>
                                                     </td>
                                                     <td><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
@@ -143,7 +143,7 @@
                                             @foreach($draft_data as $item)
                                                 <tr>
                                                     <td>
-                                                        <span class="parent">{{ $item->curriculum->title . '-' . $item->lesson->title }}</span>
+                                                        <span class="parent">{{ $item->curriculum->title . (isset($item->lesson) ? ('-' . $item->lesson->title) : '') }}</span>
                                                         <span>{{ $item->title }}</span>
                                                     </td>
                                                     <td><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
@@ -181,7 +181,7 @@
                                             @foreach($trash_data as $item)
                                                 <tr>
                                                     <td>
-                                                        <span class="parent">{{ $item->curriculum->title . '-' . $item->lesson->title }}</span>
+                                                        <span class="parent">{{ $item->curriculum->title . (isset($item->lesson) ? ('-' . $item->lesson->title) : '') }}</span>
                                                         <span>{{ $item->title }}</span>
                                                     </td>
                                                     <td><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>

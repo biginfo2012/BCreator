@@ -52,7 +52,7 @@
                                                     <td>
                                                         <span class="parent">{{ $item->curriculum->title }}</span>
                                                         <span>{{ $item->title }}</span>
-                                                        <span class="draft">{{ isset($item->deleted_at) ? '-削除' : ($item->public_status == 0 ? '-公開済み' : '-下書き') }}</span>
+                                                        <span class="draft">{{ isset($item->deleted_at) ? '-削除' : ($item->public_status == 0 ? '-下書き' : '-公開済み') }}</span>
                                                     </td>
                                                     <td><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
                                                     <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</span></td>

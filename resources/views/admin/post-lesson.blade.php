@@ -26,7 +26,22 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">サムネイル <span class="form-label-small">600×400</span></label>
-                        <input type="file" class="dropify" name="file" data-height="150" required/>
+                        @if(!isset($lesson))
+                            <input type="file" class="dropify" name="file" data-height="150" required>
+                        @else
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <img src="{{ asset($lesson->thumbnail) }}" style="height: 160px;">
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="form-group">
+                                        <input type="file" class="dropify" name="file" data-height="150">
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="form-label">コンテンツ</label>
@@ -45,6 +60,10 @@
                                 <a href="#" class="btn btn-secondary">プレビュー</a>
                             </div>
                             <div class="status">
+                                <div class="item">
+                                    <label class="form-label">目安時間</label>
+                                    <input type="number" class="form-control" name="time" placeholder="" value="{{ isset($lesson) ? $lesson->time : 30 }}" required>
+                                </div>
                                 <div class="item">
                                     <label class="form-label">優先順位</label>
                                     <input type="number" class="form-control" name="order" placeholder="なし" value="{{ isset($lesson) ? $lesson->order : '' }}">

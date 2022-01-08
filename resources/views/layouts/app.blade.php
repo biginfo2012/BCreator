@@ -9,6 +9,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap"
               rel="stylesheet">    <!--wordpress head--> <title>b-Creator:21リニューアル_テスト</title>
         <meta name='robots' content='noindex, nofollow'/>
+        <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
         <link rel='dns-prefetch' href='//s.w.org'/>
         <style type="text/css"> img.wp-smiley, img.emoji {
                 display: inline !important;
@@ -212,7 +214,7 @@
               type='text/css' media='all'/>
         <link rel='stylesheet' id='bootstrap-basic4-wp-main-css' href='{{ asset('css/themes-bootstrap-basic4-child-style.css') }}'
               type='text/css' media='all'/>
-        <link rel='stylesheet' id='member-css' href='{{ asset('css/themes-bootstrap-basic4-child-member.css') }}' type='text/css'
+        <link rel='stylesheet' id='member-css' href='{{ asset('css/member.css') }}' type='text/css'
               media='all'/>
         <!--カレンダー用プラグイン-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">

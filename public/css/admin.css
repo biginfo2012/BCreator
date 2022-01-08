@@ -20,7 +20,7 @@
 /* table-edit */
 .wrp_ad_table{border: 1px solid #c3c4c7; margin-bottom: 10px;}
 .wrp_ad_table span{display: block;}
-.wrp_ad_table .table_head{padding: 5px 20px; border-bottom: 1px solid #c3c4c7; display: flex; align-items: center;}
+.wrp_ad_table .table_head{padding: 5px 20px; border-bottom: 1px solid #c3c4c7; display: flex; align-items: center; background-color: #fff;}
 .wrp_ad_table .table_item{padding: 10px 20px; background-color: #f6f7f7; display: flex; align-items: center;}
 .wrp_ad_table .table_title .parent{font-size: 10px;}
 .wrp_ad_table .table_item:nth-of-type(odd){background-color: #fff;}
@@ -40,6 +40,8 @@
 /* カリキュラム */
 .ad_title.card-header{min-height: auto; padding: 15px 15px;}
 .ad_title .card-title{font-size: 14px;}
+
+/* レッスン */
 
 /* ユーザー */
 #edit-user .wrp_ad_table .table_head{align-items: flex-start;}
@@ -62,6 +64,44 @@
 #edit-notice .table_day{width: 25%;}
 #edit-notice .table_edit{width: 15%;}
 
+/* メディア */
+#gallery .pagination-wrapper{margin-bottom: 30px;}
+#gallery .pagination-wrapper nav{width: 200px; margin-left: auto;}
+
+/* 支払い管理 */
+#payments .table_id{width:10%;}
+#payments .table_family{width: 15%;}
+#payments .table_first{width: 15%;}
+#payments .table_mail{width: 20%;}
+#payments .table_day{width: 15%;}
+#payments .table_price{width: 15%;}
+#payments .table_status{width: 10%;}
+#payments .success{font-weight: bold; color: #4ecc48;}
+#payments .fail{font-weight: bold; color: #c21a1a;}
+
+/* カウンセリング予約 */
+#master_reserve .table_day{width: 10%;}
+#master_reserve .table_family{width: 10%;}
+#master_reserve .table_first{width: 10%;}
+#master_reserve .table_mail{width: 15%;}
+#master_reserve .table_tel{width: 15%;}
+#master_reserve .table_one{width: 10%;}
+#master_reserve .table_second{width: 10%;}
+#master_reserve .table_status{width: 20%;}
+
+/* ユーザー問い合わせ */
+#master_contact .wrp_ad_table .table_item{align-items: flex-start;}
+#master_contact .table_day{width: 10%;}
+#master_contact .table_family{width: 10%;}
+#master_contact .table_first{width: 10%;}
+#master_contact .table_mail{width: 20%;}
+#master_contact .table_content{width: 30%; padding-right: 10px;}
+#master_contact .table_status{width: 20%;}
+
+/* ヘルプ */
+#faq .pagination-wrapper{margin-bottom: 30px;}
+#faq .pagination-wrapper nav{width: 200px; margin-left: auto;}
+#faq h4.font-weight-semibold{font-size: 16px;}
 
 
 /*---PAD pro---*/
@@ -78,6 +118,16 @@
 	#edit-user .table_first{width: 15%;}
 	#edit-user .table_mail{width: 30%;}
 	#edit-user .table_login{width: 20%;}
+
+	/* カウンセリング予約 */
+	#master_reserve .table_day{display: none;}
+	#master_reserve .table_family{width: 14%;}
+	#master_reserve .table_first{width: 14%;}
+	#master_reserve .table_mail{width: 20%;}
+	#master_reserve .table_tel{display: none;}
+	#master_reserve .table_one{width: 14%;}
+	#master_reserve .table_second{width: 14%;}
+	#master_reserve .table_status{width: 24%;}
 
 }
 
@@ -127,5 +177,45 @@
 	#edit-notice .table_edit{width: 100%;}
 	#edit-notice .table_edit .fx-bet{justify-content: flex-end;}
 	#edit-notice .table_edit .fx-bet a{padding: 0 10px;}
+
+	/* メディア */
+	#gallery h1.page-title{margin-bottom: 10px;}
+
+	/* 支払い管理 */
+	#payments h4.page-title{margin-bottom: 10px;}
+	#payments .table_id{width:10%; margin-bottom: 5px;}
+	#payments .table_family{width: 45%; margin-bottom: 5px;}
+	#payments .table_first{width: 45%; margin-bottom: 5px;}
+	#payments .table_mail{width: 100%; margin-bottom: 5px;}
+	#payments .table_day{width: 100%; margin-bottom: 5px;}
+	#payments .table_price{width: 50%;}
+	#payments .table_status{width: 50%;}
+	#payments .wrp_ad_table{margin-bottom: 20px;}
+	.to_stripe{margin-bottom: 20px;}
+
+	/* カウンセリング予約 */
+	#master_reserve .table_family{width: 50%; margin-bottom: 5px;}
+	#master_reserve .table_first{width: 50%; margin-bottom: 5px;}
+	#master_reserve .table_mail{width: 100%; margin-bottom: 5px;}
+	#master_reserve .table_one{width: 100%; margin-bottom: 5px;}
+	#master_reserve .table_second{width: 100%; margin-bottom: 5px;}
+	#master_reserve .table_status{width: 100%;}
+
+
+	/* ユーザー問い合わせ */
+	#master_contact .table_day{width: 100%; margin-bottom: 5px;}
+	#master_contact .table_family{width: 50%; margin-bottom: 5px;}
+	#master_contact .table_first{width: 50%; margin-bottom: 5px;}
+	#master_contact .table_mail{width: 100%; margin-bottom: 5px;}
+	#master_contact .table_content{width: 100%; padding-right: 0px; margin-bottom: 5px;}
+	#master_contact .table_status{width: 100%; margin-bottom: 5px;}
+
+	/* サイト設定 */
+	#options .form-footer{margin-bottom: 30px;}
+
+	/* ヘルプ */
+	#faq h4.font-weight-semibold{font-size: 16px;}
+	.about-img{margin: 0 -15px;}
+
 
 }

@@ -23,4 +23,10 @@ class Curriculum extends Model
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+    public function review(){
+        return $this->hasMany(Review::class, 'curriculum_id', 'id')->whereNull('lesson_id');
+    }
+    public function test(){
+        return $this->hasMany(Test::class, 'curriculum_id', 'id')->whereNull('lesson_id');
+    }
 }

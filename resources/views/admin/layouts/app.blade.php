@@ -12,8 +12,8 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
 
     <!-- Title -->
     <title>b-Creator_master</title>
@@ -111,7 +111,6 @@
 <!-- Input Mask Plugin -->
 <script src="{{ asset('plugins/input-mask/jquery.mask.min.js') }}"></script>
 
-<script src="{{ asset('js/index.js') }}"></script>
 <!-- Data tables -->
 <script src="{{ asset('plugins/datatable/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('plugins/datatable/dataTables.bootstrap4.min.js') }}"></script>

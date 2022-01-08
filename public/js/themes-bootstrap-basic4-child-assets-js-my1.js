@@ -2,7 +2,7 @@ jQuery(function ($) {
 
 	//ヘッダースクロール
 	var w = $(window).width();
-	
+
 	$(window).scroll(function(){
 		if ($(window).scrollTop() > 300) {
 			$('#header').addClass('h-fix');
@@ -11,7 +11,50 @@ jQuery(function ($) {
 		}
 	});
 
-	
+	//selectのplaceholder
+  const Target = $('.is-empty');
+  $(Target).on('change', function(){
+    if ($(Target).val() !== ""){
+      $(this).removeClass('is-empty');
+    } else {
+      $(this).addClass('is-empty');
+    }
+  });
+
+
+	//checkout-how
+    $(function() {
+      $('[name="btn"]:radio').change( function() {
+        if($('[id=credit]').prop('checked')){
+          $('.content-ch').hide();
+          $('.how01').show();
+        } else if ($('[id=bank]').prop('checked')) {
+          $('.content-ch').hide();
+          $('.how02').show();
+        }
+      });
+    });
+
+	$(document).on('click',function(e) {
+		if(!$(e.target).closest('.wrp_my_head_set').length) {
+			// ターゲット要素の外側をクリックした時の操作
+			$('.my_head_ab').removeClass('open');
+		} else {
+			// ターゲット要素をクリックした時の操作
+			$('.my_head_ab').addClass('open');
+		}
+	});
+
+	$(document).on('click',function(e) {
+		if(!$(e.target).closest('.wrp_head_notice_box').length) {
+			// ターゲット要素の外側をクリックした時の操作
+			$('.head_notice_box').removeClass('open');
+		} else {
+			// ターゲット要素をクリックした時の操作
+			$('.head_notice_box').addClass('open');
+		}
+	});
+
 	//スリック
 	$('.ban-slide').slick({
 		autoplay: true,
@@ -73,7 +116,7 @@ jQuery(function ($) {
 			}
 	}]
 	});
-	
+
 	$('.sli-nav').slick({
 		slidesToShow: 3,
 		slidesToScroll: 1,
@@ -97,7 +140,7 @@ jQuery(function ($) {
 	})
 
 
-	
+
 
 	//スムーズスクロール
 	$('a.move-link').click(function(){
@@ -106,28 +149,28 @@ jQuery(function ($) {
 		var target = $(href == "#" || href == "" ? 'html' : href);
 		var position = target.offset().top;
 		$("html, body").animate({scrollTop:position}, speed, "swing");
-        
+
         $('body').removeClass('offcanvas-stop-scrolling');
         $('#sm-offcanvas').removeClass('in');
         $('.m-toggle').removeClass('is-open');
-        
-		return false;
-	});	
-	
-	//スクロール用処理
-	var imgPos = $('.scr_tg').offset().top;
-	
-	var bh = $(window).height();
-	
-	$(window).scroll(function() {
-		if ($(this).scrollTop() > imgPos) {
-			$('.totop').addClass('open');
-		}else{
-			$('.totop').removeClass('open');
-		}
-	});	
 
-    
+		return false;
+	});
+
+	//スクロール用処理
+	// var imgPos = $('.scr_tg').offset().top;
+	//
+	// var bh = $(window).height();
+	//
+	// $(window).scroll(function() {
+	// 	if ($(this).scrollTop() > imgPos) {
+	// 		$('.totop').addClass('open');
+	// 	}else{
+	// 		$('.totop').removeClass('open');
+	// 	}
+	// });
+
+
 	/*-----------------------アンケート利用----------------------------------*/
 	function mStep_1(tg){
 		tg.find('.post-step1').css('display','block');
@@ -144,8 +187,8 @@ jQuery(function ($) {
 		tg.find('.post-step1').css('display','none');
 		tg.find('.post-step2').css('display','none');
 		tg.find('.post-step3').css('display','block');
-	}    
-    
+	}
+
     //アンケート送信
     $(document).on('click','.ajax-post',function(){
         var tg = $(this).closest('form');
@@ -171,17 +214,16 @@ jQuery(function ($) {
                 mStep_3(tg);
               }
           }
-        });        
-    });    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        });
+    });
+
+
+
+
+
+
+
+
 });
+
+/*This file was exported by "Export WP Page to Static HTML" plugin which created by ReCorp (https://myrecorp.com) */

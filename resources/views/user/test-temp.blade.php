@@ -6,8 +6,8 @@
                     <span class="test">テスト</span>
                 </div>
                 <div class="title">
-                    <a href="#" class="sub">カリキュラム名カリキュラム名</a>
-                    <span class="main">カリキュラム名カリキュラム名のテスト</span>
+                    <a href="#" class="sub">{{$test->curriculum->title}}</a>
+                    <span class="main">{{$test->title}}</span>
                 </div>
                 <div class="wrp_article">
                     <h2>タイトルタイトルタイトルタイトル</h2>
@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="test_end_box">
-                <a class="end_btn" href="#">テストを終了して結果を見る<i class="fas fa-angle-right"></i></a>
+                <a class="end_btn" href="{{ route('result-temp') }}">テストを終了して結果を見る<i class="fas fa-angle-right"></i></a>
             </div>
         </div>
     </div>

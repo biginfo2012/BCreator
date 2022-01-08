@@ -5,7 +5,7 @@
         <div class="dropdown">
             <a class="nav-link p-0 leading-none d-flex" data-toggle="dropdown" href="#">
                 <span class="avatar avatar-md brround"
-                      style="background-image: url(assets/images/faces/female/25.jpg)"></span>
+                      style="background-image: url({{ asset('images/faces/male/25.jpg')}})"></span>
                 <span class="ml-2 "><span class="text-dark app-sidebar__user-name font-weight-semibold">平沢 岳史</span><br>
 									<span class="text-muted app-sidebar__user-name text-sm"> hinata合同会社</span>
 								</span>

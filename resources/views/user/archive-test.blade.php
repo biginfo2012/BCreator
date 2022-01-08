@@ -11,36 +11,18 @@
                     <div class="my-sec-tit"><span>テスト一覧</span></div>
                     <div class="wrp-curriculum">
                         <div class="fx-bet fx-wrp">
-                            <div class="c-block">
-                                <div class="flex fx-wrp">
-                                    <div class="item"><img src="{{ asset('images/com01.png') }}"></div>
-                                    <div class="box">
-                                        <div class="box-title"><span class="one_sent_hide sp_lift">カリキュラムカリキュラム</span>
-                                            <span class="one_sent_hide sp_lift">タイトルタイトルタイトルタイ</span></div>
-                                        <div class="box-btn"><a href="{{ route('test-temp') }}" class="test-btn">テストをはじめる</a></div>
+                            @foreach($test as $item)
+                                <div class="c-block">
+                                    <div class="flex fx-wrp">
+                                        <div class="item"><img src="{{ asset($item['thumbnail']) }}"></div>
+                                        <div class="box">
+                                            <div class="box-title"><span class="one_sent_hide sp_lift">{{ $item['curriculum']['title'] . (isset($item['lesson']) ? ('-' . $item['lesson']['title']) : '') }}</span>
+                                                <span class="one_sent_hide sp_lift">{{ $item['title'] }}</span></div>
+                                            <div class="box-btn"><a href="{{ route('test-temp', $item['id']) }}" class="test-btn">テストをはじめる</a></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="c-block">
-                                <div class="flex fx-wrp">
-                                    <div class="item"><img src="{{ asset('images/com01.png') }}"></div>
-                                    <div class="box">
-                                        <div class="box-title"><span class="one_sent_hide sp_lift">カリキュラムカリキュラム</span>
-                                            <span class="one_sent_hide sp_lift">タイトルタイトルタイトルタイ</span></div>
-                                        <div class="box-btn"><a href="{{ route('test-temp') }}" class="test-btn">テストをはじめる</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="c-block">
-                                <div class="flex fx-wrp">
-                                    <div class="item"><img src="{{ asset('images/com01.png') }}"></div>
-                                    <div class="box">
-                                        <div class="box-title"><span class="one_sent_hide sp_lift">カリキュラムカリキュラム</span>
-                                            <span class="one_sent_hide sp_lift">タイトルタイトルタイトルタイ</span></div>
-                                        <div class="box-btn"><a href="{{ route('test-temp') }}" class="test-btn">テストをはじめる</a></div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
