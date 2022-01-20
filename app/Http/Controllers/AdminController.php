@@ -28,10 +28,10 @@ class AdminController extends Controller
         $this->middleware(['permission:admin']);
     }
     public function dashboard(){
-        $cnt_users = User::where('role', 2)->get()->count();
+        $cnt_users = User::get()->count();
         $first_date = date('Y-m-01') . ' 00:00:00';
-        $cnt_month_user = User::where('role', 2)->where('created_at' ,'>=', $first_date)->get()->count();
-        $current_users = User::where('role', 2)->orderBy('created_at', 'desc')->take(5)->get();
+        $cnt_month_user = User::where('created_at' ,'>=', $first_date)->get()->count();
+        $current_users = User::orderBy('created_at', 'desc')->take(5)->get();
         $today = date('Y-m-d') . ' 00:00:00';
         $login_users = User::where('role', 2)->where('login_at', '>=', $today)->orderBy('login_at', 'desc')->take(5)->get();
         $total_pay = Payment::get()->sum('amount');
@@ -41,7 +41,7 @@ class AdminController extends Controller
 
 
     public function editCurriculum(){
-        $all_data = Curriculum::with('user')->get()->all();
+        $all_data = Curriculum::with('user')->whereNull('deleted_at')->get()->all();
         $open_data = Curriculum::with('user')->where('public_status', 1)->whereNull('deleted_at')->get();
         $draft_data = Curriculum::with('user')->where('public_status', 0)->whereNull('deleted_at')->get();
         $trash_data = Curriculum::with('user')->whereNotNull('deleted_at')->get();
@@ -55,7 +55,12 @@ class AdminController extends Controller
         return view('admin.post-curriculum', compact('curriculum'));
     }
     public function saveCurriculum(Request $request){
+
         if(isset($request->id)){
+            $slack = Curriculum::where('id', '!=', $request->id)->where('slack', $request->slack)->first();
+            if(isset($slack)){
+                return response()->json(['status' => false]);
+            }
             if($request->hasFile('file')){
                 $file = $request->file('file');
                 $extension = $file->getClientOriginalExtension(); // you can also use file name
@@ -88,6 +93,10 @@ class AdminController extends Controller
             Curriculum::where('id', $request->id)->update($data);
         }
         else{
+            $slack = Curriculum::where('slack', $request->slack)->first();
+            if(isset($slack)){
+                return response()->json(['status' => false]);
+            }
             $file = $request->file('file');
             $extension = $file->getClientOriginalExtension(); // you can also use file name
             $photo = time().'.'.$extension;
@@ -109,6 +118,16 @@ class AdminController extends Controller
 
         return response()->json(['status' => true]);
 
+    }
+    public function previewCurriculum($id){
+        $curriculum = Curriculum::with('review')->with('test')->where('slack', $id)->get()->first();
+        $lessons = Lesson::with('review')->where('curriculum_id', $curriculum->id)->where('public_status', 1)->whereNull('deleted_at')->get();
+        $tmp = UserCurriculum::where('user_id', Auth::user()->id)->where('curriculum_id', $curriculum->id)->get()->first();
+        $finish = 0;
+        if(isset($tmp)){
+            $finish = 1;
+        }
+        return view('user.curriculum-temp', compact('curriculum', 'lessons', 'finish'));
     }
     public function deleteCurriculum(Request $request){
         Curriculum::where('id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
@@ -143,7 +162,7 @@ class AdminController extends Controller
     }
 
     public function editLesson(){
-        $all_data = Lesson::with('user')->with('curriculum')->get()->all();
+        $all_data = Lesson::with('user')->with('curriculum')->whereNull('deleted_at')->get()->all();
         $open_data = Lesson::with('user')->with('curriculum')->where('public_status', 1)->whereNull('deleted_at')->get();
         $draft_data = Lesson::with('user')->with('curriculum')->where('public_status', 0)->whereNull('deleted_at')->get();
         $trash_data = Lesson::with('user')->with('curriculum')->whereNotNull('deleted_at')->get();
@@ -159,7 +178,12 @@ class AdminController extends Controller
         return view('admin.post-lesson', compact('lesson', 'curriculum'));
     }
     public function saveLesson(Request $request){
+
         if(isset($request->id)){
+            $slack = Lesson::where('id', '!=', $request->id)->where('slack', $request->slack)->first();
+            if(isset($slack)){
+                return response()->json(['status' => false]);
+            }
             if($request->hasFile('file')){
                 $file = $request->file('file');
                 $extension = $file->getClientOriginalExtension(); // you can also use file name
@@ -196,6 +220,10 @@ class AdminController extends Controller
             Lesson::where('id', $request->id)->update($data);
         }
         else{
+            $slack = Lesson::where('slack', $request->slack)->first();
+            if(isset($slack)){
+                return response()->json(['status' => false]);
+            }
             $file = $request->file('file');
             $extension = $file->getClientOriginalExtension(); // you can also use file name
             $photo = time().'.'.$extension;
@@ -218,6 +246,24 @@ class AdminController extends Controller
         }
 
         return response()->json(['status' => true]);
+    }
+    public function previewLesson($id){
+        $lesson = Lesson::with('curriculum')->where('slack', $id)->get()->first();
+        $tmp = UserLesson::where('user_id', Auth::user()->id)->where('lesson_id', $lesson->id)->get()->first();
+        $finish = 0;
+        if(isset($tmp)){
+            if($tmp->status == 1){
+                $finish = 1;
+            }
+        }
+        else{
+            UserLesson::create([
+                'user_id' => Auth::user()->id,
+                'lesson_id' => $lesson->id,
+                'status' => 0
+            ]);
+        }
+        return view('user.lesson-temp', compact('lesson', 'finish'));
     }
     public function deleteLesson(Request $request){
         Lesson::where('id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
@@ -248,7 +294,7 @@ class AdminController extends Controller
     }
 
     public function editReview(){
-        $all_data = Review::with('user')->with('curriculum')->with('lesson')->get()->all();
+        $all_data = Review::with('user')->with('curriculum')->with('lesson')->whereNull('deleted_at')->get()->all();
         $open_data = Review::with('user')->with('curriculum')->with('lesson')->where('public_status', 1)->whereNull('deleted_at')->get();
         $draft_data = Review::with('user')->with('curriculum')->with('lesson')->where('public_status', 0)->whereNull('deleted_at')->get();
         $trash_data = Review::with('user')->with('curriculum')->with('lesson')->whereNotNull('deleted_at')->get();
@@ -280,6 +326,10 @@ class AdminController extends Controller
         $lesson_id = empty($str_arr[1]) ? null : $str_arr[1];
 
         if(isset($request->id)){
+            $slack = Review::where('id', '!=', $request->id)->where('slack', $request->slack)->first();
+            if(isset($slack)){
+                return response()->json(['status' => false]);
+            }
             if($request->hasFile('file')){
                 $file = $request->file('file');
                 $extension = $file->getClientOriginalExtension(); // you can also use file name
@@ -316,6 +366,10 @@ class AdminController extends Controller
             Review::where('id', $request->id)->update($data);
         }
         else{
+            $slack = Review::where('slack', $request->slack)->first();
+            if(isset($slack)){
+                return response()->json(['status' => false]);
+            }
             $file = $request->file('file');
             $extension = $file->getClientOriginalExtension(); // you can also use file name
             $photo = time().'.'.$extension;
@@ -340,6 +394,10 @@ class AdminController extends Controller
 
         return response()->json(['status' => true]);
     }
+    public function previewReview($id){
+        $review = Review::with('curriculum')->where('slack', $id)->get()->first();
+        return view('user.review-temp', compact('review'));
+    }
     public function deleteReview(Request $request){
         Review::where('id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
         return response()->json(['status' => true]);
@@ -359,7 +417,7 @@ class AdminController extends Controller
 
     /*test*/
     public function editTest(){
-        $all_data = Test::with('user')->with('curriculum')->with('lesson')->get()->all();
+        $all_data = Test::with('user')->with('curriculum')->with('lesson')->whereNull('deleted_at')->get()->all();
         $open_data = Test::with('user')->with('curriculum')->with('lesson')->where('public_status', 1)->whereNull('deleted_at')->get();
         $draft_data = Test::with('user')->with('curriculum')->with('lesson')->where('public_status', 0)->whereNull('deleted_at')->get();
         $trash_data = Test::with('user')->with('curriculum')->with('lesson')->whereNotNull('deleted_at')->get();
@@ -389,7 +447,12 @@ class AdminController extends Controller
         $str_arr = explode('-', $lesson);
         $curriculum_id = $str_arr[0];
         $lesson_id = empty($str_arr[1]) ? null : $str_arr[1];
+
         if(isset($request->id)){
+            $slack = Test::where('id', '!=', $request->id)->where('slack', $request->slack)->first();
+            if(isset($slack)){
+                return response()->json(['status' => false]);
+            }
             if($request->hasFile('file')){
                 $file = $request->file('file');
                 $extension = $file->getClientOriginalExtension(); // you can also use file name
@@ -425,6 +488,10 @@ class AdminController extends Controller
             Test::where('id', $request->id)->update($data);
         }
         else{
+            $slack = Test::where('slack', $request->slack)->first();
+            if(isset($slack)){
+                return response()->json(['status' => false]);
+            }
             $file = $request->file('file');
             $extension = $file->getClientOriginalExtension(); // you can also use file name
             $photo = time().'.'.$extension;
@@ -445,6 +512,10 @@ class AdminController extends Controller
             Test::create($data);
         }
         return response()->json(['status' => true]);
+    }
+    public function previewTest($id){
+        $test = Test::with('curriculum')->where('slack', $id)->first();
+        return view('user.test-temp', compact('test'));
     }
     public function deleteTest(Request $request){
         Test::where('id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
@@ -568,7 +639,7 @@ class AdminController extends Controller
     }
 
     public function payments(){
-        $payments = Payment::with('user')->get()->all();
+        $payments = Payment::with('user')->whereNull('deleted_at')->get()->all();
         return view('admin.payments', compact('payments'));
     }
 
@@ -604,7 +675,7 @@ class AdminController extends Controller
     }
 
     public function editNotice(){
-        $all_data = Notice::with('user')->get()->all();
+        $all_data = Notice::with('user')->whereNull('deleted_at')->get()->all();
         $open_data = Notice::with('user')->where('public_status', 1)->whereNull('deleted_at')->get();
         $draft_data = Notice::with('user')->where('public_status', 0)->whereNull('deleted_at')->get();
         $trash_data = Notice::with('user')->whereNotNull('deleted_at')->get();

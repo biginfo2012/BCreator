@@ -34,6 +34,8 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+//        Permission::create(['name' => 'admin']);
+//        Permission::create(['name' => 'user']);
 
 //        $super = User::where('role', 1)->get();
 //        foreach ($super as $user){

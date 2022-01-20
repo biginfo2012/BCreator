@@ -47,7 +47,7 @@
                                                     <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
                                                     <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
                                                     <td><span class="mt-2">{{ $item['email'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : $item['role'] == 2 ? '無料会員' : '有料会員' }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : ($item['role'] == 2 ? '無料会員' : '有料会員') }}</span></td>
                                                     <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
                                                     <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
                                                 </tr>
@@ -81,7 +81,7 @@
                                                     <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
                                                     <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
                                                     <td><span class="mt-2">{{ $item['email'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : $item['role'] == 2 ? '無料会員' : '有料会員' }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : ($item['role'] == 2 ? '無料会員' : '有料会員') }}</span></td>
                                                     <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
                                                     <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
                                                 </tr>
@@ -118,7 +118,7 @@
                                                     <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
                                                     <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
                                                     <td><span class="mt-2">{{ $item['email'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : $item['role'] == 2 ? '無料会員' : '有料会員' }}</span></td>
+                                                    <td><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : ($item['role'] == 2 ? '無料会員' : '有料会員') }}</span></td>
                                                     <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
                                                     <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
                                                 </tr>

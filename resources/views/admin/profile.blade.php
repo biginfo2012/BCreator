@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">パスワード</label>
-                                <input type="password" class="form-control" value="" required placeholder="******"/>
+                                <input type="password" class="form-control" value="" required placeholder="********" minlength="8"/>
                             </div>
                             <div class="form-footer">
                                 <button class="btn btn-primary btn-block btn_my_profile">更新</button>
@@ -82,7 +82,7 @@
         $(document).ready(function () {
             $('.btn_profile_edit').click(function (e) {
                 e.preventDefault();
-                saveForm('profile_edit', profile_edit)
+                saveForm('profile_edit', profile_edit, true)
             })
             $('.btn_my_profile').click(function (e) {
                 e.preventDefault();

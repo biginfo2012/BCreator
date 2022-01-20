@@ -18,7 +18,7 @@
             </span>
         </div>
     </div>
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
     <div class="fix-box bg_white" id="login">
         <div class="container">
             <form method="POST" action="{{ route('login') }}">
@@ -27,6 +27,7 @@
                     <div class="title"><a href="{{ url('') }}"> <img src="{{ asset('images/logo.png') }}"> </a>
                         <span>ログイン</span></div>
                     <div class="wrp-input-box">
+                        <x-auth-validation-errors class="mb-1" :errors="$errors" />
                         <div class="item mail"><input type="email" name="email" placeholder="メールアドレス" required></div>
                         <div class="item pass"><input type="password" name="password" placeholder="パスワード" minlength="8" required></div>
                         <div class="item save"><label><input id="remember_me" type="checkbox" name="remember">ログイン情報を保存する</label></div>

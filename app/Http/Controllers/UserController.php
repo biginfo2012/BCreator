@@ -73,9 +73,10 @@ class UserController extends Controller
         return view('user.archive-curriculum', compact('curriculum'));
     }
     public function searchCurriculum(Request $request){
-        $curriculum = Curriculum::where('title', '%' . $request->keyword . '%')->orWhere('detail', '%' . $request->keyword . '%')->whereNull('deleted_at')->get();
-        return view('user.archive-curriculum', compact('curriculum'));
+        $curriculum = Curriculum::where('title', 'like', '%' . $request->keyword . '%')->orWhere('detail', 'like', '%' . $request->keyword . '%')->whereNull('deleted_at')->get();
+        return view('user.archive-curriculum-item', compact('curriculum'));
     }
+
     public function archiveTest(){
         $test = Test::with('curriculum')->whereHas('curriculum', function($query){$query->where('public_status', 1)->whereNull('deleted_at');})
             ->with('lesson')

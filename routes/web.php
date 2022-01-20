@@ -53,9 +53,9 @@ Route::group(['middleware' => 'auth'], function (){
 
         Route::get('review-temp/{id}', [UserController::class, 'reviewTemp'])->name('review-temp');
 
-        Route::post('get-notice', [UserController::class, 'getNotice'])->name('get-notice');
-    });
 
+    });
+    Route::post('get-notice', [TopController::class, 'getNotice'])->name('get-notice');
     /*master part*/
     Route::prefix('master')->group(function () {
         Route::group(['middleware' => ['can:admin']], function () {
@@ -67,6 +67,7 @@ Route::group(['middleware' => 'auth'], function (){
             Route::get('post-curriculum', [AdminController::class, 'postCurriculum'])->name('master.post-curriculum');
             Route::get('modify-curriculum/{id}', [AdminController::class, 'modifyCurriculum'])->name('master.modify-curriculum');
             Route::post('save-curriculum', [AdminController::class, 'saveCurriculum'])->name('master.save-curriculum');
+            Route::get('preview-curriculum/{id}', [AdminController::class, 'previewCurriculum'])->name('master.preview-curriculum');
             Route::post('delete-curriculum', [AdminController::class, 'deleteCurriculum'])->name('master.delete-curriculum');
             Route::post('restore-curriculum', [AdminController::class, 'restoreCurriculum'])->name('master.restore-curriculum');
             Route::post('complete-delete-curriculum', [AdminController::class, 'completeDeleteCurriculum'])->name('master.complete-delete-curriculum');
@@ -77,6 +78,7 @@ Route::group(['middleware' => 'auth'], function (){
             Route::get('post-lesson', [AdminController::class, 'postLesson'])->name('master.post-lesson');
             Route::get('modify-lesson/{id}', [AdminController::class, 'modifyLesson'])->name('master.modify-lesson');
             Route::post('save-lesson', [AdminController::class, 'saveLesson'])->name('master.save-lesson');
+            Route::get('preview-lesson/{id}', [AdminController::class, 'previewLesson'])->name('master.preview-lesson');
             Route::post('delete-lesson', [AdminController::class, 'deleteLesson'])->name('master.delete-lesson');
             Route::post('restore-lesson', [AdminController::class, 'restoreLesson'])->name('master.restore-lesson');
             Route::post('complete-delete-lesson', [AdminController::class, 'completeDeleteLesson'])->name('master.complete-delete-lesson');
@@ -87,6 +89,7 @@ Route::group(['middleware' => 'auth'], function (){
             Route::get('post-review', [AdminController::class, 'postReview'])->name('master.post-review');
             Route::get('modify-review/{id}', [AdminController::class, 'modifyReview'])->name('master.modify-review');
             Route::post('save-review', [AdminController::class, 'saveReview'])->name('master.save-review');
+            Route::get('preview-review/{id}', [AdminController::class, 'previewReview'])->name('master.preview-review');
             Route::post('delete-review', [AdminController::class, 'deleteReview'])->name('master.delete-review');
             Route::post('restore-review', [AdminController::class, 'restoreReview'])->name('master.restore-review');
             Route::post('complete-delete-review', [AdminController::class, 'completeDeleteReview'])->name('master.complete-delete-review');
@@ -97,6 +100,7 @@ Route::group(['middleware' => 'auth'], function (){
             Route::get('post-test', [AdminController::class, 'postTest'])->name('master.post-test');
             Route::get('modify-test/{id}', [AdminController::class, 'modifyTest'])->name('master.modify-test');
             Route::post('save-test', [AdminController::class, 'saveTest'])->name('master.save-test');
+            Route::get('preview-test/{id}', [AdminController::class, 'previewTest'])->name('master.preview-test');
             Route::post('delete-test', [AdminController::class, 'deleteTest'])->name('master.delete-test');
             Route::post('restore-test', [AdminController::class, 'restoreTest'])->name('master.restore-test');
             Route::post('complete-delete-test', [AdminController::class, 'completeDeleteTest'])->name('master.complete-delete-test');

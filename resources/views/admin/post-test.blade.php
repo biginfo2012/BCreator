@@ -51,12 +51,12 @@
                             <input type="file" class="dropify" name="file" data-height="150" required>
                         @else
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-md-4 col-sm-12">
                                     <div class="form-group">
                                         <img src="{{ asset($test->thumbnail) }}" style="height: 160px;">
                                     </div>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-md-8 col-sm-12">
                                     <div class="form-group">
                                         <input type="file" class="dropify" name="file" data-height="150">
                                     </div>
@@ -68,13 +68,14 @@
                 <div class="col-md-12 col-lg-3">
                     <div class="form-group">
                         <label class="form-label">スラッグ</label>
-                        <input type="text" class="form-control" placeholder="スラッグ" name="slack" value="{{ isset($test) ? $test->slack : '' }}">
+                        <input type="text" class="form-control" placeholder="スラッグ" name="slack" value="{{ isset($test) ? $test->slack : '' }}" required>
                     </div>
                     <div class="card">
                         <div class="card-body">
                             <div class="status_btn flex fx-bet fx-wrp">
                                 <button type="submit" class="btn btn-secondary btn_submit">下書き保存</button>
-                                <a href="#" class="btn btn-secondary">プレビュー</a>
+                                <input type="hidden" name="preview">
+                                <a class="text-white btn btn-secondary btn_preview">プレビュー</a>
                             </div>
                             <div class="status">
                                 <div class="item">
@@ -89,7 +90,7 @@
                                             <option value="1" {{ isset($test) && $test->public_status == 1 ? 'selected' : '' }}>公開</option>
                                         </select>
                                         <div class="input-group-append">
-                                            <button type="button" class="btn btn-primary">OK</button>
+                                            <button type="button" class="btn btn-primary btn_submit">OK</button>
                                         </div>
                                     </div>
                                 </div>
@@ -105,9 +106,17 @@
 
     </div>
     <script type="text/javascript">
+        let preview_url;
         $(document).ready(function () {
             $('.btn_submit').click(function (e) {
                 e.preventDefault();
+                $('[name=preview]').val(0)
+                saveForm('test', save_test)
+            })
+            $('.btn_preview').click(function () {
+                $(this).prev().val(1);
+                let slack = $('[name=slack]').val();
+                preview_url = '{{url('master/preview-test')}}' + '/' + slack;
                 saveForm('test', save_test)
             })
         })

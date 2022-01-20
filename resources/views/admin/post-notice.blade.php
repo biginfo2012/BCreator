@@ -32,7 +32,7 @@
                                             <option value="1" {{ isset($notice) && $notice->public_status == 1 ? 'selected' : '' }}>公開</option>
                                         </select>
                                         <div class="input-group-append">
-                                            <button type="button" class="btn btn-primary">OK</button>
+                                            <button type="button" class="btn btn-primary btn_submit">OK</button>
                                         </div>
                                     </div>
                                 </div>

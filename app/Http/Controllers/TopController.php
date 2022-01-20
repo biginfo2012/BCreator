@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notice;
 use App\Models\Reserve;
 use Illuminate\Http\Request;
 
@@ -48,5 +49,10 @@ class TopController extends Controller
         ];
         Reserve::create($data);
         return view('reserve-complete', compact('data'));
+    }
+
+    public function getNotice(Request $request){
+        $notice = Notice::where('public_status', 1)->get();
+        return view('user.layouts.notice-list', compact('notice'));
     }
 }

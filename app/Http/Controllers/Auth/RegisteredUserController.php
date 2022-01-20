@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', Rules\Password::defaults()],
-        ]);
+        ], ['email.unique' => '既に存在するユーザーです。']);
 
         $user = User::create([
             'first_name' => $request->first_name,

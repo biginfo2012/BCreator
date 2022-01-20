@@ -44,5 +44,12 @@
             </div>
         </div>
     </div>
-    <script></script>
+    <script>
+        $(document).ready(function () {
+            $('#search_btn').click(function () {
+
+
+            })
+        })
+    </script>
 </x-user-layout>

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     getNotice();
 })
-function saveForm(index, url) {
+function saveForm(index, url, reload=false) {
     let id = '#' + index;
     if($(id).valid()){
         var paramObj = new FormData($(id)[0]);
@@ -12,10 +12,31 @@ function saveForm(index, url) {
             contentType: false,
             processData: false,
             success: function(response){
-                $.growl.notice({
-                    title: "成功",
-                    message: "保存しました"
-                });
+                console.log(response);
+                if(response.status){
+                    if($('[name=preview]').val() == '1'){
+                        window.location.href = preview_url
+                    }
+                    else{
+                        $.growl.notice({
+                            title: "成功",
+                            message: "保存しました"
+                        });
+
+                        if(reload){
+                            window.location.reload();
+                        }
+                    }
+
+                }
+                else{
+                    $.growl.error({
+                        title: "失敗",
+                        message: "保存失敗しました"
+                    });
+                }
+
+
             },
         });
     }
@@ -26,10 +47,10 @@ function drawDataTable(index) {
     $(id).DataTable({
         "dom": '<"d-none"i>rt<"d-none"fl><""p><"clear">',
         "searching": false,
-        "pageLength": 5,
+        "pageLength": 20,
         "language": {
             "decimal":        "",
-            "emptyTable":     "現示可能な資料がありません。",
+            "emptyTable":     "現在ありません",
             "info":           "_TOTAL_個の資料の中で_START_~_END_が現示されます。",
             "infoEmpty":      "0~0の0を表示。",
             "infoFiltered":   "(filtered from _MAX_ total entries)",
@@ -43,8 +64,8 @@ function drawDataTable(index) {
             "paginate": {
                 "first":      "初めに",
                 "last":       "最後",
-                "next":       "次の",
-                "previous":   "以前"
+                "next":       "次へ",
+                "previous":   "前へ"
             },
             "aria": {
                 "sortAscending":  ": ",

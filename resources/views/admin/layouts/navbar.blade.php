@@ -5,9 +5,9 @@
         <div class="dropdown">
             <a class="nav-link p-0 leading-none d-flex" data-toggle="dropdown" href="#">
                 <span class="avatar avatar-md brround"
-                      style="background-image: url({{ asset('images/faces/male/25.jpg')}})"></span>
-                <span class="ml-2 "><span class="text-dark app-sidebar__user-name font-weight-semibold">平沢 岳史</span><br>
-									<span class="text-muted app-sidebar__user-name text-sm"> hinata合同会社</span>
+                      style="background-image: url('{{ isset(Auth::user()->image) ? asset(Auth::user()->image) : asset('images/faces/male/16.jpg')}}')"></span>
+                <span class="ml-2 "><span class="text-dark app-sidebar__user-name font-weight-semibold">{{ Auth::user()->first_name . Auth::user()->last_name }}</span><br>
+									<span class="text-muted app-sidebar__user-name text-sm"> {{ Auth::user()->company_name }}</span>
 								</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">

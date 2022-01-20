@@ -8,8 +8,8 @@
                 <span class="sm-sub">稼ぐ力を身につける<br>フリーランス養成講座</span>
             </div>
             <div class="head_item">
-                <nav class="off-base navbar-offcanvas-right anime navbar-offcanvas offcanvas-collapse offcanvas-transform js-offcanvas-done"
-                     role="navigation" id="sm-offcanvas">
+                <nav class="off-base navbar-offcanvas-right anime navbar-offcanvas offcanvas-collapse" role="navigation"
+                     id="sm-offcanvas">
                     <ul id="menu-main_nav" class="ul-hnav navbar-nav">
                         <li id="menu-item-82"
                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-82 nav-item"><a
@@ -37,9 +37,8 @@
                     </ul>
                 </nav>
             </div>
-
-            <button type="button" class="m-toggle pc-hidden offcanvas-toggle anime js-offcanvas-has-events"
-                    data-toggle="offcanvas" data-target="#sm-offcanvas">
+            <button type="button" class="m-toggle pc-hidden offcanvas-toggle anime" data-toggle="offcanvas"
+                    data-target="#sm-offcanvas">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>

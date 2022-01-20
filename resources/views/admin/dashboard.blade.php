@@ -113,7 +113,7 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         {{--Todo user profile image--}}
-                                        <td><span class="avatar  d-block rounded" style=""></span></td>
+                                        <td><span class="avatar d-block rounded" style="background-image: url('{{ isset($item->image) ? asset($item->image) : asset('images/faces/male/16.jpg')}}')"></span></td>
                                         <td>{{ $item->first_name . $item->last_name }}</td>
                                         <td class="d-none d-sm-table-cell">{{ date('Y年m月d日', strtotime($item->created_at)) }}</td>
                                     </tr>
@@ -133,7 +133,7 @@
                         <p class="card-description">ユーザーのサイト利用状況を表示しています</p>
                         @foreach($login_users as $item)
                             <div class="list d-flex align-items-center border-bottom py-3">
-                                <div class="avatar brround d-block" style="">
+                                <div class="avatar brround d-block" style="background-image: url('{{ isset($item->image) ? asset($item->image) : asset('images/faces/male/16.jpg')}}')">
                                     {{--Todo user profile image--}}
                                     <span class="avatar-status bg-green"></span>
                                 </div>

@@ -212,13 +212,14 @@
               href='{{ asset('css/bootstrap-basic4-assets-fontawesome-css-all.min.css') }}' type='text/css' media='all'/>
         <link rel='stylesheet' id='mycommon-css' href='{{ asset('css/themes-bootstrap-basic4-child-assets-css-common.css') }}'
               type='text/css' media='all'/>
+        <link rel='stylesheet' id='style-css' href='{{ asset('css/common.css') }}' type='text/css' media='all'/>
         <link rel='stylesheet' id='bootstrap-basic4-wp-main-css' href='{{ asset('css/themes-bootstrap-basic4-child-style.css') }}'
               type='text/css' media='all'/>
         <link rel='stylesheet' id='member-css' href='{{ asset('css/member.css') }}' type='text/css'
               media='all'/>
         <!--カレンダー用プラグイン-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-        <link rel='stylesheet' id='style-css' href='{{ asset('css/common.css') }}' type='text/css' media='all'/>
+
 
         <!-- Scripts -->
         <script type='text/javascript' src='{{asset('js/jquery-3.6.0.min.js')}}' id='jquery-core-js'></script>
@@ -246,7 +247,8 @@
             }
         </style>
     </head>
-    <body class="home page-template page-template-page-{{\Request::route()->getName()}} page-template-page-{{\Request::route()->getName()}}-php page page-id-{{isset($id) ? $id : ''}} logged-in wp-embed-responsive">
+
+    <body class="home page-template page-template-page-{{\Request::route()->getName()}} page-template-page-{{\Request::route()->getName()}}-php page page-id-{{isset($id) ? $id : ''}} wp-embed-responsive">
         <!-- Page Heading -->
         @include('layouts.header')
 

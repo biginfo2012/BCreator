@@ -55,10 +55,10 @@
             $('#payAllTable').DataTable({
                 "dom": '<"d-none"i>rt<"d-none"fl><""p><"clear">',
                 "searching": true,
-                "pageLength": 10,
+                "pageLength": 20,
                 "language": {
                     "decimal":        "",
-                    "emptyTable":     "現示可能な資料がありません。",
+                    "emptyTable":     "現在ありません",
                     "info":           "_TOTAL_個の資料の中で_START_~_END_が現示されます。",
                     "infoEmpty":      "0~0の0を表示。",
                     "infoFiltered":   "(filtered from _MAX_ total entries)",
@@ -72,8 +72,8 @@
                     "paginate": {
                         "first":      "初めに",
                         "last":       "最後",
-                        "next":       "次の",
-                        "previous":   "以前"
+                        "next":       "次へ",
+                        "previous":   "前へ"
                     },
                     "aria": {
                         "sortAscending":  ": ",

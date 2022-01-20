@@ -13,9 +13,9 @@
             <div class="d-flex order-lg-2 ml-auto">
                 <div class="dropdown">
                     <a class="nav-link pr-0 leading-none d-flex" data-toggle="dropdown" href="#">
-                        <span class="avatar avatar-md brround" style="background-image: url({{ asset('images/faces/male/25.jpg')}})"></span>
+                        <span class="avatar avatar-md brround" style="background-image: url('{{ isset(Auth::user()->image) ? asset(Auth::user()->image) : asset('images/faces/male/16.jpg')}}')"></span>
                         <span class="ml-2 d-none d-lg-block">
-											<span class="text-white">平沢 岳史</span>
+											<span class="text-white">{{ Auth::user()->first_name . Auth::user()->last_name }}</span>
 										</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">

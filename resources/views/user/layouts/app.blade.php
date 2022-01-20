@@ -263,7 +263,8 @@
 @include('user.layouts.header')
 
 <!-- Page Content -->
-<main role="main" class="member" id="{{(\Request::route()->getName() == 'lesson-temp' || \Request::route()->getName() == 'review-temp') ? 'lesson-review-temp' : \Request::route()->getName()}}">
+<main role="main" class="member"
+      id="{{(\Request::route()->getName() == 'lesson-temp' || \Request::route()->getName() == 'review-temp' || str_contains(\Request::route()->getName(), 'preview-lesson') || str_contains(\Request::route()->getName(), 'preview-review')) ? 'lesson-review-temp' : \Request::route()->getName()}}">
     {{ $slot }}
 </main>
 
