@@ -33,7 +33,6 @@ Route::group(['middleware' => 'auth'], function (){
         Route::get('mypage', [UserController::class, 'mypage'])->name('mypage');
         Route::get('myfaq', [UserController::class, 'myfaq'])->name('myfaq');
         Route::get('archive-curriculum', [UserController::class, 'archiveCurriculum'])->name('archive-curriculum');
-        Route::post('search-curriculum', [UserController::class, 'searchCurriculum'])->name('search-curriculum');
 
         Route::get('archive-test', [UserController::class, 'archiveTest'])->name('archive-test');
         Route::get('setup', [UserController::class, 'setup'])->name('setup');
@@ -53,7 +52,8 @@ Route::group(['middleware' => 'auth'], function (){
 
         Route::get('review-temp/{id}', [UserController::class, 'reviewTemp'])->name('review-temp');
 
-
+        Route::post('get-calendar-data', [UserController::class, 'getCalendarData'])->name('get-calendar-data');
+        Route::post('search-data', [UserController::class, 'searchData'])->name('search-data');
     });
     Route::post('get-notice', [TopController::class, 'getNotice'])->name('get-notice');
     /*master part*/

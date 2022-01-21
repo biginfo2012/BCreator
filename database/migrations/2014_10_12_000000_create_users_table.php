@@ -22,7 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('card_name')->nullable();
             $table->string('card_number')->nullable();
-            $table->string('card_date')->nullable();
+            $table->string('card_year')->nullable();
+            $table->string('card_month')->nullable();
             $table->string('card_cvc')->nullable();
             $table->tinyInteger('pay_setting')->default(1);
             $table->tinyInteger('role')->default(1);
@@ -31,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('company_name')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('segment')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

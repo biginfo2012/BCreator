@@ -12,6 +12,10 @@ class Payment extends Model
         'amount',
         'status',
         'user_id',
+        'error',
+        'paid_date',
+        'payment_id',
+        'payment_method'
     ];
 
     public function user(){

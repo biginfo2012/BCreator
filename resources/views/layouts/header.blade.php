@@ -48,6 +48,12 @@
             <div class="wrp-head_btn flex fx-itc">
                 @if(!isset(\Illuminate\Support\Facades\Auth::user()->email))
                     <a href="{{route('login')}}" class="head_btn1">ログイン</a>
+                @elseif(Auth::user()->role == 1)
+                    <a href="{{route('master.dashboard')}}" class="head_btn1">ログイン</a>
+                @elseif(Auth::user()->role == 3)
+                    <a href="{{route('mypage')}}" class="head_btn1">ログイン</a>
+                @else
+                    <a href="{{route('setup')}}" class="head_btn1">ログイン</a>
                 @endif
                 <a href="{{ route('reserve') }}" class="head_btn2">
                     <span>無料カウンセリング</span>

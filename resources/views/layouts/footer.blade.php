@@ -22,7 +22,15 @@
                         <div class="foot-item">
                             <a href="{{route('discount')}}">割引一覧</a>
                             <a href="{{route('counseling')}}">無料カウンセリング</a>
-                            <a href="{{route('login')}}">ログイン</a>
+                            @if(!isset(\Illuminate\Support\Facades\Auth::user()->email))
+                                <a href="{{route('login')}}">ログイン</a>
+                            @elseif(Auth::user()->role == 1)
+                                <a href="{{route('master.dashboard')}}">ログイン</a>
+                            @elseif(Auth::user()->role == 3)
+                                <a href="{{route('mypage')}}">ログイン</a>
+                            @else
+                                <a href="{{route('setup')}}">ログイン</a>
+                            @endif
                         </div>
                     </div>
                 </div>

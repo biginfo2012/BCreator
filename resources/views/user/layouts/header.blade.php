@@ -18,28 +18,31 @@
                                 </div>
                             </div>
                         </div>
-                        <ul id="menu-member_nav" class="ul-hnav navbar-nav">
-                            <li id="menu-item-96"
-                                class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-94 current_page_item menu-item-96 nav-item active">
-                                <a href="{{ route('mypage') }}"
-                                   class="nav-link  menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-94 current_page_item">会員ページ</a>
-                            </li>
-                            <li id="menu-item-110"
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110 nav-item">
-                                <a href="{{ route('myfaq') }}"
-                                   class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">ヘルプ</a>
-                            </li>
-                            <li id="menu-item-103"
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103 nav-item">
-                                <a href="{{ route('archive-curriculum') }}"
-                                   class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">カリキュラム一覧</a>
-                            </li>
-                            <li id="menu-item-106"
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106 nav-item">
-                                <a href="{{ route('archive-test') }}"
-                                   class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">テスト一覧</a>
-                            </li>
-                        </ul>
+                        @if(Auth::user()->role == 3)
+                            <ul id="menu-member_nav" class="ul-hnav navbar-nav">
+                                <li id="menu-item-96"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-94 current_page_item menu-item-96 nav-item active">
+                                    <a href="{{ route('mypage') }}"
+                                       class="nav-link  menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-94 current_page_item">会員ページ</a>
+                                </li>
+                                <li id="menu-item-110"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110 nav-item">
+                                    <a href="{{ route('myfaq') }}"
+                                       class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">ヘルプ</a>
+                                </li>
+                                <li id="menu-item-103"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103 nav-item">
+                                    <a href="{{ route('archive-curriculum') }}"
+                                       class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">カリキュラム一覧</a>
+                                </li>
+                                <li id="menu-item-106"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-106 nav-item">
+                                    <a href="{{ route('archive-test') }}"
+                                       class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">テスト一覧</a>
+                                </li>
+                            </ul>
+                        @endif
+
                         <div class="pc-hidden">
                             <div class="sm_my_head_ab">
                                 <a href="{{ url('') }}">ダッシュボード</a>
@@ -72,7 +75,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="my_head_ab">
+                    <div class="my_head_ab" style="z-index: 1">
                         <a href="{{ url('') }}">ダッシュボード</a>
                         <a href="{{ route('setup') }}">アカウント設定</a>
                         <form method="POST" action="{{ route('logout') }}">
@@ -85,7 +88,7 @@
                     </div>
                 </div>
                 <div class="wrp_head_notice_box"><a class="notice_bell" id="notice_bell"><i class="far fa-bell"></i></a>
-                    <div class="head_notice_box">
+                    <div class="head_notice_box" style="z-index: 1;">
                         <div class="title"><span>お知らせ</span></div>
                         <div class="box" id="notice">
 

@@ -221,3 +221,7 @@ a.uline{text-decoration: underline;}
 .notice_bell::after {
     content: attr(data-after) !important;
 }
+
+.clndr{
+   background: white !important;
+}

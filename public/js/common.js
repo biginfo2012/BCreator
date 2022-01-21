@@ -188,3 +188,39 @@ function getNotice() {
     });
 
 }
+function searchData(type){
+    let keyword = $('#keyword').val();
+    console.log(type)
+    if(keyword == ''){
+        $.growl.warning({
+            title: "警告",
+            message: "検索したい値を入力してください"
+        });
+        return
+    }
+    let curriculum_id = '';
+    if(type == 'lesson'){
+        curriculum_id = $('#search_btn').data('id');
+    }
+    $('#dataArea').empty();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token
+        }
+    });
+    $.ajax({
+        url: search_data,
+        type:'post',
+        data: {
+            type : type,
+            keyword : keyword,
+            curriculum_id : curriculum_id
+        },
+        success: function (response) {
+            $('#dataArea').html(response)
+        },
+        error: function () {
+
+        }
+    })
+}

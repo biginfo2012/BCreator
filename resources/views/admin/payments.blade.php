@@ -41,7 +41,7 @@
                             <td><span>{{ date('Y-m-d', strtotime($item->created_at)) }}</span></td>
                             <td><span>{{ '¥' . number_format($item->amount) }}</span></td>
                             <td>
-                                <span class="{{ $item->status == 1 ? 'success' : 'fail'}}">{{ $item->status == 1 ? '成功' : '失敗'}}</span>
+                                <span class="{{ $item->status == 'succeeded' ? 'success' : 'fail'}}">{{ $item->status == 'succeeded' ? '成功' : '失敗'}}</span>
                             </td>
                         </tr>
                     @endforeach

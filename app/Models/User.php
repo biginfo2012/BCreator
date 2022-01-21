@@ -25,12 +25,16 @@ class User extends Authenticatable
         'password',
         'card_name',
         'card_number',
-        'card_date',
+        'card_year',
+        'card_month',
         'card_cvc',
         'pay_setting',
         'role',
         'login_at',
-        'image'
+        'image',
+        'segment',
+        'deleted_at',
+        'status'
     ];
 
     /**

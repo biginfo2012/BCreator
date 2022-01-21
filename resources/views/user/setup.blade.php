@@ -10,9 +10,19 @@
             border-bottom: solid 1.5px #ccc;
             width: 100%;
         }
+        .wrp_prof_log .box .tag .curriculum {
+            background-color: #f39800;
+        }
     </style>
     <div class="wrp_my-box">
         <div class="container">
+            @if(Auth::user()->role != 3)
+                <div class="bank-alert_box">
+                    <span class="item_title">銀行振込が確認できておりません</span>
+                    <span>受講料のご入金が確認がまだ完了しておりません、今しばらくお待ちください。<br>お振込みがお済みでない方はお手続きをよろしくお願いいたします。お振込先や受講料金についてはユーザー登録時に記入いただいたメールアドレスに記載があります。ご確認ください。</span>
+                    <span>ご不明な点がございましたら、<a href="{{ route('contact') }}">こちら</a>にご連絡ください。</span>
+                </div>
+            @endif
             <div class="wrp_set-box">
                 <div class="set-nav">
                     <div class="fx-bet fx-wrp">
@@ -44,7 +54,7 @@
                                         @if($user->pay_setting == 1)
                                             <div class="icon"><img src="{{ asset('images/jcb.png') }}"></div>
                                             <div class="number"><span>{{$user->card_name}} {{$user->card_number}}</span></div>
-                                            <div class="expiry"><span>有効期限：{{$user->card_date}}</span></div>
+                                            <div class="expiry"><span>有効期限：{{$user->card_month}}/{{$user->card_year}}</span></div>
                                             <div class="edit"><a href="#">編集</a></div>
                                         @else
                                             <div class=""><span>銀行振込</span></div>
@@ -78,36 +88,40 @@
                     </div>
                     <div class="tab-item">
                         <div class="wrp_prof_log">
-                            <div class="box">
-                                <div class="flex fx-itc fx-wrp">
-                                    <div class="day"><span>2021.08.12<br class="sm-hidden">17:50</span></div>
-                                    <div class="tag"><span class="lesson">レッスン</span></div>
-                                    <div class="title">
-                                        <span class="main">タイトルタイトルタイトル</span>
-                                        <span class="sub">ディスクリプションディスクリプションディスクリプションディスクリプションディスクリプション</span>
+                            @foreach($history as $item)
+                                <div class="box">
+                                    <div class="flex fx-itc fx-wrp">
+                                        <div class="day">
+                                            <span>{{ date('Y.m.d', strtotime($item->created_at)) }}<br class="sm-hidden">{{date('H:i', strtotime($item->created_at))}}</span>
+                                        </div>
+                                        <div class="tag">
+                                            @if($item->type == 1)
+                                                <span class="curriculum">カリキュラム</span>
+                                            @elseif($item->type == 2)
+                                                <span class="lesson">レッスン</span>
+                                            @elseif($item->type == 3)
+                                                <span class="review">復習</span>
+                                            @else
+                                                <span class="test">テスト</span>
+                                            @endif
+                                        </div>
+                                        <div class="title">
+                                            <span class="main">
+                                                @if($item->type == 1)
+                                                    {{$item->curriculum->title}}
+                                                @elseif($item->type == 2)
+                                                    {{$item->lesson->title}}
+                                                @elseif($item->type == 3)
+                                                    {{$item->review->title}}
+                                                @else
+                                                    {{$item->test->title}}
+                                                @endif
+                                            </span>
+                                            <span class="sub"></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="box">
-                                <div class="flex fx-itc fx-wrp">
-                                    <div class="day"><span>2021.08.12<br class="sm-hidden">17:50</span></div>
-                                    <div class="tag"><span class="review">復習</span></div>
-                                    <div class="title">
-                                        <span class="main">タイトルタイトルタイトル</span>
-                                        <span class="sub">ディスクリプションディスクリプションディスクリプションディスクリプションディスクリプション</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box">
-                                <div class="flex fx-itc fx-wrp">
-                                    <div class="day"><span>2021.08.12<br class="sm-hidden">17:50</span></div>
-                                    <div class="tag"><span class="test">テスト</span></div>
-                                    <div class="title">
-                                        <span class="main">タイトルタイトルタイトル</span>
-                                        <span class="sub">ディスクリプションディスクリプションディスクリプションディスクリプションディスクリプション</span>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                             <div class="last_box"><span>過去30件を表示</span></div>
                         </div>
                     </div>

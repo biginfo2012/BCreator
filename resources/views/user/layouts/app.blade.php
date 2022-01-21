@@ -214,11 +214,12 @@
           type='text/css' media='all'/>
     <link rel='stylesheet' id='bootstrap-basic4-wp-main-css' href='{{ asset('css/themes-bootstrap-basic4-child-style.css') }}'
           type='text/css' media='all'/>
-    <link rel='stylesheet' id='member-css' href='{{ asset('css/member.css') }}' type='text/css'
-          media='all'/>
     <!--カレンダー用プラグイン-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <link rel='stylesheet' id='style-css' href='{{ asset('css/common.css') }}' type='text/css' media='all'/>
+
+    <link rel='stylesheet' id='member-css' href='{{ asset('css/member.css') }}' type='text/css'
+          media='all'/>
     <!-- Notifications  Css -->
     <link href="{{ asset('plugins/notify/css/jquery.growl.css') }}" rel="stylesheet" />
     <!-- Calendar Plugin -->
@@ -285,15 +286,18 @@
 <script src="{{ asset('plugins/rating/jquery.rating-stars.js') }}"></script>
 <!-- common Js-->
 <script src="{{ asset('js/common.js') }}"></script>
+<script src="{{ asset('js/fullcalendar.js') }}"></script>
 <script>
     $('#datepicker').datepicker();
     $('#datepicker2').datepicker();
-
+    var calendars = {};
 </script>
 <script>
     let token = '{{csrf_token()}}';
     let user_modify = '{{route('user-modify')}}';
     let get_notice = '{{route('get-notice')}}';
+    let get_calendar_data = '{{route('get-calendar-data')}}';
+    let search_data = '{{route('search-data')}}';
 </script>
 </body>
 </html>

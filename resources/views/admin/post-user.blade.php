@@ -39,6 +39,7 @@
                                 <option value="1" {{ isset($user) && $user->role ==1 ? 'selected' :'' }}>管理者</option>
                                 <option value="2" {{ isset($user) && $user->role ==2 ? 'selected' :'' }}>無料会員</option>
                                 <option value="3" {{ isset($user) && $user->role ==3 ? 'selected' :'' }}>有料会員</option>
+                                <option value="4" {{ isset($user) && $user->role ==4 ? 'selected' :'' }}>銀行未振込</option>
                             </select>
                         </div>
                     </div>

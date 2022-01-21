@@ -1,4 +1,9 @@
 <x-app-layout>
+    <style>
+        .hide{
+            display: none;
+        }
+    </style>
     <div class="bread-box bg_white">
         <div class="container">
             <!-- Breadcrumb NavXT 6.6.0 -->
@@ -16,7 +21,8 @@
         </div>
     </div>
     <div class="fix-box bg_white" id="checkout">
-        <form method="POST" action="{{ route('checkout') }}" id="checkout_form">
+        <form method="POST" action="{{ route('checkout') }}" id="checkout_form" data-cc-on-file="false"
+              data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" role="form">
             @csrf
             <div class="container">
                 <input type="hidden" name="user_id" value="{{$user_id}}">
@@ -51,16 +57,36 @@
                             </div>
                             <div class="content-ch how01">
                                 <div class="item cre-name">
-                                    <input type="text" name="card_name" placeholder="カード名義人">
+                                    <input type="text" name="card_name" class="required " placeholder="カード名義人" size="4">
                                 </div>
                                 <div class="item cre-num">
-                                    <input type="text" name="card_number" placeholder="カード番号">
+                                    <input type="text" name="card_number" class="required card-number" placeholder="カード番号" size="20" autocomplete="off">
                                 </div>
                                 <div class="box cre-code">
-                                    <input type="text" name="card_date" placeholder="有効期限 月/年">
-                                    <input type="text" name="card_cvc" placeholder="セキュリティコード">
+                                    <input type="text" name="card_month" class="required card-month" placeholder="月(MM)" size="2" style="width: 20%">
+                                    <input type="text" name="card_year" class="required card-year" placeholder="年(YYYY)" size="4" style="width: 36%">
+                                    <input type="text" name="card_cvc" class="required card-cvc" placeholder="セキュリティコード" size="4" style="width: 36%">
+                                </div>
+                                <div class='form-row row error hide'>
+                                    <div class='col-md-12 form-group'>
+                                        <div class='alert-danger alert'>Please correct the errors and try again.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <span class="item_title">分割回数</span>
+                                    <div class="wrp_select">
+                                        <select name="segment">
+                                            <option value="0">一括</option>
+                                            <option value="3">3回</option>
+                                            <option value="6">6回</option>
+                                            <option value="12">12回</option>
+                                            <option value="24">24回</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="in_box">
                             <div class="title">
@@ -75,8 +101,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        @if(session('error'))
+                            <h5 class="text-center mb-0" style="color: red">カード情報をもう一度ご確認ください。</h5>
+                        @endif
+                        @if(session('payment_success'))
+                            <h5 class="text-center mb-0" style="color: #00ff0d">決済に成功しました。<br></h5>
+                        @endif
+                        <div id="card-element" class="card-element"></div>
+
+                        <div id="card-errors" class="error" role="alert" style="color: red"></div>
+                    </div>
                     <div class="box">
-                        <button class="regist-btn border-0" id="checkout">申し込む</button>
+                        <button class="regist-btn border-0" id="checkout_btn">申し込む</button>
                     </div>
                 </div>
             </div>
@@ -146,40 +183,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#checkout').click(function (e) {
-                e.preventDefault();
-                if($('[name=pay_setting]:checked').val() == 1){
-                    if($('[name=card_name]').val() == ""){
-                        $(document).find('input[name=card_name]').css('border-color', 'red');
-                        return;
-                    }
-                    $(document).find('input[name=card_name]').css('border-color', '#ccc');
-                    if($('[name=card_number]').val() == ""){
-                        $(document).find('input[name=card_number]').css('border-color', 'red');
-                        return;
-                    }
-                    $(document).find('input[name=card_number]').css('border-color', '#ccc');
-                    if($('[name=card_date]').val() == ""){
-                        $(document).find('input[name=card_date]').css('border-color', 'red');
-                        return;
-                    }
-                    $(document).find('input[name=card_date]').css('border-color', '#ccc');
-                    if($('[name=card_cvc]').val() == ""){
-                        $(document).find('input[name=card_cvc]').css('border-color', 'red');
-                        return;
-                    }
-                    $(document).find('input[name=card_cvc]').css('border-color', '#ccc');
-                    $( "#checkout_form" ).submit();
-                }
-                else{
-                    $( "#checkout_form" ).submit();
-                }
-
-
-            })
-
-        })
-    </script>
+    <script src="https://js.stripe.com/v2/"></script>
+    <script src="{{ asset('js/checkout.js') }}"></script>
 </x-app-layout>

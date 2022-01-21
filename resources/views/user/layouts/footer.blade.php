@@ -37,8 +37,11 @@
                     <div class="fx-bet fx-wrp">
                         <div class="foot-item">
                             <a href="{{ url('') }}">ダッシュボード</a>
-                            <a href="{{ route('archive-curriculum') }}">カリキュラム一覧</a>
-                            <a href="{{ route('archive-test') }}">テスト一覧</a>
+                            @if(Auth::user()->role == 3)
+                                <a href="{{ route('archive-curriculum') }}">カリキュラム一覧</a>
+                                <a href="{{ route('archive-test') }}">テスト一覧</a>
+                            @endif
+
                         </div>
                         <div class="foot-item">
                             <a href="{{ route('setup') }}">アカウント設定</a>

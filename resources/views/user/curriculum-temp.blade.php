@@ -4,25 +4,28 @@
             <div class="my-main">
                 <div class="my-sec">
                     <div class="c-title"><span>{{$curriculum->title}}</span> <span>{{$curriculum->detail}}</span></div>
-                    @foreach($lessons as $item)
-                        <div class="wrp-lesson-box">
-                            <div class="flex fx-wrp">
-                                <div class="lesson-img"><img style="height: 100%" src="{{ asset($item->thumbnail) }}"></div>
-                                <div class="lesson-box">
-                                    <div class="box-title"><span>{{$curriculum->title}}</span> <span>目安時間：{{$item->time}}分</span></div>
-                                    <div class="box-text">
-                                        <span>{{$item->title}}</span>
-                                    </div>
-                                    <div class="box-btn">
-                                        <div class="flex fx-ced">
-                                            <a href="{{ route('lesson-temp', $item->id) }}" class="lesson-btn">レッスンを始める</a>
-                                            <a {{ isset($item->review) && $item->review->public_status == 1 ? 'href=' . route('review-temp', $item->review->id) : '' }} class="review-btn {{ isset($item->review) && $item->review->public_status == 1 ? '' : 'review-disabled' }}">復習する</a>
+                    <div id="dataArea">
+                        @foreach($lessons as $item)
+                            <div class="wrp-lesson-box">
+                                <div class="flex fx-wrp">
+                                    <div class="lesson-img"><img style="height: 100%" src="{{ asset($item->thumbnail) }}"></div>
+                                    <div class="lesson-box">
+                                        <div class="box-title"><span>{{$curriculum->title}}</span> <span>目安時間：{{$item->time}}分</span></div>
+                                        <div class="box-text">
+                                            <span>{{$item->title}}</span>
+                                        </div>
+                                        <div class="box-btn">
+                                            <div class="flex fx-ced">
+                                                <a href="{{ route('lesson-temp', $item->slack) }}" class="lesson-btn">レッスンを始める</a>
+                                                <a {{ isset($item->review) && $item->review->public_status == 1 ? 'href=' . route('review-temp', $item->review->slack) : '' }} class="review-btn {{ isset($item->review) && $item->review->public_status == 1 ? '' : 'review-disabled' }}">復習する</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
+
                 </div>
                 <div class="my-sec" id="finish_part" style="{{$finish == 1 ? 'display: none;' : ''}}">
                     <div class="curriculum-summary">
@@ -47,13 +50,14 @@
                 </div>
             </div>
             <div class="my-side">
-                <div class="wrp-cale-box">
-                    <div class="side-sec-tit"><span>学習履歴カレンダー</span></div>
-                    <span>カレンダーが入ります。</span></div>
+                <div class="side-sec-tit">
+                    <div class="cal1"></div>
+                </div>
                 <div class="wrp-search-box">
                     <div class="side-sec-tit"><span>コンテンツ検索</span></div>
-                    <div class="flex"><input type="search" name="search" placeholder="キーワードを入力">
-                        <button type="submit" name="submit"><i class="fas fa-search"></i></button>
+                    <div class="flex">
+                        <input type="search" name="search" id="keyword" placeholder="キーワードを入力">
+                        <button type="submit" name="submit" id="search_btn" data-id="{{$curriculum->id}}" onclick="searchData('lesson')"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
             </div>
@@ -62,6 +66,7 @@
     <script>
         let curriculum_finish = '{{route('curriculum-finish')}}';
         $(document).ready(function () {
+            getCalendarData('lesson');
             $('.end_btn').click(function () {
                 let id = $(this).data('id');
                 actionIdWithout(id, curriculum_finish, '完了しました。')
@@ -84,6 +89,17 @@
 
             })
         })
+        $(document).keydown(function (e) {
+            // Left arrow
+            if (e.keyCode == 37) {
+                calendars.clndr1.back();
+            }
+
+            // Right arrow
+            if (e.keyCode == 39) {
+                calendars.clndr1.forward();
+            }
+        });
 
     </script>
 </x-user-layout>
