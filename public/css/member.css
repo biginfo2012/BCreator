@@ -36,6 +36,13 @@
 .regist-box .wrp-input-box .box input[type="text"]{width: 48%; padding: 12px 20px; font-size: 14px; border: solid 1px #ccc; margin-bottom: 20px; border-radius: 5px; -webkit-appearance: none;}
 .regist-box .wrp-input-box .item.save{text-align: center;}
 
+/* forgot_pass */
+#iforgot .sub_title, #iforgot-mail .sub_title,#iforgot-pass .sub_title,#iforgot-complete .sub_title{font-weight: bold; text-align: center; margin-bottom: 30px;}
+#iforgot .sub_text,#iforgot-pass .sub_text,#iforgot-complete .sub_text{margin-bottom: 30px; font-size: 14px;}
+#iforgot .add_text, #iforgot-mail .add_text{font-size: 14px; margin-bottom: 20px;}
+#iforgot .back_page, #iforgot-mail .back_page,#iforgot-complete .back_page{font-size: 14px;}
+#iforgot-mail .sub_text{margin-bottom: 10px; font-size: 14px;}
+
 /* checkout */
 .content-ch{display: none; max-width: 385px; margin: 0 auto;}
 .content-ch.how01{max-width: 380px;}

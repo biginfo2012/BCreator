@@ -46,7 +46,7 @@
                             <input type="email" name="email" placeholder="メールアドレス" autocomplete="email" required>
                         </div>
                         <div class="item pass">
-                            <input type="password" name="password" placeholder="パスワード" minlength="8" required>
+                            <input type="password" name="password" placeholder="パスワード(8文字以上)" minlength="8" required>
                         </div>
                         <x-auth-validation-errors class="mb-4" :errors="$errors"/>
                         <div class="item save">
