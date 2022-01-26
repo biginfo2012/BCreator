@@ -37,7 +37,7 @@
                     <div class="fx-bet fx-wrp">
                         <div class="foot-item">
                             <a href="{{ url('') }}">ダッシュボード</a>
-                            @if(Auth::user()->role == 3)
+                            @if(Auth::user()->role == 3 || Auth::user()->role == 1)
                                 <a href="{{ route('archive-curriculum') }}">カリキュラム一覧</a>
                                 <a href="{{ route('archive-test') }}">テスト一覧</a>
                             @endif

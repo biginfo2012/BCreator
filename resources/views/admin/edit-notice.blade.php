@@ -2,6 +2,7 @@
     <div class="side-app dash_min-hei" id="edit-notice">
         <div class="page-header">
             <h4 class="page-title">運営からの通知</h4>
+            <a href="{{route('mypage')}}" class="btn btn-primary" target="_blank">表示する</a>
         </div>
         <div class="row">
             <div class="col-md-12">

@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                         </div>
-                        @if(Auth::user()->role == 3)
+                        @if(Auth::user()->role == 3 || Auth::user()->role == 1)
                             <ul id="menu-member_nav" class="ul-hnav navbar-nav">
                                 <li id="menu-item-96"
                                     class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-94 current_page_item menu-item-96 nav-item active">

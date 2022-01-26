@@ -21,6 +21,9 @@ class TopController extends Controller
     public function faq() {
         return view('faq');
     }
+    public function terms() {
+        return view('terms');
+    }
     public function price() {
         return view('price');
     }

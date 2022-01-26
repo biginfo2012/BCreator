@@ -20,6 +20,7 @@ Route::get('/', [TopController::class, 'welcome'])->name('home');
 Route::get('about', [TopController::class, 'about'])->name('about');
 Route::get('curriculum', [TopController::class, 'curriculum'])->name('curriculum');
 Route::get('faq', [TopController::class, 'faq'])->name('faq');
+Route::get('terms', [TopController::class, 'terms'])->name('terms');
 Route::get('price', [TopController::class, 'price'])->name('price');
 Route::get('voice', [TopController::class, 'voice'])->name('voice');
 Route::get('discount', [TopController::class, 'discount'])->name('discount');
@@ -29,7 +30,7 @@ Route::post('save-reserve', [TopController::class, 'saveReserve'])->name('save-r
 
 Route::group(['middleware' => 'auth'], function (){
     /*user part*/
-    Route::group(['middleware' => ['can:user']], function () {
+    Route::group(['middleware' => ['permission:user|admin']], function () {
         Route::get('mypage', [UserController::class, 'mypage'])->name('mypage');
         Route::get('myfaq', [UserController::class, 'myfaq'])->name('myfaq');
         Route::get('archive-curriculum', [UserController::class, 'archiveCurriculum'])->name('archive-curriculum');

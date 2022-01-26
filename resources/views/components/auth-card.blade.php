@@ -3,7 +3,7 @@
         <div class="login-box">
             <div class="title">
                 {{ $logo }}
-                <span>ログイン</span>
+
             </div>
             {{ $slot }}
         </div>

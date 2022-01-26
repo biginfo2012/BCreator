@@ -132,7 +132,7 @@
 .lesson-block .box-content .item-btn .continu-btn{display: block; font-size: 14px; padding: 15px 30px; color: #fff; background-color: #f39800;}
 .wrp-completion-block .wrp-box{width: 25%; padding: 0 7px; margin-bottom: 20px;}
 .wrp-completion-block .box{position: relative; background-color: #fff; border-radius: 5px; box-shadow: 1px 1px 3px #ccc;}
-.wrp-completion-block .box::before{content: ''; position: absolute; top: 0; left: 7px; width: 35px; height: 35px; display: inline-block; -webkit-mask: url(assets/images/medal.svg); mask: url(assets/images/medal.svg); -webkit-mask-size: cover; mask-size: cover; vertical-align: middle; background-color: #eec400;}
+.wrp-completion-block .box::before{content: ''; position: absolute; top: 0; left: 7px; width: 35px; height: 35px; display: inline-block; -webkit-mask: url(../images/medal.svg); mask: url(../images/medal.svg); -webkit-mask-size: cover; mask-size: cover; vertical-align: middle; background-color: #eec400;}
 .wrp-completion-block .box-tit{text-align: center; padding: 25px 5px 20px;}
 .wrp-completion-block .box-tit span{display: block;}
 .wrp-completion-block .box-tit span:nth-of-type(1){font-size: 14px;}
@@ -204,7 +204,7 @@
 .wrp_prof-info .wrp_gen-btn{margin-bottom: 30px;}
 .wrp_deact{text-align: center;}
 .wrp_deact .deact{font-size: 14px;}
-.svg-logo{background-image: url('assets/images/hinata_logo.svg'); width: 18px; height: 24px; fill: red;}
+.svg-logo{background-image: url('../images/hinata_logo.svg'); width: 18px; height: 24px; fill: red;}
 .wrp_prof_pay{max-width: 500px; margin: 0 auto;}
 .pay_howto{margin-bottom: 40px;}
 .pay_howto .title,.pay_log .title{border-bottom: solid 1px #ccc; margin-bottom: 20px; padding-bottom: 5px;}

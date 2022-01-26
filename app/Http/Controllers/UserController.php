@@ -22,7 +22,7 @@ class UserController extends Controller
     //
     public function __construct()
     {
-        $this->middleware(['permission:user']);
+        $this->middleware(['permission:user|admin']);
     }
     public function mypage(){
         $cnt_lesson = UserLesson::where('user_id', Auth::user()->id)->where('status', 1)->get()->count();

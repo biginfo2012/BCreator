@@ -1,5 +1,10 @@
 <x-app-layout>
 {{--    <x-auth-validation-errors class="mb-4" :errors="$errors" />--}}
+    <style>
+        .wrp-input-box .item input[type="text"] {
+            padding: 12px 35px 12px 20px !important;
+        }
+    </style>
     <div class="bread-box bg_white">
         <div class="container">
             <!-- Breadcrumb NavXT 6.6.0 -->
@@ -45,12 +50,14 @@
                         <div class="item mail">
                             <input type="email" name="email" placeholder="メールアドレス" autocomplete="email" required>
                         </div>
-                        <div class="item pass">
-                            <input type="password" name="password" placeholder="パスワード(8文字以上)" minlength="8" required>
+                        <div class="item pass position-relative">
+                            <input id="pw" type="password" name="password" placeholder="パスワード(8文字以上)" minlength="8" required style="padding-right: 35px;">
+                            <i class="fa fa-eye" id="show_pw" style="position: absolute; font-size: 20px; right: 9px; top: 15px; cursor: pointer;"></i>
+                            <i class="fa fa-eye-slash" id="hide_pw" style="position: absolute; font-size: 20px; right: 9px; top: 15px; cursor: pointer; display: none"></i>
                         </div>
                         <x-auth-validation-errors class="mb-4" :errors="$errors"/>
                         <div class="item save">
-                            <label><input type="checkbox" name="check"><a href="#">利用規約</a>に同意する</label>
+                            <label><input type="checkbox" name="check"><a href="{{route('terms')}}">利用規約</a>に同意する</label>
                         </div>
                     </div>
                     <div class="box">
@@ -163,6 +170,16 @@
 {{--    </x-register-card>--}}
 
     <script type="text/javascript">
+        $('#show_pw').click(function () {
+            $('#pw').clone().attr('type','text').attr('id', 'pw_txt').insertAfter('#pw').prev().remove();
+            $(this).hide();
+            $(this).next().show();
+        })
+        $('#hide_pw').click(function () {
+            $('#pw_txt').clone().attr('type','password').attr('id', 'pw').insertAfter('#pw_txt').prev().remove();
+            $(this).hide();
+            $(this).prev().show();
+        })
         $('[name=check]').change(function () {
             if($(this).is(":checked")){
                 $('#btn_register')[0].disabled = false;

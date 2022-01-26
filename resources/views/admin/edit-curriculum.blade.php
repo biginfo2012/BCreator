@@ -5,6 +5,7 @@
     <div class="side-app dash_min-hei" id="edit-curriculum">
         <div class="page-header">
             <h4 class="page-title">カリキュラム</h4>
+            <a href="{{route('archive-curriculum')}}" class="btn btn-primary" target="_blank">表示する</a>
         </div>
         <div class="row">
             <div class="col-md-12">

@@ -33,7 +33,7 @@
                         <div class="item save"><label><input id="remember_me" type="checkbox" name="remember">ログイン情報を保存する</label></div>
                     </div>
                     <div class="box"><button class="login-btn border-0">ログイン</button> <span class="forgot">パスワードを忘れた場合は<a
-                                href="#">こちら</a></span></div>
+                                href="{{ route('password.request') }}">こちら</a></span></div>
                 </div>
             </form>
 
