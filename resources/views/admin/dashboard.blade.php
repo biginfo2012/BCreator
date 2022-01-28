@@ -114,7 +114,7 @@
                                         <td>{{ $item->id }}</td>
                                         {{--Todo user profile image--}}
                                         <td><span class="avatar d-block rounded" style="background-image: url('{{ isset($item->image) ? asset($item->image) : asset('images/faces/male/16.jpg')}}')"></span></td>
-                                        <td>{{ $item->first_name . $item->last_name }}</td>
+                                        <td>{{ $item->first_name . ' ' . $item->last_name }}</td>
                                         <td class="d-none d-sm-table-cell">{{ date('Y年m月d日', strtotime($item->created_at)) }}</td>
                                     </tr>
                                 @endforeach
@@ -138,11 +138,11 @@
                                     <span class="avatar-status bg-green"></span>
                                 </div>
                                 <div class="w-100 ml-3">
-                                    <p class="mb-0"><b>{{ $item->first_name . $item->last_name }}</b></p>
+                                    <p class="mb-0"><b>{{ $item->first_name . ' ' . $item->last_name }}</b></p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="d-flex align-items-center">
                                             <i class="mdi mdi-clock text-muted mr-1"></i>
-                                            <p class="mb-0 f12">前回のログイン：{{ date('H.i.s', strtotime($item->login_at)) }}</p>
+                                            <p class="mb-0 f12">前回のログイン：{{ date('y.m.d', strtotime($item->login_at)) }}</p>
                                         </div>
                                         <small class="text-muted ml-auto">{{ round(abs(strtotime(date('Y-m-d H:i:s')) - strtotime($item->login_at))/3600,0) }}時間前</small>
                                     </div>

@@ -23,7 +23,7 @@ class CreateReservesTable extends Migration
             $table->string('first_time');
             $table->date('second_date');
             $table->string('second_time');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

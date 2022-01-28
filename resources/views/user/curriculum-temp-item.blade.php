@@ -13,7 +13,7 @@
                     <div class="box-btn">
                         <div class="flex fx-ced">
                             <a href="{{ route('lesson-temp', $item->slack) }}" class="lesson-btn">レッスンを始める</a>
-                            <a {{ isset($item->review) && $item->review->public_status == 1 ? 'href=' . route('review-temp', $item->review->slack) : '' }} class="review-btn {{ isset($item->review) && $item->review->public_status == 1 ? '' : 'review-disabled' }}">復習する</a>
+                            <a {{ isset($item->review) && $item->review->public_status == 1 ? 'href=' . route('review-temp', $item->review->slack) : '' }} class="review-btn {{ isset($item->review) && $item->review->public_status == 1 ? '' : 'review-disabled d-none' }}">復習する</a>
                         </div>
                     </div>
                 </div>

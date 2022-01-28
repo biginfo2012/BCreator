@@ -71,7 +71,14 @@ class RegisteredUserController extends Controller
         $password = $request->password;
         if($request->pay_setting == 2){
             User::where('id', $user_id)->update(['pay_setting' => $request->pay_setting, 'role' => 4]);
+            $details =[
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'email' => $user->email,
+                'password' => $password
+            ];
 
+            sendBankRegisterEmail($details, $user->email);
             return view('auth.register-complete', compact('user', 'password'));
         }
         else{
@@ -227,6 +234,16 @@ class RegisteredUserController extends Controller
             session()->flash('payment_success', 1);
 
             $password = $request->password;
+
+            $details =[
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'email' => $user->email,
+                'password' => $password
+            ];
+
+            sendRegisterEmail($details, $user->email);
+
             return view('auth.register-complete', compact('user', 'password'));
         }
 

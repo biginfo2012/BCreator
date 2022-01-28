@@ -6,12 +6,14 @@ use App\Models\Contact;
 use App\Models\Curriculum;
 use App\Models\Lesson;
 use App\Models\Notice;
+use App\Models\NoticeUser;
 use App\Models\Payment;
 use App\Models\Review;
 use App\Models\StudyHistory;
 use App\Models\Test;
 use App\Models\User;
 use App\Models\UserCurriculum;
+use App\Models\UserExit;
 use App\Models\UserLesson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,11 +97,29 @@ class UserController extends Controller
         return view('user.setup', compact('user', 'pay', 'pay_cnt', 'history'));
     }
     public function userModify(Request $request){
-        User::where('id', Auth::user()->id)->update([
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
+        if($request->hasFile('file')){
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension(); // you can also use file name
+            $photo = time().'.'.$extension;
+            $path = public_path().'/image';
+            $uplaod = $file->move($path,$photo);
+            $path = '/image/' . $photo;
+            //$photo = $request->file->store('image','public');
+            $data = [
+                'image' => $path,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ];
+        }
+        else{
+            $data = [
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ];
+        }
+        User::where('id', Auth::user()->id)->update($data);
         return response()->json(['status' => true]);
     }
 
@@ -157,7 +177,8 @@ class UserController extends Controller
     }
 
     public function lessonTemp($id){
-        $lesson = Lesson::with('curriculum')->where('slack', $id)->get()->first();
+        $lesson = Lesson::with('curriculum')->with('review')->with('test')
+            ->where('slack', $id)->get()->first();
         $tmp = UserLesson::where('user_id', Auth::user()->id)->where('lesson_id', $lesson->id)->get()->first();
         $finish = 0;
         if(isset($tmp)){
@@ -229,8 +250,57 @@ class UserController extends Controller
     }
 
     public function getNotice(Request $request){
-        $notice = Notice::where('public_status', 1)->get();
-        return view('user.layouts.notice-list', compact('notice'));
+        $id = Auth::user()->id;
+        $notice = Notice::with('user')
+            ->withCount(['noticeuser' => function ($q) use ($id) {$q->where('user_id', $id);}])
+            ->where('public_status', 1)
+            ->orderBy('updated_at', 'desc')->take(5)->get();
+        $notice_ids = Notice::with('user')
+            ->withCount(['noticeuser' => function ($q) use ($id) {$q->where('user_id', $id);}])
+            ->where('public_status', 1)
+            ->orderBy('updated_at', 'desc')->take(5)->pluck('id');
+        $cnt = 0;
+        foreach ($notice as $item){
+            if($item->noticeuser_count == 0){
+                $cnt = $cnt +1;
+            }
+            $date1 = date('Y-m-d', strtotime($item->updated_at));
+            $date2 = date('Y-m-d', time());
+            $diff = abs(strtotime($date2) - strtotime($date1));
+
+            $years = floor($diff / (365*60*60*24));
+            $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+            $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+            $times = floor(($diff)/ (60*60*24));
+            $weeks = floor($days / 7);
+
+
+            if($years > 0){
+                $item->date_txt = $years . '年前';
+            }
+            else if($months > 0){
+                $item->date_txt = $months . '月前';
+            }
+            else if($weeks > 0){
+                $item->date_txt = $weeks . '週間前';
+            }
+            else if($days > 0){
+                $item->date_txt = $days . '日前';
+            }
+            else{
+                $item->date_txt = $times . '時間前';
+            }
+        }
+        return view('user.layouts.notice-list', compact('notice', 'notice_ids', 'cnt'));
+    }
+
+    public function checkNotice(Request $request){
+        $notice_ids = $request->notice_ids;
+        $notice_ids = json_decode($notice_ids);
+        foreach ($notice_ids as $item){
+            NoticeUser::updateOrCreate(['notice_id' => $item], ['user_id' => Auth::user()->id, 'notice_id' => $item]);
+        }
+        return response()->json(['status' => true]);
     }
 
     public function getCalendarData(Request $request){
@@ -287,5 +357,24 @@ class UserController extends Controller
             }
         }
         return view('user.archive-test-item', ['test' => $test]);
+    }
+
+    public function withdrawal(){
+        return view('user.withdrawal');
+    }
+    public function withdrawalComplete(){
+        return view('user.withdrawal-complete');
+    }
+    public function userExit(Request $request){
+        UserExit::create([
+            'user_id' => Auth::user()->id,
+            'reason' => $request->reason,
+            'comment' => $request->comment
+        ]);
+        User::where('id', Auth::user()->id)->update(['exit' => 1]);
+
+        Auth::logout();
+
+        return redirect()->route('withdrawal-complete');
     }
 }

@@ -1,5 +1,5 @@
 <x-user-layout>
-    <div class="fix-box" id="faq-nav">
+    <div class="fix-box" id="faq-nav" style="background: white">
         <div class="container v2">
             <div class="faq-nav">
                 <div class="fx-bet fx-wrp">

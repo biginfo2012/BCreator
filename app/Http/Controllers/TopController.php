@@ -51,11 +51,23 @@ class TopController extends Controller
             'second_time' => $request->second_time
         ];
         Reserve::create($data);
+        $details = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'number' => $request->number,
+            'first_date' => date('Y年m月d日', strtotime($request->first_date)) . ' ' . $request->first_time,
+            'second_date' => date('Y年m月d日', strtotime($request->second_date)) . ' ' . $request->second_time,
+        ];
+        sendReserveEmail($details, $request->email);
         return view('reserve-complete', compact('data'));
     }
 
     public function getNotice(Request $request){
         $notice = Notice::where('public_status', 1)->get();
         return view('user.layouts.notice-list', compact('notice'));
+    }
+    public function withdrawalComplete(){
+        return view('user.withdrawal-complete');
     }
 }

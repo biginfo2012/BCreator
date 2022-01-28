@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <button type="submit" class="btn btn-primary btn_submit">公開</button>
+                                    <button type="submit" class="btn btn-primary btn_submit">{{ isset($test) && $test->public_status == 1 ? '更新' : '公開' }}</button>
                                 </div>
                             </div>
                         </div>

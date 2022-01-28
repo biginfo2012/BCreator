@@ -31,11 +31,11 @@
 .sort_curriculum{text-align: right;}
 .sort_curriculum .dropdown-menu{min-width: 10rem;}
 
-#edit-curriculum .table_title,#edit-lesson .table_title,#edit-review .table_title,#edit-test .table_title{width: 35%;}
-#edit-curriculum .table_contributor,#edit-lesson .table_contributor,#edit-review .table_contributor,#edit-test .table_contributor{width: 15%;}
-#edit-curriculum .table_day,#edit-lesson .table_day,#edit-review .table_day,#edit-test .table_day{width: 25%;}
-#edit-curriculum .table_slug,#edit-lesson .table_slug,#edit-review .table_slug,#edit-test .table_slug{width: 15%;}
-#edit-curriculum .table_edit,#edit-lesson .table_edit,#edit-review .table_edit,#edit-test .table_edit{width: 10%;}
+#edit-curriculum .table_title,#edit-lesson .table_title,#edit-review .table_title,#edit-test .table_title{width: 35% !important;}
+#edit-curriculum .table_contributor,#edit-lesson .table_contributor,#edit-review .table_contributor,#edit-test .table_contributor{width: 15% !important;}
+#edit-curriculum .table_day,#edit-lesson .table_day,#edit-review .table_day,#edit-test .table_day{width: 25% !important;}
+#edit-curriculum .table_slug,#edit-lesson .table_slug,#edit-review .table_slug,#edit-test .table_slug{width: 15% !important;}
+#edit-curriculum .table_edit,#edit-lesson .table_edit,#edit-review .table_edit,#edit-test .table_edit{width: 10% !important;}
 
 /* カリキュラム */
 .ad_title.card-header{min-height: auto; padding: 15px 15px;}
@@ -46,57 +46,57 @@
 /* ユーザー */
 #edit-user .wrp_ad_table .table_head{align-items: flex-start;}
 #edit-user .wrp_ad_table .table_item{align-items: flex-start; padding: 7px 20px 5px;}
-#edit-user .table_id{width: 15%;}
+#edit-user .table_id{width: 15% !important;}
 #edit-user .table_id a{display: block; margin-right: 7px; color: inherit;}
 #edit-user .table_id .flex{color: transparent !important;}
 #edit-user .table_id .flex:hover{color: #736cc7 !important;}
 #edit-user .table_id a:last-of-type{margin-right: 0px;}
-#edit-user .table_family{width: 12.5%;}
-#edit-user .table_first{width: 12.5%;}
-#edit-user .table_mail{width: 20%;}
-#edit-user .table_level{width: 15%;}
-#edit-user .table_day{width: 12.5%;}
-#edit-user .table_login{width: 12.5%;}
+#edit-user .table_family{width: 12.5% !important;}
+#edit-user .table_first{width: 12.5% !important;}
+#edit-user .table_mail{width: 20% !important;}
+#edit-user .table_level{width: 15% !important;}
+#edit-user .table_day{width: 12.5% !important;}
+#edit-user .table_login{width: 12.5% !important;}
 
 /* 運営からの通知 */
-#edit-notice .table_title{width: 40%;}
-#edit-notice .table_contributor{width: 20%;}
-#edit-notice .table_day{width: 25%;}
-#edit-notice .table_edit{width: 15%;}
+#edit-notice .table_title{width: 40% !important;}
+#edit-notice .table_contributor{width: 20% !important;}
+#edit-notice .table_day{width: 25% !important;}
+#edit-notice .table_edit{width: 15% !important;}
 
 /* メディア */
 #gallery .pagination-wrapper{margin-bottom: 30px;}
 #gallery .pagination-wrapper nav{width: 200px; margin-left: auto;}
 
 /* 支払い管理 */
-#payments .table_id{width:10%;}
-#payments .table_family{width: 15%;}
-#payments .table_first{width: 15%;}
-#payments .table_mail{width: 20%;}
-#payments .table_day{width: 15%;}
-#payments .table_price{width: 15%;}
-#payments .table_status{width: 10%;}
+#payments .table_id{width:10% !important;}
+#payments .table_family{width: 15% !important;}
+#payments .table_first{width: 15% !important;}
+#payments .table_mail{width: 20% !important;}
+#payments .table_day{width: 15% !important;}
+#payments .table_price{width: 15% !important;}
+#payments .table_status{width: 10% !important;}
 #payments .success{font-weight: bold; color: #4ecc48;}
 #payments .fail{font-weight: bold; color: #c21a1a;}
 
 /* カウンセリング予約 */
-#master_reserve .table_day{width: 10%;}
-#master_reserve .table_family{width: 10%;}
-#master_reserve .table_first{width: 10%;}
-#master_reserve .table_mail{width: 15%;}
-#master_reserve .table_tel{width: 15%;}
-#master_reserve .table_one{width: 10%;}
-#master_reserve .table_second{width: 10%;}
-#master_reserve .table_status{width: 20%;}
+#master_reserve .table_day{width: 10% !important;;}
+#master_reserve .table_family{width: 10% !important;;}
+#master_reserve .table_first{width: 10% !important;;}
+#master_reserve .table_mail{width: 15% !important;;}
+#master_reserve .table_tel{width: 15% !important;;}
+#master_reserve .table_one{width: 10% !important;;}
+#master_reserve .table_second{width: 10% !important;;}
+#master_reserve .table_status{width: 20% !important;;}
 
 /* ユーザー問い合わせ */
 #master_contact .wrp_ad_table .table_item{align-items: flex-start;}
-#master_contact .table_day{width: 10%;}
-#master_contact .table_family{width: 10%;}
-#master_contact .table_first{width: 10%;}
-#master_contact .table_mail{width: 20%;}
-#master_contact .table_content{width: 30%; padding-right: 10px;}
-#master_contact .table_status{width: 20%;}
+#master_contact .table_day{width: 10% !important;}
+#master_contact .table_family{width: 10% !important;}
+#master_contact .table_first{width: 10% !important;}
+#master_contact .table_mail{width: 20% !important;}
+#master_contact .table_content{width: 30% !important; padding-right: 10px;}
+#master_contact .table_status{width: 20% !important;}
 
 /* ヘルプ */
 #faq .pagination-wrapper{margin-bottom: 30px;}
@@ -113,21 +113,21 @@
 	/* ユーザー */
 	#edit-user .table_day{display: none;}
 	#edit-user .table_level{display: none;}
-	#edit-user .table_id{width: 20%;}
-	#edit-user .table_family{width: 15%;}
-	#edit-user .table_first{width: 15%;}
-	#edit-user .table_mail{width: 30%;}
-	#edit-user .table_login{width: 20%;}
+	#edit-user .table_id{width: 20% !important;}
+	#edit-user .table_family{width: 15% !important;}
+	#edit-user .table_first{width: 15% !important;}
+	#edit-user .table_mail{width: 30% !important;}
+	#edit-user .table_login{width: 20% !important;}
 
 	/* カウンセリング予約 */
 	#master_reserve .table_day{display: none;}
-	#master_reserve .table_family{width: 14%;}
-	#master_reserve .table_first{width: 14%;}
-	#master_reserve .table_mail{width: 20%;}
+	#master_reserve .table_family{width: 14% !important;;}
+	#master_reserve .table_first{width: 14% !important;;}
+	#master_reserve .table_mail{width: 20% !important;;}
 	#master_reserve .table_tel{display: none;}
-	#master_reserve .table_one{width: 14%;}
-	#master_reserve .table_second{width: 14%;}
-	#master_reserve .table_status{width: 24%;}
+	#master_reserve .table_one{width: 14% !important;;}
+	#master_reserve .table_second{width: 14% !important;;}
+	#master_reserve .table_status{width: 24% !important;;}
 
 }
 
@@ -153,28 +153,28 @@
 	.wrp_ad_table .table_item{flex-wrap: wrap; padding: 15px;}
 	.trash_empty a{font-size: 10px;}
 
-	#edit-curriculum .table_title,#edit-lesson .table_title,#edit-review .table_title,#edit-test .table_title{width: 100%; margin-bottom: 5px;}
+	#edit-curriculum .table_title,#edit-lesson .table_title,#edit-review .table_title,#edit-test .table_title{width: 100% !important; margin-bottom: 5px;}
 	#edit-curriculum .table_contributor,#edit-lesson .table_contributor,#edit-review .table_contributor,#edit-test .table_contributor{display: none;}
 	#edit-curriculum .table_day,#edit-lesson .table_day,#edit-review .table_day,#edit-test .table_day{display: none;}
 	#edit-curriculum .table_slug,#edit-lesson .table_slug,#edit-review .table_slug,#edit-test .table_slug{display: none;}
-	#edit-curriculum .table_edit,#edit-lesson .table_edit,#edit-review .table_edit,#edit-test .table_edit{width: 100%;}
+	#edit-curriculum .table_edit,#edit-lesson .table_edit,#edit-review .table_edit,#edit-test .table_edit{width: 100% !important;}
 	#edit-curriculum .table_edit .fx-bet,#edit-lesson .table_edit .fx-bet,#edit-review .table_edit .fx-bet,#edit-test .table_edit .fx-bet{justify-content: flex-end;}
 	#edit-curriculum .table_edit .fx-bet a,#edit-lesson .table_edit .fx-bet a,#edit-review .table_edit .fx-bet a,#edit-test .table_edit .fx-bet a{padding: 0 10px;}
 
 	/* ユーザー */
 	#edit-user .wrp_ad_table .table_item{padding: 15px;}
-	#edit-user .table_id{width: 100%; margin-bottom: 10px;}
-	#edit-user .table_family{width: 50%; margin-bottom: 10px;}
-	#edit-user .table_first{width: 50%; margin-bottom: 10px;}
-	#edit-user .table_mail{width: 100%;}
+	#edit-user .table_id{width: 100% !important; margin-bottom: 10px;}
+	#edit-user .table_family{width: 50% !important; margin-bottom: 10px;}
+	#edit-user .table_first{width: 50% !important; margin-bottom: 10px;}
+	#edit-user .table_mail{width: 100% !important;}
 	#edit-user .table_login{display: none;}
 	#edit-user .table_id a{margin-right: 15px;}
 
 	/* 運営からの通知 */
-	#edit-notice .table_title{width: 100%; margin-bottom: 5px;}
+	#edit-notice .table_title{width: 100% !important; margin-bottom: 5px;}
 	#edit-notice .table_contributor{display: none;}
-	#edit-notice .table_day{width: 100%; margin-bottom: 5px;}
-	#edit-notice .table_edit{width: 100%;}
+	#edit-notice .table_day{width: 100% !important; margin-bottom: 5px;}
+	#edit-notice .table_edit{width: 100% !important;}
 	#edit-notice .table_edit .fx-bet{justify-content: flex-end;}
 	#edit-notice .table_edit .fx-bet a{padding: 0 10px;}
 
@@ -183,32 +183,32 @@
 
 	/* 支払い管理 */
 	#payments h4.page-title{margin-bottom: 10px;}
-	#payments .table_id{width:10%; margin-bottom: 5px;}
-	#payments .table_family{width: 45%; margin-bottom: 5px;}
-	#payments .table_first{width: 45%; margin-bottom: 5px;}
-	#payments .table_mail{width: 100%; margin-bottom: 5px;}
-	#payments .table_day{width: 100%; margin-bottom: 5px;}
-	#payments .table_price{width: 50%;}
-	#payments .table_status{width: 50%;}
+	#payments .table_id{width:10% !important; margin-bottom: 5px;}
+	#payments .table_family{width: 45% !important; margin-bottom: 5px;}
+	#payments .table_first{width: 45% !important; margin-bottom: 5px;}
+	#payments .table_mail{width: 100% !important; margin-bottom: 5px;}
+	#payments .table_day{width: 100% !important; margin-bottom: 5px;}
+	#payments .table_price{width: 50% !important;}
+	#payments .table_status{width: 50% !important;}
 	#payments .wrp_ad_table{margin-bottom: 20px;}
 	.to_stripe{margin-bottom: 20px;}
 
 	/* カウンセリング予約 */
-	#master_reserve .table_family{width: 50%; margin-bottom: 5px;}
-	#master_reserve .table_first{width: 50%; margin-bottom: 5px;}
-	#master_reserve .table_mail{width: 100%; margin-bottom: 5px;}
-	#master_reserve .table_one{width: 100%; margin-bottom: 5px;}
-	#master_reserve .table_second{width: 100%; margin-bottom: 5px;}
-	#master_reserve .table_status{width: 100%;}
+	#master_reserve .table_family{width: 50% !important; margin-bottom: 5px;}
+	#master_reserve .table_first{width: 50% !important; margin-bottom: 5px;}
+	#master_reserve .table_mail{width: 100% !important; margin-bottom: 5px;}
+	#master_reserve .table_one{width: 100% !important; margin-bottom: 5px;}
+	#master_reserve .table_second{width: 100% !important; margin-bottom: 5px;}
+	#master_reserve .table_status{width: 100% !important;}
 
 
 	/* ユーザー問い合わせ */
-	#master_contact .table_day{width: 100%; margin-bottom: 5px;}
-	#master_contact .table_family{width: 50%; margin-bottom: 5px;}
-	#master_contact .table_first{width: 50%; margin-bottom: 5px;}
-	#master_contact .table_mail{width: 100%; margin-bottom: 5px;}
-	#master_contact .table_content{width: 100%; padding-right: 0px; margin-bottom: 5px;}
-	#master_contact .table_status{width: 100%; margin-bottom: 5px;}
+	#master_contact .table_day{width: 100% !important; margin-bottom: 5px;}
+	#master_contact .table_family{width: 50% !important; margin-bottom: 5px;}
+	#master_contact .table_first{width: 50% !important; margin-bottom: 5px;}
+	#master_contact .table_mail{width: 100% !important; margin-bottom: 5px;}
+	#master_contact .table_content{width: 100% !important; padding-right: 0px; margin-bottom: 5px;}
+	#master_contact .table_status{width: 100% !important; margin-bottom: 5px;}
 
 	/* サイト設定 */
 	#options .form-footer{margin-bottom: 30px;}

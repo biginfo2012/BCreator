@@ -1,4 +1,12 @@
 <x-admin-layout>
+    <style>
+        .table td{
+            padding: 0;
+        }
+        .table thead th, .text-wrap table thead th{
+            border-bottom: 0;
+        }
+    </style>
     <div class="side-app dash_min-hei" id="master_reserve">
         <div class="page-header">
             <h4 class="page-title">カウンセリング予約</h4>
@@ -23,36 +31,37 @@
                                 <div class="tab-content">
                                     <div class="tab-pane active show" id="reser-all">
                                         <table id="resAllTable" class="table table-striped wrp_ad_table" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th class="wd-10p">予約日</th>
-                                                <th class="wd-10p">姓</th>
-                                                <th class="wd-10p">名</th>
-                                                <th class="wd-10p">メールアドレス</th>
-                                                <th class="wd-15p">電話番号</th>
-                                                <th class="wd-15p">第一希望</th>
-                                                <th class="wd-15p">第二希望</th>
-                                                <th class="wd-15p">ステータス</th>
+                                            <thead class="table_head">
+                                            <tr class="w-100 d-flex">
+                                                <th class="table_day">予約日</th>
+                                                <th class="table_family">姓</th>
+                                                <th class="table_first">名</th>
+                                                <th class="table_mail">メールアドレス</th>
+                                                <th class="table_tel">電話番号</th>
+                                                <th class="table_one">第一希望</th>
+                                                <th class="table_second">第二希望</th>
+                                                <th class="table_status">ステータス</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($all_data as $item)
-                                                <tr>
-                                                    <td>
+                                                <tr class="table_head">
+                                                    <td class="table_day">
                                                         <span class="mt-2">{{ date('Y-m-d', strtotime($item->created_at)) }}</span>
                                                     </td>
-                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['number'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['first_date'] . ' ' . $item['first_time'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['second_date'] . ' ' . $item['second_time'] }}</span></td>
-                                                    <td>
+                                                    <td class="table_family"><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td class="table_first"><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td class="table_mail"><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td class="table_tel"><span class="mt-2">{{ $item['number'] }}</span></td>
+                                                    <td class="table_one"><span class="">{{ $item['first_date'] }}<br class="sm-hidden">{{ $item['first_time'] }}</span></td>
+                                                    <td class="table_second"><span class="">{{ $item['second_date'] }}<br class="sm-hidden">{{ $item['second_time'] }}</span></td>
+                                                    <td class="table_status">
                                                         <div class="input-group">
                                                             <select class="form-control custom-select reply_status">
-                                                                <option value="0" {{ $item['status'] == 0 ? 'selected' : '' }}>未対応</option>
-                                                                <option value="1" {{ $item['status'] == 1 ? 'selected' : '' }}>完了</option>
-                                                                <option value="2" {{ $item['status'] == 2 ? 'selected' : '' }}>削除</option>
+                                                                <option value="1" {{ $item['status'] == 1 ? 'selected' : '' }}>第一希望</option>
+                                                                <option value="2" {{ $item['status'] == 2 ? 'selected' : '' }}>第二希望</option>
+                                                                <option value="3" {{ $item['status'] == 3 ? 'selected' : '' }}>キャンセル</option>
+                                                                <option value="4" {{ $item['status'] == 4 ? 'selected' : '' }}>完了</option>
                                                             </select>
                                                             <div class="input-group-append">
                                                                 <button type="button" class="btn btn-primary change_status" data-id="{{$item->id}}" disabled>OK</button>
@@ -66,36 +75,37 @@
                                     </div>
                                     <div class="tab-pane" id="reser-wip">
                                         <table id="resOpenTable" class="table table-striped wrp_ad_table" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th class="wd-10p">予約日</th>
-                                                <th class="wd-10p">姓</th>
-                                                <th class="wd-10p">名</th>
-                                                <th class="wd-10p">メールアドレス</th>
-                                                <th class="wd-15p">電話番号</th>
-                                                <th class="wd-15p">第一希望</th>
-                                                <th class="wd-15p">第二希望</th>
-                                                <th class="wd-15p">ステータス</th>
+                                            <thead class="table_head">
+                                            <tr class="w-100 d-flex">
+                                                <th class="table_day">予約日</th>
+                                                <th class="table_family">姓</th>
+                                                <th class="table_first">名</th>
+                                                <th class="table_mail">メールアドレス</th>
+                                                <th class="table_tel">電話番号</th>
+                                                <th class="table_one">第一希望</th>
+                                                <th class="table_status">第二希望</th>
+                                                <th class="table_status">ステータス</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($open_data as $item)
-                                                <tr>
-                                                    <td>
+                                                <tr class="table_head">
+                                                    <td class="table_day">
                                                         <span class="mt-2">{{ date('Y-m-d', strtotime($item->created_at)) }}</span>
                                                     </td>
-                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['number'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['first_date'] . ' ' . $item['first_time'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['second_date'] . ' ' . $item['second_time'] }}</span></td>
-                                                    <td>
+                                                    <td class="table_family"><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td class="table_first"><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td class="table_mail"><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td class="table_tel"><span class="mt-2">{{ $item['number'] }}</span></td>
+                                                    <td class="table_one"><span class="">{{ $item['first_date'] }}<br class="sm-hidden">{{ $item['first_time'] }}</span></td>
+                                                    <td class="table_status"><span class="">{{ $item['second_date'] }}<br class="sm-hidden">{{ $item['second_time'] }}</span></td>
+                                                    <td class="table_status">
                                                         <div class="input-group">
                                                             <select class="form-control custom-select reply_status">
-                                                                <option value="0" {{ $item['status'] == 0 ? 'selected' : '' }}>未対応</option>
-                                                                <option value="1" {{ $item['status'] == 1 ? 'selected' : '' }}>完了</option>
-                                                                <option value="2" {{ $item['status'] == 2 ? 'selected' : '' }}>削除</option>
+                                                                <option value="1" {{ $item['status'] == 1 ? 'selected' : '' }}>第一希望</option>
+                                                                <option value="2" {{ $item['status'] == 2 ? 'selected' : '' }}>第二希望</option>
+                                                                <option value="3" {{ $item['status'] == 3 ? 'selected' : '' }}>キャンセル</option>
+                                                                <option value="4" {{ $item['status'] == 4 ? 'selected' : '' }}>完了</option>
                                                             </select>
                                                             <div class="input-group-append">
                                                                 <button type="button" class="btn btn-primary change_status" data-id="{{$item->id}}" disabled>OK</button>
@@ -109,36 +119,37 @@
                                     </div>
                                     <div class="tab-pane" id="reser-comp">
                                         <table id="resDraftTable" class="table table-striped wrp_ad_table" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th class="wd-10p">予約日</th>
-                                                <th class="wd-10p">姓</th>
-                                                <th class="wd-10p">名</th>
-                                                <th class="wd-10p">メールアドレス</th>
-                                                <th class="wd-15p">電話番号</th>
-                                                <th class="wd-15p">第一希望</th>
-                                                <th class="wd-15p">第二希望</th>
-                                                <th class="wd-15p">ステータス</th>
+                                            <thead class="table_head">
+                                            <tr class="w-100 d-flex">
+                                                <th class="table_day">予約日</th>
+                                                <th class="table_family">姓</th>
+                                                <th class="table_first">名</th>
+                                                <th class="table_mail">メールアドレス</th>
+                                                <th class="table_tel">電話番号</th>
+                                                <th class="table_one">第一希望</th>
+                                                <th class="table_second">第二希望</th>
+                                                <th class="table_status">ステータス</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($draft_data as $item)
-                                                <tr>
-                                                    <td>
+                                                <tr class="table_item">
+                                                    <td class="table_day">
                                                         <span class="mt-2">{{ date('Y-m-d', strtotime($item->created_at)) }}</span>
                                                     </td>
-                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['number'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['first_date'] . ' ' . $item['first_time'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['second_date'] . ' ' . $item['second_time'] }}</span></td>
-                                                    <td>
+                                                    <td class="table_family"><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td class="table_first"><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td class="table_mail"><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td class="table_tel"><span class="mt-2">{{ $item['number'] }}</span></td>
+                                                    <td class="table_one"><span class="">{{ $item['first_date'] }}<br class="sm-hidden">{{ $item['first_time'] }}</span></td>
+                                                    <td class="table_second"><span class="">{{ $item['second_date'] }}<br class="sm-hidden">{{ $item['second_time'] }}</span></td>
+                                                    <td class="table_status">
                                                         <div class="input-group">
                                                             <select class="form-control custom-select reply_status">
-                                                                <option value="0" {{ $item['status'] == 0 ? 'selected' : '' }}>未対応</option>
-                                                                <option value="1" {{ $item['status'] == 1 ? 'selected' : '' }}>完了</option>
-                                                                <option value="2" {{ $item['status'] == 2 ? 'selected' : '' }}>削除</option>
+                                                                <option value="1" {{ $item['status'] == 1 ? 'selected' : '' }}>第一希望</option>
+                                                                <option value="2" {{ $item['status'] == 2 ? 'selected' : '' }}>第二希望</option>
+                                                                <option value="3" {{ $item['status'] == 3 ? 'selected' : '' }}>キャンセル</option>
+                                                                <option value="4" {{ $item['status'] == 4 ? 'selected' : '' }}>完了</option>
                                                             </select>
                                                             <div class="input-group-append">
                                                                 <button type="button" class="btn btn-primary change_status" data-id="{{$item->id}}" disabled>OK</button>
@@ -155,36 +166,37 @@
                                             <a class="btn btn-primary empty" href="#">ゴミ箱を空にする</a>
                                         </div>
                                         <table id="resTrashTable" class="table table-striped wrp_ad_table" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th class="wd-10p">予約日</th>
-                                                <th class="wd-10p">姓</th>
-                                                <th class="wd-10p">名</th>
-                                                <th class="wd-10p">メールアドレス</th>
-                                                <th class="wd-15p">電話番号</th>
-                                                <th class="wd-15p">第一希望</th>
-                                                <th class="wd-15p">第二希望</th>
-                                                <th class="wd-15p">ステータス</th>
+                                            <thead class="table_head">
+                                            <tr class="w-100 d-flex">
+                                                <th class="table_day">予約日</th>
+                                                <th class="table_family">姓</th>
+                                                <th class="table_first">名</th>
+                                                <th class="table_mail">メールアドレス</th>
+                                                <th class="table_tel">電話番号</th>
+                                                <th class="table_one">第一希望</th>
+                                                <th class="table_second">第二希望</th>
+                                                <th class="table_status">ステータス</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($trash_data as $item)
-                                                <tr>
-                                                    <td>
+                                                <tr class="table_item">
+                                                    <td class="table_day">
                                                         <span class="mt-2">{{ date('Y-m-d', strtotime($item->created_at)) }}</span>
                                                     </td>
-                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['number'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['first_date'] . ' ' . $item['first_time'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['second_date'] . ' ' . $item['second_time'] }}</span></td>
-                                                    <td>
+                                                    <td class="table_family"><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td class="table_first"><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td class="table_mail"><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td class="table_tel"><span class="mt-2">{{ $item['number'] }}</span></td>
+                                                    <td class="table_one"><span class="">{{ $item['first_date'] }}<br class="sm-hidden">{{ $item['first_time'] }}</span></td>
+                                                    <td class="table_second"><span class="">{{ $item['second_date'] }}<br class="sm-hidden">{{ $item['second_time'] }}</span></td>
+                                                    <td class="table_status">
                                                         <div class="input-group">
                                                             <select class="form-control custom-select reply_status">
-                                                                <option value="0" {{ $item['status'] == 0 ? 'selected' : '' }}>未対応</option>
-                                                                <option value="1" {{ $item['status'] == 1 ? 'selected' : '' }}>完了</option>
-                                                                <option value="2" {{ $item['status'] == 2 ? 'selected' : '' }}>削除</option>
+                                                                <option value="1" {{ $item['status'] == 1 ? 'selected' : '' }}>第一希望</option>
+                                                                <option value="2" {{ $item['status'] == 2 ? 'selected' : '' }}>第二希望</option>
+                                                                <option value="3" {{ $item['status'] == 3 ? 'selected' : '' }}>キャンセル</option>
+                                                                <option value="4" {{ $item['status'] == 4 ? 'selected' : '' }}>完了</option>
                                                             </select>
                                                             <div class="input-group-append">
                                                                 <button type="button" class="btn btn-primary change_status" data-id="{{$item->id}}" disabled>OK</button>

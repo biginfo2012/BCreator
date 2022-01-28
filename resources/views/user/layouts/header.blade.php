@@ -23,12 +23,7 @@
                                 <li id="menu-item-96"
                                     class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-94 current_page_item menu-item-96 nav-item active">
                                     <a href="{{ route('mypage') }}"
-                                       class="nav-link  menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-94 current_page_item">会員ページ</a>
-                                </li>
-                                <li id="menu-item-110"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110 nav-item">
-                                    <a href="{{ route('myfaq') }}"
-                                       class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">ヘルプ</a>
+                                       class="nav-link  menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-94 current_page_item">ダッシュボード</a>
                                 </li>
                                 <li id="menu-item-103"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103 nav-item">
@@ -40,12 +35,17 @@
                                     <a href="{{ route('archive-test') }}"
                                        class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">テスト一覧</a>
                                 </li>
+                                <li id="menu-item-110"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110 nav-item">
+                                    <a href="{{ route('myfaq') }}"
+                                       class="nav-link  menu-item menu-item-type-post_type menu-item-object-page">ヘルプ</a>
+                                </li>
                             </ul>
                         @endif
 
                         <div class="pc-hidden">
                             <div class="sm_my_head_ab">
-                                <a href="{{ url('') }}">ダッシュボード</a>
+                                <a href="{{ route('mypage') }}">ダッシュボード</a>
                                 <a href="{{ route('setup') }}">アカウント設定</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -71,12 +71,12 @@
                         <div class="flex fx-itc">
                             <div class="item"><img src="{{ asset('images/no_img_head.png') }}"></div>
                             <div class="item">
-                                <span>{{ \Illuminate\Support\Facades\Auth::user()->first_name }}  {{ \Illuminate\Support\Facades\Auth::user()->last_name }}</span>
+                                <span>{{ isset(Auth::user()->username) ? Auth::user()->username : Auth::user()->first_name . ' ' . Auth::user()->last_name}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="my_head_ab" style="z-index: 1">
-                        <a href="{{ url('') }}">ダッシュボード</a>
+                        <a href="{{ route('mypage') }}">ダッシュボード</a>
                         <a href="{{ route('setup') }}">アカウント設定</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

@@ -257,6 +257,11 @@
             padding: 0 !important;
             margin: 0 !important;
         }
+        #notice_bell{
+            font-size: 18px;
+            padding-left: 10px;
+            position: relative;
+        }
     </style>
 </head>
 <body class="home page-template page-template-page-{{\Request::route()->getName()}} page-template-page-{{\Request::route()->getName()}}-php page page-id-{{isset($id) ? $id : ''}} logged-in wp-embed-responsive">
@@ -296,6 +301,7 @@
     let token = '{{csrf_token()}}';
     let user_modify = '{{route('user-modify')}}';
     let get_notice = '{{route('get-notice')}}';
+    let check_notice = '{{route('check-notice')}}';
     let get_calendar_data = '{{route('get-calendar-data')}}';
     let search_data = '{{route('search-data')}}';
 </script>

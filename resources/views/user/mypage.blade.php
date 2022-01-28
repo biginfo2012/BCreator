@@ -86,8 +86,8 @@
                                                 class="one_sent_hide sp_lift">{{$item->detail}}</span></div>
                                         <div class="box-img"><img src="{{ asset($item->thumbnail) }}"></div>
                                         <div class="box-btn">
-                                            <a class="review-btn {{count($item->review) ? '' : 'review-disabled'}}" {{ count($item->review) ? 'href=' . route('review-temp', $item->review[0]->slack) : '' }}>復習する</a>
-                                            <a class="test-btn {{count($item->test) ? '' : 'test-disabled'}}" {{ count($item->test) ? 'href=' . route('review-temp', $item->test[0]->slack) : '' }}>テストを受ける</a>
+                                            <a class="review-btn {{count($item->review) ? '' : 'review-disabled d-none'}}" {{ count($item->review) ? 'href=' . route('review-temp', $item->review[0]->slack) : '' }}>復習する</a>
+                                            <a class="test-btn {{count($item->test) ? '' : 'test-disabled d-none'}}" {{ count($item->test) ? 'href=' . route('review-temp', $item->test[0]->slack) : '' }}>テストを受ける</a>
                                         </div>
                                     </div>
                                 </div>

@@ -37,17 +37,18 @@
 }(function ($, moment) {
     // Namespace
     var pluginName = 'clndr';
+    var daysOfTheWeekTmp = ['日', '月', '火', '水', '木', '金', '土'];
 
     // This is the default calendar template. This can be overridden.
     var clndrTemplate =
         "<div class='clndr-controls'>" +
-            "<div class='clndr-control-button'>" +
-                "<span class='clndr-previous-button'>前月</span>" +
-            "</div>" +
-            "<div class='month'><%= month %> <%= year %></div>" +
-            "<div class='clndr-control-button rightalign'>" +
-                "<span class='clndr-next-button'>翌月</span>" +
-            "</div>" +
+            // "<div class='clndr-control-button'>" +
+            //     "<span class='clndr-previous-button'>前月</span>" +
+            // "</div>" +
+            "<div class='month' style='margin: auto; width: 70%'><%= year %>年 <%= month %>月</div>" +
+            // "<div class='clndr-control-button rightalign'>" +
+            //     "<span class='clndr-next-button'>翌月</span>" +
+            // "</div>" +
         "</div>" +
         "<table class='clndr-table' border='0' cellspacing='0' cellpadding='0'>" +
             "<thead>" +
@@ -340,20 +341,21 @@
     Clndr.prototype.init = function () {
         // Create the days of the week using moment's current language setting
         this.daysOfTheWeek = this.options.daysOfTheWeek || [];
+        this.daysOfTheWeek = ['日', '月', '火', '水', '木', '金', '土']
 
-        if (!this.options.daysOfTheWeek) {
-            this.daysOfTheWeek = [];
-
-            for (var i = 0; i < 7; i++) {
-                this.daysOfTheWeek.push(
-                    moment().weekday(i).format('dd').charAt(0));
-            }
-        }
-
-        // Shuffle the week if there's an offset
-        if (this.options.weekOffset) {
-            this.daysOfTheWeek = this.shiftWeekdayLabels(this.options.weekOffset);
-        }
+        // if (!this.options.daysOfTheWeek) {
+        //     this.daysOfTheWeek = [];
+        //
+        //     for (var i = 0; i < 7; i++) {
+        //         this.daysOfTheWeek.push(
+        //             moment().weekday(i).format('dd').charAt(0));
+        //     }
+        // }
+        //
+        // // Shuffle the week if there's an offset
+        // if (this.options.weekOffset) {
+        //     this.daysOfTheWeek = this.shiftWeekdayLabels(this.options.weekOffset);
+        // }
 
         // Quick and dirty test to make sure rendering is possible.
         if (!$.isFunction(this.options.render)) {
@@ -783,7 +785,7 @@
                 year: this.month.year(),
                 eventsThisInterval: null,
                 extras: this.options.extras,
-                month: this.month.format('MMMM'),
+                month: this.month.format('M'),
                 daysOfTheWeek: this.daysOfTheWeek,
                 eventsLastMonth: this.eventsLastMonth,
                 eventsNextMonth: this.eventsNextMonth,

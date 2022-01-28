@@ -12,6 +12,7 @@ class Lesson extends Model
         'title',
         'curriculum_id',
         'thumbnail',
+        'comment',
         'detail',
         'slack',
         'time',

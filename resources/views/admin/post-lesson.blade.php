@@ -44,6 +44,10 @@
                         @endif
                     </div>
                     <div class="form-group">
+                        <label class="form-label">レッスンの説明 <span class="form-label-small">40~80文字推奨</span></label>
+                        <textarea class="form-control" name="comment" rows="2" placeholder="">{{isset($lesson) ? $lesson->comment : ''}}</textarea>
+                    </div>
+                    <div class="form-group">
                         <label class="form-label">コンテンツ</label>
                         <textarea class="content" required name="detail">{{ isset($lesson) ? $lesson->detail : '' }}</textarea>
                     </div>
@@ -82,7 +86,7 @@
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <button type="submit" class="btn btn-primary btn_submit">公開</button>
+                                    <button type="submit" class="btn btn-primary btn_submit">{{ isset($lesson) && $lesson->public_status == 1 ? '更新' : '公開' }}</button>
                                 </div>
                             </div>
                         </div>

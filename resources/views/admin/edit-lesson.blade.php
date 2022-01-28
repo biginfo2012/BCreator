@@ -1,4 +1,18 @@
 <x-admin-layout>
+    <style>
+        table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before{
+            display: none !important;
+        }
+        table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after{
+            display: none !important;
+        }
+        .table td{
+            padding: 0;
+        }
+        .table thead th, .text-wrap table thead th{
+            border-bottom: 0;
+        }
+    </style>
     <div class="side-app dash_min-hei" id="edit-lesson">
         <div class="page-header">
             <h4 class="page-title">レッスン</h4>
@@ -34,30 +48,30 @@
                                             </div>
                                         </div>
                                         <table id="lesAllTable" class="table table-striped wrp_ad_table" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th class="wd-35p">
+                                            <thead class="table_head">
+                                            <tr class="w-100 d-flex">
+                                                <th class="table_title" width="35%">
                                                     <span class="parent">カリキュラム</span>
                                                     <span>タイトル</span>
                                                 </th>
-                                                <th class="wd-15p">投稿者</th>
-                                                <th class="wd-25p">最終更新日</th>
-                                                <th class="wd-15p">スラッグ</th>
-                                                <th class="wd-10p"></th>
+                                                <th class="table_contributor" width="15%"><span class="mt-2">投稿者</span></th>
+                                                <th class="table_day" width="25%"><span class="mt-2">最終更新日</span></th>
+                                                <th class="table_slug" width="15%"><span class="mt-2">スラッグ</span></th>
+                                                <th class="table_edit" width="10%"></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($all_data as $item)
-                                                <tr>
-                                                    <td>
+                                                <tr class="table_item">
+                                                    <td class="table_title">
                                                         <span class="parent">{{ $item->curriculum->title }}</span>
                                                         <span>{{ $item->title }}</span>
                                                         <span class="draft">{{ isset($item->deleted_at) ? '-削除' : ($item->public_status == 0 ? '-下書き' : '-公開済み') }}</span>
                                                     </td>
-                                                    <td><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</span></td>
-                                                    <td><span class="mt-2">{{ $item->slack }}</span></td>
-                                                    <td>
+                                                    <td class="table_contributor"><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
+                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</span></td>
+                                                    <td class="table_slug"><span class="mt-2">{{ $item->slack }}</span></td>
+                                                    <td class="table_edit">
                                                         <div class="mt-2 flex fx-bet fx-wrp">
                                                             <a href="{{ route('master.modify-lesson', $item->id) }}">編集</a>
                                                             <label class="del mb-0" data-id="{{ $item->id }}">削除</label>
@@ -81,29 +95,29 @@
                                             </div>
                                         </div>
                                         <table id="lesOpenTable" class="table table-striped wrp_ad_table" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th class="wd-35p">
+                                            <thead class="table_head">
+                                            <tr class="w-100 d-flex">
+                                                <th class="table_title" width="35%">
                                                     <span class="parent">カリキュラム</span>
                                                     <span>タイトル</span>
                                                 </th>
-                                                <th class="wd-15p">投稿者</th>
-                                                <th class="wd-25p">最終更新日</th>
-                                                <th class="wd-15p">スラッグ</th>
-                                                <th class="wd-10p"></th>
+                                                <th class="table_contributor" width="15%"><span class="mt-2">投稿者</span></th>
+                                                <th class="table_day" width="25%"><span class="mt-2">最終更新日</span></th>
+                                                <th class="table_slug" width="15%"><span class="mt-2">スラッグ</span></th>
+                                                <th class="table_edit" width="10%"></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($open_data as $item)
-                                                <tr>
-                                                    <td>
+                                                <tr class="table_item">
+                                                    <td class="table_title">
                                                         <span class="parent">{{ $item->curriculum->title }}</span>
                                                         <span>{{ $item->title }}</span>
                                                     </td>
-                                                    <td><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</span></td>
-                                                    <td><span class="mt-2">{{ $item->slack }}</span></td>
-                                                    <td>
+                                                    <td class="table_contributor"><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
+                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</span></td>
+                                                    <td class="table_slug"><span class="mt-2">{{ $item->slack }}</span></td>
+                                                    <td class="table_edit">
                                                         <div class="mt-2 flex fx-bet fx-wrp">
                                                             <a href="{{ route('master.modify-lesson', $item->id) }}">編集</a>
                                                             <label class="del mb-0" data-id="{{ $item->id }}">削除</label>
@@ -127,29 +141,29 @@
                                             </div>
                                         </div>
                                         <table id="lesDraftTable" class="table table-striped wrp_ad_table" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th class="wd-35p">
+                                            <thead class="table_head">
+                                            <tr class="w-100 d-flex">
+                                                <th class="table_title" width="35%">
                                                     <span class="parent">カリキュラム</span>
                                                     <span>タイトル</span>
                                                 </th>
-                                                <th class="wd-15p">投稿者</th>
-                                                <th class="wd-25p">最終更新日</th>
-                                                <th class="wd-15p">スラッグ</th>
-                                                <th class="wd-10p"></th>
+                                                <th class="table_contributor" width="15%"><span class="mt-2">投稿者</span></th>
+                                                <th class="table_day" width="25%"><span class="mt-2">最終更新日</span></th>
+                                                <th class="table_slug" width="15%"><span class="mt-2">スラッグ</span></th>
+                                                <th class="table_edit" width="10%"></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($draft_data as $item)
-                                                <tr>
-                                                    <td>
+                                                <tr class="table_item">
+                                                    <td class="table_title">
                                                         <span class="parent">{{ $item->curriculum->title }}</span>
                                                         <span>{{ $item->title }}</span>
                                                     </td>
-                                                    <td><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</span></td>
-                                                    <td><span class="mt-2">{{ $item->slack }}</span></td>
-                                                    <td>
+                                                    <td class="table_contributor"><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
+                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</span></td>
+                                                    <td class="table_slug"><span class="mt-2">{{ $item->slack }}</span></td>
+                                                    <td class="table_edit">
                                                         <div class="mt-2 flex fx-bet fx-wrp">
                                                             <a href="{{ route('master.modify-lesson', $item->id) }}">編集</a>
                                                             <label class="del mb-0" data-id="{{ $item->id }}">削除</label>
@@ -165,29 +179,29 @@
                                             <a class="btn btn-primary empty" href="#">ゴミ箱を空にする</a>
                                         </div>
                                         <table id="lesTrashTable" class="table table-striped wrp_ad_table" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th class="wd-35p">
+                                            <thead class="table_head">
+                                            <tr class="w-100 d-flex">
+                                                <th class="table_title" width="35%">
                                                     <span class="parent">カリキュラム</span>
                                                     <span>タイトル</span>
                                                 </th>
-                                                <th class="wd-15p">投稿者</th>
-                                                <th class="wd-25p">最終更新日</th>
-                                                <th class="wd-15p">スラッグ</th>
-                                                <th class="wd-10p"></th>
+                                                <th class="table_contributor" width="15%"><span class="mt-2">投稿者</span></th>
+                                                <th class="table_day" width="25%"><span class="mt-2">最終更新日</span></th>
+                                                <th class="table_slug" width="15%"><span class="mt-2">スラッグ</span></th>
+                                                <th class="table_edit" width="10%"></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($trash_data as $item)
-                                                <tr>
-                                                    <td>
+                                                <tr class="table_item">
+                                                    <td class="table_title">
                                                         <span class="parent">{{ $item->curriculum->title }}</span>
                                                         <span>{{ $item->title }}</span>
                                                     </td>
-                                                    <td><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</span></td>
-                                                    <td><span class="mt-2">{{ $item->slack }}</span></td>
-                                                    <td>
+                                                    <td class="table_contributor"><span class="mt-2">{{ $item['user']['first_name'] }}</span></td>
+                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->updated_at)) }}</span></td>
+                                                    <td class="table_slug"><span class="mt-2">{{ $item->slack }}</span></td>
+                                                    <td class="table_edit">
                                                         <div class="flex fx-bet fx-wrp mt-2">
                                                             <label class="restore mb-0" data-id="{{ $item->id }}">復元</label>
                                                             <label class="complete-del mb-0" data-id="{{ $item->id }}">完全削除</label>
@@ -208,9 +222,9 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-            drawDataTable('lesAllTable');
-            drawDataTable('lesOpenTable');
-            drawDataTable('lesDraftTable');
+            drawDataTableWithOrder('lesAllTable');
+            drawDataTableWithOrder('lesOpenTable');
+            drawDataTableWithOrder('lesDraftTable');
             drawDataTable('lesTrashTable');
 
             $('.del').click(function () {

@@ -27,7 +27,7 @@ Route::get('discount', [TopController::class, 'discount'])->name('discount');
 Route::get('counseling', [TopController::class, 'counseling'])->name('counseling');
 Route::get('reserve', [TopController::class, 'reserve'])->name('reserve');
 Route::post('save-reserve', [TopController::class, 'saveReserve'])->name('save-reserve');
-
+Route::get('withdrawal-complete', [TopController::class, 'withdrawalComplete'])->name('withdrawal-complete');
 Route::group(['middleware' => 'auth'], function (){
     /*user part*/
     Route::group(['middleware' => ['permission:user|admin']], function () {
@@ -55,8 +55,14 @@ Route::group(['middleware' => 'auth'], function (){
 
         Route::post('get-calendar-data', [UserController::class, 'getCalendarData'])->name('get-calendar-data');
         Route::post('search-data', [UserController::class, 'searchData'])->name('search-data');
+        Route::post('get-notice', [UserController::class, 'getNotice'])->name('get-notice');
+        Route::post('check-notice', [UserController::class, 'checkNotice'])->name('check-notice');
+
+        Route::get('withdrawal', [UserController::class, 'withdrawal'])->name('withdrawal');
+
+        Route::post('user-exit', [UserController::class, 'userExit'])->name('user-exit');
     });
-    Route::post('get-notice', [TopController::class, 'getNotice'])->name('get-notice');
+
     /*master part*/
     Route::prefix('master')->group(function () {
         Route::group(['middleware' => ['can:admin']], function () {

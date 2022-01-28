@@ -16,7 +16,7 @@
     </style>
     <div class="wrp_my-box">
         <div class="container">
-            @if(Auth::user()->role != 3)
+            @if(Auth::user()->role != 3 && Auth::user()->role != 1)
                 <div class="bank-alert_box">
                     <span class="item_title">銀行振込が確認できておりません</span>
                     <span>受講料のご入金が確認がまだ完了しておりません、今しばらくお待ちください。<br>お振込みがお済みでない方はお手続きをよろしくお願いいたします。お振込先や受講料金についてはユーザー登録時に記入いただいたメールアドレスに記載があります。ご確認ください。</span>
@@ -36,12 +36,13 @@
                         <form id="user_modify">
                             @csrf
                             <div class="wrp_prof-info">
-                                <div class="img"><a href="#"> <img src="{{ asset('images/no_img_head.png') }}"> </a></div>
-                                <div class="name input"><span>ユーザー名</span> <input type="text" value="{{$user->last_name}}" name="last_name" required></div>
+                                <div class="img"><a id="profile-image-btn"> <img src="{{ isset(Auth::user()->image) ? asset(Auth::user()->image) : asset('images/no_img_head.png') }}" id="img_avatar"> </a></div>
+                                <input type="file" id="avatar" class="profile-image-input" name="file" style="display: none">
+                                <div class="name input"><span>ユーザー名</span> <input type="text" value="{{$user->username}}" name="username" required></div>
                                 <div class="mail input"><span>メールアドレス</span> <input type="email" value="{{$user->email}}" name="email" required></div>
-                                <div class="pass input"><span>パスワード</span> <input type="password" minlength="6" required></div>
+                                <div class="pass input"><span>パスワード</span> <input type="password" minlength="8" name="password" required></div>
                                 <div class="wrp_gen-btn"><a class="gen-btn btn_submit" href="#">更新</a></div>
-                                <div class="wrp_deact"><a class="deact" href="#">退会手続きはこちら</a></div>
+                                <div class="wrp_deact"><a class="deact" href="{{ route('withdrawal') }}">退会手続きはこちら</a></div>
                             </div>
                         </form>
                     </div>
@@ -134,6 +135,20 @@
             $('.btn_submit').click(function (e) {
                 e.preventDefault();
                 saveForm('user_modify', user_modify)
+            })
+            $('#profile-image-btn').click(function () {
+                $('#avatar').click()
+            });
+            $('#avatar').change(function () {
+                var files = $('#avatar')[0].files;
+                // FileReader support
+                if (FileReader && files && files.length) {
+                    var fr = new FileReader();
+                    fr.onload = function () {
+                        document.getElementById('img_avatar').src = fr.result;
+                    }
+                    fr.readAsDataURL(files[0]);
+                }
             })
         })
     </script>

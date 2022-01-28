@@ -197,8 +197,6 @@
 .wrp_prof-info .input{font-size: 14px; max-width: 300px; margin: 0 auto 40px;}
 .wrp_prof-info .input span{font-size: 12px; color: #adadad;}
 .wrp_prof-info .img a img{border-radius: 50%;}
-.wrp_prof-info .name{}
-.wrp_prof-info .mail{}
 .wrp_prof-info .pass{margin-bottom: 60px;}
 .wrp_prof-info input[type="text"]{border: none; border-bottom: solid 1.5px #ccc; width: 100%;}
 .wrp_prof-info .wrp_gen-btn{margin-bottom: 30px;}
@@ -242,6 +240,10 @@
 .wrp_my-box .bank-alert_box span{display: block; margin-bottom: 10px; font-size: 14px;}
 .wrp_my-box .bank-alert_box .item_title{margin-bottom: 20px; font-size: 16px; font-weight: bold; color: #ff0000;}
 
+/*--- setup-modal ---*/
+.setup-modal{display: none; position: fixed; z-index: 1; left: 0; top: 0; height: 100%; width: 100%; overflow: auto; background-color: rgba(0,0,0,0.5);}
+.setup-modal .modal-content{background-color: white; width: 500px; margin: 40% auto;}
+
 
 /*--- contact ---*/
 #contact .title{max-width: 650px; margin: 0 auto;}
@@ -261,6 +263,26 @@
 #contact-complete .return_top{text-align: center;}
 #contact-complete .return_top .return_top_btn{display: inline-block; padding: 15px 70px; color: #fff; background-color: #ea2828;}
 #contact-complete .return_top .return_top_btn i{margin-left: 10px;}
+
+/*--- withdrawal ---*/
+#withdrawal .title{max-width: 650px; margin: 0 auto;}
+#withdrawal .title span{display: block;}
+#withdrawal .title .main{text-align: center; font-size: 36px; color: #333; font-weight: 600; margin-bottom: 30px;}
+#withdrawal .title .sub{color: #777; font-size: 14px; margin-bottom: 5px;}
+#withdrawal .title ul{color: #777;}
+#withdrawal .title ul li{font-size: 14px; padding-left: 20px; position: relative;}
+#withdrawal .title ul li::before{content: '・'; position: absolute; left: 0; top: 0; bottom: 0; margin: auto; width: 5px; height: 20px;}
+#withdrawal select{width: 100%; padding: 12px 20px; height: 48px; font-size: 14px; border: solid 1px #ccc; border-radius: 5px; position: relative; -webkit-appearance: none; -moz-appearance: none; appearance: none;}
+#withdrawal .wrp_select{position: relative; width: 100%;}
+#withdrawal .wrp_select::after{content: '\f107'; font-weight: 900; font-family: "Font Awesome 5 Free"; position: absolute; top: 0; bottom: 0; right: 25px; margin: auto 0; color: #878787; width: 5px; height: 25px; display: block; pointer-events: none;}
+
+/*--- withdrawal-complete ---*/
+#withdrawal-complete.fix-box{padding: 170px 0;}
+#withdrawal-complete .title{max-width: 650px; margin: 0 auto 50px;}
+#withdrawal-complete .title span{display: block;}
+#withdrawal-complete .title .main{text-align: center; font-size: 36px; color: #333; font-weight: 600; margin-bottom: 30px;}
+#withdrawal-complete .title .sub{color: #777; font-size: 14px; margin-bottom: 0px; text-align: center;}
+
 
 /*--- lesson ---*/
 #lesson-review-temp .wrp_content{background-color: #fff; padding: 50px 70px; color: #333; position: relative;}
@@ -415,6 +437,9 @@
     /*--- contact ---*/
     #contact .title{max-width: 600px;}
 
+    /*--- withdrawal ---*/
+    #withdrawal .title{max-width: 600px;}
+
     /*--- test ---*/
     #test-temp .wrp_content{padding: 50px 30px 40px;}
 
@@ -510,6 +535,13 @@
 
     /*--- contact-complete ---*/
     #contact-complete.fix-box{padding: 100px 0;}
+
+    /*--- withdrawal ---*/
+    #withdrawal .title .main{font-size: 30px;}
+    #withdrawal .title ul li{font-size: 13px;}
+
+    /*--- withdrawal-complete ---*/
+    #withdrawal-complete.fix-box{padding: 100px 0;}
 
     /*--- lesson ---*/
     #lesson-review-temp .wrp_content{padding: 50px 15px 20px;}

@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Card;
 use App\Models\Contact;
 use App\Models\Curriculum;
 use App\Models\Lesson;
 use App\Models\Media;
 use App\Models\Notice;
+use App\Models\NoticeUser;
 use App\Models\Payment;
 use App\Models\Reserve;
 use App\Models\Review;
 use App\Models\SiteSetting;
+use App\Models\StudyHistory;
 use App\Models\Test;
 use App\Models\User;
 use App\Models\UserCurriculum;
+use App\Models\UserExit;
 use App\Models\UserLesson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,14 +32,14 @@ class AdminController extends Controller
         $this->middleware(['permission:admin']);
     }
     public function dashboard(){
-        $cnt_users = User::get()->count();
+        $cnt_users = User::whereNull('deleted_at')->get()->count();
         $first_date = date('Y-m-01') . ' 00:00:00';
-        $cnt_month_user = User::where('created_at' ,'>=', $first_date)->get()->count();
+        $cnt_month_user = User::where('created_at' ,'>=', $first_date)->whereNull('deleted_at')->get()->count();
         $current_users = User::orderBy('created_at', 'desc')->take(5)->get();
         $today = date('Y-m-d') . ' 00:00:00';
-        $login_users = User::where('role', 2)->where('login_at', '>=', $today)->orderBy('login_at', 'desc')->take(5)->get();
+        $login_users = User::where('role', '!=', 1)->whereNotNull('login_at')->where('login_at' ,'>=', $today)->orderBy('login_at', 'desc')->take(5)->get();
         $total_pay = Payment::get()->sum('amount');
-        $cnt_lessons = Lesson::get()->count();
+        $cnt_lessons = Lesson::where('public_status', 1)->whereNull('deleted_at')->get()->count();
         return view('admin.dashboard', compact('cnt_users', 'cnt_month_user', 'current_users', 'login_users', 'total_pay', 'cnt_lessons'));
     }
 
@@ -623,10 +627,23 @@ class AdminController extends Controller
     }
     public function completeDeleteUser(Request $request){
         User::where('id', $request->id)->delete();
+        Card::where('user_id', $request->id)->delete();
+        NoticeUser::where('user_id', $request->id)->delete();
+        StudyHistory::where('user_id', $request->id)->delete();
+        UserCurriculum::where('user_id', $request->id)->delete();
+        UserExit::where('user_id', $request->id)->delete();
+        UserLesson::where('user_id', $request->id)->delete();
         return response()->json(['status' => true]);
     }
     public function emptyTrashUser(Request $request){
+        $user_ids = User::whereNotNull('deleted_at')->pluck('id');
         User::whereNotNull('deleted_at')->delete();
+        Card::whereIn('user_id', $user_ids)->delete();
+        NoticeUser::whereIn('user_id', $user_ids)->delete();
+        StudyHistory::whereIn('user_id', $user_ids)->delete();
+        UserCurriculum::whereIn('user_id', $user_ids)->delete();
+        UserExit::whereIn('user_id', $user_ids)->delete();
+        UserLesson::whereIn('user_id', $user_ids)->delete();
         return response()->json(['status' => true]);
     }
     public function activeUser(Request $request){

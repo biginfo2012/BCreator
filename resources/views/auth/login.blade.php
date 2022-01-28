@@ -28,7 +28,7 @@
                         <span>ログイン</span></div>
                     <div class="wrp-input-box">
                         <x-auth-validation-errors class="mb-1" :errors="$errors" />
-                        <div class="item mail"><input type="email" name="email" placeholder="メールアドレス" required></div>
+                        <div class="item mail"><input type="text" name="email" placeholder="メールアドレス(ユーザー名)" required></div>
                         <div class="item pass"><input type="password" name="password" placeholder="パスワード(8文字以上)" minlength="8" required></div>
                         <div class="item save"><label><input id="remember_me" type="checkbox" name="remember">ログイン情報を保存する</label></div>
                     </div>

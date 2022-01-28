@@ -1,4 +1,12 @@
 <x-admin-layout>
+    <style>
+        .table td{
+            padding: 0;
+        }
+        .table thead th, .text-wrap table thead th{
+            border-bottom: 0;
+        }
+    </style>
     <div class="side-app dash_min-hei" id="edit-user">
         <div class="page-header">
             <h4 class="page-title">ユーザー</h4>
@@ -22,20 +30,20 @@
                                 <div class="tab-content">
                                     <div class="tab-pane active show" id="us-open">
                                         <table id="userAllTable" class="table table-striped wrp_ad_table" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th class="wd-25p">ID</th>
-                                                <th class="wd-10p">姓</th>
-                                                <th class="wd-10p">名</th>
-                                                <th class="wd-15p">メール</th>
-                                                <th class="wd-10p">会員レベル</th>
-                                                <th class="wd-15p">登録日</th>
-                                                <th class="wd-15p">最終ログイン</th>
+                                            <thead class="table_head">
+                                            <tr class="w-100 d-flex">
+                                                <th class="table_id" width="15%"><span>ID</span></th>
+                                                <th class="table_family" width="12.5%"><span>姓</span></th>
+                                                <th class="table_first" width="12.5%"><span>名</span></th>
+                                                <th class="table_mail" width="20%"><span>メール</span></th>
+                                                <th class="table_level" width="15%"><span>会員レベル</span></th>
+                                                <th class="table_day" width="12.5%"><span>登録日</span></th>
+                                                <th class="table_login" width="12.5%"><span>最終ログイン</span></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($all_data as $id => $item)
-                                                <tr>
+                                                <tr class="table_item">
                                                     <td class="table_id">
                                                         <span>{{ $id+1 }}</span>
                                                         <div class="flex fx-wrp">
@@ -44,12 +52,12 @@
                                                             <a href="#" class="del" data-id="{{$item->id}}">削除</a>
                                                         </div>
                                                     </td>
-                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : ($item['role'] == 2 ? '無料会員' : ($item['role'] == 3 ? '有料会員' : '銀行未振込')) }}</span></td>
-                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
-                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
+                                                    <td class="table_family"><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td class="table_first"><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td class="table_mail"><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td class="table_level"><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : ($item['role'] == 2 ? '無料会員' : ($item['role'] == 3 ? '有料会員' : '銀行未振込')) }}</span></td>
+                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
+                                                    <td class="table_login"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -57,20 +65,20 @@
                                     </div>
                                     <div class="tab-pane" id="us-stop">
                                         <table id="userStopTable" class="table table-striped wrp_ad_table" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th class="wd-25p">ID</th>
-                                                <th class="wd-10p">姓</th>
-                                                <th class="wd-10p">名</th>
-                                                <th class="wd-15p">メール</th>
-                                                <th class="wd-10p">会員レベル</th>
-                                                <th class="wd-15p">登録日</th>
-                                                <th class="wd-15p">最終ログイン</th>
+                                            <thead class="table_head">
+                                            <tr class="w-100 d-flex">
+                                                <th class="table_id" width="15%"><span>ID</span></th>
+                                                <th class="table_family" width="12.5%"><span>姓</span></th>
+                                                <th class="table_first" width="12.5%"><span>名</span></th>
+                                                <th class="table_mail" width="20%"><span>メール</span></th>
+                                                <th class="table_level" width="15%"><span>会員レベル</span></th>
+                                                <th class="table_day" width="12.5%"><span>登録日</span></th>
+                                                <th class="table_login" width="12.5%"><span>最終ログイン</span></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($stop_data as $id => $item)
-                                                <tr>
+                                                <tr class="table_item">
                                                     <td class="table_id">
                                                         <span>{{ $id+1 }}</span>
                                                         <div class="flex fx-wrp">
@@ -78,12 +86,12 @@
                                                             <a href="#" class="del" data-id="{{$item->id}}">削除</a>
                                                         </div>
                                                     </td>
-                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : ($item['role'] == 2 ? '無料会員' : ($item['role'] == 3 ? '有料会員' : '銀行未振込')) }}</span></td>
-                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
-                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
+                                                    <td class="table_family"><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td class="table_first"><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td class="table_mail"><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td class="table_level"><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : ($item['role'] == 2 ? '無料会員' : ($item['role'] == 3 ? '有料会員' : '銀行未振込')) }}</span></td>
+                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
+                                                    <td class="table_login"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -94,20 +102,20 @@
                                             <a class="btn btn-primary empty" href="#">ゴミ箱を空にする</a>
                                         </div>
                                         <table id="userTrashTable" class="table table-striped wrp_ad_table" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th class="wd-25p">ID</th>
-                                                <th class="wd-10p">姓</th>
-                                                <th class="wd-10p">名</th>
-                                                <th class="wd-15p">メール</th>
-                                                <th class="wd-10p">会員レベル</th>
-                                                <th class="wd-15p">登録日</th>
-                                                <th class="wd-15p">最終ログイン</th>
+                                            <thead class="table_head">
+                                            <tr class="w-100 d-flex">
+                                                <th class="table_id" width="15%"><span>ID</span></th>
+                                                <th class="table_family" width="12.5%"><span>姓</span></th>
+                                                <th class="table_first" width="12.5%"><span>名</span></th>
+                                                <th class="table_mail" width="20%"><span>メール</span></th>
+                                                <th class="table_level" width="15%"><span>会員レベル</span></th>
+                                                <th class="table_day" width="12.5%"><span>登録日</span></th>
+                                                <th class="table_login" width="12.5%"><span>最終ログイン</span></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($trash_data as $id => $item)
-                                                <tr>
+                                                <tr class="table_item">
                                                     <td class="table_id">
                                                         <span>{{ $id+1 }}</span>
                                                         <div class="flex fx-wrp">
@@ -115,12 +123,12 @@
                                                             <a href="#" class="complete-del" data-id="{{$item->id}}">完全削除</a>
                                                         </div>
                                                     </td>
-                                                    <td><span class="mt-2">{{ $item['first_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['last_name'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['email'] }}</span></td>
-                                                    <td><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : ($item['role'] == 2 ? '無料会員' : ($item['role'] == 3 ? '有料会員' : '銀行未振込')) }}</span></td>
-                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
-                                                    <td><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
+                                                    <td class="table_family"><span class="mt-2">{{ $item['first_name'] }}</span></td>
+                                                    <td class="table_first"><span class="mt-2">{{ $item['last_name'] }}</span></td>
+                                                    <td class="table_mail"><span class="mt-2">{{ $item['email'] }}</span></td>
+                                                    <td class="table_level"><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : ($item['role'] == 2 ? '無料会員' : ($item['role'] == 3 ? '有料会員' : '銀行未振込')) }}</span></td>
+                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
+                                                    <td class="table_login"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

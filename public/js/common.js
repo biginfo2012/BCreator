@@ -1,5 +1,9 @@
 $(document).ready(function () {
     getNotice();
+    $('#notice_bell').click(function () {
+        checkNotice();
+
+    })
 })
 function saveForm(index, url, reload=false) {
     let id = '#' + index;
@@ -15,7 +19,7 @@ function saveForm(index, url, reload=false) {
                 console.log(response);
                 if(response.status){
                     if($('[name=preview]').val() == '1'){
-                        window.location.href = preview_url
+                        window.open(preview_url, '_blank');
                     }
                     else{
                         $.growl.notice({
@@ -43,6 +47,44 @@ function saveForm(index, url, reload=false) {
 }
 
 function drawDataTable(index) {
+    let id = '#' + index;
+    $(id).DataTable({
+        "dom": '<"d-none"i>rt<"d-none"fl><""p><"clear">',
+        "searching": false,
+        "ordering": false,
+        "pageLength": 20,
+        "language": {
+            "decimal":        "",
+            "emptyTable":     "現在ありません",
+            "info":           "_TOTAL_個の資料の中で_START_~_END_が現示されます。",
+            "infoEmpty":      "0~0の0を表示。",
+            "infoFiltered":   "(filtered from _MAX_ total entries)",
+            "infoPostFix":    "",
+            "thousands":      ",",
+            "lengthMenu":     " _MENU_ ",
+            "loadingRecords": "ロード中...",
+            "processing":     "処理中...",
+            "search":         "検索:",
+            "zeroRecords":    "一致する検索資料がありません。",
+            "paginate": {
+                "first":      "初めに",
+                "last":       "最後",
+                "next":       "次へ",
+                "previous":   "前へ"
+            },
+            "aria": {
+                "sortAscending":  ": ",
+                "sortDescending": ": "
+            },
+            "columnDefs": [
+                { "orderable": false, "targets": 2 }
+            ]
+        },
+        "fixedColumns": true,
+        "aaSorting": []
+    });
+}
+function drawDataTableWithOrder(index) {
     let id = '#' + index;
     $(id).DataTable({
         "dom": '<"d-none"i>rt<"d-none"fl><""p><"clear">',
@@ -180,14 +222,39 @@ function getNotice() {
         type:'post',
         success: function (response) {
             $('#notice').html(response)
-            $('#notice_bell').attr('data-after', $('#total_notice_count').val());
+            if($('#total_notice_count').val() != 0){
+                $('#notice_bell').attr('data-after', $('#total_notice_count').val());
+            }
+            else{
+                $('#notice_bell').removeClass('notice_bell');
+            }
+
         },
         error: function () {
 
         }
     });
-
 }
+function checkNotice() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token
+        }
+    });
+    $.ajax({
+        url: check_notice,
+        type:'post',
+        data: {
+            notice_ids : $('#notice_ids').val(),
+        },
+        success: function (response) {
+        },
+        error: function () {
+
+        }
+    });
+}
+
 function searchData(type){
     let keyword = $('#keyword').val();
     console.log(type)

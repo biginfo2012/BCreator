@@ -1,4 +1,12 @@
 <x-admin-layout>
+    <style>
+        .table td{
+            padding: 0;
+        }
+        .table thead th, .text-wrap table thead th{
+            border-bottom: 0;
+        }
+    </style>
     <div class="side-app dash_min-hei" id="payments">
         <div class="page-header flex fx-wrp">
             <h4 class="page-title">支払い管理</h4>
@@ -18,29 +26,29 @@
         <div class="row">
             <div class="col-md-12">
                 <table id="payAllTable" class="table table-striped wrp_ad_table" style="width:100%; background: white">
-                    <thead>
-                    <tr>
-                        <th class="wd-10p">ID</th>
-                        <th class="wd-10p">姓</th>
-                        <th class="wd-10p">名</th>
-                        <th class="wd-15p">メール</th>
-                        <th class="wd-15p">日付</th>
-                        <th class="wd-25p">金額</th>
-                        <th class="wd-15p">ステータス</th>
+                    <thead class="table_head">
+                    <tr class="w-100 d-flex">
+                        <th class="table_id">ID</th>
+                        <th class="table_family">姓</th>
+                        <th class="table_first">名</th>
+                        <th class="table_mail">メール</th>
+                        <th class="table_day">日付</th>
+                        <th class="table_price">金額</th>
+                        <th class="table_status">ステータス</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($payments as $id => $item)
-                        <tr>
-                            <td>
+                        <tr class="table_item">
+                            <td class="table_id">
                                 <span>{{ $id+1 }}</span>
                             </td>
-                            <td><span>{{ $item['user']['first_name'] }}</span></td>
-                            <td><span>{{ $item['user']['last_name'] }}</span></td>
-                            <td><span>{{ $item['user']['email'] }}</span></td>
-                            <td><span>{{ date('Y-m-d', strtotime($item->created_at)) }}</span></td>
-                            <td><span>{{ '¥' . number_format($item->amount) }}</span></td>
-                            <td>
+                            <td class="table_family"><span>{{ $item['user']['first_name'] }}</span></td>
+                            <td class="table_first"><span>{{ $item['user']['last_name'] }}</span></td>
+                            <td class="table_mail"><span>{{ $item['user']['email'] }}</span></td>
+                            <td class="table_day"><span>{{ date('Y-m-d', strtotime($item->created_at)) }}</span></td>
+                            <td class="table_price"><span>{{ '¥' . number_format($item->amount) }}</span></td>
+                            <td class="table_status">
                                 <span class="{{ $item->status == 'succeeded' ? 'success' : 'fail'}}">{{ $item->status == 'succeeded' ? '成功' : '失敗'}}</span>
                             </td>
                         </tr>
@@ -55,6 +63,7 @@
             $('#payAllTable').DataTable({
                 "dom": '<"d-none"i>rt<"d-none"fl><""p><"clear">',
                 "searching": true,
+                "ordering": false,
                 "pageLength": 20,
                 "language": {
                     "decimal":        "",
