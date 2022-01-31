@@ -6,15 +6,20 @@ use App\Models\Card;
 use App\Models\Contact;
 use App\Models\Curriculum;
 use App\Models\Lesson;
+use App\Models\LessonDetail;
 use App\Models\Media;
 use App\Models\Notice;
 use App\Models\NoticeUser;
 use App\Models\Payment;
 use App\Models\Reserve;
 use App\Models\Review;
+use App\Models\ReviewDetail;
 use App\Models\SiteSetting;
 use App\Models\StudyHistory;
 use App\Models\Test;
+use App\Models\TestDetail;
+use App\Models\TestQuestion;
+use App\Models\TestQuestionItem;
 use App\Models\User;
 use App\Models\UserCurriculum;
 use App\Models\UserExit;
@@ -177,13 +182,15 @@ class AdminController extends Controller
         return view('admin.post-lesson', compact('curriculum'));
     }
     public function modifyLesson($id){
-        $lesson = Lesson::find($id);
+        $lesson = Lesson::with('det')->find($id);
         $curriculum = Curriculum::whereNull('deleted_at')->get();
-        return view('admin.post-lesson', compact('lesson', 'curriculum'));
+        $h2_cnt = LessonDetail::where('lesson_id', $id)->where('parent_id', 0)->get()->count();
+        return view('admin.post-lesson', compact('lesson', 'curriculum', 'h2_cnt'));
     }
     public function saveLesson(Request $request){
-
+        $id = 0;
         if(isset($request->id)){
+            $id = $request->id;
             $slack = Lesson::where('id', '!=', $request->id)->where('slack', $request->slack)->first();
             if(isset($slack)){
                 return response()->json(['status' => false]);
@@ -199,7 +206,7 @@ class AdminController extends Controller
                 $data = [
                     'title' => $request->title,
                     'thumbnail' => $path,
-                    'detail' => $request->detail,
+                    'comment' => $request->comment,
                     'slack' => $request->slack,
                     'order' => $request->order,
                     'time' => $request->time,
@@ -211,8 +218,8 @@ class AdminController extends Controller
             else{
                 $data = [
                     'title' => $request->title,
-                    'detail' => $request->detail,
                     'slack' => $request->slack,
+                    'comment' => $request->comment,
                     'order' => $request->order,
                     'time' => $request->time,
                     'public_status' => $request->public_status,
@@ -238,7 +245,6 @@ class AdminController extends Controller
             $data = [
                 'title' => $request->title,
                 'thumbnail' => $path,
-                'detail' => $request->detail,
                 'slack' => $request->slack,
                 'order' => $request->order,
                 'time' => $request->time,
@@ -246,7 +252,28 @@ class AdminController extends Controller
                 'user_id' => Auth::user()->id,
                 'curriculum_id' => $request->curriculum_id
             ];
-            Lesson::create($data);
+            $lesson = Lesson::create($data);
+            $id = $lesson->id;
+        }
+        LessonDetail::where('lesson_id', $id)->delete();
+        $detail = json_decode($request->detail);
+        foreach($detail as $item){
+            $detail_id = LessonDetail::create([
+                'title' => $item->h2_title,
+                'content' => $item->h2_content,
+                'lesson_id' => $id,
+            ])->id;
+            $h3_detail = $item->h3_detail;
+            if(count($h3_detail) > 0){
+                foreach ($h3_detail as $tmp_item){
+                    LessonDetail::create([
+                        'title' => $tmp_item->h3_title,
+                        'content' => $tmp_item->h3_content,
+                        'lesson_id' => $id,
+                        'parent_id' => $detail_id
+                    ]);
+                }
+            }
         }
 
         return response()->json(['status' => true]);
@@ -314,22 +341,24 @@ class AdminController extends Controller
         return view('admin.post-review', compact('curriculum', 'lesson', 'curricula'));
     }
     public function modifyReview($id){
-        $review = Review::find($id);
+        $review = Review::with('det')->find($id);
         $curricula = Curriculum::with('review')->whereNull('deleted_at')->get();
         $curriculum =  Lesson::with('curriculum')->select(DB::raw('t.*'))
             ->from(DB::raw('(SELECT * FROM lessons ORDER BY created_at DESC) t'))
             ->groupBy('t.curriculum_id')
             ->get();
         $lesson = Lesson::with('review')->whereNull('deleted_at')->get();
-        return view('admin.post-review', compact('lesson', 'curriculum', 'review', 'curricula'));
+        $h2_cnt = ReviewDetail::where('review_id', $id)->where('parent_id', 0)->get()->count();
+        return view('admin.post-review', compact('lesson', 'curriculum', 'review', 'curricula', 'h2_cnt'));
     }
     public function saveReview(Request $request){
         $lesson = $request->lesson_id;
         $str_arr = explode('-', $lesson);
         $curriculum_id = $str_arr[0];
         $lesson_id = empty($str_arr[1]) ? null : $str_arr[1];
-
+        $id = 0;
         if(isset($request->id)){
+            $id = $request->id;
             $slack = Review::where('id', '!=', $request->id)->where('slack', $request->slack)->first();
             if(isset($slack)){
                 return response()->json(['status' => false]);
@@ -393,9 +422,28 @@ class AdminController extends Controller
                 'curriculum_id' => $curriculum_id,
                 'lesson_id' => $lesson_id
             ];
-            Review::create($data);
+            $id = Review::create($data)->id;
         }
-
+        ReviewDetail::where('review_id', $id)->delete();
+        $detail = json_decode($request->detail);
+        foreach($detail as $item){
+            $detail_id = ReviewDetail::create([
+                'title' => $item->h2_title,
+                'content' => $item->h2_content,
+                'review_id' => $id,
+            ])->id;
+            $h3_detail = $item->h3_detail;
+            if(count($h3_detail) > 0){
+                foreach ($h3_detail as $tmp_item){
+                    ReviewDetail::create([
+                        'title' => $tmp_item->h3_title,
+                        'content' => $tmp_item->h3_content,
+                        'review_id' => $id,
+                        'parent_id' => $detail_id
+                    ]);
+                }
+            }
+        }
         return response()->json(['status' => true]);
     }
     public function previewReview($id){
@@ -437,14 +485,19 @@ class AdminController extends Controller
         return view('admin.post-test', compact('curriculum', 'lesson', 'curricula'));
     }
     public function modifyTest($id){
-        $test = Test::find($id);
+        $test = Test::with('dt')->find($id);
+//        print_r($test);
+//        die();
         $curricula = Curriculum::with('test')->whereNull('deleted_at')->get();
         $curriculum =  Lesson::with('curriculum')->select(DB::raw('t.*'))
             ->from(DB::raw('(SELECT * FROM lessons ORDER BY created_at DESC) t'))
             ->groupBy('t.curriculum_id')
             ->get();
         $lesson = Lesson::whereNull('deleted_at')->get();
-        return view('admin.post-test', compact('lesson', 'curriculum', 'test', 'curricula'));
+        $h2_cnt = TestDetail::where('test_id', $id)->where('parent_id', 0)->get()->count();
+        $detail_ids = TestDetail::where('test_id', $id)->pluck('id');
+        $question_cnt = TestQuestion::whereIn('detail_id', $detail_ids)->get()->count();
+        return view('admin.post-test', compact('lesson', 'curriculum', 'test', 'curricula', 'h2_cnt', 'question_cnt'));
     }
     public function saveTest(Request $request){
         $lesson = $request->lesson_id;
@@ -453,6 +506,7 @@ class AdminController extends Controller
         $lesson_id = empty($str_arr[1]) ? null : $str_arr[1];
 
         if(isset($request->id)){
+            $id = $request->id;
             $slack = Test::where('id', '!=', $request->id)->where('slack', $request->slack)->first();
             if(isset($slack)){
                 return response()->json(['status' => false]);
@@ -513,13 +567,97 @@ class AdminController extends Controller
                 'curriculum_id' => $curriculum_id,
                 'lesson_id' => $lesson_id
             ];
-            Test::create($data);
+            $id = Test::create($data)->id;
+        }
+        $detail_ids = TestDetail::where('test_id', $id)->pluck('id');
+        foreach ($detail_ids as $di){
+            $question_ids = TestQuestion::where('detail_id', $di)->pluck('id');
+            TestQuestionItem::whereIn('question_id', $question_ids)->delete();
+            TestQuestion::where('detail_id', $di)->delete();
+        }
+        TestDetail::where('test_id', $id)->delete();
+        $detail = json_decode($request->detail);
+        foreach($detail as $item){
+            $detail_id = TestDetail::create([
+                'title' => $item->h2_title,
+                'content' => $item->h2_content,
+                'test_id' => $id,
+            ])->id;
+            $h2_question = $item->h2_question;
+            if(count($h2_question) > 0){
+                foreach ($h2_question as $tmp_item){
+                    $test_question_id = TestQuestion::create([
+                        'detail_id' => $detail_id,
+                        'question_tag' => $tmp_item->question_tag
+                    ])->id;
+                    $question_answer = $tmp_item->question_answer;
+                    if(count($question_answer) > 0){
+                        foreach ($question_answer as $index => $answer_item){
+                            if($index == 0){
+                                $data = [
+                                    'question_id' => $test_question_id,
+                                    'type' => 1,
+                                    'item' => $answer_item
+                                ];
+                            }
+                            else{
+                                $data = [
+                                    'question_id' => $test_question_id,
+                                    'item' => $answer_item
+                                ];
+                            }
+                            TestQuestionItem::create($data);
+                        }
+                    }
+                }
+            }
+            $h3_detail = $item->h3_detail;
+            if(count($h3_detail) > 0){
+                foreach ($h3_detail as $tmp_item){
+                    $detail3_id = TestDetail::create([
+                        'title' => $tmp_item->h3_title,
+                        'content' => $tmp_item->h3_content,
+                        'test_id' => $id,
+                        'parent_id' => $detail_id
+                    ])->id;
+                    $h3_question = $tmp_item->h3_question;
+                    if(count($h3_question) > 0){
+                        foreach ($h3_question as $tmp3_item){
+                            $test_question_id = TestQuestion::create([
+                                'detail_id' => $detail3_id,
+                                'question_tag' => $tmp3_item->question_tag
+                            ])->id;
+                            $question_answer = $tmp3_item->question_answer;
+                            if(count($question_answer) > 0){
+                                foreach ($question_answer as $index => $answer_item){
+                                    if($index == 0){
+                                        $data = [
+                                            'question_id' => $test_question_id,
+                                            'type' => 1,
+                                            'item' => $answer_item
+                                        ];
+                                    }
+                                    else{
+                                        $data = [
+                                            'question_id' => $test_question_id,
+                                            'item' => $answer_item
+                                        ];
+                                    }
+                                    TestQuestionItem::create($data);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         return response()->json(['status' => true]);
     }
     public function previewTest($id){
-        $test = Test::with('curriculum')->where('slack', $id)->first();
-        return view('user.test-temp', compact('test'));
+        $test = Test::with('curriculum')->with('dt')->where('slack', $id)->first()->toArray();
+        $detail_ids = TestDetail::where('test_id', $test['id'])->pluck('id');
+        $question_cnt = TestQuestion::whereIn('detail_id', $detail_ids)->get()->count();
+        return view('user.test-temp', compact('test', 'question_cnt'));
     }
     public function deleteTest(Request $request){
         Test::where('id', $request->id)->update(['deleted_at' => date('Y-m-d H:i:s')]);

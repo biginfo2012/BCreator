@@ -19,6 +19,7 @@ class CreateLessonsTable extends Migration
             $table->integer('curriculum_id');
             $table->string('thumbnail');
             $table->mediumText('detail');
+            $table->string('comment');
             $table->string('slack')->nullable();
             $table->integer('time')->default(30);
             $table->integer('order')->nullable();

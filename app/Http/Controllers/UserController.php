@@ -11,6 +11,9 @@ use App\Models\Payment;
 use App\Models\Review;
 use App\Models\StudyHistory;
 use App\Models\Test;
+use App\Models\TestDetail;
+use App\Models\TestQuestion;
+use App\Models\TestResult;
 use App\Models\User;
 use App\Models\UserCurriculum;
 use App\Models\UserExit;
@@ -158,26 +161,28 @@ class UserController extends Controller
     }
 
     public function testTemp($id){
-        $test = Test::with('curriculum')->where('slack', $id)->first();
+        $test = Test::with('curriculum')->with('dt')->where('slack', $id)->first()->toArray();
         StudyHistory::updateOrCreate([
             'user_id' => Auth::user()->id,
             'title' => 'テスト学習',
             'date' => date('Y-m-d'),
             'type' => 4,
-            'test_id' => $test->id
+            'test_id' => $test['id']
         ],
             [
                 'user_id' => Auth::user()->id,
                 'title' => 'テスト学習',
                 'date' => date('Y-m-d'),
                 'type' => 4,
-                'test_id' => $test->id
+                'test_id' => $test['id']
             ]);
-        return view('user.test-temp', compact('test'));
+        $detail_ids = TestDetail::where('test_id', $test['id'])->pluck('id');
+        $question_cnt = TestQuestion::whereIn('detail_id', $detail_ids)->get()->count();
+        return view('user.test-temp', compact('test', 'question_cnt'));
     }
 
     public function lessonTemp($id){
-        $lesson = Lesson::with('curriculum')->with('review')->with('test')
+        $lesson = Lesson::with('curriculum')->with('review')->with('test')->with('det')
             ->where('slack', $id)->get()->first();
         $tmp = UserLesson::where('user_id', Auth::user()->id)->where('lesson_id', $lesson->id)->get()->first();
         $finish = 0;
@@ -216,7 +221,7 @@ class UserController extends Controller
         return response()->json(['status' => true]);
     }
     public function reviewTemp($id){
-        $review = Review::with('curriculum')->where('slack', $id)->get()->first();
+        $review = Review::with('curriculum')->with('det')->where('slack', $id)->get()->first();
         StudyHistory::updateOrCreate([
             'user_id' => Auth::user()->id,
             'title' => '復習学習',
@@ -235,6 +240,16 @@ class UserController extends Controller
     }
     public function resultTemp(){
         return view('user.result-temp');
+    }
+    public function testResult(Request $request){
+        $id = TestResult::create([
+            'test_id' => $request->test_id,
+            'user_id' => Auth::user()->id,
+            'diff_time' => $request->diff_time,
+            'right_cnt' => $request->right_cnt,
+            'question_cnt' => $request->question_cnt
+        ])->id;
+        return response()->json(['status' => true]);
     }
     public function contact(){
         return view('user.contact');

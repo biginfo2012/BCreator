@@ -29,4 +29,7 @@ class Test extends Model
     public function lesson(){
         return $this->hasOne(Lesson::class, 'id', 'lesson_id');
     }
+    public function dt(){
+        return $this->hasMany(TestDetail::class, 'test_id', 'id')->with('question');
+    }
 }

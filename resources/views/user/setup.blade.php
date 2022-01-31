@@ -36,7 +36,7 @@
                         <form id="user_modify">
                             @csrf
                             <div class="wrp_prof-info">
-                                <div class="img"><a id="profile-image-btn"> <img src="{{ isset(Auth::user()->image) ? asset(Auth::user()->image) : asset('images/no_img_head.png') }}" id="img_avatar"> </a></div>
+                                <div class="img"><a id="profile-image-btn"> <img style="width: 160px" src="{{ isset(Auth::user()->image) ? asset(Auth::user()->image) : asset('images/no_img_head.png') }}" id="img_avatar"> </a></div>
                                 <input type="file" id="avatar" class="profile-image-input" name="file" style="display: none">
                                 <div class="name input"><span>ユーザー名</span> <input type="text" value="{{$user->username}}" name="username" required></div>
                                 <div class="mail input"><span>メールアドレス</span> <input type="email" value="{{$user->email}}" name="email" required></div>
@@ -118,7 +118,11 @@
                                                     {{$item->test->title}}
                                                 @endif
                                             </span>
-                                            <span class="sub"></span>
+                                            <span class="sub">
+                                                 @if($item->type == 2)
+                                                    {{$item->lesson->comment}}
+                                                @endif
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +138,7 @@
         $(document).ready(function () {
             $('.btn_submit').click(function (e) {
                 e.preventDefault();
-                saveForm('user_modify', user_modify)
+                saveForm('user_modify', user_modify, true)
             })
             $('#profile-image-btn').click(function () {
                 $('#avatar').click()

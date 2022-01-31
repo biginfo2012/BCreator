@@ -39,19 +39,20 @@ Route::group(['middleware' => 'auth'], function (){
         Route::get('setup', [UserController::class, 'setup'])->name('setup');
         Route::post('user-modify', [UserController::class, 'userModify'])->name('user-modify');
 
-        Route::get('curriculum-temp/{id}', [UserController::class, 'curriculumTemp'])->name('curriculum-temp');
+        Route::get('curriculum/{id}', [UserController::class, 'curriculumTemp'])->name('curriculum-temp');
         Route::post('curriculum-finish', [UserController::class, 'curriculumFinish'])->name('curriculum-finish');
 
         Route::get('contact', [UserController::class, 'contact'])->name('contact');
         Route::post('contact-complete', [UserController::class, 'contactComplete'])->name('contact-complete');
 
-        Route::get('test-temp/{id}', [UserController::class, 'testTemp'])->name('test-temp');
-        Route::get('result-temp', [UserController::class, 'resultTemp'])->name('result-temp');
+        Route::get('test/{id}', [UserController::class, 'testTemp'])->name('test-temp');
+        Route::post('result-temp', [UserController::class, 'testResult'])->name('result-temp');
+        Route::post('test-result', [UserController::class, 'testResult'])->name('test-result');
 
-        Route::get('lesson-temp/{id}', [UserController::class, 'lessonTemp'])->name('lesson-temp');
+        Route::get('lesson/{id}', [UserController::class, 'lessonTemp'])->name('lesson-temp');
         Route::post('lesson-finish', [UserController::class, 'lessonFinish'])->name('lesson-finish');
 
-        Route::get('review-temp/{id}', [UserController::class, 'reviewTemp'])->name('review-temp');
+        Route::get('review/{id}', [UserController::class, 'reviewTemp'])->name('review-temp');
 
         Route::post('get-calendar-data', [UserController::class, 'getCalendarData'])->name('get-calendar-data');
         Route::post('search-data', [UserController::class, 'searchData'])->name('search-data');

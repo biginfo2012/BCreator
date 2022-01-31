@@ -30,4 +30,7 @@ class Review extends Model
     public function lesson(){
         return $this->hasOne(Lesson::class, 'id', 'lesson_id');
     }
+    public function det(){
+        return $this->hasMany(ReviewDetail::class, 'review_id', 'id');
+    }
 }

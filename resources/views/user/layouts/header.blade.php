@@ -69,7 +69,7 @@
                 <div class="wrp_my_head_set">
                     <div class="my_head_set">
                         <div class="flex fx-itc">
-                            <div class="item"><img src="{{ asset('images/no_img_head.png') }}"></div>
+                            <div class="item"><img src="{{ isset(Auth::user()->image) ? asset(Auth::user()->image) : asset('images/no_img_head.png') }}"></div>
                             <div class="item">
                                 <span>{{ isset(Auth::user()->username) ? Auth::user()->username : Auth::user()->first_name . ' ' . Auth::user()->last_name}}</span>
                             </div>

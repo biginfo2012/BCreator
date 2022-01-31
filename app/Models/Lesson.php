@@ -35,4 +35,7 @@ class Lesson extends Model
     public function test(){
         return $this->hasOne(Test::class, 'lesson_id', 'id');
     }
+    public function det(){
+        return $this->hasMany(LessonDetail::class, 'lesson_id', 'id');
+    }
 }

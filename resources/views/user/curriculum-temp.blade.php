@@ -10,9 +10,9 @@
                                 <div class="flex fx-wrp">
                                     <div class="lesson-img"><img style="height: 100%" src="{{ asset($item->thumbnail) }}"></div>
                                     <div class="lesson-box">
-                                        <div class="box-title"><span>{{$curriculum->title}}</span> <span>目安時間：{{$item->time}}分</span></div>
+                                        <div class="box-title"><span>{{$item->title}}</span> <span>目安時間：{{$item->time}}分</span></div>
                                         <div class="box-text">
-                                            <span>{{$item->title}}</span>
+                                            <span>{{$item->comment}}</span>
                                         </div>
                                         <div class="box-btn">
                                             <div class="flex fx-ced">
