@@ -26,7 +26,7 @@
                                     </div>
                                     @if(count($dt['question']) > 0)
                                         @foreach($dt['question'] as $question)
-                                            <select class="test_select" id="{{str_replace('@', '', $question['question_tag'])}}" style="display: none">
+                                            <select class="test_select" id="{{str_replace(['/', '@'], '', $question['question_tag'])}}" style="display: none">
                                                 <option value="" disabled selected style="display:none;">選択してください</option>
                                                 @php
                                                     $qi = $question['qi'];shuffle($qi);
@@ -45,7 +45,7 @@
                                             </div>
                                             @if(count($dt_tmp['question']) > 0)
                                                 @foreach($dt_tmp['question'] as $question)
-                                                    <select class="test_select" id="{{str_replace('@', '', $question['question_tag'])}}" style="display: none">
+                                                    <select class="test_select" id="{{str_replace(['/', '@'], '', $question['question_tag'])}}" style="display: none">
                                                         <option value="" disabled selected style="display:none;">選択してください</option>
                                                         @php
                                                             $qi = $question['qi'];shuffle($qi);
@@ -140,7 +140,7 @@
                 $('.test_select').each(function () {
                     let val = $(this).find(":selected").val();
                     if(val == 1){
-                        let question_tag = '@' + $(this).attr('id') + '@';
+                        let question_tag = '/@' + $(this).attr('id') + '/';
                         right_question.push(question_tag);
                         right_cnt = right_cnt + 1;
                     }
@@ -160,12 +160,13 @@
 
                 $('#result-temp').find('[name=content]').each(function () {
                     let content = $(this).val();
-                    let str_arr = content.split('@');
+                    let str_arr = content.split('/');
                     var test_content = '';
                     for(let i = 0; i < str_arr.length; i++){
                         let str = str_arr[i];
                         if(str != ''){
                             if(str.includes('question')){
+                                str = str.replace('@', '');
                                 let tag = '#' + str + '_show';
                                 var val = $(tag).find(":selected").val();
                                 var txt = $(tag).find(":selected").text();
@@ -191,13 +192,15 @@
             })
             $('#test_part').find('[name=content]').each(function () {
                 let content = $(this).val();
-                let str_arr = content.split('@');
+                let str_arr = content.split('/');
                 var test_content = '';
                 for(let i = 0; i < str_arr.length; i++){
                     let str = str_arr[i];
                     if(str != ''){
                         if(str.includes('question')){
+                            str = str.replace('@', '');
                             let tag = '#' + str;
+                            console.log(str);
                             test_content = test_content + $(tag)[0].outerHTML.replace('display: none', '').replace(str, str + "_show")
                         }
                         else{

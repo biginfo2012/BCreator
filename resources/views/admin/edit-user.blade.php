@@ -6,6 +6,9 @@
         .table thead th, .text-wrap table thead th{
             border-bottom: 0;
         }
+        th{
+            padding-left: 0 !important;
+        }
     </style>
     <div class="side-app dash_min-hei" id="edit-user">
         <div class="page-header">
@@ -56,8 +59,8 @@
                                                     <td class="table_first"><span class="mt-2">{{ $item['last_name'] }}</span></td>
                                                     <td class="table_mail"><span class="mt-2">{{ $item['email'] }}</span></td>
                                                     <td class="table_level"><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : ($item['role'] == 2 ? '無料会員' : ($item['role'] == 3 ? '有料会員' : '銀行未振込')) }}</span></td>
-                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
-                                                    <td class="table_login"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
+                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日', strtotime($item->created_at)) }}</span></td>
+                                                    <td class="table_login"><span class="mt-2">{{ date('Y年m月d日', strtotime($item->login_at)) }}</span></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -90,8 +93,8 @@
                                                     <td class="table_first"><span class="mt-2">{{ $item['last_name'] }}</span></td>
                                                     <td class="table_mail"><span class="mt-2">{{ $item['email'] }}</span></td>
                                                     <td class="table_level"><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : ($item['role'] == 2 ? '無料会員' : ($item['role'] == 3 ? '有料会員' : '銀行未振込')) }}</span></td>
-                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
-                                                    <td class="table_login"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
+                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日', strtotime($item->created_at)) }}</span></td>
+                                                    <td class="table_login"><span class="mt-2">{{ date('Y年m月d日', strtotime($item->login_at)) }}</span></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -127,8 +130,8 @@
                                                     <td class="table_first"><span class="mt-2">{{ $item['last_name'] }}</span></td>
                                                     <td class="table_mail"><span class="mt-2">{{ $item['email'] }}</span></td>
                                                     <td class="table_level"><span class="mt-2">{{ $item['role'] == 1 ? '管理者' : ($item['role'] == 2 ? '無料会員' : ($item['role'] == 3 ? '有料会員' : '銀行未振込')) }}</span></td>
-                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->created_at)) }}</span></td>
-                                                    <td class="table_login"><span class="mt-2">{{ date('Y年m月d日 H:i', strtotime($item->login_at)) }}</span></td>
+                                                    <td class="table_day"><span class="mt-2">{{ date('Y年m月d日', strtotime($item->created_at)) }}</span></td>
+                                                    <td class="table_login"><span class="mt-2">{{ date('Y年m月d日', strtotime($item->login_at)) }}</span></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

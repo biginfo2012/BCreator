@@ -37,17 +37,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="my-sec" id="review_part" style="{{$finish == 0 ? 'display: none;' : ''}}">
-                    <div class="curriculum-summary">
-                        <div class="item_title">
-                            <span>カリキュラムの総復習/テスト</span>
-                        </div>
-                        <div class="flex fx-wrp fx-bet">
-                            <a class="review-btn {{count($curriculum->review) && $curriculum->review[0]->public_status == 1 ? '' : 'review-disabled d-none'}}" {{ count($curriculum->review) && $curriculum->review[0]->public_status == 1 ? 'href=' . route('review-temp', $curriculum->review[0]->slack) : '' }}>復習する</a>
-                            <a class="test-btn {{count($curriculum->test) && $curriculum->test[0]->public_status == 1 ? '' : 'test-disabled d-none'}}" {{ count($curriculum->test) && $curriculum->test[0]->public_status == 1 ? 'href=' . route('test-temp', $curriculum->test[0]->slack) : '' }}>テストを受ける</a>
+                @if((count($curriculum->review) && $curriculum->review[0]->public_status == 1) || (count($curriculum->test) && $curriculum->test[0]->public_status == 1))
+                    <div class="my-sec" id="review_part" style="{{$finish == 0 ? 'display: none;' : ''}}">
+                        <div class="curriculum-summary">
+                            <div class="item_title">
+                                <span>カリキュラムの総復習/テスト</span>
+                            </div>
+                            <div class="flex fx-wrp fx-bet">
+                                <a class="review-btn {{count($curriculum->review) && $curriculum->review[0]->public_status == 1 ? '' : 'review-disabled d-none'}}" {{ count($curriculum->review) && $curriculum->review[0]->public_status == 1 ? 'href=' . route('review-temp', $curriculum->review[0]->slack) : '' }}>復習する</a>
+                                <a class="test-btn {{count($curriculum->test) && $curriculum->test[0]->public_status == 1 ? '' : 'test-disabled d-none'}}" {{ count($curriculum->test) && $curriculum->test[0]->public_status == 1 ? 'href=' . route('test-temp', $curriculum->test[0]->slack) : '' }}>テストを受ける</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
+
             </div>
             <div class="my-side">
                 <div class="side-sec-tit">

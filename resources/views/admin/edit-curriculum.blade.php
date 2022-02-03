@@ -6,6 +6,9 @@
         .table thead th, .text-wrap table thead th{
             border-bottom: 0;
         }
+        th{
+            padding-left: 0 !important;
+        }
     </style>
     <div class="side-app dash_min-hei" id="edit-curriculum">
         <div class="page-header">

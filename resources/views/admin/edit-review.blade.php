@@ -12,6 +12,9 @@
         .table thead th, .text-wrap table thead th{
             border-bottom: 0;
         }
+        th{
+            padding-left: 0 !important;
+        }
     </style>
     <div class="side-app dash_min-hei" id="edit-review">
         <div class="page-header">
@@ -54,7 +57,7 @@
                                                     <span class="parent">カリキュラム-レッスン</span>
                                                     <span>タイトル</span>
                                                 </th>
-                                                <th class="table_contributor" width="15%"><span class="mt-2">投稿者</span></th>
+                                                <th class="table_contributor" width="15%" style="padding-left: 25px !important;"><span class="mt-2">投稿者</span></th>
                                                 <th class="table_day" width="25%"><span class="mt-2">最終更新日</span></th>
                                                 <th class="table_slug" width="15%"><span class="mt-2">スラッグ</span></th>
                                                 <th class="table_edit" width="10%"></th>
@@ -101,7 +104,7 @@
                                                     <span class="parent">カリキュラム-レッスン</span>
                                                     <span>タイトル</span>
                                                 </th>
-                                                <th class="table_contributor" width="15%"><span class="mt-2">投稿者</span></th>
+                                                <th class="table_contributor" width="15%" style="padding-left: 25px !important;"><span class="mt-2">投稿者</span></th>
                                                 <th class="table_day" width="25%"><span class="mt-2">最終更新日</span></th>
                                                 <th class="table_slug" width="15%"><span class="mt-2">スラッグ</span></th>
                                                 <th class="table_edit" width="10%"></th>
@@ -147,7 +150,7 @@
                                                     <span class="parent">カリキュラム-レッスン</span>
                                                     <span>タイトル</span>
                                                 </th>
-                                                <th class="table_contributor" width="15%"><span class="mt-2">投稿者</span></th>
+                                                <th class="table_contributor" width="15%" style="padding-left: 25px !important;"><span class="mt-2">投稿者</span></th>
                                                 <th class="table_day" width="25%"><span class="mt-2">最終更新日</span></th>
                                                 <th class="table_slug" width="15%"><span class="mt-2">スラッグ</span></th>
                                                 <th class="table_edit" width="10%"></th>
@@ -185,7 +188,7 @@
                                                     <span class="parent">カリキュラム-レッスン</span>
                                                     <span>タイトル</span>
                                                 </th>
-                                                <th class="table_contributor" width="15%"><span class="mt-2">投稿者</span></th>
+                                                <th class="table_contributor" width="15%" style="padding-left: 10px !important;"><span class="mt-2">投稿者</span></th>
                                                 <th class="table_day" width="25%"><span class="mt-2">最終更新日</span></th>
                                                 <th class="table_slug" width="15%"><span class="mt-2">スラッグ</span></th>
                                                 <th class="table_edit" width="10%"></th>

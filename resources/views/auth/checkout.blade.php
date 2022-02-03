@@ -49,7 +49,7 @@
                             <div class="title">
                                 <div class="flex fx-bet">
                                     <div>
-                                        <input type="radio" name="pay_setting" id="credit" value="1" checked="checked">クレジットカード
+                                        <input type="radio" name="btn" id="credit" value="1" checked="checked">クレジットカード
                                     </div>
                                     <div class="cre_image">
                                     </div>
@@ -60,13 +60,15 @@
                                     <input type="text" name="card_name" class="required " placeholder="カード名義人" size="4">
                                 </div>
                                 <div class="item cre-num">
-                                    <input type="text" name="card_number" class="required card-number" placeholder="カード番号" size="20" autocomplete="off">
+                                    <input type="text" name="creditCardText" class="required card-number creditCardText" placeholder="カード番号" size="20" autocomplete="off">
+                                    <input type="hidden" name="card_number" class="required card-number" placeholder="カード番号" size="20" autocomplete="off">
                                 </div>
                                 <div class="box cre-code">
-                                    <input type="text" name="card_month" class="required card-month" placeholder="月(MM)" size="2" style="width: 20%">
-                                    <input type="text" name="card_year" class="required card-year" placeholder="年(YYYY)" size="4" style="width: 36%">
-                                    <input type="text" name="card_cvc" class="required card-cvc" placeholder="セキュリティコード" size="4" style="width: 36%">
+                                    <input type="text" id="card_date" name="card_date" placeholder="有効期限 月/年">
+                                    <input type="text" name="card_cvc" class="required card-cvc" placeholder="セキュリティコード">
                                 </div>
+                                <input type="hidden" name="card_month" class="required card-month">
+                                <input type="hidden" name="card_year" class="required card-year">
                                 <div class='form-row row error hide'>
                                     <div class='col-md-12 form-group'>
                                         <div class='alert-danger alert'>Please correct the errors and try again.
@@ -86,18 +88,17 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="in_box">
                             <div class="title">
                                 <div class="flex fx-bet">
                                     <div>
-                                        <input type="radio" name="pay_setting" id="bank" value="2">銀行振込
+                                        <input type="radio" name="btn" id="bank" value="2">銀行振込(一括のみ)
                                     </div>
                                 </div>
                             </div>
                             <div class="content-ch how02">
-                                <span>銀行名：ゆうちょ銀行<br>店名：〇九八支店　預金種目：普通預金<br>口座番号：1847411<br>振込先：ヒナタ (ド<br><br>こちらをメモいただき、ご入金をお願いいたします。<br>ご入金の確認後、2営業日以内にメールにてサービスへの招待をいたします。</span>
+                                <span>受講料金：327,800円(税込)<br>銀行名：ゆうちょ銀行<br>店名：〇九八支店　預金種目：普通預金<br>口座番号：1847411<br>振込先：ヒナタ (ド<br><br>こちらをメモいただき、ご入金をお願いいたします。<br>ご入金の確認後、2営業日以内にメールにてサービスへの招待をいたします。</span>
                             </div>
                         </div>
                     </div>

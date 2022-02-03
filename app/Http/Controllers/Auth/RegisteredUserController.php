@@ -52,6 +52,7 @@ class RegisteredUserController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 4
         ]);
 
         $user->givePermissionTo('user');
@@ -69,8 +70,8 @@ class RegisteredUserController extends Controller
         $user_id = $request->user_id;
         $user = User::where('id', $user_id)->first();
         $password = $request->password;
-        if($request->pay_setting == 2){
-            User::where('id', $user_id)->update(['pay_setting' => $request->pay_setting, 'role' => 4]);
+        if($request->btn == 2){
+            User::where('id', $user_id)->update(['pay_setting' => $request->btn, 'role' => 4]);
             $details =[
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,

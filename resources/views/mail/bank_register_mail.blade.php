@@ -1,6 +1,6 @@
 <h2>受講手続き完了</h2>
 <p>{{$details['first_name']}} {{$details['last_name']}}様</p>
-<span>この度は、b-Creatorをご利用いただき、誠にありがとうございます。</span><br><br>
+<span>この度は、b-Creatorをご利用いただき、<br>誠にありがとうございます。</span><br><br>
 <span>下記銀行口座までご入金をよろしくお願いいたします。</span><br><br>
 <span>銀行名：ゆうちょ銀行<br>
 店名：○九八支店<br>

@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         <div class="reserve_input">
-                            <input type="text" name="number" placeholder="08012345678" autocomplete="tel" required>
+                            <input type="text" name="number" placeholder="08012345678" autocomplete="tel" required maxlength="11">
                         </div>
                     </div>
                 </div>
@@ -236,7 +236,8 @@
                 }
             })
         })
-        $('#datepicker').datepicker();
-        $('#datepicker2').datepicker();
+        var dateToday = new Date();
+        $('#datepicker').datepicker({ minDate: dateToday});
+        $('#datepicker2').datepicker({ minDate: dateToday});
     </script>
 </x-app-layout>

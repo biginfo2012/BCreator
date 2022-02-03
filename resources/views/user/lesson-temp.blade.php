@@ -70,7 +70,6 @@
                                             <input type="hidden" name="content" value="{{$item_tmp->content}}">
                                         @endif
                                     @endforeach
-
                                 @endif
                             @endforeach
                         @endif
@@ -83,17 +82,19 @@
                 <div id="finish_part" class="end_box text-center mt-4" style="{{$finish == 1 ? 'display: none;' : ''}}">
                     <a class="end_btn" data-id="{{$lesson->id}}">完了</a>
                 </div>
-                <div class="my-sec" id="review_part" style="{{$finish == 0 ? 'display: none;' : ''}}">
-                    <div class="curriculum-summary">
-                        <div class="item_title">
-                            <span>レッスン復習/テスト</span>
-                        </div>
-                        <div class="flex fx-wrp fx-bet">
-                            <a class="review-btn {{isset($lesson->review) && $lesson->review->public_status == 1 ? '' : 'review-disabled d-none'}}" {{ isset($lesson->review) && $lesson->review->public_status == 1 ? 'href=' . route('review-temp', $lesson->review->slack) : '' }}>復習する</a>
-                            <a class="test-btn {{isset($lesson->test) && $lesson->test->public_status == 1 ? '' : 'test-disabled d-none'}}" {{ isset($lesson->test) && $lesson->test->public_status == 1 ? 'href=' . route('test-temp', $lesson->test->slack) : '' }}>テストを受ける</a>
+                @if((isset($lesson->review) && $lesson->review->public_status == 1) || (isset($lesson->test) && $lesson->test->public_status == 1))
+                    <div class="my-sec" id="review_part" style="{{$finish == 0 ? 'display: none;' : ''}}">
+                        <div class="curriculum-summary">
+                            <div class="item_title">
+                                <span>レッスン復習/テスト</span>
+                            </div>
+                            <div class="flex fx-wrp fx-bet">
+                                <a class="review-btn {{isset($lesson->review) && $lesson->review->public_status == 1 ? '' : 'review-disabled d-none'}}" {{ isset($lesson->review) && $lesson->review->public_status == 1 ? 'href=' . route('review-temp', $lesson->review->slack) : '' }}>復習する</a>
+                                <a class="test-btn {{isset($lesson->test) && $lesson->test->public_status == 1 ? '' : 'test-disabled d-none'}}" {{ isset($lesson->test) && $lesson->test->public_status == 1 ? 'href=' . route('test-temp', $lesson->test->slack) : '' }}>テストを受ける</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
 
         </div>

@@ -248,6 +248,7 @@ function checkNotice() {
             notice_ids : $('#notice_ids').val(),
         },
         success: function (response) {
+            $('#notice_bell').removeClass('notice_bell');
         },
         error: function () {
 

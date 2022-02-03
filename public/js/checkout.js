@@ -96,8 +96,21 @@
 
 $(document).ready(function() {
     var $form = $("#checkout_form");
+    $('.creditCardText').keyup(function() {
+        var foo = $(this).val().split(" ").join(""); // remove hyphens
+        if (foo.length > 0) {
+            foo = foo.match(new RegExp('.{1,4}', 'g')).join(" ");
+        }
+        $(this).val(foo);
+    });
+    $('#card_date').keyup(function () {
+        var val = $(this).val();
+        if(val.length == 2){
+            val = val + '/';
+        }
+        $(this).val(val);
+    })
     $('#checkout_btn').click(function (e) {
-        console.log($('[name=pay_setting]:checked').val())
         e.preventDefault();
         if($('[name=pay_setting]:checked').val() == 1){
             if($('[name=card_name]').val() == ""){
@@ -105,22 +118,49 @@ $(document).ready(function() {
                 return;
             }
             $(document).find('input[name=card_name]').css('border-color', '#ccc');
-            if($('[name=card_number]').val() == "" || $('[name=card_number]').val().length < 16 || $('[name=card_number]').val().length > 20){
-                $(document).find('input[name=card_number]').css('border-color', 'red');
+            console.log($('[name=card_number]').val());
+            if($('[name=creditCardText]').val() == "" || $('[name=creditCardText]').val().length < 19 || $('[name=creditCardText]').val().length > 19){
+                $(document).find('input[name=creditCardText]').css('border-color', 'red');
                 return;
             }
-            $(document).find('input[name=card_number]').css('border-color', '#ccc');
-            if($('[name=card_month]').val() == "" || $('[name=card_month]').val().length > 2){
-                $(document).find('input[name=card_month]').css('border-color', 'red');
+            $(document).find('input[name=creditCardText]').css('border-color', '#ccc');
+            var cardText = $('[name=creditCardText]').val().replaceAll(' ', '');
+            $('[name=card_number]').val(cardText);
+
+            var card_date = $('input[name=card_date]').val();
+            var dateArr = card_date.split('/');
+            if(dateArr.length<2 || dateArr.length>2){
+                $(document).find('input[name=card_date]').css('border-color', 'red');
                 return;
             }
-            $(document).find('input[name=card_year]').css('border-color', '#ccc');
-            if($('[name=card_year]').val() == "" || $('[name=card_year]').val().length > 4){
-                $(document).find('input[name=card_year]').css('border-color', 'red');
-                return;
+            else{
+                if(dateArr[0] == "" || dateArr[0].length > 2){
+                    $(document).find('input[name=card_date]').css('border-color', 'red');
+                    return;
+                }
+                else if(dateArr[1] == "" || dateArr[1].length > 2){
+                    $(document).find('input[name=card_date]').css('border-color', 'red');
+                    return;
+                }
+                else{
+                    $('[name=card_month]').val(dateArr[0]);
+                    $('[name=card_year]').val(dateArr[1]);
+                }
             }
-            $(document).find('input[name=card_year]').css('border-color', '#ccc');
-            if($('[name=card_cvc]').val() == ""){
+            $(document).find('input[name=card_date]').css('border-color', '#ccc');
+
+            // if($('[name=card_month]').val() == "" || $('[name=card_month]').val().length > 2){
+            //     $(document).find('input[name=card_month]').css('border-color', 'red');
+            //     return;
+            // }
+            // $(document).find('input[name=card_month]').css('border-color', '#ccc');
+            // if($('[name=card_year]').val() == "" || $('[name=card_year]').val().length > 4){
+            //     $(document).find('input[name=card_year]').css('border-color', 'red');
+            //     return;
+            // }
+            // $(document).find('input[name=card_year]').css('border-color', '#ccc');
+
+            if($('[name=card_cvc]').val() == "" || $('[name=card_cvc]').val().length > 4){
                 $(document).find('input[name=card_cvc]').css('border-color', 'red');
                 return;
             }

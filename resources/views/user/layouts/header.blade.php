@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                         </div>
-                        @if(Auth::user()->role == 3 || Auth::user()->role == 1)
+                        @if(Auth::user()->role != 4)
                             <ul id="menu-member_nav" class="ul-hnav navbar-nav">
                                 <li id="menu-item-96"
                                     class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-94 current_page_item menu-item-96 nav-item active">
@@ -45,12 +45,14 @@
 
                         <div class="pc-hidden">
                             <div class="sm_my_head_ab">
-                                <a href="{{ route('mypage') }}">ダッシュボード</a>
+                                @if(Auth::user()->role != 4)
+                                    <a href="{{ route('mypage') }}">ダッシュボード</a>
+                                @endif
                                 <a href="{{ route('setup') }}">アカウント設定</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <a onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                                        this.closest('form').submit();" style="color: white">
                                         ログアウト
                                     </a>
                                 </form>
@@ -76,12 +78,13 @@
                         </div>
                     </div>
                     <div class="my_head_ab" style="z-index: 1">
-                        <a href="{{ route('mypage') }}">ダッシュボード</a>
+                        @if(Auth::user()->role != 4)
+                            <a href="{{ route('mypage') }}">ダッシュボード</a>
+                        @endif
                         <a href="{{ route('setup') }}">アカウント設定</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                            <a onclick="event.preventDefault();this.closest('form').submit();">
                                 ログアウト
                             </a>
                         </form>

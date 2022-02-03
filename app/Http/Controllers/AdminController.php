@@ -50,10 +50,10 @@ class AdminController extends Controller
 
 
     public function editCurriculum(){
-        $all_data = Curriculum::with('user')->whereNull('deleted_at')->get()->all();
-        $open_data = Curriculum::with('user')->where('public_status', 1)->whereNull('deleted_at')->get();
-        $draft_data = Curriculum::with('user')->where('public_status', 0)->whereNull('deleted_at')->get();
-        $trash_data = Curriculum::with('user')->whereNotNull('deleted_at')->get();
+        $all_data = Curriculum::with('user')->whereNull('deleted_at')->orderBy('order', 'desc')->get()->all();
+        $open_data = Curriculum::with('user')->where('public_status', 1)->whereNull('deleted_at')->orderBy('order', 'desc')->get();
+        $draft_data = Curriculum::with('user')->where('public_status', 0)->whereNull('deleted_at')->orderBy('order', 'desc')->get();
+        $trash_data = Curriculum::with('user')->whereNotNull('deleted_at')->orderBy('order', 'desc')->get();
         return view('admin.edit-curriculum', compact('all_data', 'open_data', 'draft_data', 'trash_data'));
     }
     public function postCurriculum(){
@@ -171,10 +171,10 @@ class AdminController extends Controller
     }
 
     public function editLesson(){
-        $all_data = Lesson::with('user')->with('curriculum')->whereNull('deleted_at')->get()->all();
-        $open_data = Lesson::with('user')->with('curriculum')->where('public_status', 1)->whereNull('deleted_at')->get();
-        $draft_data = Lesson::with('user')->with('curriculum')->where('public_status', 0)->whereNull('deleted_at')->get();
-        $trash_data = Lesson::with('user')->with('curriculum')->whereNotNull('deleted_at')->get();
+        $all_data = Lesson::with('user')->with('curriculum')->whereNull('deleted_at')->orderBy('order', 'desc')->get()->all();
+        $open_data = Lesson::with('user')->with('curriculum')->where('public_status', 1)->whereNull('deleted_at')->orderBy('order', 'desc')->get();
+        $draft_data = Lesson::with('user')->with('curriculum')->where('public_status', 0)->whereNull('deleted_at')->orderBy('order', 'desc')->get();
+        $trash_data = Lesson::with('user')->with('curriculum')->whereNotNull('deleted_at')->orderBy('order', 'desc')->get();
         return view('admin.edit-lesson', compact('all_data', 'open_data', 'draft_data', 'trash_data'));
     }
     public function postLesson(){
@@ -325,9 +325,12 @@ class AdminController extends Controller
     }
 
     public function editReview(){
-        $all_data = Review::with('user')->with('curriculum')->with('lesson')->whereNull('deleted_at')->get()->all();
-        $open_data = Review::with('user')->with('curriculum')->with('lesson')->where('public_status', 1)->whereNull('deleted_at')->get();
-        $draft_data = Review::with('user')->with('curriculum')->with('lesson')->where('public_status', 0)->whereNull('deleted_at')->get();
+        $all_data = Review::with('user')->with('curriculum')->with('lesson')->whereNull('deleted_at')
+            ->orderBy('order', 'desc')->get()->all();
+        $open_data = Review::with('user')->with('curriculum')->with('lesson')->where('public_status', 1)
+            ->whereNull('deleted_at')->orderBy('order', 'desc')->get();
+        $draft_data = Review::with('user')->with('curriculum')->with('lesson')->where('public_status', 0)
+            ->whereNull('deleted_at')->orderBy('order', 'desc')->get();
         $trash_data = Review::with('user')->with('curriculum')->with('lesson')->whereNotNull('deleted_at')->get();
         return view('admin.edit-review', compact('all_data', 'open_data', 'draft_data', 'trash_data'));
     }
@@ -469,10 +472,14 @@ class AdminController extends Controller
 
     /*test*/
     public function editTest(){
-        $all_data = Test::with('user')->with('curriculum')->with('lesson')->whereNull('deleted_at')->get()->all();
-        $open_data = Test::with('user')->with('curriculum')->with('lesson')->where('public_status', 1)->whereNull('deleted_at')->get();
-        $draft_data = Test::with('user')->with('curriculum')->with('lesson')->where('public_status', 0)->whereNull('deleted_at')->get();
-        $trash_data = Test::with('user')->with('curriculum')->with('lesson')->whereNotNull('deleted_at')->get();
+        $all_data = Test::with('user')->with('curriculum')->with('lesson')->whereNull('deleted_at')
+            ->orderBy('order', 'desc')->get()->all();
+        $open_data = Test::with('user')->with('curriculum')->with('lesson')->where('public_status', 1)
+            ->whereNull('deleted_at')->orderBy('order', 'desc')->get();
+        $draft_data = Test::with('user')->with('curriculum')->with('lesson')->where('public_status', 0)
+            ->whereNull('deleted_at')->orderBy('order', 'desc')->get();
+        $trash_data = Test::with('user')->with('curriculum')->with('lesson')->whereNotNull('deleted_at')
+            ->orderBy('order', 'desc')->get();
         return view('admin.edit-test', compact('all_data', 'open_data', 'draft_data', 'trash_data'));
     }
     public function postTest(){
@@ -676,10 +683,37 @@ class AdminController extends Controller
         return response()->json(['status' => true]);
     }
 
-
     public function gallery(){
-        $media = Media::get()->all();
-        return view('admin.gallery', compact('media'));
+        $page_start = 1;
+        $page_end = 40;
+        $limit = $page_end - $page_start;
+        $media = Media::offset($page_start-1)->limit($limit)->get();
+        $count = Media::get()->count();
+        $page = (int)($count / 40);
+        if($count > $page * 40){
+            $page = $page + 1;
+        }
+        if($page_end > $count){
+            $page_end = $count;
+        }
+        $current_page = 1;
+        return view('admin.gallery', compact('media', 'count', 'page', 'page_start' , 'page_end', 'current_page'));
+    }
+    public function getGallery(Request $request){
+        $current_page = $request->current_page;
+        $page_start = ($current_page - 1) * 40;
+        $page_end = $current_page * 40;
+        $limit = $page_end - $page_start;
+        $media = Media::offset($page_start-1)->limit($limit)->get();
+        $count = Media::get()->count();
+        $page = (int)($count / 40);
+        if($count > $page * 40){
+            $page = $page + 1;
+        }
+        if($page_end > $count){
+            $page_end = $count;
+        }
+        return view('admin.get-gallery', compact('media', 'count', 'page', 'page_start' , 'page_end', 'current_page'));
     }
     public function mediaNew(){
         return view('admin.media-new');

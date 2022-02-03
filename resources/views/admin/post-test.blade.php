@@ -619,7 +619,7 @@
                 console.log(id);
                 question_cnt = question_cnt + 1;
 
-                let question_tag = '@question_' + id + '@';
+                let question_tag = '/@question_' + id + '/';
                 let content = $(this).parent().parent().prev().find('textarea').val() + question_tag;
                 $(this).parent().parent().prev().find('textarea').val(content)
                 let question_content = '<div class="question-item" data-id="' + id + '">\n' +

@@ -50,11 +50,11 @@
                                         <table id="lesAllTable" class="table table-striped wrp_ad_table" style="width:100%">
                                             <thead class="table_head">
                                             <tr class="w-100 d-flex">
-                                                <th class="table_title" width="35%">
+                                                <th class="table_title" width="35%" style="padding-left: 0">
                                                     <span class="parent">カリキュラム</span>
                                                     <span>タイトル</span>
                                                 </th>
-                                                <th class="table_contributor" width="15%"><span class="mt-2">投稿者</span></th>
+                                                <th class="table_contributor" width="15%" style="padding-left: 40px !important;"><span class="mt-2">投稿者</span></th>
                                                 <th class="table_day" width="25%"><span class="mt-2">最終更新日</span></th>
                                                 <th class="table_slug" width="15%"><span class="mt-2">スラッグ</span></th>
                                                 <th class="table_edit" width="10%"></th>
@@ -97,11 +97,11 @@
                                         <table id="lesOpenTable" class="table table-striped wrp_ad_table" style="width:100%">
                                             <thead class="table_head">
                                             <tr class="w-100 d-flex">
-                                                <th class="table_title" width="35%">
+                                                <th class="table_title" width="35%" style="padding-left: 0">
                                                     <span class="parent">カリキュラム</span>
                                                     <span>タイトル</span>
                                                 </th>
-                                                <th class="table_contributor" width="15%"><span class="mt-2">投稿者</span></th>
+                                                <th class="table_contributor" width="15%" style="padding-left: 40px !important;"><span class="mt-2">投稿者</span></th>
                                                 <th class="table_day" width="25%"><span class="mt-2">最終更新日</span></th>
                                                 <th class="table_slug" width="15%"><span class="mt-2">スラッグ</span></th>
                                                 <th class="table_edit" width="10%"></th>
@@ -143,11 +143,11 @@
                                         <table id="lesDraftTable" class="table table-striped wrp_ad_table" style="width:100%">
                                             <thead class="table_head">
                                             <tr class="w-100 d-flex">
-                                                <th class="table_title" width="35%">
+                                                <th class="table_title" width="35%" style="padding-left: 0">
                                                     <span class="parent">カリキュラム</span>
                                                     <span>タイトル</span>
                                                 </th>
-                                                <th class="table_contributor" width="15%"><span class="mt-2">投稿者</span></th>
+                                                <th class="table_contributor" width="15%" style="padding-left: 40px !important;"><span class="mt-2">投稿者</span></th>
                                                 <th class="table_day" width="25%"><span class="mt-2">最終更新日</span></th>
                                                 <th class="table_slug" width="15%"><span class="mt-2">スラッグ</span></th>
                                                 <th class="table_edit" width="10%"></th>
@@ -181,11 +181,11 @@
                                         <table id="lesTrashTable" class="table table-striped wrp_ad_table" style="width:100%">
                                             <thead class="table_head">
                                             <tr class="w-100 d-flex">
-                                                <th class="table_title" width="35%">
+                                                <th class="table_title" width="35%" style="padding-left: 0">
                                                     <span class="parent">カリキュラム</span>
                                                     <span>タイトル</span>
                                                 </th>
-                                                <th class="table_contributor" width="15%"><span class="mt-2">投稿者</span></th>
+                                                <th class="table_contributor" width="15%" style="padding-left: 25px !important;"><span class="mt-2">投稿者</span></th>
                                                 <th class="table_day" width="25%"><span class="mt-2">最終更新日</span></th>
                                                 <th class="table_slug" width="15%"><span class="mt-2">スラッグ</span></th>
                                                 <th class="table_edit" width="10%"></th>

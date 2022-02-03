@@ -1,6 +1,6 @@
 <h2>受講手続き完了</h2>
 <p>{{$details['first_name']}} {{$details['last_name']}}様</p>
-<span>この度は、b-Creatorをご利用いただき、誠にありがとうございます。</span><br><br>
+<span>この度は、b-Creatorをご利用いただき、<br>誠にありがとうございます。</span><br><br>
 <span>以下、ご登録の内容になります。<br>
 大事に保管してください。</span><br><br>
 <span>=================================</span><br>

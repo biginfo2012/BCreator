@@ -1,6 +1,6 @@
 <h2>無料カウンセリング予約完了</h2>
 <p>{{$details['first_name']}} {{$details['last_name']}}様</p>
-<span>この度は、無料カウンセリングのご予約、誠にありがとうございます。</span><br><br>
+<span>この度は、無料カウンセリングのご予約、<br>誠にありがとうございます。</span><br><br>
 <span>以下、ご予約の内容になります。</span><br><br>
 <span>=================================</span><br>
 <span>お名前：{{$details['first_name']}} {{$details['last_name']}}</span><br>

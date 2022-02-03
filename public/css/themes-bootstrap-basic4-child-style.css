@@ -218,7 +218,7 @@ header{transition: 1.0s;}
 #fix-earn .title{color: #ff9a00; text-align: center; margin-bottom: 65px; font-weight: bold;}
 #fix-earn .title span{display: block;}
 #fix-earn .title span:nth-of-type(1){font-size: 36px;  margin-bottom: 60px; position: relative; letter-spacing: 3px; display: inline-block;}
-#fix-earn .title span:nth-of-type(1)::after{content: '当たり前を理解しよう'; position: absolute; top: -35px; left: -80px; background-color: #ea2828; color: #fff; padding: 5px 10px; font-size: 13px; letter-spacing: 1px;}
+#fix-earn .title span:nth-of-type(1)::after{content: 'å½“ãŸã‚Šå‰ã‚’ç†è§£ã—ã‚ˆã†'; position: absolute; top: -35px; left: -80px; background-color: #ea2828; color: #fff; padding: 5px 10px; font-size: 13px; letter-spacing: 1px;}
 #fix-earn .title span:nth-of-type(2){font-size: 21px; display: inline-block; position: relative; color: #000;}
 /* #fix-earn .title span:nth-of-type(2)::before,#fix-earn .title span:nth-of-type(2)::after{content: ''; border-bottom: solid 2px #000; position: absolute; top: 15.5px; width: 70px;}
 #fix-earn .title span:nth-of-type(2)::before{left: -90px;}
@@ -316,11 +316,11 @@ header{transition: 1.0s;}
 #fix-review .content .avg img{width: 130px;}
 #fix-review .wrp-graph .graph-item{margin-bottom: 7px; font-size: 13px; font-weight: bold;}
 #fix-review .wrp-graph .graph-item span:nth-of-type(1){padding-left: 20px; position: relative;}
-#fix-review .wrp-graph .graph-item span:nth-of-type(1)::before{content: '★'; color: #ea2828; position: absolute; left: 0px; top: -3px; font-size: 16px;}
+#fix-review .wrp-graph .graph-item span:nth-of-type(1)::before{content: 'â˜…'; color: #ea2828; position: absolute; left: 0px; top: -3px; font-size: 16px;}
 #fix-review .wrp-graph .graph-item span:nth-of-type(2){margin: 0 15px 0 20px;}
 #fix-review .wrp-graph .graph-item span:nth-of-type(3){width: 32px; text-align: right;}
 #fix-review .tab-item-area{position: relative;}
-#fix-review .tab-item-area::after{content: '*最新5件を掲載しております'; font-size: 10px; position: absolute; right: 5px; bottom: 5px;}
+#fix-review .tab-item-area::after{content: '*æœ€æ–°5ä»¶ã‚’æŽ²è¼‰ã—ã¦ãŠã‚Šã¾ã™'; font-size: 10px; position: absolute; right: 5px; bottom: 5px;}
 #fix-review .tab-item-area .tab-item{display: none;}
 #fix-review .tab-item-area .tab-item.show{display: block;}
 .review-box{margin-bottom: 50px;}
@@ -506,6 +506,23 @@ header{transition: 1.0s;}
 #reserve-complete .wrp_reserve_input .text{font-size: 14px; margin-bottom: 30px;}
 #reserve-complete .return_btn-box{text-align: center;}
 #reserve-complete .return_btn-box .return_btn{background-color: #00b9ef; color: #fff; text-align: center; padding: 12px 70px; margin-bottom: 20px; display: inline-block;}
+
+/* terms */
+.law-body{color: #004d61; background-color: #ededed; padding: 50px 0;}
+.law-title-box{margin-bottom: 50px;}
+.law-title-box span{display: block;}
+.law-title{font-size: 30px; font-weight: bold; margin-bottom: 30px;}
+.law-h2{font-size: 21px; font-weight: 600; border-left: solid 5px #399; padding-left: 10px;}
+.law-text-box{padding-bottom: 30px;}
+.law-text-box ol li{list-style: decimal; margin-bottom: 20px;}
+.law-text-box span{display: block;}
+.ltb-sp ol li ol li ol li{list-style: disc;}
+.law-flex-box{display: flex; width: 70%; margin: 0 auto; border-bottom: solid 1px #a8a8a8; padding: 15px 0;}
+.law-flex-box span{display: block;}
+.law-tr-term{width: 35%; font-weight: 600;}
+.law-tr-txt{width: 65%;}
+.law-box2{text-align: right;}
+#terms .t-center{text-align: center;}
 
 /*--- btn ---*/
 .btn-def{background-color: #ff9a00; color: #fff; font-weight: bold; display: inline-block; padding: 15px 40px; font-size: 14px; transition: 0.3s;}
@@ -721,6 +738,9 @@ header{transition: 1.0s;}
     /* discount */
     .dis-content .item{width: 100%;}
     .dis-content > .fx-bet{max-width: 600px; margin: 0 auto;}
+
+    /* terms */
+    .law-flex-box{width: 80%;}
 
 
 }
@@ -1026,6 +1046,13 @@ header{transition: 1.0s;}
     #reserve-complete .confirm_box .item .name span{line-height: normal;}
     #reserve-complete .confirm_box .item .content{padding: 15px;}
     #reserve-complete .wrp_reserve_input .text{font-size: 12px;}
+
+    /* terms */
+    .law-title{font-size: 27px;}
+    .law-h2{font-size: 18px;}
+    .law-title-box{margin-bottom: 30px;}
+    .law-title-box .mb30{margin-bottom: 20px !important;}
+    .law-text-box .law-h2{margin-bottom: 20px !important;}
 
     /* footer */
     .foot-logo{width: 100%; text-align: center; margin-bottom: 60px;}

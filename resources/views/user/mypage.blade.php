@@ -7,7 +7,7 @@
                         <div class="flex fx-coc fx-itc fx-wrp">
                             <div class="item prof">
                                 <div class="flex fx-itc fx-wrp">
-                                    <img src="{{ asset('images/no_img_head.png') }}">
+                                    <img src="{{ isset(Auth::user()->image) ? asset(Auth::user()->image) : asset('images/no_img_head.png') }}">
                                     <span>{{ \Illuminate\Support\Facades\Auth::user()->first_name }}  {{ \Illuminate\Support\Facades\Auth::user()->last_name }}</span>
                                 </div>
                             </div>

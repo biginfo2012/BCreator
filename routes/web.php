@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth'], function (){
         Route::get('archive-test', [UserController::class, 'archiveTest'])->name('archive-test');
         Route::get('setup', [UserController::class, 'setup'])->name('setup');
         Route::post('user-modify', [UserController::class, 'userModify'])->name('user-modify');
+        Route::post('pay-modify', [UserController::class, 'payModify'])->name('pay-modify');
 
         Route::get('curriculum/{id}', [UserController::class, 'curriculumTemp'])->name('curriculum-temp');
         Route::post('curriculum-finish', [UserController::class, 'curriculumFinish'])->name('curriculum-finish');
@@ -115,6 +116,7 @@ Route::group(['middleware' => 'auth'], function (){
             Route::post('empty-trash-test', [AdminController::class, 'emptyTrashTest'])->name('master.empty-trash-test');
 
             Route::get('gallery', [AdminController::class, 'gallery'])->name('master.gallery');
+            Route::get('get-gallery', [AdminController::class, 'getGallery'])->name('master.get-gallery');
             Route::get('media-new', [AdminController::class, 'mediaNew'])->name('master.media-new');
             Route::post('save-media', [AdminController::class, 'saveMedia'])->name('master.save-media');
 

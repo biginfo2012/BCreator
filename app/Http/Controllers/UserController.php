@@ -126,6 +126,18 @@ class UserController extends Controller
         return response()->json(['status' => true]);
     }
 
+    public function payModify(Request $request){
+        $data = [
+            'card_name' => $request->card_name,
+            'card_number' => $request->card_number,
+            'card_month' => $request->card_month,
+            'card_year' => $request->card_year,
+            'card_cvc' => $request->card_cvc,
+        ];
+        User::where('id', Auth::user()->id)->update($data);
+        return response()->json(['status' => true]);
+    }
+
     public function curriculumTemp($id){
         $curriculum = Curriculum::with('review')->with('test')->where('slack', $id)->get()->first();
         $lessons = Lesson::with('review')->where('curriculum_id', $curriculum->id)->where('public_status', 1)
@@ -302,8 +314,11 @@ class UserController extends Controller
             else if($days > 0){
                 $item->date_txt = $days . '日前';
             }
-            else{
+            else if($times > 1){
                 $item->date_txt = $times . '時間前';
+            }
+            else{
+                $item->date_txt = 'たった今';
             }
         }
         return view('user.layouts.notice-list', compact('notice', 'notice_ids', 'cnt'));
