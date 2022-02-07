@@ -96,6 +96,16 @@
 
 $(document).ready(function() {
     var $form = $("#checkout_form");
+    $('.creditCardText').keypress(function (e) {
+        if($(this).val().length == 19){
+            e.preventDefault();
+        }
+    })
+    $('.card-cvc').keypress(function (e) {
+        if($(this).val().length == 4){
+            e.preventDefault();
+        }
+    })
     $('.creditCardText').keyup(function() {
         var foo = $(this).val().split(" ").join(""); // remove hyphens
         if (foo.length > 0) {
@@ -103,16 +113,50 @@ $(document).ready(function() {
         }
         $(this).val(foo);
     });
+    $('#card_date').keypress(function (e) {
+        if($(this).val().length == 7){
+            e.preventDefault();
+        }
+    })
+    $('#card_date').keydown(function (e) {
+        if (e.keyCode == 8) {
+            if($(this).val().length == 5){
+                let val = $(this).val().substring(0, 2);
+                console.log(val);
+                $(this).val(val);
+            }
+        }
+    })
     $('#card_date').keyup(function () {
         var val = $(this).val();
         if(val.length == 2){
-            val = val + '/';
+            if(val.includes('/')){
+                if(val == ' /' || val == '/ '){
+                    val = '';
+                }
+            }
+            else{
+                val = val + ' / ';
+            }
+        }
+        else if(val.length == 1){
+            if(val != 1 && val != 0 && !(val.includes('/'))){
+                val = '0' + val + ' / ';
+            }
+            else if(val == ' ' || val == '/'){
+                val = '';
+            }
+        }
+        else if(val.length == 3){
+            if(val == ' / '){
+                val = '';
+            }
         }
         $(this).val(val);
     })
     $('#checkout_btn').click(function (e) {
         e.preventDefault();
-        if($('[name=pay_setting]:checked').val() == 1){
+        if($('[name=btn]:checked').val() == 1){
             if($('[name=card_name]').val() == ""){
                 $(document).find('input[name=card_name]').css('border-color', 'red');
                 return;
@@ -128,7 +172,7 @@ $(document).ready(function() {
             $('[name=card_number]').val(cardText);
 
             var card_date = $('input[name=card_date]').val();
-            var dateArr = card_date.split('/');
+            var dateArr = card_date.split(' / ');
             if(dateArr.length<2 || dateArr.length>2){
                 $(document).find('input[name=card_date]').css('border-color', 'red');
                 return;
@@ -183,6 +227,7 @@ $(document).ready(function() {
 
     });
     function stripeResponseHandler(status, response) {
+        console.log(response);
         if (response.error) {
             if(response.error.code == 'invalid_number'){
                 $('.error')
@@ -214,13 +259,15 @@ $(document).ready(function() {
                     .find('.alert')
                     .text('セキュリティコードが無効です。');
             }
-            console.log(response)
 
         } else {
             /* token contains id, last4, and card type */
             var token = response['id'];
-            $form.find('input[type=text]').empty();
+            var brand = response['card']['brand'];
+            console.log(brand);
+            //$form.find('input[type=text]').empty();
             $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+            $form.append("<input type='hidden' name='card_brand' value='" +  + "'/>");
             $form.get(0).submit();
         }
     }

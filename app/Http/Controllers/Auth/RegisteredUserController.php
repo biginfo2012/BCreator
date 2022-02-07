@@ -47,30 +47,34 @@ class RegisteredUserController extends Controller
             'password' => ['required', Rules\Password::defaults()],
         ], ['email.unique' => '既に存在するユーザーです。']);
 
-        $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 4
-        ]);
+        $first_name = $request->first_name;
+        $last_name = $request->last_name;
+        $email = $request->email;
+        $password = $request->password;
 
-        $user->givePermissionTo('user');
-//        event(new Registered($user));
+        //        event(new Registered($user));
 //
 //        Auth::login($user);
 
 //        return redirect(RouteServiceProvider::CHECKOUT);
-        $user_id = $user->id;
-        $password = $request->password;
-        return view('auth.checkout', compact('user_id', 'password'));
+
+        return view('auth.checkout', compact('password', 'first_name', 'last_name', 'email'));
     }
 
     public function checkout(Request $request){
-        $user_id = $request->user_id;
-        $user = User::where('id', $user_id)->first();
+
         $password = $request->password;
         if($request->btn == 2){
+            $user = User::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => 4
+            ]);
+
+            $user->givePermissionTo('bank');
+            $user_id= $user->id;
             User::where('id', $user_id)->update(['pay_setting' => $request->btn, 'role' => 4]);
             $details =[
                 'first_name' => $user->first_name,
@@ -83,143 +87,152 @@ class RegisteredUserController extends Controller
             return view('auth.register-complete', compact('user', 'password'));
         }
         else{
-            Stripe::setApiKey(env('STRIPE_SECRET'));
-            $stripe_token = $request->stripeToken;
-            if($request->segment == 0){
-                $price = 338000;
-            }
-            else if($request->segment == 3){
-                $price = 112200;
-            }
-            else if($request->segment == 6){
-                $price = 56750;
-            }
-            else if($request->segment == 12){
-                $price = 28850;
-            }
-            else{
-                $price = 14800;
-            }
+            $user = User::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
-            $cus_id = null;
-            $error = null;
-            try {
-                $customer = Customer::create([
-                    'email' => $user->email,
-                    'source' => $stripe_token
-                ]);
-                $cus_id = $customer->id;
-
-            } catch (CardException $e) {
-                $body = $e->getJsonBody();
-                $err = $body['error'];
-                $error = 'Customer ' . $user->email . ': error: ' . $err['code'];
-                Log::error('CardException: ' . $e);
-            } catch (\Exception $e) {
-                $error = 'Stripe Api Issue :' . $e->getCode();
-                Log::error('Exception: ' . $e);
-            }
-
-            if ($error != null) {
-                Log::error('$error: ' . $error);
-                session()->flash('error', $error);
-                return view('auth.checkout', compact('user_id', 'password'));
-            }
-
-            try {
-                $customerInfo = Customer::retrieve($cus_id);
-//            $cardinfo = $customerInfo->sources->data;
-//            $card_number = $cardinfo[0]->id;
-//            $countryCode = $cardinfo[0]->country;
-//            $card = $customerInfo->sources->retrieve($card_number);
-//            $card->name = $name;
-//            $card->save();
-
-                $cardInfo = [
-                    'email' => $user->email,
-                    'stripe_cus_id' => $cus_id
-                ];
-                Card::updateOrCreate(['user_id' => $user_id], $cardInfo);
-            } catch (CardException $e) {
-                $body = $e->getJsonBody();
-                $err = $body['error'];
-                $error = 'Customer ' . $user->email . ': error: ' . $err['code'];
-                Log::error('139CardException: ' . $e);
-            } catch (\Exception $e) {
-                $error = 'Stripe Api Issue :' . $e->getCode();
-                Log::error('142Exception: ' . $e);
-            }
-            if ($error != null) {
-                $cu = Customer::retrieve($cus_id);
-                $cu->delete();
-                Log::error('147$error: ' . $error);
-                session()->flash('error', $error);
-                return view('auth.checkout', compact('user_id', 'password'));
-            }
-
-            try {
-                $charge = Charge::create([
-                    "amount" => $price * 100,
-                    "currency" => "JPY",
-                    "customer" => $cus_id,
-                    "capture" => false,
-                    'description' => "Buying Chips"
-                ]);
-
-                $source = $charge->source;
-
-                $ch_id = $charge->id;
-                $status = $charge->status;
-                $payment_method = $charge->payment_method;
-                $out = $charge->outcome;
-                if ($out->reason == 'elevated_risk_level') {
-                    $error = 'Your card was declined. Please try with another card';
-                } else if ($out->reason == 'highest_risk_level') {
-                    $error = 'Your card was declined. Please try with another card';
-                } else if ($out->reason == 'merchant_blacklis') {
-                    $error = 'Your card was declined. Please try with another card';
-                } else if ($source->funding == 'prepaid') {
-                    $error = 'Sorry, but we dont allow prepaid Cards. Please use a credit / debit valid card';
-                }
-
-                if (strpos($ch_id, 'ch_') === false || $charge->failure_message != '') {
-                    $error = $charge->failure_message;
-                }
-                if ($error != null) {
-                    $cu = Customer::retrieve($cus_id);
-                    $cu->delete();
-                    session()->flash('error', $error);
-                    return view('auth.checkout', compact('user_id', 'password'));
-                }
-
-            } catch (CardException $e) {
-                $body = $e->getJsonBody();
-                $err = $body['error'];
-                $error = 'Customer ' . $user->email . ': error: ' . $err['code'];
-                if ($err['decline_code'] == 'do_not_honor') {
-                    $error = 'Your card don\'t have funds or isn\'t active';
-                }
-            } catch (\Exception $e) {
-                $error = 'The card validation cant be executed at this moment. Please retry later';
-            }
-            if ($error != null) {
-                $cu = Customer::retrieve($cus_id);
-                $cu->delete();
-                session()->flash('error', $error);
-                return view('auth.checkout', compact('user_id', 'password'));
-            }
-
-            //write payment log
-            $log = [
-                'user_id' => $user_id,
-                'amount' => $price,
-                'status' => $status,
-                'paid_date' => date('Y-m-d'),
-                'payment_id' => $ch_id,
-                'payment_method' => $payment_method,
-                'good_id' => $request->good
-            ];
-            Payment::create($log);
+            $user->givePermissionTo('user');
+            $user_id= $user->id;
+//            Stripe::setApiKey(env('STRIPE_SECRET'));
+//            $stripe_token = $request->stripeToken;
+//            if($request->segment == 0){
+//                $price = 338000;
+//            }
+//            else if($request->segment == 3){
+//                $price = 112200;
+//            }
+//            else if($request->segment == 6){
+//                $price = 56750;
+//            }
+//            else if($request->segment == 12){
+//                $price = 28850;
+//            }
+//            else{
+//                $price = 14800;
+//            }
+//
+//            $cus_id = null;
+//            $error = null;
+//            try {
+//                $customer = Customer::create([
+//                    'email' => $request->email,
+//                    'source' => $stripe_token
+//                ]);
+//                $cus_id = $customer->id;
+//
+//            } catch (CardException $e) {
+//                $body = $e->getJsonBody();
+//                $err = $body['error'];
+//                $error = 'Customer ' . $request->email . ': error: ' . $err['code'];
+//                Log::error('CardException: ' . $e);
+//            } catch (\Exception $e) {
+//                $error = 'Stripe Api Issue :' . $e->getCode();
+//                Log::error('Exception: ' . $e);
+//            }
+//
+//            if ($error != null) {
+//                Log::error('$error: ' . $error);
+//                session()->flash('error', $error);
+//                return view('auth.checkout', compact('user_id', 'password'));
+//            }
+//
+//            try {
+//                $customerInfo = Customer::retrieve($cus_id);
+////            $cardinfo = $customerInfo->sources->data;
+////            $card_number = $cardinfo[0]->id;
+////            $countryCode = $cardinfo[0]->country;
+////            $card = $customerInfo->sources->retrieve($card_number);
+////            $card->name = $name;
+////            $card->save();
+//
+//                $cardInfo = [
+//                    'email' => $request->email,
+//                    'stripe_cus_id' => $cus_id
+//                ];
+//                Card::updateOrCreate(['user_id' => $user_id], $cardInfo);
+//            } catch (CardException $e) {
+//                $body = $e->getJsonBody();
+//                $err = $body['error'];
+//                $error = 'Customer ' . $user->email . ': error: ' . $err['code'];
+//                Log::error('139CardException: ' . $e);
+//            } catch (\Exception $e) {
+//                $error = 'Stripe Api Issue :' . $e->getCode();
+//                Log::error('142Exception: ' . $e);
+//            }
+//            if ($error != null) {
+//                $cu = Customer::retrieve($cus_id);
+//                $cu->delete();
+//                Log::error('147$error: ' . $error);
+//                session()->flash('error', $error);
+//                return view('auth.checkout', compact('user_id', 'password'));
+//            }
+//
+//            try {
+//                $charge = Charge::create([
+//                    "amount" => $price * 100,
+//                    "currency" => "JPY",
+//                    "customer" => $cus_id,
+//                    "capture" => false,
+//                    'description' => "Buying Chips"
+//                ]);
+//
+//                $source = $charge->source;
+//
+//                $ch_id = $charge->id;
+//                $status = $charge->status;
+//                $payment_method = $charge->payment_method;
+//                $out = $charge->outcome;
+//                if ($out->reason == 'elevated_risk_level') {
+//                    $error = 'Your card was declined. Please try with another card';
+//                } else if ($out->reason == 'highest_risk_level') {
+//                    $error = 'Your card was declined. Please try with another card';
+//                } else if ($out->reason == 'merchant_blacklis') {
+//                    $error = 'Your card was declined. Please try with another card';
+//                } else if ($source->funding == 'prepaid') {
+//                    $error = 'Sorry, but we dont allow prepaid Cards. Please use a credit / debit valid card';
+//                }
+//
+//                if (strpos($ch_id, 'ch_') === false || $charge->failure_message != '') {
+//                    $error = $charge->failure_message;
+//                }
+//                if ($error != null) {
+//                    $cu = Customer::retrieve($cus_id);
+//                    $cu->delete();
+//                    session()->flash('error', $error);
+//                    return view('auth.checkout', compact('user_id', 'password'));
+//                }
+//
+//            } catch (CardException $e) {
+//                $body = $e->getJsonBody();
+//                $err = $body['error'];
+//                $error = 'Customer ' . $user->email . ': error: ' . $err['code'];
+//                if ($err['decline_code'] == 'do_not_honor') {
+//                    $error = 'Your card don\'t have funds or isn\'t active';
+//                }
+//            } catch (\Exception $e) {
+//                $error = 'The card validation cant be executed at this moment. Please retry later';
+//            }
+//            if ($error != null) {
+//                $cu = Customer::retrieve($cus_id);
+//                $cu->delete();
+//                session()->flash('error', $error);
+//                return view('auth.checkout', compact('user_id', 'password'));
+//            }
+//
+//            //write payment log
+//            $log = [
+//                'user_id' => $user_id,
+//                'amount' => $price,
+//                'status' => $status,
+//                'paid_date' => date('Y-m-d'),
+//                'payment_id' => $ch_id,
+//                'payment_method' => $payment_method,
+//                'good_id' => $request->good
+//            ];
+//            Payment::create($log);
 
             $data = [
                 'card_name' => $request->card_name,
@@ -228,6 +241,7 @@ class RegisteredUserController extends Controller
                 'card_year' => $request->card_year,
                 'card_cvc' => $request->card_cvc,
                 'segment' => $request->segment,
+                'card_brand' => $request->card_brand,
                 'role' => 3
             ];
             User::where('id', $user_id)->update($data);

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 /*TOP Pages*/
 Route::get('/', [TopController::class, 'welcome'])->name('home');
+
 Route::get('about', [TopController::class, 'about'])->name('about');
 Route::get('curriculum', [TopController::class, 'curriculum'])->name('curriculum');
 Route::get('faq', [TopController::class, 'faq'])->name('faq');
@@ -64,6 +65,16 @@ Route::group(['middleware' => 'auth'], function (){
 
         Route::post('user-exit', [UserController::class, 'userExit'])->name('user-exit');
     });
+
+
+        Route::get('setup', [UserController::class, 'setup'])->name('setup');
+        Route::get('withdrawal', [UserController::class, 'withdrawal'])->name('withdrawal');
+        Route::post('user-exit', [UserController::class, 'userExit'])->name('user-exit');
+        Route::get('contact', [UserController::class, 'contact'])->name('contact');
+        Route::post('contact-complete', [UserController::class, 'contactComplete'])->name('contact-complete');
+    Route::post('get-notice', [UserController::class, 'getNotice'])->name('get-notice');
+    Route::post('check-notice', [UserController::class, 'checkNotice'])->name('check-notice');
+
 
     /*master part*/
     Route::prefix('master')->group(function () {

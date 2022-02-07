@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-//        Permission::create(['name' => 'admin']);
+//        Permission::create(['name' => 'bank']);
 //        Permission::create(['name' => 'user']);
 
 //        $super = User::where('role', 1)->get();
@@ -42,10 +42,12 @@ class AuthenticatedSessionController extends Controller
 //            $user->givePermissionTo('admin');
 //        }
 //
-//        $user = User::where('role', 2)->get();
-//        foreach ($user as $u){
-//            $u->givePermissionTo('user');
-//        }
+        $user = User::where('role', 4)->get();
+        foreach ($user as $u){
+            $u->revokePermissionTo('user');
+            $u->revokePermissionTo('admin');
+            $u->givePermissionTo('bank');
+        }
 
         if(Auth::user()->status == 0 || isset(Auth::user()->deleted_at) || Auth::user()->exit == 1){
             Auth::guard('web')->logout();
@@ -58,12 +60,14 @@ class AuthenticatedSessionController extends Controller
         }
 
         if(Auth::user()->role == 1){
-            return redirect()->intended(RouteServiceProvider::HOME);
             User::where('id', Auth::user()->id)->update(['login_at' => date('Y-m-d H:i:s')]);
+            return redirect()->intended(RouteServiceProvider::HOME);
+
         }
         else if(Auth::user()->role == 3){
-            return redirect()->intended(RouteServiceProvider::MYPAGE);
             User::where('id', Auth::user()->id)->update(['login_at' => date('Y-m-d H:i:s')]);
+            return redirect()->intended(RouteServiceProvider::MYPAGE);
+
         }
         else if(Auth::user()->role == 5){
             Auth::guard('web')->logout();
@@ -75,8 +79,9 @@ class AuthenticatedSessionController extends Controller
             return redirect()->back();
         }
         else{
-            return redirect()->intended(RouteServiceProvider::SETUP);
             User::where('id', Auth::user()->id)->update(['login_at' => date('Y-m-d H:i:s')]);
+            return redirect()->intended(RouteServiceProvider::SETUP);
+
         }
 
     }

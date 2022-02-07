@@ -28,13 +28,16 @@
 <div class="pagination-wrapper">
     <nav aria-label="Page navigation">
         <ul class="pagination mb-0">
+            <li class="page-item page-prev disabled">
+                <a aria-controls="Prev" class="page-link">前へ</a>
+            </li>
             @for($i = 1; $i <= $page; $i++)
                 <li class="page-item {{$i == $current_page ? 'active' : 'item'}}" data-id="{{$i}}">
                     <a class="page-link">{{$i}}</a>
                 </li>
             @endfor
             <li class="page-item page-next">
-                <a aria-label="Next" class="page-link"><i class="fa fa-angle-right"></i></a>
+                <a aria-label="Next" class="page-link"><i class="fa fa-angle-right"></i>次へ</a>
             </li>
         </ul>
     </nav>

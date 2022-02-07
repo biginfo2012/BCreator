@@ -1,8 +1,12 @@
 $(document).ready(function () {
     getNotice();
     $('#notice_bell').click(function () {
+        if(!$(this).hasClass('notice_bell')){
+            $('#notice_bell').next().find('.item').each(function () {
+                $(this).removeClass('active');
+            });
+        }
         checkNotice();
-
     })
 })
 function saveForm(index, url, reload=false) {
@@ -249,6 +253,9 @@ function checkNotice() {
         },
         success: function (response) {
             $('#notice_bell').removeClass('notice_bell');
+            // $('#notice_bell').next().find('.item').each(function () {
+            //     $(this).removeClass('active');
+            // });
         },
         error: function () {
 

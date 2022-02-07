@@ -25,7 +25,9 @@
               data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" role="form">
             @csrf
             <div class="container">
-                <input type="hidden" name="user_id" value="{{$user_id}}">
+                <input type="hidden" name="first_name" value="{{$first_name}}">
+                <input type="hidden" name="last_name" value="{{$last_name}}">
+                <input type="hidden" name="email" value="{{$email}}">
                 <input type="hidden" name="password" value="{{ $password }}">
                 <div class="regist-box">
                     <div class="title">

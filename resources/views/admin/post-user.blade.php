@@ -29,7 +29,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="form-label">パスワード</label>
-                            <input type="password" class="form-control" placeholder="パスワード" name="password" required>
+                            <input type="password" class="form-control" placeholder="パスワード" name="password" {{ isset($user) ? '' : 'required' }}>
                         </div>
                     </div>
                     <div class="col-md-12">

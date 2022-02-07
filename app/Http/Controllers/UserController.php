@@ -20,15 +20,16 @@ use App\Models\UserExit;
 use App\Models\UserLesson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     //
-    public function __construct()
-    {
-        $this->middleware(['permission:user|admin']);
-    }
+//    public function __construct()
+//    {
+//        $this->middleware(['permission:user|admin']);
+//    }
     public function mypage(){
         $cnt_lesson = UserLesson::where('user_id', Auth::user()->id)->where('status', 1)->get()->count();
         $lesson_ids = UserLesson::where('user_id', Auth::user()->id)->where('status', 0)->pluck('lesson_id');
@@ -74,14 +75,14 @@ class UserController extends Controller
         return view('user.myfaq');
     }
     public function archiveCurriculum(){
-        $curriculum = Curriculum::where('public_status', 1)->whereNull('deleted_at')->get();
+        $curriculum = DB::select('SELECT * from `curricula` where `public_status` = 1 and `deleted_at` is null order by ISNULL(`order`) ASC');
         return view('user.archive-curriculum', compact('curriculum'));
     }
 
     public function archiveTest(){
         $test = Test::with('curriculum')->whereHas('curriculum', function($query){$query->where('public_status', 1)->whereNull('deleted_at');})
-            ->with('lesson')
-            ->where('public_status', 1)->whereNull('deleted_at')->get()->toArray();
+            ->with('lesson')->where('public_status', 1)->whereNull('deleted_at')
+            ->orderByRaw("CASE WHEN `order` IS NULL THEN 0 ELSE 1 END DESC")->orderBy('order', 'ASC')->get()->toArray();
         foreach ($test as $id => $item){
             if(isset($item->lesson)){
                 if($item->lesson->public_status != 1 && isset($item->lesson->deleted_at)){
@@ -133,6 +134,7 @@ class UserController extends Controller
             'card_month' => $request->card_month,
             'card_year' => $request->card_year,
             'card_cvc' => $request->card_cvc,
+            'card_brand' => $request->card_brand
         ];
         User::where('id', Auth::user()->id)->update($data);
         return response()->json(['status' => true]);
@@ -141,7 +143,8 @@ class UserController extends Controller
     public function curriculumTemp($id){
         $curriculum = Curriculum::with('review')->with('test')->where('slack', $id)->get()->first();
         $lessons = Lesson::with('review')->where('curriculum_id', $curriculum->id)->where('public_status', 1)
-            ->whereNull('deleted_at')->get();
+            ->whereNull('deleted_at')->orderByRaw("CASE WHEN `order` IS NULL THEN 0 ELSE 1 END DESC")->orderBy('order', 'ASC')->get();
+
         $tmp = UserCurriculum::where('user_id', Auth::user()->id)->where('curriculum_id', $curriculum->id)->get()->first();
         $finish = 0;
         if(isset($tmp)){

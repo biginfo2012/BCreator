@@ -50,10 +50,10 @@ class AdminController extends Controller
 
 
     public function editCurriculum(){
-        $all_data = Curriculum::with('user')->whereNull('deleted_at')->orderBy('order', 'desc')->get()->all();
-        $open_data = Curriculum::with('user')->where('public_status', 1)->whereNull('deleted_at')->orderBy('order', 'desc')->get();
-        $draft_data = Curriculum::with('user')->where('public_status', 0)->whereNull('deleted_at')->orderBy('order', 'desc')->get();
-        $trash_data = Curriculum::with('user')->whereNotNull('deleted_at')->orderBy('order', 'desc')->get();
+        $all_data = Curriculum::with('user')->whereNull('deleted_at')->get()->all();
+        $open_data = Curriculum::with('user')->where('public_status', 1)->whereNull('deleted_at')->get();
+        $draft_data = Curriculum::with('user')->where('public_status', 0)->whereNull('deleted_at')->get();
+        $trash_data = Curriculum::with('user')->whereNotNull('deleted_at')->get();
         return view('admin.edit-curriculum', compact('all_data', 'open_data', 'draft_data', 'trash_data'));
     }
     public function postCurriculum(){
@@ -171,10 +171,10 @@ class AdminController extends Controller
     }
 
     public function editLesson(){
-        $all_data = Lesson::with('user')->with('curriculum')->whereNull('deleted_at')->orderBy('order', 'desc')->get()->all();
-        $open_data = Lesson::with('user')->with('curriculum')->where('public_status', 1)->whereNull('deleted_at')->orderBy('order', 'desc')->get();
-        $draft_data = Lesson::with('user')->with('curriculum')->where('public_status', 0)->whereNull('deleted_at')->orderBy('order', 'desc')->get();
-        $trash_data = Lesson::with('user')->with('curriculum')->whereNotNull('deleted_at')->orderBy('order', 'desc')->get();
+        $all_data = Lesson::with('user')->with('curriculum')->whereNull('deleted_at')->get()->all();
+        $open_data = Lesson::with('user')->with('curriculum')->where('public_status', 1)->whereNull('deleted_at')->get();
+        $draft_data = Lesson::with('user')->with('curriculum')->where('public_status', 0)->whereNull('deleted_at')->get();
+        $trash_data = Lesson::with('user')->with('curriculum')->whereNotNull('deleted_at')->get();
         return view('admin.edit-lesson', compact('all_data', 'open_data', 'draft_data', 'trash_data'));
     }
     public function postLesson(){
@@ -326,11 +326,11 @@ class AdminController extends Controller
 
     public function editReview(){
         $all_data = Review::with('user')->with('curriculum')->with('lesson')->whereNull('deleted_at')
-            ->orderBy('order', 'desc')->get()->all();
+            ->get()->all();
         $open_data = Review::with('user')->with('curriculum')->with('lesson')->where('public_status', 1)
-            ->whereNull('deleted_at')->orderBy('order', 'desc')->get();
+            ->whereNull('deleted_at')->get();
         $draft_data = Review::with('user')->with('curriculum')->with('lesson')->where('public_status', 0)
-            ->whereNull('deleted_at')->orderBy('order', 'desc')->get();
+            ->whereNull('deleted_at')->get();
         $trash_data = Review::with('user')->with('curriculum')->with('lesson')->whereNotNull('deleted_at')->get();
         return view('admin.edit-review', compact('all_data', 'open_data', 'draft_data', 'trash_data'));
     }
@@ -473,13 +473,13 @@ class AdminController extends Controller
     /*test*/
     public function editTest(){
         $all_data = Test::with('user')->with('curriculum')->with('lesson')->whereNull('deleted_at')
-            ->orderBy('order', 'desc')->get()->all();
+            ->get()->all();
         $open_data = Test::with('user')->with('curriculum')->with('lesson')->where('public_status', 1)
-            ->whereNull('deleted_at')->orderBy('order', 'desc')->get();
+            ->whereNull('deleted_at')->get();
         $draft_data = Test::with('user')->with('curriculum')->with('lesson')->where('public_status', 0)
-            ->whereNull('deleted_at')->orderBy('order', 'desc')->get();
+            ->whereNull('deleted_at')->get();
         $trash_data = Test::with('user')->with('curriculum')->with('lesson')->whereNotNull('deleted_at')
-            ->orderBy('order', 'desc')->get();
+            ->get();
         return view('admin.edit-test', compact('all_data', 'open_data', 'draft_data', 'trash_data'));
     }
     public function postTest(){
@@ -732,7 +732,7 @@ class AdminController extends Controller
     }
 
     public function editUser(){
-        $all_data = User::get()->all();
+        $all_data = User::whereNull('deleted_at')->get()->all();
         $stop_data = User::where('status', 0)->whereNull('deleted_at')->get();
         $trash_data = User::whereNotNull('deleted_at')->get();
         return view('admin.edit-user', compact('all_data', 'stop_data', 'trash_data'));
@@ -742,20 +742,35 @@ class AdminController extends Controller
     }
     public function saveUser(Request $request){
         if(isset($request->id)){
-            $user = User::where('email', $request->email)->where('id', '!=', $request->id)->get()->first();
+            User::where('email', $request->email)->where('id', '!=', $request->id)->get()->first();
             if(isset($user)){
                 return response()->json(['status' => false]);
             }
-            User::where('id', $request->id)->update([
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'role' => $request->role,
-                'status' => $request->status,
-            ]);
+            if(isset($request->password)){
+                User::where('id', $request->id)->update([
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'role' => $request->role,
+                    'status' => $request->status,
+                ]);
+            }
+            else{
+                User::where('id', $request->id)->update([
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'email' => $request->email,
+                    'role' => $request->role,
+                    'status' => $request->status,
+                ]);
+            }
+            $user = User::find($request->id);
             if($request->role == 1){
                 $user->givePermissionTo('admin');
+            }
+            else if($request->type == 4){
+                $user->givePermissionTo('bank');
             }
             else{
                 $user->givePermissionTo('user');
@@ -776,6 +791,9 @@ class AdminController extends Controller
             ]);
             if($request->role == 1){
                 $user->givePermissionTo('admin');
+            }
+            else if($request->type == 4){
+                $user->givePermissionTo('bank');
             }
             else{
                 $user->givePermissionTo('user');

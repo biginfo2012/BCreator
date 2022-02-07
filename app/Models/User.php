@@ -29,6 +29,7 @@ class User extends Authenticatable
         'card_year',
         'card_month',
         'card_cvc',
+        'card_brand',
         'pay_setting',
         'role',
         'login_at',
